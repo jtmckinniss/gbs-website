@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>GBS Behavioral Modification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gbs-shared.css">
+<style>
+/* === TOKENS === */
+
+/* === RESET + BASE === */
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-bottom: 56px;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+::selection { background: var(--teal); color: var(--black); }
+
+/* === PROGRESS BAR === */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--butter);
+  z-index: 200;
+  transition: width 0.1s linear;
+}
+
+/* === NAV === */
+#nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+#nav.scrolled {
+  background: rgba(10, 10, 10, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(16px, 4vw, 48px);
+  gap: 24px;
+}
+.nav-brand { text-decoration: none; display: flex; align-items: center; }
+.nav-logo-placeholder {
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-links a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.nav-link-active {
+  background: var(--butter);
+  color: var(--black) !important;
+  padding: 4px 10px;
+}
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--butter);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+.nav-cta:hover { background: var(--butter-border); }
+#nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+#nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.8);
+}
+#nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: rgba(10,10,10,0.97);
+  padding: 16px 0 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+#nav-mobile-menu.open { display: flex; }
+#nav-mobile-menu a {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  padding: 13px clamp(16px, 4vw, 48px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color var(--transition);
+}
+#nav-mobile-menu a:hover { color: #fff; }
+.nav-mobile-cta { color: var(--butter) !important; font-weight: 800 !important; }
+
+/* === LAYOUT === */
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: 40px;
+}
+@media (max-width: 640px) {
+  .section-inner { padding-inline: 16px; }
+}
+.section-scroll-margin { scroll-margin-top: 64px; }
+
+/* === TYPOGRAPHY === */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  display: block;
+  margin-bottom: 16px;
+}
+.eyebrow.light { color: var(--teal); }
+.eyebrow.butter-color { color: var(--butter); }
+
+.hero-h em,
+.section-h em {
+  font-style: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 3px;
+  display: inline;
+}
+.cta-band-h em {
+  font-style: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 3px;
+  display: inline;
+}
+
+/* === PLACEHOLDER IMAGES === */
+.placeholder-img {
+  background: repeating-linear-gradient(45deg, #cacaca, #cacaca 8px, #e8e8e8 8px, #e8e8e8 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.placeholder-img span {
+  background: rgba(255,255,255,0.9);
+  color: #555;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  text-align: center;
+  max-width: 80%;
+}
+
+/* === BUTTONS === */
+.btn-butter {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--butter);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+.btn-butter:hover { background: var(--butter-border); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  background: transparent;
+  padding: 13px 27px;
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: #fff; background: rgba(255,255,255,0.06); }
+.btn-ghost.teal-ghost { color: var(--teal); border-color: rgba(42,210,201,0.4); }
+.btn-ghost.teal-ghost:hover { border-color: var(--teal); background: rgba(42,210,201,0.06); }
+
+/* === REVEAL === */
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 80ms; }
+.reveal-d2 { transition-delay: 160ms; }
+.reveal-d3 { transition-delay: 240ms; }
+.reveal-d4 { transition-delay: 320ms; }
+
+/* ==========================================
+   SECTION 01 — HERO
+   ========================================== */
+.hero {
+  background: var(--black);
+  padding-top: calc(env(safe-area-inset-top, 0px) + 96px);
+  padding-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  border-left: 8px solid var(--teal-deep);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.hero-left { padding-bottom: 60px; }
+.hero-eyebrow-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.stage-badge {
+  font-family: var(--font-mono);
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--teal-deep);
+  line-height: 1;
+  opacity: 0.55;
+  user-select: none;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+.hero-h {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5.5vw, 72px);
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-wrap: balance;
+  margin-bottom: 24px;
+}
+.hero-subhead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+  max-width: 52ch;
+  margin-bottom: 36px;
+}
+.hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.hero-right { position: relative; display: flex; flex-direction: column; align-self: stretch; }
+.hero-img-wrap { flex: 1; min-height: 440px; }
+.hero-img-wrap .placeholder-img { width: 100%; height: 100%; min-height: 440px; }
+.hero-price-bar {
+  background: var(--teal-deep);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-price-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2px;
+}
+.hero-price-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.hero-price-anchor { font-size: 12px; color: rgba(255,255,255,0.55); margin-left: auto; }
+
+@media (max-width: 900px) {
+  .hero { border-left: none; border-top: 8px solid var(--teal-deep); }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-right { order: -1; }
+  .hero-img-wrap, .hero-img-wrap .placeholder-img { min-height: 240px; }
+  .stage-badge { font-size: 36px; }
+}
+
+/* ==========================================
+   SECTION 02 — PHILOSOPHY BAR
+   ========================================== */
+.philosophy {
+  background: var(--kale);
+  padding-block: 72px;
+  border-left: 8px solid var(--butter-border);
+}
+.philosophy-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 64px;
+  align-items: center;
+}
+.philosophy-quote {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.philosophy-quote em { font-style: italic; color: var(--teal); }
+.philosophy-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+  max-width: 60ch;
+}
+.philosophy-stat { text-align: center; flex-shrink: 0; min-width: 180px; }
+.philosophy-stat-number {
+  font-family: var(--font-mono);
+  font-size: clamp(52px, 7vw, 80px);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  display: block;
+  margin-bottom: 12px;
+}
+.philosophy-stat-caption { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.5); max-width: 18ch; margin: 0 auto; }
+.philosophy-stat-source { font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 8px; font-style: italic; }
+
+@media (max-width: 760px) {
+  .philosophy { border-left: none; border-top: 8px solid var(--butter-border); }
+  .philosophy-inner { grid-template-columns: 1fr; gap: 32px; }
+  .philosophy-stat { text-align: left; }
+  .philosophy-stat-caption { margin: 0; }
+}
+
+/* ==========================================
+   SECTION 03 — TWO PATHWAYS
+   ========================================== */
+.pathways { background: var(--cream); padding-block: 96px; }
+.pathways-intro { max-width: 680px; margin-bottom: 56px; }
+.section-h {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+  margin-bottom: 20px;
+}
+.section-h.on-dark { color: #fff; }
+.pathways-lead { font-size: 15px; line-height: 1.7; color: var(--gray-warm); max-width: 58ch; }
+.pathways-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.pathway-card { padding: 40px; position: relative; }
+.pathway-card-a {
+  background: var(--cream-soft);
+  border: 1px solid var(--gray-line);
+  border-left: 6px solid var(--teal-deep);
+}
+.pathway-card-b { background: var(--ink); color: rgba(255,255,255,0.8); }
+.pathway-badge {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+  display: block;
+}
+.pathway-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+.pathway-card-b .pathway-title { color: #fff; }
+.pathway-body { font-size: 14px; line-height: 1.7; color: var(--gray-warm); margin-bottom: 24px; }
+.pathway-card-b .pathway-body { color: rgba(255,255,255,0.6); }
+.pathway-starts-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 6px;
+  display: block;
+}
+.pathway-card-b .pathway-starts-label { color: rgba(255,255,255,0.4); }
+.pathway-starts-value { font-size: 14px; font-weight: 600; color: var(--ink-warm); }
+.pathway-card-b .pathway-starts-value { color: rgba(255,255,255,0.85); }
+.pathway-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+  margin-top: 12px;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid rgba(42,210,201,0.35);
+}
+
+@media (max-width: 760px) { .pathways-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================
+   SECTION 04 — HOW IT WORKS
+   ========================================== */
+.how-it-works { background: var(--black); padding-block: 96px; }
+.hiw-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: start;
+  margin-top: 0;
+}
+.steps-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.step-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding-block: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  align-items: start;
+}
+.step-item:last-child { border-bottom: none; }
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--teal);
+  line-height: 1;
+  padding-top: 4px;
+  opacity: 0.8;
+}
+.step-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.step-body { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.52); }
+.hiw-callout {
+  background: var(--kale);
+  padding: 32px;
+  border: 1.5px solid var(--butter-border);
+  position: sticky;
+  top: 120px;
+}
+.hiw-callout-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--butter);
+  margin-bottom: 12px;
+  display: block;
+}
+.hiw-callout-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.hiw-callout-body { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+
+@media (max-width: 960px) {
+  .hiw-layout { grid-template-columns: 1fr; }
+  .hiw-callout { position: static; }
+}
+
+/* ==========================================
+   SECTION 05 — PRICING
+   ========================================== */
+.pricing { background: var(--cream); padding-block: 96px; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+.pricing-col {
+  padding: 40px;
+  border: 1px solid var(--gray-line);
+  background: #fff;
+}
+.pricing-col.muted { background: var(--cream-deep); }
+.pricing-col-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 6px;
+  display: block;
+}
+.pricing-col.muted .pricing-col-label { color: var(--gray-warm); }
+.pricing-col-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.pricing-col-note {
+  font-size: 12px;
+  color: var(--gray-warm);
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gray-line);
+  line-height: 1.6;
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--gray-line);
+  gap: 16px;
+}
+.price-row:last-of-type { border-bottom: none; }
+.price-row-left { flex: 1; min-width: 0; }
+.price-name { font-size: 14px; font-weight: 600; color: var(--ink-warm); display: block; margin-bottom: 2px; }
+.price-meta { font-size: 11px; color: var(--gray-warm); display: block; }
+.price-caveat { font-size: 11px; color: var(--teal-deep); font-style: italic; display: block; margin-top: 2px; }
+.price-amount {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--teal-deep);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pricing-col.muted .price-amount { color: var(--gray-warm); }
+.pricing-note-box {
+  margin-top: 32px;
+  background: var(--cream-deep);
+  border: 1px solid var(--gray-line);
+  border-left: 4px solid var(--teal-deep);
+  padding: 20px 24px;
+}
+.pricing-note-box-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 8px;
+  display: block;
+}
+.pricing-note-box p { font-size: 13px; line-height: 1.7; color: var(--gray-warm); }
+
+@media (max-width: 760px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================
+   SECTION 06 — CARE TEAM
+   ========================================== */
+.care-team { background: var(--black); padding-block: 96px; }
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+.team-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  padding: 40px;
+}
+.team-card-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--teal-deep);
+  color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+.team-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.team-card-body { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.52); }
+.team-collab {
+  margin-top: 32px;
+  background: var(--kale-deep);
+  padding: 24px 32px;
+  border-left: 4px solid var(--teal-deep);
+}
+.team-collab p {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) { .team-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================
+   SECTION 07 — CTA BAND
+   ========================================== */
+#cta-band {
+  background: var(--kale-deep);
+  padding-block: 96px;
+  border-left: 8px solid var(--butter-border);
+}
+.cta-band-inner { max-width: 720px; }
+.cta-band-h {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-wrap: balance;
+  margin-bottom: 20px;
+}
+.cta-band-body {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 56ch;
+  margin-bottom: 36px;
+}
+.cta-band-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  #cta-band { border-left: none; border-top: 8px solid var(--butter-border); }
+}
+
+/* ── BOTTOM STAGE BAR ── */
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.55);
+  padding-block: 64px 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+@media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GBS</span>
+    </a>
+    <div class="nav-links">
+      <a href="training.html">Training</a>
+      <a href="modification.html" class="nav-link-active">Modification</a>
+      <a href="medicine.html">Medicine</a>
+      <a href="pricing.html">Cost Transparency</a>
+      <a href="meet-the-team.html">Team</a>
+      <a href="referring-vets.html">For Vets</a>
+    </div>
+    <div class="nav-right">
+      <a href="#cta-band" class="nav-cta">Get started</a>
+      <button id="nav-burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="nav-mobile-menu">
+    <a href="training.html">Training</a>
+    <a href="modification.html">Modification</a>
+    <a href="medicine.html">Medicine</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="meet-the-team.html">Meet the Team</a>
+    <a href="#cta-band" class="nav-mobile-cta">Get started</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===== 01 HERO ===== -->
+  <section class="hero section-scroll-margin" id="hero">
+    <div class="section-inner" style="width:100%;">
+      <div class="hero-grid">
+        <div class="hero-left reveal">
+          <div class="hero-eyebrow-row">
+            <span class="eyebrow butter-color" style="margin-bottom:0;">BEHAVIORAL MODIFICATION &middot; SUPPORT</span>
+            <span class="stage-badge"><span class="stage-dial" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+          <h1 class="hero-h">The work that makes <em>impact stick</em>.</h1>
+          <p class="hero-subhead">Behavior modification is where lasting progress takes root. Guided practice, measurable goals, and consistent support — working alongside your animal's care team.</p>
+          <div class="hero-ctas">
+            <a href="#cta-band" class="btn-butter">Book a call</a>
+            <a href="#how-it-works" class="btn-ghost">How it works</a>
+          </div>
+        </div>
+        <div class="hero-right reveal reveal-d2">
+          <div class="hero-img-wrap">
+            <div class="placeholder-img" style="width:100%;height:100%;min-height:440px;">
+              <span>BEHAVIOR MODIFICATION — HERO IMAGE</span>
+            </div>
+          </div>
+          <div class="hero-price-bar">
+            <div>
+              <div class="hero-price-label">Modification Starting Point</div>
+              <div class="hero-price-value">From $225</div>
+            </div>
+            <span class="hero-price-anchor">One animal &middot; 90 min virtual</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 PHILOSOPHY BAR ===== -->
+  <section class="philosophy section-scroll-margin" id="philosophy">
+    <div class="section-inner">
+      <div class="philosophy-inner">
+        <div class="reveal">
+          <p class="philosophy-quote">"Think of it as your animal's <em>therapist</em>."</p>
+          <p class="philosophy-body">Modification isn't about correcting behavior — it's about changing the underlying emotional response. With the right support, animals can learn new ways to feel safe, respond calmly, and build resilience over time.</p>
+        </div>
+        <div class="philosophy-stat reveal reveal-d2">
+          <span class="philosophy-stat-number">80%</span>
+          <p class="philosophy-stat-caption">of behavioral challenges respond to modification when paired with consistent practice.</p>
+          <p class="philosophy-stat-source">Based on behavioral outcomes data</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 TWO PATHWAYS ===== -->
+  <section class="pathways section-scroll-margin" id="pathways">
+    <div class="section-inner">
+      <div class="pathways-intro reveal">
+        <span class="eyebrow">TWO WAYS IN</span>
+        <h2 class="section-h">Your pathway depends on <em>where you are</em>.</h2>
+        <p class="pathways-lead">Modification works two ways depending on your animal's needs. Both pathways are real behavior modification — the difference is whether veterinary medicine is part of your animal's care plan.</p>
+      </div>
+      <div class="pathways-grid">
+        <div class="pathway-card pathway-card-a reveal reveal-d1">
+          <span class="pathway-badge">OPEN ENTRY</span>
+          <h3 class="pathway-title">Consultant-Led Modification</h3>
+          <p class="pathway-body">Independent of veterinary medicine. The right fit for reactivity, foundational modification, and families who don't need veterinary care. Led by a Certified Canine Behavior Consultant.</p>
+          <div style="margin-bottom:28px;">
+            <p class="pathway-starts-label">Starts with:</p>
+            <p class="pathway-starts-value">Modification Starting Point</p>
+            <p style="font-size:13px;color:var(--gray-warm);margin-top:4px;">$225 (one animal) &middot; $400 (two animals) &middot; 90 min virtual</p>
+          </div>
+          <p class="pathway-starts-label" style="margin-bottom:10px;">How to start:</p>
+          <a href="#cta-band" class="btn-butter">Book a call</a>
+        </div>
+        <div class="pathway-card pathway-card-b reveal reveal-d2">
+          <span class="pathway-badge">BY OPT-IN ONLY</span>
+          <h3 class="pathway-title">Medicine-Led Modification</h3>
+          <p class="pathway-body">For families already working with Gigi's veterinary behaviorist. Modification is implemented alongside your animal's treatment plan — led by a Behavioral Medicine Tech who works directly with the vet behaviorist.</p>
+          <div style="margin-bottom:16px;">
+            <p class="pathway-starts-label">Starts with:</p>
+            <p class="pathway-starts-value">Completion of the Medicine Starting Point</p>
+          </div>
+          <p class="pathway-note">This pathway is available after your initial Behavioral Medicine appointment. Your Care Navigation Call will guide you there if it's the right fit.</p>
+          <a href="medicine.html" class="btn-ghost teal-ghost">Learn about Medicine</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 HOW IT WORKS ===== -->
+  <section class="how-it-works section-scroll-margin" id="how-it-works">
+    <div class="section-inner">
+      <div class="reveal" style="margin-bottom:48px;">
+        <span class="eyebrow light">HOW IT WORKS</span>
+        <h2 class="section-h on-dark">Guided. Measurable. <em>Yours to keep.</em></h2>
+      </div>
+      <div class="hiw-layout">
+        <ol class="steps-list">
+          <li class="step-item reveal reveal-d1">
+            <span class="step-number">1</span>
+            <div>
+              <h3 class="step-title">Book a call</h3>
+              <p class="step-body">Your free Care Navigation Call starts the process. Lacey reviews your animal's behavior history, answers your questions, and guides you to the right modification pathway.</p>
+            </div>
+          </li>
+          <li class="step-item reveal reveal-d2">
+            <span class="step-number">2</span>
+            <div>
+              <h3 class="step-title">The Modification Starting Point</h3>
+              <p class="step-body">Your first appointment is a 90-minute virtual session with your Behavior Consultant. You'll share history, set goals, and leave with a clear behavior modification plan.</p>
+            </div>
+          </li>
+          <li class="step-item reveal reveal-d3">
+            <span class="step-number">3</span>
+            <div>
+              <h3 class="step-title">Consistent practice</h3>
+              <p class="step-body">Modification happens between sessions. Your consultant gives you the tools — you do the daily work. Progress is built through repetition, not just appointments.</p>
+            </div>
+          </li>
+          <li class="step-item reveal reveal-d4">
+            <span class="step-number">4</span>
+            <div>
+              <h3 class="step-title">Ongoing support</h3>
+              <p class="step-body">Follow-up sessions adjust the plan as your animal progresses. Virtual, in-person at Gigi's, or in-home for behaviorally required cases at Gigi's discretion.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="hiw-callout reveal reveal-d2">
+          <span class="hiw-callout-eyebrow">Care Navigation</span>
+          <p class="hiw-callout-title">Not sure which pathway fits?</p>
+          <p class="hiw-callout-body">That's exactly what the Care Navigation Call is for. Lacey will review your animal's situation and guide you to the right pathway — Consultant-Led or Medicine-Led.</p>
+          <a href="#cta-band" class="btn-butter">Book a call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 PRICING ===== -->
+  <section class="pricing section-scroll-margin" id="pricing">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="eyebrow">WHAT IT COSTS</span>
+        <h2 class="section-h">Transparent pricing. <em>No surprises.</em></h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-col reveal reveal-d1">
+          <span class="pricing-col-label">Open Entry</span>
+          <p class="pricing-col-title">Consultant-Led</p>
+          <p class="pricing-col-note">Led by a Certified Canine Behavior Consultant. Starts with your free Care Navigation Call.</p>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Modification Starting Point</span>
+              <span class="price-meta">90 min &middot; Virtual &middot; Behavior Consultant</span>
+            </div>
+            <span class="price-amount">$225</span>
+          </div>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Starting Point — Two Animals</span>
+              <span class="price-meta">90 min &middot; Virtual &middot; Behavior Consultant</span>
+            </div>
+            <span class="price-amount">$400</span>
+          </div>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Follow-Up — Virtual</span>
+              <span class="price-meta">60 min &middot; Behavior Consultant</span>
+            </div>
+            <span class="price-amount">$125</span>
+          </div>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Follow-Up — @ Gigi's</span>
+              <span class="price-meta">60 min &middot; Behavior Consultant</span>
+            </div>
+            <span class="price-amount">$150</span>
+          </div>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Follow-Up — In-Home</span>
+              <span class="price-meta">60 min &middot; Behavior Consultant</span>
+              <span class="price-caveat">Behaviorally required cases only, at Gigi's discretion</span>
+            </div>
+            <span class="price-amount">$175</span>
+          </div>
+        </div>
+        <div class="pricing-col muted reveal reveal-d2">
+          <span class="pricing-col-label">By Opt-In Only</span>
+          <p class="pricing-col-title">Medicine-Led</p>
+          <p class="pricing-col-note">Available after completion of the Medicine Starting Point. Led by a Behavioral Medicine Tech working alongside the veterinary behaviorist.</p>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Medicine-Led Session — Virtual</span>
+              <span class="price-meta">40 min &middot; Behavioral Medicine Tech</span>
+            </div>
+            <span class="price-amount">$140</span>
+          </div>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Medicine-Led Session — @ Gigi's</span>
+              <span class="price-meta">40 min &middot; Behavioral Medicine Tech</span>
+            </div>
+            <span class="price-amount">$175</span>
+          </div>
+          <div class="price-row">
+            <div class="price-row-left">
+              <span class="price-name">Mini Session — @ Gigi's</span>
+              <span class="price-meta">20 min &middot; Behavioral Medicine Tech</span>
+            </div>
+            <span class="price-amount">$50</span>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-note-box reveal reveal-d2">
+        <span class="pricing-note-box-title">Multi-animal households</span>
+        <p>Both animals can attend any appointment together. The two-animal fee applies to the Modification Starting Point only ($400 for two animals). All follow-up sessions cover the full household at no additional charge.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 06 CARE TEAM ===== -->
+  <section class="care-team section-scroll-margin" id="care-team">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="eyebrow light">YOUR CARE TEAM</span>
+        <h2 class="section-h on-dark">Specialists who <em>know this work</em>.</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal reveal-d1">
+          <div class="team-card-badge">SUPPORT</div>
+          <h3 class="team-card-title">Certified Canine Behavior Consultant</h3>
+          <p class="team-card-body">Leads the consultant-led pathway. Independent of veterinary medicine, your consultant guides the behavior modification plan, works with you on daily practice, and adapts the approach as your animal progresses.</p>
+        </div>
+        <div class="team-card reveal reveal-d2">
+          <div class="team-card-badge">MEDICINE-LED</div>
+          <h3 class="team-card-title">Behavioral Medicine Tech</h3>
+          <p class="team-card-body">Leads the medicine-led pathway for families already in the Medicine program. Works directly with the veterinary behaviorist to implement integrated treatment plans.</p>
+        </div>
+      </div>
+      <div class="team-collab reveal reveal-d2">
+        <p>Our specialists collaborate with each other — and with you. One team, one plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 07 CTA BAND ===== -->
+  <section id="cta-band" class="section-scroll-margin">
+    <div class="section-inner">
+      <div class="cta-band-inner reveal">
+        <span class="eyebrow butter-color">CARE NAVIGATION</span>
+        <h2 class="cta-band-h">You don't have to figure this <em>out alone</em>.</h2>
+        <p class="cta-band-body">Not sure where to start? Book your free Care Navigation Call. Lacey will review your animal's behavior concerns, answer your questions, and guide you to the right pathway — Consultant-Led or Medicine-Led.</p>
+        <div class="cta-band-actions">
+          <a href="#" class="btn-butter">Book a call</a>
+          <a href="medicine.html" class="btn-ghost">Explore Medicine</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Gigi's <span>Behavior Services</span></div>
+        <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGIS.ORG/GBS</div>
+      </div>
+      <div>
+        <div class="footer-col-label">Stages of care</div>
+        <div class="footer-links">
+          <a href="training.html">Behavioral Training</a>
+          <a href="modification.html">Behavioral Modification</a>
+          <a href="medicine.html">Behavioral Medicine</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Get started</div>
+        <div class="footer-links">
+          <a href="#cta-band">Care Navigation Call</a>
+          <a href="training.html">Book a class</a>
+          <a href="referring-vets.html">For referring vets</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Gigi's</div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Rescue &amp; Placement</a>
+          <a href="#">Veterinary Services</a>
+          <a href="#">Resources</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">&#169; 2026 Gigi's. All rights reserved. Judgement-Free Adoption&#8482;</div>
+      <div class="footer-url">GIGIS.ORG</div>
+    </div>
+  </div>
+</footer>
+
+<div id="stage-bar-wrap">
+  <div id="stage-bar">
+    <a href="training.html" class="sbar-item sbar-training ">
+      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.85);">Foundations</div>
+      <div class="sbar-label">Training</div>
+      <div class="sbar-price">From $42</div>
+    </a>
+    <a href="modification.html" class="sbar-item sbar-mod sbar-active">
+      <div class="sbar-eyebrow" style="color:var(--teal);">Support</div>
+      <div class="sbar-label">Modification</div>
+      <div class="sbar-price">From $250</div>
+    </a>
+    <a href="medicine.html" class="sbar-item sbar-med ">
+      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.5);">Specialty</div>
+      <div class="sbar-label">Medicine</div>
+      <div class="sbar-price">From $590</div>
+    </a>
+    <a href="#cta-band" class="sbar-cta">
+      <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
+    </a>
+  </div>
+  <div id="vet-bar">
+    <div class="vbar-spacer"></div>
+    <a href="referring-vets.html" class="vbar-link">
+      <span class="vbar-eyebrow">For Vets</span>
+      <span class="vbar-label">Referring Vets →</span>
+    </a>
+    <div class="vbar-spacer-cta"></div>
+  </div>
+</div>
+
+<script>
+// Scroll progress
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+// Nav scrolled
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+
+// Hamburger
+const navBurger = document.getElementById('nav-burger');
+const navMobileMenu = document.getElementById('nav-mobile-menu');
+navBurger.addEventListener('click', () => {
+  const isOpen = navMobileMenu.classList.toggle('open');
+  navBurger.setAttribute('aria-expanded', isOpen);
+});
+navMobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => { navMobileMenu.classList.remove('open'); navBurger.setAttribute('aria-expanded', 'false'); });
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => revealObs.observe(el));
+
+// Reduced motion
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  reveals.forEach(el => el.classList.add('visible'));
+}
+
+// Mobile nav responsive
+function handleNavResize() {
+  const links = document.querySelector('.nav-links');
+  if (window.innerWidth < 768) {
+    if (links) links.style.display = 'none';
+    navBurger.style.display = 'flex';
+  } else {
+    if (links) links.style.display = 'flex';
+    navBurger.style.display = 'none';
+    navMobileMenu.classList.remove('open');
+    navBurger.setAttribute('aria-expanded', 'false');
+  }
+}
+handleNavResize();
+window.addEventListener('resize', handleNavResize);
+
+(function(){
+  var bar = document.getElementById('stage-bar-wrap');
+  if(!bar) return;
+  var shown = false;
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 300 && !shown){ bar.classList.add('visible'); shown = true; }
+    else if(y <= 300 && shown){ bar.classList.remove('visible'); shown = false; }
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>

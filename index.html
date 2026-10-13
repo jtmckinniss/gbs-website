@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gigi's Behavior Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gbs-shared.css">
+<style>
+/* ── TOKENS ── */
+
+/* ── RESET ── */
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── SCROLL PROGRESS ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--butter);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ── NAV ── */
+#nav {
+  position: fixed;
+  top: 3px; left: 0; right: 0;
+  background: var(--black);
+  z-index: 900;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: box-shadow 200ms ease-out;
+}
+#nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.4); }
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.nav-wordmark span { color: var(--butter); }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  margin-left: auto;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--teal);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.nav-link-active {
+  background: var(--butter);
+  color: var(--black) !important;
+  padding: 4px 10px;
+}
+
+.nav-cta {
+  background: var(--teal) !important;
+  color: var(--black) !important;
+  padding: 8px 18px;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity var(--transition) !important;
+}
+.nav-cta:hover { opacity: 0.85 !important; }
+
+/* ── HAMBURGER — hidden on desktop ── */
+#nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+#nav-burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+#nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+#nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+#nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 250ms ease;
+}
+#nav-mobile-menu.open { max-height: 400px; }
+#nav-mobile-menu a {
+  padding: 16px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#nav-mobile-menu a:last-child { border-bottom: none; }
+#nav-mobile-menu .nav-mobile-cta {
+  background: var(--teal);
+  color: var(--black);
+  text-align: center;
+  margin: 12px 20px 16px;
+  border-radius: 2px;
+}
+
+/* ── SECTION NAV (E1 — 2.3) ── */
+#section-nav {
+  position: fixed;
+  top: 67px;
+  left: 0; right: 0;
+  background: var(--black);
+  border-bottom: 2px solid var(--butter-border);
+  z-index: 850;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+  overflow-x: auto;
+}
+#section-nav.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+.section-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+}
+.section-nav-item {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-bottom: 6px solid transparent;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition);
+}
+.section-nav-item:hover { color: rgba(255,255,255,0.7); }
+.section-nav-item.active {
+  color: var(--butter);
+  border-bottom-color: var(--butter);
+}
+
+/* ── BOTTOM STAGE BAR ── */
+
+/* Main customer bar */
+
+/* Vet bar — slim row under Medicine */
+
+/* ── PLACEHOLDER IMAGE ── */
+.img-placeholder {
+  background: repeating-linear-gradient(
+    45deg,
+    #cacaca,
+    #cacaca 8px,
+    #e8e8e8 8px,
+    #e8e8e8 16px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-placeholder-label {
+  background: rgba(255,255,255,0.88);
+  padding: 6px 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #555;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+/* ── SHARED ── */
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+}
+.section-h2 em { font-style: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 3px;
+  display: inline; }
+
+/* ── REVEAL ── */
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
+
+/* ── 01 HERO ── */
+#hero {
+  background: var(--black);
+  padding-top: 64px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+.hero-content {
+  padding: 96px 64px 96px 40px;
+  max-width: 640px;
+  margin-left: auto;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--butter);
+  margin-bottom: 24px;
+}
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.5vw, 80px);
+  font-weight: 500;
+  line-height: 0.90;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.hero-h1 em { font-style: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 3px;
+  display: inline; }
+.hero-tagline {
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 40px;
+  max-width: 440px;
+}
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--butter);
+  color: var(--black);
+  padding: 14px 28px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity var(--transition);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  display: inline-block;
+  transition: border-color var(--transition);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.6); }
+.hero-image { height: 100vh; }
+.hero-image .img-placeholder { height: 100%; width: 100%; }
+
+/* ── 02 PHILOSOPHY BAR ── */
+/* ── 02 BELIEF + MAJORITY (merged, kale) ── */
+#belief {
+  background: var(--kale);
+  border-left: 8px solid var(--butter);
+  padding: 60px 0;
+}
+.belief-wrap {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.belief-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--butter);
+  margin-bottom: 18px;
+}
+.belief-claim {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.12;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+}
+.belief-claim em { font-style: italic; color: var(--teal); }
+.belief-sub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  max-width: 440px;
+}
+.belief-proof {
+  border-left: 8px solid var(--butter);
+  padding-left: 28px;
+}
+.belief-proof svg { display: block; width: 100%; max-width: 280px; height: auto; overflow: visible; margin-bottom: 16px; }
+.belief-big {
+  font-family: var(--font-mono);
+  font-size: 60px;
+  font-weight: 500;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.belief-proof-sub {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 12px;
+}
+.belief-src {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+}
+
+/* ── 03 STAGES ── */
+#stages { padding: 60px 0; background: var(--cream); }
+.stages-header { margin-bottom: 64px; }
+.stages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.stage-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+}
+.stage-front {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.stage-front-inner { padding: 28px 24px 24px; display: flex; flex-direction: column; flex: 1; min-height: 300px; overflow: hidden; }
+.stage-teaser {
+  padding: 12px 20px;
+  background: var(--cream-deep);
+  flex-shrink: 0;
+  border-top: 1px solid var(--gray-line);
+}
+.stage-teaser .hb-eyebrow {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 3px;
+}
+.stage-teaser .hb-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--kale-deep);
+  line-height: 1.3;
+}
+.stage-spec {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--cream-soft);
+}
+.stage-card.revealed .stage-spec { max-height: 500px; }
+.stage-spec-inner { padding: 24px 24px; display: flex; flex-direction: column; min-height: 340px; overflow: hidden; }
+.stage-cta {
+  padding: 16px 24px;
+  flex-shrink: 0;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+}
+.stage-training .stage-cta { background: var(--butter); }
+.stage-mod .stage-cta { background: var(--teal-deep); }
+.stage-med .stage-cta { background: var(--ink); }
+
+.stage-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stage-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.0;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.stage-analogy {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  line-height: 1.5;
+  padding: 12px 14px;
+  border-left: 3px solid;
+}
+.stage-body-txt {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gray-warm);
+  margin-bottom: 20px;
+}
+.stage-actions { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding-bottom: 28px; }
+.stage-link {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap var(--transition);
+}
+.stage-link:hover { gap: 10px; }
+/* Full-width teaser bar pinned to card bottom — previews the specialist */
+/* Specialist drawer */
+.stage-card.revealed .spec-eyebrow { display: none; }
+.spec-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.spec-headline {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.spec-quote {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+  padding-left: 14px;
+  margin-bottom: 16px;
+}
+.spec-body {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.stage-back-btn {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Per-stage coding */
+.stage-training .stage-front { background: var(--butter); }
+.stage-training .stage-spec { background: var(--cream-soft); }
+.stage-training .stage-eyebrow { color: var(--butter-text); }
+.stage-training .stage-title { color: var(--ink); }
+.stage-training .stage-analogy { color: var(--ink); border-left-color: var(--butter-text); background: rgba(0,0,0,0.12); }
+.stage-training .stage-body-txt { color: var(--ink-warm); }
+.stage-training .stage-meet-btn { border: 1px solid var(--butter-border); color: var(--butter-text); }
+.stage-training .stage-meet-btn:hover { background: var(--butter-border); color: #fff; }
+.stage-training .spec-eyebrow { color: var(--gray-warm); }
+.stage-training .spec-headline { color: var(--kale-deep); }
+.stage-training .spec-quote { color: var(--ink); border-left-color: var(--butter-text); }
+.stage-training .spec-body { color: var(--ink-warm); }
+.stage-training .stage-back-btn { color: var(--butter-text); }
+
+.stage-mod .stage-front { background: var(--teal-deep); }
+.stage-mod .stage-spec { background: var(--cream-soft); }
+.stage-mod .stage-eyebrow { color: var(--teal); }
+.stage-mod .stage-title { color: #fff; }
+.stage-mod .stage-analogy { color: rgba(255,255,255,0.95); border-left-color: var(--teal); background: rgba(0,0,0,0.18); }
+.stage-mod .stage-body-txt { color: rgba(255,255,255,0.75); }
+.stage-mod .stage-link { color: var(--teal) !important; }
+.stage-mod .stage-meet-btn { border: 1px solid var(--teal); color: var(--teal); }
+.stage-mod .stage-meet-btn:hover { background: var(--teal-deep); color: #fff; }
+.stage-mod .spec-eyebrow { color: var(--gray-warm); }
+.stage-mod .spec-headline { color: var(--kale-deep); }
+.stage-mod .spec-quote { color: var(--ink); border-left-color: var(--teal-deep); }
+.stage-mod .spec-body { color: var(--ink-warm); }
+.stage-mod .stage-back-btn { color: var(--teal-deep); }
+
+.stage-med .stage-front { background: var(--ink); }
+.stage-med .stage-spec { background: var(--cream-soft); }
+.stage-med .stage-eyebrow { color: rgba(255,255,255,0.55); }
+
+.stage-med .stage-title { color: #fff; }
+.stage-med .stage-analogy { color: rgba(255,255,255,0.95); border-left-color: var(--teal); background: rgba(255,255,255,0.07); }
+.stage-med .stage-body-txt { color: rgba(255,255,255,0.65); }
+.stage-med .stage-link { color: var(--teal) !important; }
+.stage-med .stage-meet-btn { border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
+.stage-med .stage-meet-btn:hover { background: var(--ink); color: #fff; }
+.stage-med .spec-eyebrow { color: var(--gray-warm); }
+.stage-med .spec-headline { color: var(--kale-deep); }
+.stage-med .spec-quote { color: var(--ink); border-left-color: var(--ink); }
+.stage-med .spec-body { color: var(--ink-warm); }
+.stage-med .stage-back-btn { color: var(--ink); }
+
+/* ── 04 SPECIALISTS ── */
+#specialists { background: var(--black); padding: 112px 0; }
+.specialists-header { margin-bottom: 64px; }
+.specialists-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+}
+.specialist-card {
+  background: var(--black);
+  padding: 36px 32px;
+  border-left: 8px solid transparent;
+}
+.specialist-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+}
+.specialist-stage {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.specialist-role {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+}
+.specialist-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.specialist-quote {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+  border-left: 3px solid transparent;
+  padding-left: 12px;
+  margin-bottom: 16px;
+}
+.specialist-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.4);
+}
+.spec-training { border-left-color: var(--butter-border); }
+.spec-training .specialist-avatar { background: rgba(232,196,107,0.12); border-color: var(--butter-border); color: var(--butter); }
+.spec-training .specialist-stage { color: var(--butter-text); }
+.spec-training .specialist-quote { border-left-color: var(--butter-border); }
+.spec-mod { border-left-color: var(--teal-deep); }
+.spec-mod .specialist-avatar { background: rgba(42,210,201,0.10); border-color: var(--teal-deep); color: var(--teal); }
+.spec-mod .specialist-stage { color: var(--teal); }
+.spec-mod .specialist-quote { border-left-color: var(--teal-deep); }
+.spec-med { border-left-color: rgba(255,255,255,0.22); }
+.spec-med .specialist-avatar { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.22); color: #fff; }
+.spec-med .specialist-stage { color: rgba(255,255,255,0.55); }
+.spec-med .specialist-quote { border-left-color: rgba(255,255,255,0.18); }
+
+/* ── 05 HOW IT WORKS ── */
+#how-it-works { background: var(--black); padding: 60px 0; }
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 64px;
+}
+.how-steps { display: flex; flex-direction: column; gap: 0; }
+.how-step {
+  display: flex;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.how-step:first-child { border-top: 1px solid rgba(255,255,255,0.10); }
+.how-step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--teal);
+  flex-shrink: 0;
+  padding-top: 3px;
+  letter-spacing: 0.08em;
+}
+.how-step-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.how-step-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+}
+/* Care nav callout — kale spotlight, butter 8px border, butter CTA */
+.how-callout {
+  background: var(--kale);
+  border-left: 8px solid var(--butter);
+  padding: 36px 32px;
+  position: sticky;
+  top: 120px;
+}
+.how-callout-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--butter);
+  margin-bottom: 16px;
+}
+.how-callout-h {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.how-callout-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.how-callout-cta {
+  display: inline-block;
+  background: var(--butter);
+  color: var(--black);
+  padding: 12px 22px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.how-callout-cta:hover { opacity: 0.85; }
+.open-access {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+.open-access strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+
+/* ── 06 HONEST COST ── */
+#cost {
+  background: var(--cream-deep);
+  padding: 60px 0;
+  border-top: 1px solid var(--gray-line);
+}
+.cost-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 48px;
+}
+.cost-intro { font-size: 16px; line-height: 1.65; color: var(--gray-warm); }
+.cost-cards { display: flex; flex-direction: column; gap: 0; position: relative; }
+.cost-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+.cost-frame path {
+  fill: none;
+  stroke: rgba(255,255,255,0.5);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.7;
+}
+.cost-card {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  transition: background 0.4s ease;
+  cursor: pointer;
+}
+.cost-card-divider {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 6px;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.cost-card-divider path {
+  fill: none;
+  stroke: rgba(255,255,255,0.45);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.7;
+}
+.cost-edge {
+  width: 8px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.cost-edge svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.cost-edge svg path {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.4s ease;
+}
+.cost-body {
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+.cost-stage-info { flex: 1; }
+.cost-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.4s ease;
+}
+.cost-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.0;
+  margin-bottom: 12px;
+  transition: color 0.4s ease;
+}
+.cost-desc {
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.4;
+  font-family: var(--font-display);
+  max-width: 460px;
+  transition: color 0.4s ease;
+}
+.cost-teaser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  justify-content: flex-end;
+  margin-top: 10px;
+  transition: gap 0.2s ease;
+}
+.cost-card.revealed .cost-teaser { opacity: 0; pointer-events: none; }
+.cost-teaser .hand-arrow { width: 28px; height: 16px; flex-shrink: 0; }
+.cost-teaser .hand-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cost-card:hover .cost-teaser { gap: 14px; }
+
+/* Right-side drawer overlay (3/5 width) */
+.cost-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 32px;
+  background: var(--cream-soft);
+  border-left: 1px solid var(--gray-line);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+}
+.cost-card.revealed .cost-drawer { transform: translateX(0); }
+.cost-drawer-quote {
+  font-size: 14px;
+  font-style: italic;
+  font-family: var(--font-display);
+  line-height: 1.5;
+  color: var(--ink-warm);
+  margin-bottom: 14px;
+}
+.cost-drawer-cta {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  transition: gap var(--transition);
+}
+.cost-drawer-cta:hover { gap: 10px; }
+.cost-price-wrap { flex-shrink: 0; text-align: right; }
+.cost-price {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 500;
+  text-align: right;
+  transition: color 0.4s ease;
+}
+.cost-price-sub {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  transition: color 0.4s ease;
+}
+
+/* ── OPEN-DRAWER COLORWAY AT REST (inverse of stage cards) ── */
+/* Training — butter fill */
+.cost-training { background: var(--butter); }
+.cost-training .cost-eyebrow { color: var(--butter-text); }
+.cost-training .cost-title { color: var(--ink); }
+.cost-training .cost-desc { color: var(--ink-warm); }
+.cost-training .cost-price-sub { color: var(--butter-text); }
+.cost-training .cost-price { color: var(--ink); }
+.cost-training .cost-edge svg path { stroke: var(--butter-text); }
+.cost-training .cost-teaser { color: var(--butter-text); }
+/* Modification — teal-deep fill */
+.cost-mod { background: var(--teal-deep); }
+.cost-mod .cost-eyebrow { color: var(--teal); }
+.cost-mod .cost-title { color: #fff; }
+.cost-mod .cost-desc { color: rgba(255,255,255,0.82); }
+.cost-mod .cost-price-sub { color: var(--teal); }
+.cost-mod .cost-price { color: #fff; }
+.cost-mod .cost-edge svg path { stroke: var(--teal); }
+.cost-mod .cost-teaser { color: var(--teal); }
+/* Medicine — ink fill */
+.cost-med { background: var(--ink); }
+.cost-med .cost-eyebrow { color: rgba(255,255,255,0.55); }
+.cost-med .cost-title { color: #fff; }
+.cost-med .cost-desc { color: rgba(255,255,255,0.6); }
+.cost-med .cost-price-sub { color: rgba(255,255,255,0.55); }
+.cost-med .cost-price { color: #fff; }
+.cost-med .cost-edge svg path { stroke: rgba(255,255,255,0.55); }
+.cost-med .cost-teaser { color: rgba(255,255,255,0.55); }
+
+/* ── 07 COLLABORATION ── */
+#collaboration { background: var(--black); padding: 112px 0; }
+.collab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 64px;
+}
+.collab-image { height: 480px; }
+.collab-pullquote {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: 32px;
+  border-left: 8px solid var(--teal-deep);
+  padding-left: 28px;
+}
+.collab-pullquote em { font-style: italic; color: var(--teal); }
+.collab-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+.collab-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.collab-stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--butter);
+}
+.collab-stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+.collab-stat-label .stat-title {
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.32);
+}
+
+/* ── 08 IMPACT STRIP ── */
+#impact {
+  background: var(--teal-deep);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding: 64px 0;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.impact-item {
+  padding: 0 40px;
+  border-right: 1px solid rgba(255,255,255,0.18);
+}
+.impact-item:first-child { padding-left: 0; }
+.impact-item:last-child { border-right: none; }
+.impact-num {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 500;
+  color: #FAF8F2;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.impact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  line-height: 1.4;
+}
+
+/* ── 09 CTA BAND — black bg, 8px butter border, butter button ── */
+#cta-band {
+  background: var(--butter);
+  border-left: 8px solid var(--butter-text);
+  padding: 96px 0;
+}
+.cta-band-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 80px;
+  align-items: center;
+}
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--butter-text);
+  margin-bottom: 16px;
+}
+.cta-h {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.cta-h em { font-style: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 3px;
+  display: inline; }
+.cta-sub {
+  font-size: 16px;
+  color: var(--ink-warm);
+  max-width: 520px;
+  line-height: 1.55;
+}
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 220px;
+}
+.cta-btn-primary {
+  background: var(--ink);
+  color: var(--butter);
+  padding: 16px 28px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  transition: opacity var(--transition);
+}
+.cta-btn-primary:hover { opacity: 0.85; }
+.cta-btn-secondary {
+  background: transparent;
+  color: var(--ink-warm);
+  padding: 14px 28px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  border: 1px solid rgba(27,26,24,0.25);
+  transition: border-color var(--transition);
+}
+.cta-btn-secondary:hover { border-color: rgba(27,26,24,0.5); }
+
+/* ── FOOTER ── */
+#footer {
+  background: #050505;
+  padding: 64px 0 40px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.footer-brand-name span { color: var(--butter); }
+.footer-tagline {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.footer-col-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 14px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-legal { font-size: 11px; color: rgba(255,255,255,0.2); }
+.footer-url {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+
+/* ── HOW COMMON (shame-addressing) ── */
+/* ── FUNNEL (the behavior gap) ── */
+#funnel { background: var(--cream); padding: 24px 0 112px; }
+.funnel-header { margin-bottom: 36px; }
+.funnel-lede { font-size: 15px; color: var(--gray-warm); line-height: 1.55; max-width: 480px; margin-top: 14px; }
+.tiers { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+.tier { cursor: pointer; }
+.tier-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 7px; }
+.tier-toggle {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-left: 16px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: opacity var(--transition);
+}
+.tier:hover .tier-toggle { opacity: 0.7; }
+.tier-toggle .ti { transition: transform 0.3s ease; }
+.tier.open .tier-toggle .ti { transform: rotate(180deg); }
+.tier.open .tier-toggle .lbl-closed { display: none; }
+.tier-toggle .lbl-open { display: none; }
+.tier.open .tier-toggle .lbl-open { display: inline; }
+.tier-stage { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.tier-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.tier-num { display: none; }
+.tier-toggle { margin-left: 16px; }
+.tier-bar {
+  max-width: 760px;
+  width: 100%;
+}
+.tier-bar svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.tier-worldwide {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-warm);
+  margin-top: 5px;
+  padding-left: 2px;
+}
+.tier-detail { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.4s ease; }
+.tier.open .tier-detail { max-height: 180px; margin-top: 10px; }
+.tier-detail-inner { font-size: 12px; line-height: 1.55; color: var(--gray-warm); border-left: 3px solid var(--gray-line); padding-left: 12px; }
+.tier-src { font-size: 10px; opacity: 0.7; font-style: italic; margin-top: 6px; }
+.funnel-hint { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-deep); opacity: 0.7; margin-top: 18px; }
+.funnel-bridge { margin-top: 28px; padding: 20px 24px; background: var(--kale); border-left: 8px solid var(--butter); max-width: 760px; }
+.funnel-bridge-q { font-family: var(--font-display); font-size: 18px; font-style: normal; color: #fff; line-height: 1.35; }
+.funnel-bridge-q em { font-style: italic; color: var(--teal); }
+
+/* ── PRINT REGISTER (D8 — 2.3) ── */
+@media print {
+  #progress-bar, #nav, #section-nav, #stage-bar-wrap { display: none; }
+  /* stage height auto already */
+
+  .stage-face { position: static !important; transform: none !important; }
+  .stage-spec { border-top: 1px solid var(--gray-line); }
+  .stage-meet-btn, .stage-back-btn { display: none !important; }
+  section { break-after: page; padding: 48px 40px !important; }
+  #hero { min-height: auto; grid-template-columns: 1fr; padding-top: 0; }
+  .hero-image { display: none; }
+  .img-placeholder { display: none; }
+  body { padding-top: 0; }
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .impact-num[data-countup] { }
+}
+
+/* ── HAND-DRAWN DRAW-IN (class-based, scroll-triggered) ── */
+.draw svg path { stroke-dasharray: 1200; stroke-dashoffset: 1200; }
+.draw.drawn svg path { animation: sketch 2s ease-out forwards; }
+.draw.drawn svg path:nth-of-type(2) { animation-delay: 0.18s; }
+.draw.drawn svg path:nth-of-type(3) { animation-delay: 0.32s; }
+.draw.drawn svg path:nth-of-type(4) { animation-delay: 0.46s; }
+.draw.drawn svg path:nth-of-type(5) { animation-delay: 0.60s; }
+.draw.drawn svg path:nth-of-type(6) { animation-delay: 0.74s; }
+/* filled shapes (first path in each bar) fade rather than draw */
+.draw svg path[fill]:not([fill="none"]) { stroke-dasharray: none; stroke-dashoffset: 0; opacity: 0; }
+.draw.drawn svg path[fill]:not([fill="none"]) { animation: fadefill 1.6s ease-out 0.5s forwards; }
+@keyframes sketch { to { stroke-dashoffset: 0; } }
+/* Stage frame draw removed */
+@keyframes fadefill { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  #progress-bar { display: none; }
+  .draw svg path, .stage-frame.draw path { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; opacity: 1 !important; animation: none !important; }
+}
+
+/* ── TABLET — stage cards grow as columns narrow ── */
+@media (max-width: 1080px) and (min-width: 769px) {
+  /* stage height removed */
+}
+
+/* ── RESPONSIVE — mobile breakpoints ── */
+@media (max-width: 768px) {
+
+  /* Nav */
+  .nav-inner { padding: 0 20px; gap: 16px; }
+  .nav-links { display: none; }
+  .nav-right { margin-left: auto; }
+  #nav-burger { display: flex; }
+  #nav-mobile-menu { display: flex; }
+
+  /* Section padding */
+  .section-inner { padding: 0 20px; }
+  #stages, #specialists, #how-it-works, #cost, #collaboration { padding: 72px 0; }
+  #impact { padding: 48px 0; }
+  #cta-band { padding: 64px 0; }
+
+  /* Hero — stack */
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-content { padding: 100px 20px 48px; margin: 0; max-width: 100%; }
+  .hero-image { height: 280px; }
+
+  /* Philosophy bar */
+  .philosophy-inner { grid-template-columns: 1fr; gap: 12px; padding: 0 20px; }
+  .belief-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .belief-proof { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 28px; }
+  .belief-big { font-size: 52px; }
+
+  /* Stages — stack */
+  .stages-grid { grid-template-columns: 1fr; gap: 16px; }
+  /* stage height removed */
+
+  /* How it works — stack */
+  .how-grid { grid-template-columns: 1fr; gap: 48px; }
+  .how-callout { position: static; }
+
+  /* Cost — stack */
+  .cost-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Collaboration — stack, image first */
+  .collab-grid { grid-template-columns: 1fr; gap: 40px; }
+  .collab-image { height: 240px; }
+
+  /* Impact strip — 2 col */
+  .impact-grid { grid-template-columns: 1fr 1fr; gap: 0; }
+  .impact-item { padding: 24px 20px; border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .impact-item:nth-child(2n) { border-right: none; }
+  .impact-item:nth-child(3), .impact-item:nth-child(4) { border-bottom: none; }
+  .impact-item:first-child { padding-left: 20px; }
+
+  /* How common — stack */
+  /* Funnel — full width tiers */
+  #funnel { padding: 72px 0; }
+
+  /* CTA band — stack */
+  .cta-band-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 20px; }
+  .cta-actions { min-width: 0; }
+
+  /* Footer — stack */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .section-inner.footer-inner { padding: 0 20px; }
+
+  /* Bottom bar — compress labels but keep price */
+  .sbar-item { padding: 8px 10px; }
+  .sbar-eyebrow { display: none; }
+  .sbar-label { font-size: 11px; }
+  .sbar-price { font-size: 10px; margin-top: 1px; }
+  .sbar-cta { padding: 8px 12px; flex: 0 0 120px; }
+  .sbar-cta-label { font-size: 9px; }
+
+  /* Section nav — hidden on mobile */
+  #section-nav { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-h1 { font-size: 40px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .sbar-item { padding: 8px 8px; }
+  .sbar-label { font-size: 10px; }
+  .sbar-price { font-size: 9px; }
+}
+
+/* ── PHOTOBAND (E4 — 2.3) ── */
+#photoband {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+}
+#photoband .img-placeholder {
+  height: 100%;
+  width: 100%;
+}
+.photoband-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,10,10,0.15) 0%,
+    rgba(10,10,10,0.55) 100%
+  );
+}
+.photoband-caption {
+  position: absolute;
+  bottom: 48px;
+  left: 0; right: 0;
+  padding: 0 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.photoband-caption-text {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.2;
+  color: #fff;
+  display: inline-block;
+  background: rgba(47, 79, 62, 0.82);
+  border-left: 4px solid var(--butter-border);
+  padding: 16px 24px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.photoband-caption-text em {
+  font-style: italic;
+  color: var(--teal);
+}
+@media (max-width: 768px) {
+  #photoband { height: 320px; }
+  .photoband-caption { bottom: 28px; padding: 0 20px; }
+}
+@media (max-width: 768px) {
+  .cost-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cost-body { padding: 20px 16px; gap: 16px; }
+  .cost-price { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ── NAV — parent teal ── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GBS</span>
+    </a>
+    <div class="nav-links">
+      <a href="training.html">Training</a>
+      <a href="modification.html">Modification</a>
+      <a href="medicine.html">Medicine</a>
+      <a href="pricing.html">Cost Transparency</a>
+      <a href="meet-the-team.html">Team</a>
+      <a href="referring-vets.html">For Vets</a>
+    </div>
+    <div class="nav-right">
+      <a href="#cta-band" class="nav-cta">Get started</a>
+      <button id="nav-burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="nav-mobile-menu">
+    <a href="training.html">Training</a>
+    <a href="modification.html">Modification</a>
+    <a href="medicine.html">Medicine</a>
+    <a href="pricing.html">Cost Transparency</a>
+    <a href="meet-the-team.html">Team</a>
+    <a href="referring-vets.html">For Vets</a>
+    <a href="#cta-band" class="nav-mobile-cta">Get started</a>
+  </div>
+</nav>
+
+<!-- ── SECTION NAV (E1 — 2.3) — active = teal ── -->
+<nav id="section-nav" aria-label="Page sections">
+  <div class="section-nav-inner">
+    <a href="#belief"        class="section-nav-item" data-section="belief">Why</a>
+    <a href="#stages"        class="section-nav-item" data-section="stages">How</a>
+    <a href="#how-it-works"  class="section-nav-item" data-section="how-it-works">Get started</a>
+    <a href="#cost"          class="section-nav-item" data-section="cost">Cost transparency</a>
+    <a href="#cta-band"      class="section-nav-item">Help me</a>
+  </div>
+</nav>
+
+<!-- ── STICKY STAGE BAR ── -->
+<div id="stage-bar-wrap">
+  <div id="stage-bar">
+    <a href="training.html" class="sbar-item sbar-training ">
+      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.85);">Foundations</div>
+      <div class="sbar-label">Training</div>
+      <div class="sbar-price">From $42</div>
+    </a>
+    <a href="modification.html" class="sbar-item sbar-mod ">
+      <div class="sbar-eyebrow" style="color:var(--teal);">Support</div>
+      <div class="sbar-label">Modification</div>
+      <div class="sbar-price">From $250</div>
+    </a>
+    <a href="medicine.html" class="sbar-item sbar-med ">
+      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.5);">Specialty</div>
+      <div class="sbar-label">Medicine</div>
+      <div class="sbar-price">From $590</div>
+    </a>
+    <a href="#cta-band" class="sbar-cta">
+      <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
+    </a>
+  </div>
+  <div id="vet-bar">
+    <div class="vbar-spacer"></div>
+    <a href="referring-vets.html" class="vbar-link">
+      <span class="vbar-eyebrow">For Vets</span>
+      <span class="vbar-label">Referring Vets →</span>
+    </a>
+    <div class="vbar-spacer-cta"></div>
+  </div>
+</div>
+
+<!-- ── 01 HERO ── -->
+<section id="hero">
+  <div class="hero-content reveal">
+    <div class="hero-eyebrow">Gigi's Behavior</div>
+    <h1 class="hero-h1">Behavior is <em>mental</em> health.</h1>
+    <p class="hero-tagline">Judgement-free behavior care. At every stage of your animal's life.</p>
+    <div class="hero-buttons">
+      <a href="#cta-band" class="btn-primary">Get started</a>
+      <a href="#stages" class="btn-secondary">Learn more →</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="images/hero-walk.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;" alt="Handler walking dog at golden hour">
+  </div>
+</section>
+
+<!-- ── 02 BELIEF + MAJORITY (merged, kale) ── -->
+<section id="belief">
+  <div class="section-inner">
+    <div class="belief-wrap">
+      <div>
+        <div class="belief-eyebrow reveal">What we believe</div>
+        <blockquote class="belief-claim reveal reveal-delay-1">Behavior isn't simply good or bad. It's <em>shaped by genetics, environment, stress, and fear</em> and it responds to the right support.</blockquote>
+        <p class="belief-sub reveal reveal-delay-2">If your animal struggles, you haven't failed. You're not alone. Most animals need behavioral support at some point. It's the norm, not the exception.</p>
+      </div>
+      <div class="belief-proof reveal reveal-delay-2 draw">
+        <svg viewBox="0 0 300 64" role="img" aria-label="40 to 87 percent of dogs show a problematic behaviour">
+          <path d="M6,40 C70,38.5 150,42 226,39.5 C224,46 226,53 225,56 C150,58 70,55 7,57 C5,50 7,46 6,40 Z" fill="var(--teal)" fill-opacity="0.16"/>
+          <path d="M8,46 L222,44 M8,49 L221,47.5 M8,52 L223,50.5" stroke="var(--teal)" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+          <path d="M6,40 C70,38.5 150,42 226,39.5 M7,41.4 C90,39.6 170,42.8 224,40.4" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M225,40 C226,46 224,53 225,56.5 M223,41 C225,47 226,53 223,55.5" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M225,56 C150,58 70,55 7,57 M224,55 C160,57 80,54.4 8,55.8" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M7,57 C5,50 7,46 6,40 M8,56 C6,49 8,45 7,41" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M227,48 C250,47 275,49 288,48 M228,46 C256,45.5 274,47.5 287,46.5" fill="none" stroke="var(--butter-border)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" opacity="0.85"/>
+        </svg>
+        <div class="belief-big">40&ndash;87%</div>
+        <div class="belief-proof-sub">of dogs show at least one behavior their owner finds problematic.</div>
+        <div class="belief-src">Range across Voith 1985; Campbell 1986; O'Farrell 1992; Martínez 2011 (per Boyd et al. 2018).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 STAGES ── -->
+<section id="stages">
+  <div class="section-inner">
+    <div class="stages-header">
+      <div class="eyebrow reveal" style="color:var(--teal-deep);">Three stages of care</div>
+      <h2 class="section-h2 reveal reveal-delay-1" style="font-size:clamp(34px,4vw,52px);color:var(--ink);max-width:640px;">Wherever you are, there <em style="color:var(--teal-deep);">is</em> a <em style="color:var(--teal-deep);">next step</em>.</h2>
+    </div>
+    <div class="stages-grid">
+      <div class="stage-card stage-training reveal">
+        <div class="stage-front">
+          <div class="stage-front-inner">
+            <div class="stage-eyebrow"><span class="stage-dial" style="opacity:0.6;" role="img" aria-label="Stage 1 of 3"><i class="on"></i><i></i><i></i></span><span style="width:1px;height:12px;background:var(--butter-border);display:inline-block;"></span>Foundations</div>
+            <div class="stage-title">Training</div>
+            <div class="stage-analogy">"Think of it as a life coach for your dog."</div>
+            <div class="stage-body-txt">Where most families begin. Puppy socialization, foundational skills, group classes. Dog-only. Starting at $35.</div>
+          </div>
+        </div>
+        <div class="stage-teaser">
+          <div class="hb-eyebrow">Learn about this specialist</div>
+          <div class="hb-title">Behavior Trainers</div>
+        </div>
+        <div class="stage-spec">
+          <div class="stage-spec-inner">
+            <div class="spec-eyebrow">Behavior Trainers</div>
+            <div class="spec-headline">Behavior Trainers</div>
+            <div class="spec-quote">"Training is more than obedience. It's the foundation of a healthy mind."</div>
+            <div class="spec-body">CPDT-KA, Fear Free, IAABC, and Karen Pryor Academy certified. Experts in building the foundational skills and confidence that support your dog's life.</div>
+          </div>
+        </div>
+        <div class="stage-cta">
+          <a href="#" class="stage-link" style="color:var(--teal-deep);">Book a class →</a>
+        </div>
+      </div>
+
+      <div class="stage-card stage-mod reveal reveal-delay-1">
+        <div class="stage-front">
+          <div class="stage-front-inner">
+            <div class="stage-eyebrow"><span class="stage-dial" style="opacity:0.6;" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span><span style="width:1px;height:12px;background:var(--teal-deep);display:inline-block;opacity:0.5;"></span>Support</div>
+            <div class="stage-title">Modification</div>
+            <div class="stage-analogy">"Think of it as your animal's therapist."</div>
+            <div class="stage-body-txt">Guided practice and measurable impact. Two pathways: consultant-led (open entry) and medicine-led (by opt-in). Starting at $225.</div>
+          </div>
+        </div>
+        <div class="stage-teaser">
+          <div class="hb-eyebrow">Learn about this specialist</div>
+          <div class="hb-title">Behavior Consultants</div>
+        </div>
+        <div class="stage-spec">
+          <div class="stage-spec-inner">
+            <div class="spec-eyebrow">Behavior Consultants</div>
+            <div class="spec-headline">Behavior Consultants</div>
+            <div class="spec-quote">"Think of them as the person who helps you do the work, not just understand it."</div>
+            <div class="spec-body">Certified Canine Behavior Consultants and RVT + Behavioral Medicine Techs. Two pathways, one collaborative plan.</div>
+          </div>
+        </div>
+        <div class="stage-cta">
+          <a href="#cta-band" class="stage-link" style="color:var(--teal);">Book a call →</a>
+        </div>
+      </div>
+
+      <div class="stage-card stage-med reveal reveal-delay-2">
+        <div class="stage-front">
+          <div class="stage-front-inner">
+            <div class="stage-eyebrow"><span class="stage-dial" style="opacity:0.5;" role="img" aria-label="Stage 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span><span style="width:1px;height:12px;background:rgba(255,255,255,0.4);display:inline-block;"></span>Specialty</div>
+            <div class="stage-title">Medicine</div>
+            <div class="stage-analogy">"Think of it as your animal's psychiatrist."</div>
+            <div class="stage-body-txt">Diagnosis, medication, and integrated treatment planning. Led by one of fewer than 100 practicing board-certified veterinary behaviorists in the US. Starting at $590.</div>
+          </div>
+        </div>
+
+        <div class="stage-teaser">
+          <div class="hb-eyebrow">Learn about this specialist</div>
+          <div class="hb-title">Veterinary Behaviorist</div>
+        </div>
+        <div class="stage-spec">
+          <div class="stage-spec-inner">
+            <div class="spec-eyebrow">Medicine specialists</div>
+            <div class="spec-headline">Veterinary Behaviorist</div>
+            <div class="spec-quote">"Medication isn't failure. It creates the conditions where learning becomes possible."</div>
+            <div class="spec-body">One of fewer than 100 practicing board-certified veterinary behaviorists in the country. Diagnosing behavioral conditions and developing integrated treatment plans.</div>
+          </div>
+        </div>
+        <div class="stage-cta">
+          <a href="#cta-band" class="stage-link" style="color:var(--teal);">Book a call →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERRING VETS BAND ── -->
+<section id="vet-band-section" style="background: #fff; border-top: 1px solid rgba(0,0,0,0.08);">
+  <div class="section-inner" style="padding: 60px 40px; text-align: center;">
+    <div style="max-width: 760px; margin: 0 auto;">
+      <div class="eyebrow" style="color: rgba(0,0,0,0.45); letter-spacing: 0.16em; margin-bottom: 24px;">FOR REFERRING VETERINARIANS</div>
+      <h2 class="section-h2" style="color: var(--black); margin-bottom: 24px; font-size: clamp(32px, 4vw, 52px);">Clinical collaboration for complex behavior cases</h2>
+      <p style="font-size: 17px; line-height: 1.65; color: var(--gray-warm); margin-bottom: 36px; max-width: 640px; margin-left: auto; margin-right: auto;">Peer-to-peer consultations, medicine-led behavior modification, and direct referral pathways for your clients' behavioral and medicinal needs.</p>
+      <a href="referring-vets.html" class="btn-primary" style="background: var(--black); color: #fff; padding: 14px 36px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; display: inline-block; text-decoration: none; transition: opacity 150ms ease-out;">Refer a Patient</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FUNNEL (the behavior gap) ── -->
+<section id="funnel">
+  <div class="section-inner">
+    <div class="funnel-header">
+      <div class="eyebrow reveal" style="color:var(--teal-deep);">Why specialists matter</div>
+      <h2 class="section-h2 reveal reveal-delay-1" style="font-size:clamp(34px,4vw,52px);color:var(--ink);max-width:540px;">The harder the problem, the fewer who can <em style="color:var(--teal-deep);">help</em>.</h2>
+      <p class="funnel-lede reveal reveal-delay-1">Foundational training is everywhere. Medical behavior specialists barely exist. Gigi's is one team across the whole range.</p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier reveal" onclick="this.classList.toggle('open')">
+        <div class="tier-head"><span class="tier-stage" style="color:var(--butter-text);">Foundations</span><span class="tier-name">Positive-reinforcement trainers, worldwide.</span><span class="tier-num">25,000+</span><span class="tier-toggle"><span class="lbl-closed">View source</span><span class="lbl-open">Hide source</span><i class="ti ti-chevron-down" style="font-size:12px;"></i></span></div>
+        <div class="tier-bar">
+          <svg viewBox="0 0 860 56" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="hatch-clip-1">
+                <path d="M3,4 Q190,2 380,3 Q555,2 700,4 L700,52 Q555,54 380,53 Q190,54 3,52 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M3,4 Q190,2 380,3 Q555,2 700,4 L700,52 Q555,54 380,53 Q190,54 3,52 Z" fill="none"/>
+            <g clip-path="url(#hatch-clip-1)" stroke="#8A6A12" stroke-width="1.5" opacity="0.6">
+              <line x1="-10" y1="66" x2="66" y2="-10"/><line x1="4" y1="66" x2="80" y2="-10"/><line x1="18" y1="66" x2="94" y2="-10"/><line x1="32" y1="66" x2="108" y2="-10"/><line x1="46" y1="66" x2="122" y2="-10"/><line x1="60" y1="66" x2="136" y2="-10"/><line x1="74" y1="66" x2="150" y2="-10"/><line x1="88" y1="66" x2="164" y2="-10"/><line x1="102" y1="66" x2="178" y2="-10"/><line x1="116" y1="66" x2="192" y2="-10"/><line x1="130" y1="66" x2="206" y2="-10"/><line x1="144" y1="66" x2="220" y2="-10"/><line x1="158" y1="66" x2="234" y2="-10"/><line x1="172" y1="66" x2="248" y2="-10"/><line x1="186" y1="66" x2="262" y2="-10"/><line x1="200" y1="66" x2="276" y2="-10"/><line x1="214" y1="66" x2="290" y2="-10"/><line x1="228" y1="66" x2="304" y2="-10"/><line x1="242" y1="66" x2="318" y2="-10"/><line x1="256" y1="66" x2="332" y2="-10"/><line x1="270" y1="66" x2="346" y2="-10"/><line x1="284" y1="66" x2="360" y2="-10"/><line x1="298" y1="66" x2="374" y2="-10"/><line x1="312" y1="66" x2="388" y2="-10"/><line x1="326" y1="66" x2="402" y2="-10"/><line x1="340" y1="66" x2="416" y2="-10"/><line x1="354" y1="66" x2="430" y2="-10"/><line x1="368" y1="66" x2="444" y2="-10"/><line x1="382" y1="66" x2="458" y2="-10"/><line x1="396" y1="66" x2="472" y2="-10"/><line x1="410" y1="66" x2="486" y2="-10"/><line x1="424" y1="66" x2="500" y2="-10"/><line x1="438" y1="66" x2="514" y2="-10"/><line x1="452" y1="66" x2="528" y2="-10"/><line x1="466" y1="66" x2="542" y2="-10"/><line x1="480" y1="66" x2="556" y2="-10"/><line x1="494" y1="66" x2="570" y2="-10"/><line x1="508" y1="66" x2="584" y2="-10"/><line x1="522" y1="66" x2="598" y2="-10"/><line x1="536" y1="66" x2="612" y2="-10"/><line x1="550" y1="66" x2="626" y2="-10"/><line x1="564" y1="66" x2="640" y2="-10"/><line x1="578" y1="66" x2="654" y2="-10"/><line x1="592" y1="66" x2="668" y2="-10"/><line x1="606" y1="66" x2="682" y2="-10"/><line x1="620" y1="66" x2="696" y2="-10"/><line x1="634" y1="66" x2="710" y2="-10"/>
+            </g>
+            <path d="M3,4 Q190,2 380,3 Q555,2 700,4 L700,52 Q555,54 380,53 Q190,54 3,52 Z" fill="none" stroke="#8A6A12" stroke-width="1.8" stroke-linejoin="round"/>
+            <text x="712" y="36" font-family="'Courier New', monospace" font-size="22" font-weight="600" fill="#8A6A12">25,000+</text>
+          </svg>
+        </div>
+
+        <div class="tier-detail"><div class="tier-detail-inner">
+          Roughly 25,000 hold the CPDT-KA credential; 3,050+ are Karen Pryor Academy certified. Foundational training is broadly available. Dog training is an unregulated industry, so certification is a deliberate quality choice.
+          <div class="tier-src">CCPDT; Karen Pryor Academy (worldwide figures).</div>
+        </div></div>
+      </div>
+
+      <div class="tier reveal reveal-delay-1" onclick="this.classList.toggle('open')">
+        <div class="tier-head"><span class="tier-stage" style="color:var(--teal-deep);">Support</span><span class="tier-name">Certified behavior consultants, worldwide.</span><span class="tier-num">~3,000</span><span class="tier-toggle"><span class="lbl-closed">View source</span><span class="lbl-open">Hide source</span><i class="ti ti-chevron-down" style="font-size:12px;"></i></span></div>
+        <div class="tier-bar">
+          <svg viewBox="0 0 860 56" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="hatch-clip-2">
+                <path d="M3,4 Q100,2 200,3 Q248,2 265,4 L265,52 Q248,54 200,53 Q100,54 3,52 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M3,4 Q100,2 200,3 Q248,2 265,4 L265,52 Q248,54 200,53 Q100,54 3,52 Z" fill="none"/>
+            <g clip-path="url(#hatch-clip-2)" stroke="#0a5c56" stroke-width="1.5" opacity="0.7">
+              <line x1="-10" y1="66" x2="66" y2="-10"/><line x1="4" y1="66" x2="80" y2="-10"/><line x1="18" y1="66" x2="94" y2="-10"/><line x1="32" y1="66" x2="108" y2="-10"/><line x1="46" y1="66" x2="122" y2="-10"/><line x1="60" y1="66" x2="136" y2="-10"/><line x1="74" y1="66" x2="150" y2="-10"/><line x1="88" y1="66" x2="164" y2="-10"/><line x1="102" y1="66" x2="178" y2="-10"/><line x1="116" y1="66" x2="192" y2="-10"/><line x1="130" y1="66" x2="206" y2="-10"/><line x1="144" y1="66" x2="220" y2="-10"/><line x1="158" y1="66" x2="234" y2="-10"/><line x1="172" y1="66" x2="248" y2="-10"/><line x1="186" y1="66" x2="262" y2="-10"/><line x1="200" y1="66" x2="276" y2="-10"/><line x1="214" y1="66" x2="290" y2="-10"/>
+            </g>
+            <path d="M3,4 Q100,2 200,3 Q248,2 265,4 L265,52 Q248,54 200,53 Q100,54 3,52 Z" fill="none" stroke="#0a5c56" stroke-width="1.8"/>
+            <text x="277" y="36" font-family="'Courier New', monospace" font-size="22" font-weight="600" fill="#0E8079">~3,000</text>
+          </svg>
+        </div>
+
+        <div class="tier-detail"><div class="tier-detail-inner">
+          Around 3,000 hold the IAABC CDBC credential worldwide, specialists trained for aggression, fear, anxiety, and complex behavior modification. A fraction of the trainer pool.
+          <div class="tier-src">IAABC (worldwide).</div>
+        </div></div>
+      </div>
+
+      <div class="tier reveal reveal-delay-2" onclick="this.classList.toggle('open')">
+        <div class="tier-head"><span class="tier-stage" style="color:var(--ink);">Specialty</span><span class="tier-name">Veterinary behaviorists, worldwide.</span><span class="tier-num">&lt;100</span><span class="tier-toggle"><span class="lbl-closed">View source</span><span class="lbl-open">Hide source</span><i class="ti ti-chevron-down" style="font-size:12px;"></i></span></div>
+        <div class="tier-bar">
+          <svg viewBox="0 0 860 56" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="hatch-clip-3">
+                <path d="M3,3 Q20,2 36,4 L36,52 Q20,54 3,53 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M3,3 Q20,2 36,4 L36,52 Q20,54 3,53 Z" fill="none"/>
+            <g clip-path="url(#hatch-clip-3)" stroke="#1B1A18" stroke-width="1.5" opacity="0.6">
+              <line x1="-10" y1="66" x2="66" y2="-10"/><line x1="4" y1="66" x2="80" y2="-10"/><line x1="18" y1="66" x2="94" y2="-10"/><line x1="32" y1="66" x2="108" y2="-10"/>
+            </g>
+            <path d="M3,3 Q20,2 36,4 L36,52 Q20,54 3,53 Z" fill="none" stroke="#1B1A18" stroke-width="1.8"/>
+            <text x="48" y="36" font-family="'Courier New', monospace" font-size="22" font-weight="600" fill="#1B1A18">&lt;100</text>
+          </svg>
+        </div>
+
+        <div class="tier-detail"><div class="tier-detail-inner">
+          Fewer than 100 board-certified veterinary behaviorists exist in the world: the only professionals who can diagnose and medically treat behavioral conditions. The rarest tier of care, and Gigi's puts it within reach.
+          <div class="tier-src">ACVB diplomate counts.</div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="funnel-bridge reveal">
+      <div class="funnel-bridge-q">Most animals need support. Gigi's is <em>one team</em> across every tier of it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 HOW IT WORKS ── -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <div class="eyebrow reveal" style="color:var(--teal);">Where to begin</div>
+    <h2 class="section-h2 reveal reveal-delay-1" style="font-size:clamp(34px,4vw,52px);color:#fff;max-width:560px;">You don't have to know where to <em style="color:var(--teal);">start</em>.</h2>
+    <div class="how-grid">
+      <div class="how-steps">
+        <div class="how-step reveal">
+          <div class="how-step-num">01</div>
+          <div>
+            <div class="how-step-title">Enter at any stage</div>
+            <div class="how-step-body">You don't need to know what you need before you start. Families enter at Training, Modification, or Medicine, depending on where they are, not where we want them to be.</div>
+          </div>
+        </div>
+        <div class="how-step reveal reveal-delay-1">
+          <div class="how-step-num">02</div>
+          <div>
+            <div class="how-step-title">Move through care naturally</div>
+            <div class="how-step-body">Moving between stages isn't escalating. It's advancing. A family in Training who later needs Modification is getting the right support for where they are now.</div>
+          </div>
+        </div>
+        <div class="how-step reveal reveal-delay-2">
+          <div class="how-step-num">03</div>
+          <div>
+            <div class="how-step-title">One team behind every stage</div>
+            <div class="how-step-body">Our team collaborates on the back end so your experience feels seamless. One collaborative plan. No handoffs, no starting over.</div>
+          </div>
+        </div>
+        <div class="how-step reveal reveal-delay-3">
+          <div class="how-step-num">04</div>
+          <div>
+            <div class="how-step-title">Not sure where to start?</div>
+            <div class="how-step-body">That's what the Care Navigation Call is for. A free 15-minute call with Lacey. She'll review your animal's behavior concerns and guide you to the right entry point. <a href="#cta-band" style="color:var(--teal);font-weight:700;text-decoration:none;border-bottom:1px solid var(--teal);">Book a free call →</a></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="how-callout reveal reveal-delay-1">
+          <div class="how-callout-eyebrow">Care Navigation Call</div>
+          <div class="how-callout-h">"Not sure where to start? We're here to help."</div>
+          <div class="how-callout-body">A free 15-minute call with Lacey. No pressure, no obligation. Just clarity on what your animal needs and where to begin.</div>
+          <a href="#cta-band" class="how-callout-cta">Book a free call</a>
+          <div class="open-access"><strong>Clients can enter at any stage.</strong> Training self-schedules directly. Modification and Medicine enter through this call.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── PHOTOBAND (E4 — 2.3) ── -->
+<section id="photoband">
+  <img src="images/training-indoor.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="Person training dog indoors with warm light">
+  <div class="photoband-scrim"></div>
+  <div class="photoband-caption">
+    <div class="photoband-caption-text reveal">
+      Wherever you're starting, you don't have<br>to figure it <em>out alone</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 HONEST COST ── -->
+<section id="cost">
+  <div class="section-inner">
+    <div class="eyebrow reveal" style="color:var(--teal-deep);">Honest about cost</div>
+    <h2 class="section-h2 reveal reveal-delay-1" style="font-size:clamp(34px,4vw,52px);color:var(--ink);max-width:560px;">Multiple ways to <em style="color:var(--teal-deep);">get started</em>.</h2>
+    <div class="cost-grid">
+      <div class="cost-intro reveal reveal-delay-1">
+        There are multiple entry points to behavior care. You don't have to commit to the most intensive level to get started. Start where you are.
+      </div>
+      <div class="cost-cards">
+        <div class="cost-card cost-training reveal">
+          <div class="cost-edge"><svg viewBox="0 0 8 100" preserveAspectRatio="none"><path d="M4,2 C2.5,26 6,52 3.5,76 C3,86 5,94 3.5,98"/></svg></div>
+          <div class="cost-body">
+            <div class="cost-stage-info">
+              <div class="cost-eyebrow"><span class="stage-dial" style="opacity:0.6;" role="img" aria-label="Stage 1 of 3"><i class="on"></i><i></i><i></i></span><span style="width:1px;height:12px;background:var(--butter-border);display:inline-block;"></span>Foundations</div>
+              <div class="cost-title">Training</div>
+            </div>
+            <div class="cost-price-wrap">
+              <div class="cost-price-sub">Starting at</div>
+              <div class="cost-price">$35</div>
+              <div class="cost-teaser">Click to learn more<svg class="hand-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
+            </div>
+          </div>
+          <div class="cost-drawer">
+            <div class="cost-drawer-quote">"Think of it as a life coach for your dog."</div>
+            <a href="#" class="cost-drawer-cta" style="color:var(--teal-deep);">Book a class →</a>
+          </div>
+        </div>
+        <div class="cost-card cost-mod reveal reveal-delay-1">
+          <div class="cost-edge"><svg viewBox="0 0 8 100" preserveAspectRatio="none"><path d="M4,2 C2.5,26 6,52 3.5,76 C3,86 5,94 3.5,98"/></svg></div>
+          <div class="cost-body">
+            <div class="cost-stage-info">
+              <div class="cost-eyebrow"><span class="stage-dial" style="opacity:0.6;" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span><span style="width:1px;height:12px;background:var(--teal-deep);display:inline-block;opacity:0.5;"></span>Support</div>
+              <div class="cost-title">Modification</div>
+            </div>
+            <div class="cost-price-wrap">
+              <div class="cost-price-sub">Starting at</div>
+              <div class="cost-price">$225</div>
+              <div class="cost-teaser">Click to learn more<svg class="hand-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
+            </div>
+          </div>
+          <div class="cost-drawer">
+            <div class="cost-drawer-quote">"Think of it as your animal's therapist."</div>
+            <a href="#cta-band" class="cost-drawer-cta" style="color:var(--teal-deep);">Book a call →</a>
+          </div>
+        </div>
+        <div class="cost-card cost-med reveal reveal-delay-2">
+          <div class="cost-edge"><svg viewBox="0 0 8 100" preserveAspectRatio="none"><path d="M4,2 C2.5,26 6,52 3.5,76 C3,86 5,94 3.5,98"/></svg></div>
+          <div class="cost-body">
+            <div class="cost-stage-info">
+              <div class="cost-eyebrow"><span class="stage-dial" style="opacity:0.4;" role="img" aria-label="Stage 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span><span style="width:1px;height:12px;background:var(--ink);display:inline-block;opacity:0.3;"></span>Specialty</div>
+              <div class="cost-title">Medicine</div>
+            </div>
+            <div class="cost-price-wrap">
+              <div class="cost-price-sub">Starting at</div>
+              <div class="cost-price">$590</div>
+              <div class="cost-teaser">Click to learn more<svg class="hand-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
+            </div>
+          </div>
+          <div class="cost-drawer">
+            <div class="cost-drawer-quote">"Think of it as your animal's psychiatrist."</div>
+            <a href="#cta-band" class="cost-drawer-cta" style="color:var(--teal-deep);">Book a call →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 07 COLLABORATION ── -->
+<section id="collaboration">
+  <div class="section-inner">
+    <div class="collab-grid">
+      <div class="collab-image reveal">
+        <img src="images/collab-kneeling.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Handler kneeling with dog on grass">
+      </div>
+      <div class="collab-content">
+        <div class="eyebrow reveal" style="color:var(--butter);">How we work together</div>
+        <blockquote class="collab-pullquote reveal reveal-delay-1">
+          One team, working <em>together</em> for your animal.
+        </blockquote>
+        <p class="collab-body reveal reveal-delay-2">The relationship between Gigi's and our clients isn't a service relationship. It's a collaboration. Our team coordinates on the back end so your experience feels seamless. You collaborate with us to do the work that actually impacts your animal's behavior. Both are required. Neither alone is enough.</p>
+        <div class="collab-stat reveal reveal-delay-3">
+          <div class="collab-stat-num">"Real impact is measured in months, not days."</div>
+          <div class="collab-stat-label">&#8212;Meghan Herron, DVM, DACVB<br><span class="stat-title">Gigi's Sr. Director, Behavior, Research, and Education</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 08 IMPACT STRIP — count-up on scroll (D11 — 2.3) ── -->
+<section id="impact">
+  <div class="section-inner">
+    <div class="impact-grid">
+      <div class="impact-item reveal">
+        <div class="impact-num" data-final="100" data-prefix="&lt;">&lt;100</div>
+        <div class="impact-label">Practicing board-certified veterinary behaviorists in the US</div>
+      </div>
+      <div class="impact-item reveal reveal-delay-1">
+        <div class="impact-num" data-final="35" data-prefix="$">$35</div>
+        <div class="impact-label">Starting point for behavior care</div>
+      </div>
+      <div class="impact-item reveal reveal-delay-2">
+        <div class="impact-num" data-final="3">3</div>
+        <div class="impact-label">Stages of care. One collaborative team.</div>
+      </div>
+      <div class="impact-item reveal reveal-delay-3">
+        <div class="impact-num" data-final="15" data-suffix="min">15<span style="font-size:0.5em;vertical-align:middle;">min</span></div>
+        <div class="impact-label">Free care navigation call to find your starting point</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 09 CTA BAND ── -->
+<section id="cta-band">
+  <div class="cta-band-inner">
+    <div>
+      <div class="cta-eyebrow reveal">Care Navigation</div>
+      <h2 class="cta-h reveal reveal-delay-1">You don't have to figure this <em>out alone</em>.</h2>
+      <p class="cta-sub reveal reveal-delay-2">Not sure where to start? Book a free 15-minute Care Navigation Call with Lacey. She'll review your animal's behavior concerns and guide you to the right stage of care. No pressure, no obligation.</p>
+    </div>
+    <div class="cta-actions reveal reveal-delay-2">
+      <a href="#" class="cta-btn-primary">Book a free call</a>
+      <a href="#stages" class="cta-btn-secondary">Explore the stages</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Gigi's <span>Behavior Services</span></div>
+        <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGIS.ORG/GBS</div>
+      </div>
+      <div>
+        <div class="footer-col-label">Stages of care</div>
+        <div class="footer-links">
+          <a href="#">Behavioral Training</a>
+          <a href="#">Behavioral Modification</a>
+          <a href="#">Behavioral Medicine</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Get started</div>
+        <div class="footer-links">
+          <a href="#">Care Navigation Call</a>
+          <a href="#">Book a class</a>
+          <a href="#">For referring vets</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Gigi's</div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Rescue & Placement</a>
+          <a href="#">Veterinary Services</a>
+          <a href="#">Resources</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 Gigi's. All rights reserved. Judgement-Free Adoption™</div>
+      <div class="footer-url">GIGIS.ORG</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Scroll progress ──
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+// ── Nav scrolled state ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Section nav — show after hero, active = teal (E1) ──
+// ── Hamburger menu toggle ──
+const navBurger = document.getElementById('nav-burger');
+const navMobileMenu = document.getElementById('nav-mobile-menu');
+navBurger.addEventListener('click', () => {
+  const isOpen = navMobileMenu.classList.toggle('open');
+  navBurger.setAttribute('aria-expanded', isOpen);
+});
+navMobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navMobileMenu.classList.remove('open');
+    navBurger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+const sectionNav = document.getElementById('section-nav');
+const hero = document.getElementById('hero');
+const sectionNavItems = document.querySelectorAll('.section-nav-item');
+const sections = Array.from(document.querySelectorAll('section[id]'));
+
+const ctaBand = document.getElementById('cta-band');
+let heroVisible = true, ctaVisible = false;
+function updateSectionNav() {
+  sectionNav.classList.toggle('visible', !heroVisible && !ctaVisible);
+}
+function checkHeroScroll() {
+  const heroBottom = hero.offsetTop + hero.offsetHeight;
+  heroVisible = window.scrollY < heroBottom * 0.4;
+  updateSectionNav();
+}
+window.addEventListener('scroll', checkHeroScroll, { passive: true });
+checkHeroScroll();
+const ctaObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { ctaVisible = e.isIntersecting; updateSectionNav(); });
+}, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+ctaObs.observe(ctaBand);
+
+// Active section highlight — scroll-position based, avoids cross-section race conditions
+function updateActiveSection() {
+  const triggerY = window.scrollY + window.innerHeight * 0.4;
+  let current = null;
+  for (const s of sections) {
+    if (s.offsetTop <= triggerY) {
+      current = s.id;
+    }
+  }
+  sectionNavItems.forEach(item => {
+    item.classList.toggle('active', item.dataset.section === current);
+  });
+}
+window.addEventListener('scroll', updateActiveSection, { passive: true });
+updateActiveSection();
+
+// ── Stage bar — scroll-driven slide in ──
+const sidebar = document.getElementById('stage-bar-wrap');
+function updateSidebar() {
+  const heroH = hero.offsetHeight;
+  const scrollY = window.scrollY;
+  // Start sliding in as user scrolls into hero, complete by hero bottom
+  const progress = Math.min(Math.max((scrollY - heroH * 0.3) / (heroH * 0.5), 0), 1);
+  if (progress > 0) {
+    sidebar.classList.add('visible');
+  } else {
+    sidebar.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', updateSidebar, { passive: true });
+updateSidebar();
+
+// ── Reveal on scroll ──
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => revealObs.observe(el));
+
+// ── Hand-drawn draw-in on scroll (class-based) ──
+const draws = document.querySelectorAll('.draw');
+const drawObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('drawn');
+      drawObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.35 });
+draws.forEach(el => drawObs.observe(el));
+
+// ── Stage cards — click/tap toggle (all devices) ──
+document.querySelectorAll('.stage-card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('a, button')) return;
+    card.classList.toggle('revealed');
+  });
+});
+
+// ── Cost cards — click/tap toggle to reveal description ──
+document.querySelectorAll('.cost-card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('a, button')) return;
+    card.classList.toggle('revealed');
+  });
+});
+
+// ── Count-up on scroll-in (D11 — 2.3) — resolves before print ──
+function runCountUp(el) {
+  const final = parseInt(el.dataset.final, 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix ? '<span style="font-size:0.5em;vertical-align:middle;">' + el.dataset.suffix + '</span>' : '';
+  if (!final || el.dataset.counted) return;
+  el.dataset.counted = '1';
+  const duration = 2400;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = Math.round(ease * final);
+    el.innerHTML = prefix + val + suffix;
+    if (p < 1) requestAnimationFrame(step);
+    else el.innerHTML = prefix + final + suffix;
+  }
+  requestAnimationFrame(step);
+}
+
+const countEls = document.querySelectorAll('.impact-num[data-final]');
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) runCountUp(e.target);
+  });
+}, { threshold: 0.5 });
+countEls.forEach(el => countObs.observe(el));
+
+// Resolve counters before print (D8)
+window.addEventListener('beforeprint', () => {
+  countEls.forEach(el => {
+    const final = el.dataset.final;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix ? '<span style="font-size:0.5em;vertical-align:middle;">' + el.dataset.suffix + '</span>' : '';
+    el.innerHTML = prefix + final + suffix;
+  });
+});
+
+// ── Reduced motion ──
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  reveals.forEach(el => el.classList.add('visible'));
+  countEls.forEach(el => {
+    const final = el.dataset.final;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix ? '<span style="font-size:0.5em;vertical-align:middle;">' + el.dataset.suffix + '</span>' : '';
+    el.innerHTML = prefix + final + suffix;
+  });
+}
+</script>
+</body>
+</html>

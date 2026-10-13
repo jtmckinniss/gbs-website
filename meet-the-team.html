@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Meet the Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gbs-shared.css">
+<style>
+/* ── TOKENS ── */
+
+/* ── RESET & BASE ── */
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--butter);
+  z-index: 9999;
+  transition: width 60ms linear;
+}
+
+/* ── LAYOUT ── */
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 700px) {
+  .section-inner { padding: 0 20px; }
+}
+
+/* ── NAV ── */
+#nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 100;
+  background: transparent;
+  transition: background var(--transition), border-color var(--transition);
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(10,10,10,0.96);
+  border-color: rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+@media (max-width: 700px) {
+  .nav-inner { padding: 0 20px; }
+}
+.nav-brand { flex-shrink: 0; }
+.nav-logo-placeholder { color: var(--teal); font-weight: 800; font-size: 14px; letter-spacing: 0.1em; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+.nav-links a { transition: color var(--transition); }
+
+.nav-link-active {
+  background: var(--butter);
+  color: var(--black) !important;
+  padding: 4px 10px;
+}
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--butter);
+  color: var(--ink);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition);
+  display: inline-block;
+}
+.nav-cta:hover { opacity: 0.85; }
+#nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+#nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  transition: var(--transition);
+}
+#nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: rgba(10,10,10,0.97);
+  padding: 20px 40px 24px;
+  gap: 4px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+#nav-mobile-menu.open { display: flex; }
+#nav-mobile-menu a {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color var(--transition);
+}
+#nav-mobile-menu a:hover { color: #fff; }
+.nav-mobile-cta {
+  margin-top: 12px;
+  color: var(--butter) !important;
+  border-bottom: none !important;
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  #nav-burger { display: flex; }
+}
+
+/* ── HEADLINE EM MARK ── */
+em {
+  font-style: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 8px;
+  padding-bottom: 3px;
+  display: inline;
+}
+
+/* Pull-quote italic em in kale callouts */
+.pullquote em, .kale-quote em {
+  font-style: italic;
+  color: var(--teal);
+  background-image: none;
+  padding-bottom: 0;
+}
+
+/* ── REVEAL ANIMATION ── */
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--butter);
+  color: var(--ink);
+  padding: 14px 28px;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  padding: 13px 27px;
+  border: 1px solid rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+.btn-ghost:hover { border-color: #fff; color: #fff; }
+
+/* ── EYEBROW ── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.eyebrow-butter { color: var(--butter); }
+.eyebrow-teal { color: var(--teal); }
+
+/* ── SECTION 01: HERO ── */
+#hero {
+  background: var(--black);
+  padding: 140px 0 100px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--butter);
+  margin-bottom: 20px;
+}
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.014em;
+  color: #fff;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.hero-sub {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+  max-width: 500px;
+  margin-bottom: 36px;
+}
+/* Right visual: three stage bars */
+.stage-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.stage-bar {
+  display: flex;
+  align-items: center;
+  padding: 28px 32px;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.stage-bar:last-child { border-bottom: none; }
+.stage-bar-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.35;
+  flex-shrink: 0;
+  min-width: 32px;
+}
+.stage-bar-label {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.stage-bar-sub {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+  opacity: 0.55;
+}
+.stage-bar-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+.stage-bar.training { background: rgba(232,196,107,0.04); }
+.stage-bar.training .stage-bar-line { background: var(--butter); }
+.stage-bar.training .stage-bar-label { color: var(--butter); }
+.stage-bar.modification { background: rgba(14,128,121,0.06); }
+.stage-bar.modification .stage-bar-line { background: var(--teal-deep); }
+.stage-bar.modification .stage-bar-label { color: var(--teal); }
+.stage-bar.medicine { background: rgba(255,255,255,0.02); }
+.stage-bar.medicine .stage-bar-line { background: rgba(255,255,255,0.3); }
+.stage-bar.medicine .stage-bar-label { color: rgba(255,255,255,0.7); }
+
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  #hero { padding: 120px 0 80px; }
+}
+
+/* ── SECTION 02: PHILOSOPHY BAR ── */
+#philosophy {
+  background: var(--kale);
+  padding: 72px 0;
+  border-left: 0;
+}
+.philosophy-inner {
+  border-left: 8px solid var(--butter);
+  padding-left: 40px;
+  max-width: 860px;
+}
+.philosophy-quote {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.philosophy-quote .kale-quote em {
+  font-style: italic;
+  color: var(--teal);
+  background-image: none;
+  padding-bottom: 0;
+}
+.philosophy-sub {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+}
+@media (max-width: 700px) {
+  .philosophy-inner { padding-left: 24px; }
+}
+
+/* ── SECTION 03: TRAINERS ── */
+#trainers {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 80px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+.stage-number-bg {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  font-family: var(--font-mono);
+  font-size: 160px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+.trainers-stage-num { color: rgba(201,168,76,0.15); }
+.stage-label-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.stage-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.stage-label.butter { color: var(--butter-text); }
+.stage-label.teal { color: var(--teal-deep); }
+.stage-label.ink { color: var(--gray-warm); }
+.stage-rule { flex: 1; height: 1px; }
+.stage-rule.butter { background: var(--butter-border); }
+.stage-rule.teal { background: var(--teal-deep); }
+.section-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.8vw, 56px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.012em;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.analogy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.analogy-badge.butter {
+  background: var(--butter);
+  color: var(--ink);
+}
+.analogy-badge.teal {
+  background: var(--teal-deep);
+  color: #fff;
+}
+.analogy-badge.teal-bright {
+  background: var(--teal);
+  color: var(--ink);
+}
+.section-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-warm);
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.section-body.on-dark {
+  color: rgba(255,255,255,0.65);
+}
+/* Trainer cards */
+.trainer-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+@media (max-width: 860px) {
+  .trainer-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .trainer-cards { grid-template-columns: 1fr; }
+}
+.trainer-card {
+  background: var(--cream-soft);
+  border: 1px solid var(--gray-line);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.trainer-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+.trainer-avatar.butter-av { background: var(--butter); color: var(--ink); }
+.trainer-avatar.teal-av { background: var(--teal-deep); color: #fff; }
+.trainer-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.trainer-role-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: var(--butter);
+  color: var(--butter-text);
+}
+.trainer-credentials {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--gray-warm);
+}
+.trainer-bio {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-warm);
+}
+.trainer-footnote {
+  font-size: 12px;
+  color: var(--gray-warm);
+  font-style: italic;
+}
+
+/* ── SECTION 04: CONSULTANTS ── */
+#consultants {
+  background: var(--black);
+  color: #fff;
+  padding: 80px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+.consultants-stage-num { color: rgba(42,210,201,0.1); }
+.consultant-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+@media (max-width: 700px) {
+  .consultant-cards { grid-template-columns: 1fr; }
+}
+.consultant-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 36px 32px;
+}
+.consultant-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.consultant-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.consultant-card-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 24px;
+}
+.cta-chip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(42,210,201,0.4);
+  padding: 8px 16px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.cta-chip:hover {
+  border-color: var(--teal);
+  background: rgba(42,210,201,0.05);
+}
+
+/* ── SECTION 05: BEHAVIORIST ── */
+#behaviorist {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 80px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+.behaviorist-stage-num { color: rgba(42,210,201,0.08); }
+.behaviorist-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.behaviorist-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.behaviorist-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.behaviorist-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--teal-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+}
+.behaviorist-avatar-caption {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+.behaviorist-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.15;
+}
+.behaviorist-name-sub {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+  margin-top: 4px;
+}
+.credential-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.credential-chip {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid rgba(42,210,201,0.4);
+  color: var(--teal);
+}
+.behaviorist-callout {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+  border-left: 3px solid var(--teal);
+  padding-left: 24px;
+}
+.behaviorist-pull-quote {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.65);
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  letter-spacing: -0.008em;
+}
+@media (max-width: 860px) {
+  .behaviorist-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ── SECTION 06: COLLABORATION ── */
+#collaboration {
+  background: var(--kale);
+  padding: 80px 0 96px;
+  border-top: 8px solid var(--butter);
+}
+.collab-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  margin: 40px 0 48px;
+}
+@media (max-width: 700px) {
+  .collab-tiles { grid-template-columns: 1fr; }
+}
+.collab-tile {
+  padding: 36px 32px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.collab-tile:last-child { border-right: none; }
+@media (max-width: 700px) {
+  .collab-tile { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .collab-tile:last-child { border-bottom: none; }
+}
+.collab-tile-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--butter);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.collab-tile-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ── SECTION 07: CTA BAND ── */
+#cta-band {
+  background: var(--black);
+  padding: 100px 0;
+  text-align: center;
+}
+.cta-band-inner {
+  max-width: 660px;
+  margin: 0 auto;
+}
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+.cta-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.8vw, 56px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.012em;
+  color: #fff;
+  margin-bottom: 20px;
+  text-wrap: balance;
+}
+.cta-body {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 36px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.55);
+  padding: 64px 0 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 560px) {
+  .footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+}
+
+/* ── BOTTOM STAGE BAR ── */
+
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GBS</span>
+    </a>
+    <div class="nav-links">
+      <a href="training.html">Training</a>
+      <a href="modification.html">Modification</a>
+      <a href="medicine.html">Medicine</a>
+      <a href="pricing.html">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nav-link-active">Team</a>
+      <a href="referring-vets.html">For Vets</a>
+    </div>
+    <div class="nav-right">
+      <a href="#cta-band" class="nav-cta">Get started</a>
+      <button id="nav-burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="nav-mobile-menu">
+    <a href="training.html">Training</a>
+    <a href="modification.html">Modification</a>
+    <a href="medicine.html">Medicine</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="meet-the-team.html">Meet the Team</a>
+    <a href="#cta-band" class="nav-mobile-cta">Get started</a>
+  </div>
+</nav>
+
+<!-- 01 HERO -->
+<section id="hero">
+  <div class="section-inner">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow reveal">MEET THE TEAM</p>
+        <h1 class="hero-h1 reveal reveal-delay-1">One team.<br><em>One collaborative plan.</em></h1>
+        <p class="hero-sub reveal reveal-delay-2">Our specialists don't work in silos. Each one brings a different kind of expertise — and all of them work together so your animal gets the right level of support at every stage of care.</p>
+        <div class="reveal reveal-delay-3">
+          <a href="#cta-band" class="btn-primary">Book a care navigation call</a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="stage-bars">
+          <div class="stage-bar training">
+            <div class="stage-bar-line"></div>
+            <span class="stage-bar-num"><span class="stage-dial" role="img" aria-label="Stage 1 of 3"><i class="on"></i><i></i><i></i></span></span>
+            <div>
+              <div class="stage-bar-label">Training</div>
+              <div class="stage-bar-sub">Foundations</div>
+            </div>
+          </div>
+          <div class="stage-bar modification">
+            <div class="stage-bar-line"></div>
+            <span class="stage-bar-num"><span class="stage-dial" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span></span>
+            <div>
+              <div class="stage-bar-label">Modification</div>
+              <div class="stage-bar-sub">Support</div>
+            </div>
+          </div>
+          <div class="stage-bar medicine">
+            <div class="stage-bar-line"></div>
+            <span class="stage-bar-num"><span class="stage-dial" role="img" aria-label="Stage 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+            <div>
+              <div class="stage-bar-label">Medicine</div>
+              <div class="stage-bar-sub">Specialty</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PHILOSOPHY BAR -->
+<section id="philosophy">
+  <div class="section-inner">
+    <div class="philosophy-inner reveal">
+      <p class="philosophy-quote">"The relationship between Gigi's and its clients is not a service relationship. It's a collaboration."</p>
+      <p class="philosophy-sub">Every specialist on this team works toward the same goal: safer outcomes, measurable progress, and a care plan that evolves with your animal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TRAINERS -->
+<section id="trainers">
+  <div class="stage-number-bg trainers-stage-num" aria-hidden="true"><span class="stage-dial" role="img" aria-label="Stage 1 of 3"><i class="on"></i><i></i><i></i></span></div>
+  <div class="section-inner">
+    <div class="stage-label-row reveal">
+      <span class="stage-label butter">Foundations</span>
+      <div class="stage-rule butter"></div>
+    </div>
+    <h2 class="section-h2 reveal reveal-delay-1" style="color:var(--ink);">Your dog's <em style="background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%238A6A12' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E\");">coaches</em>.</h2>
+    <div class="analogy-badge butter reveal reveal-delay-2">Think of them as your dog's coaches.</div>
+    <p class="section-body reveal reveal-delay-2">Our Behavior Trainers understand that training is more than obedience. They build foundational skills, social confidence, and the mental resilience that supports a healthy life for your dog.</p>
+
+    <div class="trainer-cards">
+      <div class="trainer-card reveal">
+        <div class="trainer-avatar butter-av">DP</div>
+        <div>
+          <div class="trainer-name">Dawn Pribble</div>
+          <div class="trainer-credentials">[Credentials pending]</div>
+        </div>
+        <div class="trainer-role-badge">Behavior Trainer</div>
+        <p class="trainer-bio">Experienced behavior trainer with expertise in positive reinforcement, socialization, and foundational skill building.</p>
+      </div>
+      <div class="trainer-card reveal reveal-delay-1">
+        <div class="trainer-avatar butter-av">AW</div>
+        <div>
+          <div class="trainer-name">Alyssa Wright</div>
+          <div class="trainer-credentials">[Credentials pending]</div>
+        </div>
+        <div class="trainer-role-badge">Behavior Trainer</div>
+        <p class="trainer-bio">Experienced behavior trainer with expertise in positive reinforcement, socialization, and foundational skill building.</p>
+      </div>
+      <div class="trainer-card reveal reveal-delay-2">
+        <div class="trainer-avatar butter-av">CC</div>
+        <div>
+          <div class="trainer-name">Chelsea Craig</div>
+          <div class="trainer-credentials">[Credentials pending]</div>
+        </div>
+        <div class="trainer-role-badge">Behavior Trainer</div>
+        <p class="trainer-bio">Experienced behavior trainer with expertise in positive reinforcement, socialization, and foundational skill building.</p>
+      </div>
+    </div>
+    <p class="trainer-footnote reveal">Individual trainer credentials and bios coming soon.</p>
+  </div>
+</section>
+
+<!-- 04 CONSULTANTS -->
+<section id="consultants">
+  <div class="stage-number-bg consultants-stage-num" aria-hidden="true"><span class="stage-dial" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span></div>
+  <div class="section-inner">
+    <div class="stage-label-row reveal">
+      <span class="stage-label teal">Support</span>
+      <div class="stage-rule teal"></div>
+    </div>
+    <h2 class="section-h2 reveal reveal-delay-1" style="color:#fff;">Your animal's <em>therapists</em>.</h2>
+    <div class="analogy-badge teal reveal reveal-delay-2">Think of them as your animal's therapists.</div>
+    <p class="section-body on-dark reveal reveal-delay-2">Behavior Consultants guide the active, sustained work of modification. They create individualized behavior plans, support your practice between sessions, and measure real progress over time.</p>
+
+    <div class="consultant-cards">
+      <div class="consultant-card reveal">
+        <p class="consultant-card-label">Consultant-Led</p>
+        <h3 class="consultant-card-title">Certified Canine Behavior Consultant</h3>
+        <p class="consultant-card-body">Leads the consultant-led pathway. Works independently of veterinary medicine — ideal for reactivity, foundational modification, and families who don't need medical intervention.</p>
+        <a href="modification.html" class="cta-chip">Consultant-Led Modification →</a>
+      </div>
+      <div class="consultant-card reveal reveal-delay-1">
+        <p class="consultant-card-label">Medicine-Led</p>
+        <h3 class="consultant-card-title">Behavioral Medicine Tech</h3>
+        <p class="consultant-card-body">Works directly with the veterinary behaviorist to implement integrated treatment plans. Available only to families already enrolled in the Medicine Starting Point.</p>
+        <a href="modification.html" class="cta-chip">Medicine-Led Modification →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 BEHAVIORIST -->
+<section id="behaviorist">
+  <div class="stage-number-bg behaviorist-stage-num" aria-hidden="true"><span class="stage-dial" role="img" aria-label="Stage 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+  <div class="section-inner">
+    <div class="stage-label-row reveal">
+      <span class="stage-label ink">Specialty</span>
+      <div class="stage-rule" style="background:rgba(42,210,201,0.3);"></div>
+    </div>
+    <h2 class="section-h2 reveal reveal-delay-1" style="color:#fff;">Your animal's <em>psychiatrist</em>.</h2>
+    <div class="analogy-badge teal-bright reveal reveal-delay-2">Think of them as your animal's psychiatrist.</div>
+
+    <div class="behaviorist-grid">
+      <div class="behaviorist-left reveal">
+        <div class="behaviorist-avatar-wrap">
+          <div class="behaviorist-avatar">VB</div>
+          <span class="behaviorist-avatar-caption">Photo coming soon</span>
+        </div>
+        <div>
+          <div class="behaviorist-name">Gigi's Veterinary Behaviorist</div>
+          <div class="behaviorist-name-sub">Name coming soon</div>
+        </div>
+        <div class="credential-chips">
+          <span class="credential-chip">Diplomate ACVB</span>
+          <span class="credential-chip">Board-Certified Vet Behaviorist</span>
+          <span class="credential-chip">Veterinary Medicine</span>
+        </div>
+      </div>
+      <div>
+        <p class="behaviorist-callout reveal reveal-delay-1">One of fewer than 100 practicing board-certified veterinary behaviorists in the country.</p>
+        <p class="section-body on-dark reveal reveal-delay-2">Board-certified veterinary behaviorists complete years of specialized training in animal behavior, learning theory, and behavioral pharmacology. They diagnose behavioral conditions, develop integrated treatment plans, and prescribe medication when it can help the brain reach a place where learning is possible.</p>
+        <blockquote class="behaviorist-pull-quote reveal reveal-delay-3">
+          "Medication is not failure. It creates the conditions for learning — it doesn't replace the work of modification."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 COLLABORATION -->
+<section id="collaboration">
+  <div class="section-inner">
+    <h2 class="section-h2 reveal" style="color:#fff;">How we work <em>together</em>.</h2>
+    <p class="section-body on-dark reveal reveal-delay-1">You won't feel the handoffs because there aren't any. Your care team shares notes, adjusts the plan together, and communicates on your behalf — so you can focus on your animal.</p>
+
+    <div class="collab-tiles">
+      <div class="collab-tile reveal">
+        <div class="collab-tile-title">One team</div>
+        <p class="collab-tile-body">All specialists share context across service lines.</p>
+      </div>
+      <div class="collab-tile reveal reveal-delay-1">
+        <div class="collab-tile-title">One plan</div>
+        <p class="collab-tile-body">Your behavior plan evolves as your animal progresses.</p>
+      </div>
+      <div class="collab-tile reveal reveal-delay-2">
+        <div class="collab-tile-title">You at the center</div>
+        <p class="collab-tile-body">The client is a collaborator, not a passenger.</p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-3">
+      <a href="#cta-band" class="btn-primary">Book a care navigation call</a>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CTA BAND -->
+<section id="cta-band">
+  <div class="section-inner">
+    <div class="cta-band-inner">
+      <p class="cta-eyebrow reveal">GET STARTED</p>
+      <h2 class="cta-h2 reveal reveal-delay-1">Not sure where to <em>begin</em>?</h2>
+      <p class="cta-body reveal reveal-delay-2">The Care Navigation Call is a free call with Lacey, our Client Success Manager. She reviews your animal's history, answers your questions, and connects you with the right specialist.</p>
+      <div class="cta-btns reveal reveal-delay-3">
+        <a href="#" class="btn-primary">Book a care navigation call</a>
+        <a href="index.html#stages" class="btn-ghost">Explore the stages</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Gigi's <span>Behavior Services</span></div>
+        <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGIS.ORG/GBS</div>
+      </div>
+      <div>
+        <div class="footer-col-label">Stages of care</div>
+        <div class="footer-links">
+          <a href="training.html">Behavioral Training</a>
+          <a href="modification.html">Behavioral Modification</a>
+          <a href="medicine.html">Behavioral Medicine</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Get started</div>
+        <div class="footer-links">
+          <a href="#cta-band">Care Navigation Call</a>
+          <a href="training.html">Book a class</a>
+          <a href="referring-vets.html">For referring vets</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Gigi's</div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Rescue &amp; Placement</a>
+          <a href="#">Veterinary Services</a>
+          <a href="#">Resources</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 Gigi's. All rights reserved. Judgement-Free Adoption™</div>
+      <div class="footer-url">GIGIS.ORG</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+
+const navBurger = document.getElementById('nav-burger');
+const navMobileMenu = document.getElementById('nav-mobile-menu');
+navBurger.addEventListener('click', () => {
+  const isOpen = navMobileMenu.classList.toggle('open');
+  navBurger.setAttribute('aria-expanded', isOpen);
+});
+navMobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => { navMobileMenu.classList.remove('open'); navBurger.setAttribute('aria-expanded', 'false'); });
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => revealObs.observe(el));
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  reveals.forEach(el => el.classList.add('visible'));
+}
+
+(function(){
+  var bar = document.getElementById('stage-bar-wrap');
+  if(!bar) return;
+  var shown = false;
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    if(y > 300 && !shown){ bar.classList.add('visible'); shown = true; }
+    else if(y <= 300 && shown){ bar.classList.remove('visible'); shown = false; }
+  }, {passive:true});
+})();
+</script>
+
+<div id="stage-bar-wrap">
+  <div id="stage-bar">
+    <a href="training.html" class="sbar-item sbar-training ">
+      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.85);">Foundations</div>
+      <div class="sbar-label">Training</div>
+      <div class="sbar-price">From $42</div>
+    </a>
+    <a href="modification.html" class="sbar-item sbar-mod ">
+      <div class="sbar-eyebrow" style="color:var(--teal);">Support</div>
+      <div class="sbar-label">Modification</div>
+      <div class="sbar-price">From $250</div>
+    </a>
+    <a href="medicine.html" class="sbar-item sbar-med ">
+      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.5);">Specialty</div>
+      <div class="sbar-label">Medicine</div>
+      <div class="sbar-price">From $590</div>
+    </a>
+    <a href="#cta-band" class="sbar-cta">
+      <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
+    </a>
+  </div>
+  <div id="vet-bar">
+    <div class="vbar-spacer"></div>
+    <a href="referring-vets.html" class="vbar-link">
+      <span class="vbar-eyebrow">For Vets</span>
+      <span class="vbar-label">Referring Vets →</span>
+    </a>
+    <div class="vbar-spacer-cta"></div>
+  </div>
+</div>
+</body>
+</html>

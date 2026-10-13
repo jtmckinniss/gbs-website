@@ -1,0 +1,283 @@
+/* ==========================================================
+   GBS shared stylesheet — tokens + components common to all pages.
+   Page <style> blocks hold only page-specific rules and load AFTER this.
+   ========================================================== */
+
+:root {
+  --cream: #F4F1E9;
+  --cream-deep: #E8E5DC;
+  --cream-soft: #FAF8F2;
+  --ink: #1B1A18;
+  --ink-warm: #2A2724;
+  --gray-warm: #6B665E;
+  --gray-line: #D6D1C5;
+  --black: #0A0A0A;
+  --teal: #2AD2C9;
+  --teal-deep: #0E8079;
+  --kale: #2F4F3E;
+  --kale-deep: #1F362A;
+  --kale-ink: #16291F;
+  --butter: #E8C46B;
+  --butter-border: #C9A84C;
+  --butter-text: #8A6A12;
+  --red: #F75B5B;
+  --font-display: 'EB Garamond',Georgia,serif;
+  --font-body: 'Montserrat',system-ui,sans-serif;
+  --font-mono: 'Courier New',ui-monospace,monospace;
+  --transition: 150ms ease-out;
+}
+*,*::before,*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a:hover {
+  color: #fff;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ---------- Reveal animation ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 500ms ease-out,transform 500ms ease-out;
+}
+
+/* ---------- Footer ---------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.footer-brand-name span {
+  color: var(--teal);
+}
+.footer-tagline {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+.footer-col-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-links a:hover {
+  color: #fff;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-legal {
+  font-size: 11px;
+}
+.footer-url {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ---------- Stage bar + vet bar (sticky bottom) ---------- */
+#stage-bar-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: opacity 220ms ease-out,transform 220ms ease-out;
+  box-shadow: 0 -8px 28px rgba(0,0,0,0.28);
+}
+#stage-bar-wrap.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+#stage-bar {
+  display: flex;
+  flex-direction: row;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.sbar-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: transform 150ms ease-out,box-shadow 150ms ease-out;
+  position: relative;
+  border-top: 3px solid transparent;
+}
+.sbar-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 -6px 16px rgba(0,0,0,0.25);
+  z-index: 2;
+}
+.sbar-item.sbar-active {
+  border-top-color: var(--teal);
+}
+.sbar-training {
+  background: rgba(201,168,76,0.90);
+}
+.sbar-mod {
+  background: rgba(14,128,121,0.90);
+}
+.sbar-med {
+  background: rgba(27,26,24,0.90);
+}
+.sbar-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.sbar-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.sbar-price {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-top: 2px;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+}
+.sbar-cta {
+  background: rgba(232,196,107,0.92);
+  padding: 12px 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 180px;
+  transition: opacity 150ms ease-out;
+}
+.sbar-cta:hover {
+  opacity: 0.88;
+}
+.sbar-cta-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1.25;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sbar-arrow {
+  width: 30px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.sbar-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#vet-bar {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+.vbar-spacer {
+  display: none;
+}
+.vbar-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 20px;
+  text-decoration: none;
+  background: #fff;
+  transition: background 150ms ease-out;
+}
+.vbar-link:hover {
+  background: rgba(0,0,0,0.04);
+}
+.vbar-eyebrow {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.45);
+}
+.vbar-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  white-space: nowrap;
+}
+.vbar-spacer-cta {
+  display: none;
+}
+
+/* ---------- Responsive (shared) ---------- */
+
+/* ---------- Stage dial (●○○ / ●●○ / ●●●) — replaces 01/02/03 stage numerals ----------
+   Sizes from the parent's font-size (min 8px), colors from currentColor,
+   so it drops into any slot that previously held a stage number. */
+.stage-dial {
+  display: inline-flex;
+  align-items: center;
+  gap: max(4px, 0.12em);
+  vertical-align: middle;
+  line-height: 1;
+}
+.stage-dial i {
+  display: block;
+  width: max(8px, 0.24em);
+  height: max(8px, 0.24em);
+  border-radius: 50%;
+  border: max(1.5px, 0.04em) solid currentColor;
+  background: transparent;
+}
+.stage-dial i.on {
+  background: currentColor;
+}
