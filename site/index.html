@@ -782,11 +782,11 @@ body {
 }
 .cost-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  align-items: start;
-  margin-top: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 64px;
+  align-items: center;
 }
+.cost-lead .section-h2 { margin-bottom: 24px; }
 .cost-intro { font-size: 16px; line-height: 1.65; color: var(--gray-warm); }
 .cost-cards { display: flex; flex-direction: column; gap: 0; position: relative; }
 .cost-frame {
@@ -844,7 +844,7 @@ body {
   transition: stroke 0.4s ease;
 }
 .cost-body {
-  padding: 28px 32px;
+  padding: 22px 28px;
   display: flex;
   align-items: center;
   gap: 40px;
@@ -1363,7 +1363,10 @@ body {
   .how-callout { position: static; }
 
   /* Cost — stack */
-  .cost-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cost-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cost-title { font-size: 22px; }
+  .cost-stage-info { min-width: 0; }
+  .cost-body { gap: 12px; }
 
   /* Collaboration — stack, image first */
   .collab-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1458,7 +1461,10 @@ body {
   .photoband-caption { bottom: 28px; padding: 0 20px; }
 }
 @media (max-width: 768px) {
-  .cost-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cost-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cost-title { font-size: 22px; }
+  .cost-stage-info { min-width: 0; }
+  .cost-body { gap: 12px; }
   .cost-body { padding: 20px 16px; gap: 16px; }
   .cost-price { font-size: 28px; }
 }
@@ -1838,11 +1844,13 @@ body {
 <!-- ── 06 HONEST COST ── -->
 <section id="cost">
   <div class="section-inner">
-    <div class="eyebrow reveal" style="color:var(--teal-deep);">Honest about cost</div>
-    <h2 class="section-h2 reveal reveal-delay-1" style="font-size:clamp(34px,4vw,52px);color:var(--ink);max-width:560px;">Multiple ways to <em style="color:var(--teal-deep);">get started</em>.</h2>
     <div class="cost-grid">
-      <div class="cost-intro reveal reveal-delay-1">
+      <div class="cost-lead">
+        <div class="eyebrow reveal" style="color:var(--teal-deep);">Honest about cost</div>
+        <h2 class="section-h2 reveal reveal-delay-1" style="font-size:clamp(34px,4vw,52px);color:var(--ink);max-width:560px;">Multiple ways to <em style="color:var(--teal-deep);">get started</em>.</h2>
+        <div class="cost-intro reveal reveal-delay-2">
         You don't need to have it all figured out before you begin. Families can start with Training, Modification, or Medicine, whatever fits best right now. Unsure? A free call will help you find your starting point.
+      </div>
       </div>
       <div class="cost-cards">
         <div class="cost-card cost-training reveal">
