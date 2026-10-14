@@ -266,7 +266,7 @@
 .stage-tracker { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--font-body); }
 .st-seg {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 10px 20px;
+  padding: 12px 22px;
   border: 2px solid rgba(255,255,255,0.16);
   background: transparent; color: #6F6B64;
   font-size: 12px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
@@ -285,11 +285,19 @@ a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0
 .stage-tracker.on-teal .st-seg { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.55); }
 .stage-tracker.on-teal a.st-seg:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
 .stage-tracker.on-teal .st-mod.is-active { border-color: #fff; color: #fff; }
-/* badge + tracker on one row */
-.stage-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px; margin-bottom: 20px; }
-.stage-row .stage-badge { display: inline-flex; align-items: center; margin: 0; padding: 0 18px; }
+/* stage tag stacked above the tracker */
+.stage-row { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; }
+.stage-tag {
+  display: inline-block; padding: 5px 16px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 800;
+  letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2;
+}
+.stage-tag.t-training { background: var(--butter); color: var(--ink); }
+.stage-tag.t-mod { background: var(--teal-deep); color: #fff; }
+.stage-tag.t-mod.on-teal { background: #fff; color: var(--teal-deep); }
+.stage-tag.t-med { background: var(--cream); color: var(--ink); }
+.stage-tag.t-med.on-light { background: var(--ink); color: var(--cream); }
 @media (max-width: 600px) {
   .stage-tracker, .stage-row { gap: 6px; }
   .st-seg { padding: 8px 10px; font-size: 10px; letter-spacing: 0.1em; }
-  .stage-row .stage-badge { padding: 8px 10px; }
 }
