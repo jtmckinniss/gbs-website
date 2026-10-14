@@ -425,6 +425,9 @@ a { color: inherit; }
 /* 05 — ADD-ONS (cream bg)                                */
 /* ── ================================================== ── */
 .addons-section { background: var(--cream-soft); }
+.addons-sub { font-family: var(--font-body); font-weight: 800; font-size: 17px; letter-spacing: 0.01em; color: var(--ink); margin: 40px 0 8px; }
+.addons-sub-body { font-size: 15px; line-height: 1.65; color: var(--ink-warm); max-width: 62ch; margin-bottom: 20px; }
+.addons-sub-body a { color: var(--teal-deep); font-weight: 700; }
 .addons-intro {
   max-width: 600px; font-size: 17px; line-height: 1.7;
   color: var(--ink-warm); margin-top: 16px; margin-bottom: 48px;
@@ -915,34 +918,19 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
         </div>
       </div>
     </div>
-
-    <!-- What comes next -->
-    <div class="what-next reveal">
-      <p class="what-next-title">What comes next</p>
-      <p class="what-next-intro">Every journey is different. Custom treatment plans from here can include more <i class="svc">Medicine</i>, more <i class="svc">Modification</i>, or both.</p>
-      <div class="what-next-grid">
-        <div class="what-next-card">
-          <div class="what-next-card-title">Continue with Medicine</div>
-          <p>Add-on check-ins, extended sessions, and vet-to-vet consults are available as your dog's plan evolves.</p>
-        </div>
-        <div class="what-next-card">
-          <div class="what-next-card-title">Continue with Modification</div>
-          <p>Medicine-Led Modification sessions are available once you've completed the Starting Point. See the <i class="svc">Modification</i> page for details.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ===== 05 ADD-ONS ===== -->
 <section class="addons-section section-pad" id="add-ons">
   <div class="section-inner">
-    <span class="eyebrow eyebrow-cream reveal">Ongoing care</span>
+    <span class="eyebrow eyebrow-cream reveal">What comes next</span>
     <h2 class="section-h reveal reveal-d1">After the Starting Point.</h2>
     <p class="addons-intro reveal reveal-d2">
-      Once you've completed the Medicine Starting Point, additional support is available based on your dog's evolving needs.
+      Every journey is different. Custom treatment plans from here can include more <i class="svc">Medicine</i>, more <i class="svc">Modification</i>, or both.
     </p>
 
+    <h3 class="addons-sub reveal">Continue with Medicine</h3>
+    <p class="addons-sub-body reveal">Add-on check-ins, extended sessions, and vet-to-vet consults are available as your dog's plan evolves.</p>
     <div class="addons-grid">
       <!-- Row 1 -->
       <div class="addon-card reveal">
@@ -987,10 +975,8 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
       </div>
     </div>
 
-    <p class="addons-note reveal">
-      Medicine-Led Modification sessions are also available after completing the Starting Point.
-      <a href="modification.html">See the <i class="svc">Modification</i> page for details.</a>
-    </p>
+    <h3 class="addons-sub reveal" style="margin-top:48px;">Continue with Modification</h3>
+    <p class="addons-sub-body reveal">Medicine-Led Modification sessions are available once you've completed the Starting Point. <a href="modification.html">See the <i class="svc">Modification</i> page for details.</a></p>
   </div>
 </section>
 
