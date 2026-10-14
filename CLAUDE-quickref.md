@@ -31,6 +31,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Public web address: gigisbehavior.org (moves under gigis.org long-term). For Vets page keeps clinical language.
 - Full stage names: Behavioral Training / Behavioral Modification / Behavioral Medicine.
 - Stage indicator: .stage-tracker (gbs-shared.css) — eyebrow-scale outlined labels; inactive gray, active outlined + text in stage color (variants: .on-light, .on-teal). Replaces the radio dials AND the eyebrow over hero/section headlines. Homepage cards carry no indicator. Heroes + Pricing: filled stage tag (.stage-tag t-training|t-mod|t-med) stacked above the tracker inside .stage-row.
+- Hero standard = Training page (1080px container, H1 clamp(36px,4.5vw,58px)/1.08, body 16px/1.7, 4:3 image, content-then-image on mobile). Mod + Med carry a "Hero matched to the Training page" override block.
 - Sticky bar: For Vets cell sits right of "Not sure? Book a call" (.sbar-vet); old #vet-bar row removed.
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.

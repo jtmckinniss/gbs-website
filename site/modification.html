@@ -711,6 +711,36 @@ footer {
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
 @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ── Hero matched to the Training page (spacing + sizing) ── */
+@media (min-width: 761px) {
+  .hero { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+  .hero > .section-inner { max-width: 1080px; margin-inline: auto; padding-inline: 40px; }
+  .hero-grid { gap: 64px; align-items: center; padding-top: 80px; padding-bottom: 72px; }
+  .hero-left { padding-bottom: 0; }
+  .hero-h { font-size: clamp(36px, 4.5vw, 58px); line-height: 1.08; letter-spacing: 0; margin-bottom: 22px; text-wrap: wrap; }
+  .hero-subhead, .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 480px; margin-bottom: 36px; }
+  .hero-right { align-self: center; }
+  .hero-img-wrap { flex: none; min-height: 0; aspect-ratio: 4 / 3; }
+  .hero-img-wrap .placeholder-img { min-height: 0 !important; height: 100%; }
+  .hero-img { min-height: 0 !important; aspect-ratio: 4 / 3; }
+}
+
+/* Mobile: match the Training hero too */
+@media (max-width: 760px) {
+  .hero { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+  .hero-ctas .btn-primary, .hero-ctas .btn-ghost, .hero-ctas .btn-butter { width: auto; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 56px; padding-bottom: 48px; }
+  .hero-grid > * { min-width: 0; }
+  .hero-right { order: 0; }
+  .hero-left { padding-bottom: 0; }
+  .hero-h { font-size: 36px; line-height: 1.08; letter-spacing: 0; text-wrap: wrap; margin-bottom: 22px; }
+  .hero-subhead, .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65); }
+  .hero-ctas { flex-direction: row; flex-wrap: wrap; gap: 14px; }
+  .hero-img-wrap { min-height: 0; aspect-ratio: 4 / 3; }
+  .hero-img-wrap .placeholder-img { min-height: 0 !important; height: 100%; }
+  .hero-img { min-height: 0 !important; aspect-ratio: 4 / 3; }
+}
 </style>
 
 <!-- PROGRESS BAR -->
