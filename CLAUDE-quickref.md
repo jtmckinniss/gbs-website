@@ -23,7 +23,9 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
 - "1:1" is the standard (not "private" or "one-on-one").
 - No "fail/failure/failing" anywhere; keep the judgment-free sentiment.
-- No individual names except Dr. Meghan Herron and Dr. Gilbert-Gregory. Lacey → "Client Success Manager."
+- No individual names except Dr. Gilbert-Gregory (Lead Veterinary Behaviorist, sees Medicine clients) and Dr. Meghan Herron. Lacey → "Client Success Manager."
+- In-home Modification follow-ups stay (behaviorally required cases, at Gigi's discretion).
+- Public web address: gigisbehavior.org (moves under gigis.org long-term). For Vets page keeps clinical language.
 - Full stage names: Behavioral Training / Behavioral Modification / Behavioral Medicine.
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
