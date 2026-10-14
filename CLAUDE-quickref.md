@@ -16,9 +16,16 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Change only what was literally asked (structural vs. typographic).
 
 ## Locked content
-- Specialist names: Behavior Trainers · Behavior Consultants · Veterinary Behaviorist.
-- Analogies: Training = "life coach for your dog" · Modification = "therapist" · Medicine = "psychiatrist".
-- CTA routing: Training + Modification → Offering Tree; Medicine → Care Navigation Call.
+- Specialist names: Behavior Trainers · Behavior Consultants · Veterinary Behaviorist (always capitalized, spelled out).
+- Analogies: Training = "your dog's life coach" · Modification = "your dog's therapist" · Medicine = "your dog's psychiatrist".
+- CTA routing: Training → Offering Tree (Book now → qualification quiz, inert for now); Modification + Medicine → Care Navigation Call.
+- Brand is "Gigi's Behavior." GBS is retired publicly (internal shorthand only).
+- Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
+- "1:1" is the standard (not "private" or "one-on-one").
+- No "fail/failure/failing" anywhere; keep the judgment-free sentiment.
+- No individual names except Dr. Meghan Herron and Dr. Gilbert-Gregory. Lacey → "Client Success Manager."
+- Full stage names: Behavioral Training / Behavioral Modification / Behavioral Medicine.
+- Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
 - No aversive-trainer counts in the funnel chart.
 - Hand-drawn elements are real SVG, not CSS gradients.
@@ -35,6 +42,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Training "From $42" (stage bar, pricing) vs "Starting at $35" (homepage stage card, cost card, impact strip).
 
 ## Change log
+- 2.2.0 · Team feedback round applied (see commit 79c15e9): rules above, Home/Training/Modification/Medicine/Meet the Team copy + structure.
 - (none yet)
 - 2.1.1 · Radio dials (.stage-dial in gbs-shared.css) replace 01/02/03 stage numerals on index, training, modification, medicine, pricing, meet-the-team. Process/requirement step numbers untouched.
 - 2.1.1 · Pricing page: headings → Behavior Training / Modification / Medicine; "dog-only" removed (SOT: dog is default, only call out cats);
