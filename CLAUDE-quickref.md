@@ -27,6 +27,8 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - In-home Modification follow-ups stay (behaviorally required cases, at Gigi's discretion).
 - Public web address: gigisbehavior.org (moves under gigis.org long-term). For Vets page keeps clinical language.
 - Full stage names: Behavioral Training / Behavioral Modification / Behavioral Medicine.
+- Stage indicator: .stage-tracker (gbs-shared.css) — eyebrow-scale outlined labels; inactive gray, active outlined + text in stage color (variants: .on-light, .on-teal). Replaces the radio dials AND the eyebrow over hero/section headlines. Homepage cards carry no indicator. Pricing: badge + tracker on one row (.stage-row).
+- Sticky bar: For Vets cell sits right of "Not sure? Book a call" (.sbar-vet); old #vet-bar row removed.
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
 - No aversive-trainer counts in the funnel chart.
