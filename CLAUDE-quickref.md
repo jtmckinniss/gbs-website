@@ -23,6 +23,8 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Brand is "Gigi's Behavior." GBS is retired publicly (internal shorthand only).
 - Service-line names in running copy: ALL CAPS + italic via <i class="svc">Modification</i> (CSS uppercases it) (body copy only: not in headlines, pull quotes, nav, buttons, card titles, role titles, appointment names, or For Vets clinical copy). Spelling: "judgement" (Euro).
 - Vet-to-vet services appear only on the For Vets page.
+- Service-line pages: Training shows full pricing; Modification + Medicine show Starting Point pricing only and link to Cost Transparency for the rest.
+- After structural regex edits, run an HTML tag-balance check on every page (a bad match broke Medicine once).
 - "Stage," never "step" or "tier" for levels of care. "Family," never "owner." Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
 - "1:1" is the standard (not "private" or "one-on-one").
 - No "fail/failure/failing" anywhere; keep the judgment-free sentiment.
