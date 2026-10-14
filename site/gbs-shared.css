@@ -260,33 +260,36 @@
 
 /* ---------- Responsive (shared) ---------- */
 
-/* ── Stage tracker (replaces .stage-dial) ─────────────────────
-   Three outlined segments; the active stage fills with its color.
-   Base = dark surfaces. .on-light = cream/white surfaces. .sm = compact. */
-.stage-tracker { display: flex; gap: 12px; width: 100%; max-width: 560px; font-family: var(--font-body); }
+/* ── Stage tracker ───────────────────────────────────────────
+   Eyebrow-scale labels, not buttons. Inactive = gray outline + gray text;
+   active = outline + text in the stage color. Base = dark surfaces; .on-light = cream. */
+.stage-tracker { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--font-body); }
 .st-seg {
-  flex: 1 1 0; min-width: 0;
-  display: flex; align-items: center; justify-content: center;
-  padding: 13px 12px;
-  border: 2px solid rgba(255,255,255,0.88);
-  background: var(--black); color: #fff;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 20px;
+  border: 2px solid rgba(255,255,255,0.16);
+  background: transparent; color: #6F6B64;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap; line-height: 1;
-  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  transition: color var(--transition), border-color var(--transition);
 }
-a.st-seg:hover { border-color: #fff; background: #1a1a1a; }
-.st-seg.st-training.is-active { background: var(--butter); color: var(--ink); }
-.st-seg.st-mod.is-active      { background: var(--teal-deep); color: #fff; }
-.st-seg.st-med.is-active      { background: var(--cream-soft); color: var(--ink); }
-/* light surfaces: outlines go ink; Medicine active inverts to black so it stays visible on cream */
-.stage-tracker.on-light .st-seg { background: transparent; color: var(--ink); border-color: var(--ink); }
-.stage-tracker.on-light a.st-seg:hover { background: rgba(27,26,24,0.06); }
-.stage-tracker.on-light .st-training.is-active { background: var(--butter); }
-.stage-tracker.on-light .st-mod.is-active { background: var(--teal-deep); color: #fff; }
-.stage-tracker.on-light .st-med.is-active { background: var(--black); color: var(--cream); }
-.stage-tracker.sm { gap: 8px; max-width: 420px; }
-.stage-tracker.sm .st-seg { padding: 9px 8px; font-size: 10px; letter-spacing: 0.12em; border-width: 1.5px; }
+a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.32); }
+.st-seg.st-training.is-active { border-color: var(--butter); color: var(--butter); }
+.st-seg.st-mod.is-active      { border-color: var(--teal); color: var(--teal); }
+.st-seg.st-med.is-active      { border-color: var(--cream); color: var(--cream); }
+.stage-tracker.on-light .st-seg { border-color: var(--gray-line); color: #A7A298; }
+.stage-tracker.on-light a.st-seg:hover { color: var(--gray-warm); border-color: #BDB7AA; }
+.stage-tracker.on-light .st-training.is-active { border-color: var(--butter-border); color: var(--butter-text); }
+.stage-tracker.on-light .st-mod.is-active { border-color: var(--teal-deep); color: var(--teal-deep); }
+.stage-tracker.on-light .st-med.is-active { border-color: var(--ink); color: var(--ink); }
+.stage-tracker.on-teal .st-seg { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.55); }
+.stage-tracker.on-teal a.st-seg:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+.stage-tracker.on-teal .st-mod.is-active { border-color: #fff; color: #fff; }
+/* badge + tracker on one row */
+.stage-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px; margin-bottom: 20px; }
+.stage-row .stage-badge { display: inline-flex; align-items: center; margin: 0; padding: 0 18px; }
 @media (max-width: 600px) {
-  .stage-tracker { gap: 6px; }
-  .st-seg { padding: 11px 4px; font-size: 10px; letter-spacing: 0.06em; }
+  .stage-tracker, .stage-row { gap: 6px; }
+  .st-seg { padding: 8px 10px; font-size: 10px; letter-spacing: 0.1em; }
+  .stage-row .stage-badge { padding: 8px 10px; }
 }
