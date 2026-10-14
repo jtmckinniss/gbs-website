@@ -334,12 +334,12 @@ a { color: inherit; }
   position: relative; z-index: 1;
 }
 .timeline-dot-label {
-  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  font-family: var(--font-mono); font-size: 16px; font-weight: 700;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--teal); line-height: 1; margin-bottom: 2px;
+  color: var(--teal); line-height: 1; margin-bottom: 3px;
 }
 .timeline-dot-day {
-  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  font-family: var(--font-mono); font-size: 19px; font-weight: 700;
   color: #fff; line-height: 1;
 }
 .timeline-content { padding-bottom: 0; }
@@ -627,8 +627,8 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
   .timeline::before { left: 20px; }
   .timeline-step { grid-template-columns: 40px 1fr; gap: 0 16px; }
   .timeline-dot { width: 40px; height: 40px; }
-  .timeline-dot-label { font-size: 7px; }
-  .timeline-dot-day { font-size: 9px; }
+  .timeline-dot-label { font-size: 12px; }
+  .timeline-dot-day { font-size: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -848,7 +848,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
         <div class="timeline-content">
           <div class="timeline-appt-name">Initial Behavioral Medicine Assessment</div>
           <div class="timeline-meta">
-            <span class="timeline-chip">1 hour</span>
+            <span class="timeline-chip">45 min</span>
             <span class="timeline-chip">Veterinary Behaviorist</span>
           </div>
           <p class="timeline-desc">
