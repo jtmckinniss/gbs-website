@@ -742,6 +742,8 @@ footer {
   .hero-img { min-height: 0 !important; aspect-ratio: 4 / 3; }
 }
 </style>
+</head>
+<body>
 
 <!-- PROGRESS BAR -->
 <div id="progress-bar"></div>
@@ -920,7 +922,7 @@ footer {
         <span class="eyebrow">WHAT IT COSTS</span>
         <h2 class="section-h">Transparent pricing. <em>No surprises.</em></h2>
       </div>
-      <div class="pricing-grid">
+      <div class="pricing-grid" style="grid-template-columns:minmax(0,1fr);max-width:640px;">
         <div class="pricing-col reveal reveal-d1">
                     <p class="pricing-col-title">Consultant-Led</p>
           <p class="pricing-col-note">Led by a Certified Dog Behavior Consultant. Starts with your free Care Navigation Call.</p>
@@ -938,58 +940,12 @@ footer {
             </div>
             <span class="price-amount">$400</span>
           </div>
-          <div class="price-row">
-            <div class="price-row-left">
-              <span class="price-name">Follow-Up — Virtual</span>
-              <span class="price-meta">60 min &middot; Behavior Consultant</span>
-            </div>
-            <span class="price-amount">$125</span>
-          </div>
-          <div class="price-row">
-            <div class="price-row-left">
-              <span class="price-name">Follow-Up — @ Gigi's</span>
-              <span class="price-meta">60 min &middot; Behavior Consultant</span>
-            </div>
-            <span class="price-amount">$150</span>
-          </div>
-          <div class="price-row">
-            <div class="price-row-left">
-              <span class="price-name">Follow-Up — In-Home</span>
-              <span class="price-meta">60 min &middot; Behavior Consultant</span>
-              <span class="price-caveat">Behaviorally required cases only, at Gigi's discretion</span>
-            </div>
-            <span class="price-amount">$175</span>
-          </div>
-        </div>
-        <div class="pricing-col muted reveal reveal-d2">
-                    <p class="pricing-col-title">Medicine-Led</p>
-          <p class="pricing-col-note">Available after completion of the Medicine Starting Point. Led by a Behavioral Medicine Tech working alongside the Veterinary Behaviorist.</p>
-          <div class="price-row">
-            <div class="price-row-left">
-              <span class="price-name">Medicine-Led Session — Virtual</span>
-              <span class="price-meta">40 min &middot; Behavioral Medicine Tech</span>
-            </div>
-            <span class="price-amount">$140</span>
-          </div>
-          <div class="price-row">
-            <div class="price-row-left">
-              <span class="price-name">Medicine-Led Session — @ Gigi's</span>
-              <span class="price-meta">40 min &middot; Behavioral Medicine Tech</span>
-            </div>
-            <span class="price-amount">$175</span>
-          </div>
-          <div class="price-row">
-            <div class="price-row-left">
-              <span class="price-name">Mini Session — @ Gigi's</span>
-              <span class="price-meta">20 min &middot; Behavioral Medicine Tech</span>
-            </div>
-            <span class="price-amount">$50</span>
-          </div>
         </div>
       </div>
       <div class="pricing-note-box reveal reveal-d2">
         <span class="pricing-note-box-title">Multi-dog households</span>
         <p>Both dogs can attend any appointment together. The two-dog fee applies to the Modification Starting Point only ($400 for two dogs). All follow-up sessions cover the full household at no additional charge.</p>
+        <p style="margin-top:10px;"><a href="pricing.html#pricing-modification" style="color:var(--teal-deep);font-weight:700;">See follow-up and Medicine-Led pricing on Cost Transparency →</a></p>
       </div>
     </div>
   </section>
