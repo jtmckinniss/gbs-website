@@ -217,28 +217,31 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-#vet-bar {
+.sbar-vet {
+  flex: 0 0 160px;
   display: flex;
-  flex-direction: row;
-  background: #fff;
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-.vbar-spacer {
-  display: none;
-}
-.vbar-link {
-  flex: 1;
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 7px 20px;
-  text-decoration: none;
+  gap: 4px;
+  padding: 12px 16px;
   background: #fff;
+  text-decoration: none;
   transition: background 150ms ease-out;
 }
-.vbar-link:hover {
-  background: rgba(0,0,0,0.04);
+.sbar-vet:hover {
+  background: #F1EFEA;
+}
+@media (max-width: 760px) {
+  .sbar-item { min-width: 0; padding: 8px 8px; }
+  .sbar-item .sbar-eyebrow { display: none; }
+  .sbar-item .sbar-label { font-size: 12px; }
+  .sbar-cta { flex: 0 0 76px !important; padding: 6px 6px !important; }
+  .sbar-cta-label { font-size: 9px; letter-spacing: 0.06em; }
+  .sbar-cta .sbar-arrow { display: none; }
+  .sbar-vet { flex: 0 0 64px; padding: 6px 4px; gap: 2px; }
+  .sbar-vet .vbar-eyebrow { display: none; }
+  .sbar-vet .vbar-label { font-size: 9px; white-space: normal; text-align: center; line-height: 1.2; }
 }
 .vbar-eyebrow {
   font-size: 8px;
@@ -254,30 +257,36 @@
   color: var(--black);
   white-space: nowrap;
 }
-.vbar-spacer-cta {
-  display: none;
-}
 
 /* ---------- Responsive (shared) ---------- */
 
-/* ---------- Stage dial (●○○ / ●●○ / ●●●) — replaces 01/02/03 stage numerals ----------
-   Sizes from the parent's font-size (min 8px), colors from currentColor,
-   so it drops into any slot that previously held a stage number. */
-.stage-dial {
-  display: inline-flex;
-  align-items: center;
-  gap: max(4px, 0.12em);
-  vertical-align: middle;
-  line-height: 1;
+/* ── Stage tracker (replaces .stage-dial) ─────────────────────
+   Three outlined segments; the active stage fills with its color.
+   Base = dark surfaces. .on-light = cream/white surfaces. .sm = compact. */
+.stage-tracker { display: flex; gap: 12px; width: 100%; max-width: 560px; font-family: var(--font-body); }
+.st-seg {
+  flex: 1 1 0; min-width: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 13px 12px;
+  border: 2px solid rgba(255,255,255,0.88);
+  background: var(--black); color: #fff;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap; line-height: 1;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
-.stage-dial i {
-  display: block;
-  width: max(8px, 0.24em);
-  height: max(8px, 0.24em);
-  border-radius: 50%;
-  border: max(1.5px, 0.04em) solid currentColor;
-  background: transparent;
-}
-.stage-dial i.on {
-  background: currentColor;
+a.st-seg:hover { border-color: #fff; background: #1a1a1a; }
+.st-seg.st-training.is-active { background: var(--butter); color: var(--ink); }
+.st-seg.st-mod.is-active      { background: var(--teal-deep); color: #fff; }
+.st-seg.st-med.is-active      { background: var(--cream-soft); color: var(--ink); }
+/* light surfaces: outlines go ink; Medicine active inverts to black so it stays visible on cream */
+.stage-tracker.on-light .st-seg { background: transparent; color: var(--ink); border-color: var(--ink); }
+.stage-tracker.on-light a.st-seg:hover { background: rgba(27,26,24,0.06); }
+.stage-tracker.on-light .st-training.is-active { background: var(--butter); }
+.stage-tracker.on-light .st-mod.is-active { background: var(--teal-deep); color: #fff; }
+.stage-tracker.on-light .st-med.is-active { background: var(--black); color: var(--cream); }
+.stage-tracker.sm { gap: 8px; max-width: 420px; }
+.stage-tracker.sm .st-seg { padding: 9px 8px; font-size: 10px; letter-spacing: 0.12em; border-width: 1.5px; }
+@media (max-width: 600px) {
+  .stage-tracker { gap: 6px; }
+  .st-seg { padding: 11px 4px; font-size: 10px; letter-spacing: 0.06em; }
 }

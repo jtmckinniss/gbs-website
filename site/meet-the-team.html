@@ -836,7 +836,6 @@ footer {
         <div class="stage-bars">
           <div class="stage-bar training">
             <div class="stage-bar-line"></div>
-            <span class="stage-bar-num"><span class="stage-dial" role="img" aria-label="Stage 1 of 3"><i class="on"></i><i></i><i></i></span></span>
             <div>
               <div class="stage-bar-label">Training</div>
               <div class="stage-bar-sub">Foundations</div>
@@ -844,7 +843,6 @@ footer {
           </div>
           <div class="stage-bar modification">
             <div class="stage-bar-line"></div>
-            <span class="stage-bar-num"><span class="stage-dial" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span></span>
             <div>
               <div class="stage-bar-label">Modification</div>
               <div class="stage-bar-sub">Support</div>
@@ -852,7 +850,6 @@ footer {
           </div>
           <div class="stage-bar medicine">
             <div class="stage-bar-line"></div>
-            <span class="stage-bar-num"><span class="stage-dial" role="img" aria-label="Stage 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
             <div>
               <div class="stage-bar-label">Medicine</div>
               <div class="stage-bar-sub">Specialty</div>
@@ -876,8 +873,9 @@ footer {
 
 <!-- 03 TRAINERS -->
 <section id="trainers">
-  <div class="stage-number-bg trainers-stage-num" aria-hidden="true"><span class="stage-dial" role="img" aria-label="Stage 1 of 3"><i class="on"></i><i></i><i></i></span></div>
+  
   <div class="section-inner">
+    <div class="reveal" style="margin-bottom:28px;"><nav class="stage-tracker sm on-light" aria-label="Stages of care"><a href="training.html" class="st-seg st-training is-active" aria-current="page">Training</a><a href="modification.html" class="st-seg st-mod">Modification</a><a href="medicine.html" class="st-seg st-med">Medicine</a></nav></div>
     <div class="stage-label-row reveal">
       <span class="stage-label butter">Foundations</span>
       <div class="stage-rule butter"></div>
@@ -890,8 +888,9 @@ footer {
 
 <!-- 04 CONSULTANTS -->
 <section id="consultants">
-  <div class="stage-number-bg consultants-stage-num" aria-hidden="true"><span class="stage-dial" role="img" aria-label="Stage 2 of 3"><i class="on"></i><i class="on"></i><i></i></span></div>
+  
   <div class="section-inner">
+    <div class="reveal" style="margin-bottom:28px;"><nav class="stage-tracker sm" aria-label="Stages of care"><a href="training.html" class="st-seg st-training">Training</a><a href="modification.html" class="st-seg st-mod is-active" aria-current="page">Modification</a><a href="medicine.html" class="st-seg st-med">Medicine</a></nav></div>
     <div class="stage-label-row reveal">
       <span class="stage-label teal">Support</span>
       <div class="stage-rule teal"></div>
@@ -919,8 +918,9 @@ footer {
 
 <!-- 05 BEHAVIORIST -->
 <section id="behaviorist">
-  <div class="stage-number-bg behaviorist-stage-num" aria-hidden="true"><span class="stage-dial" role="img" aria-label="Stage 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+  
   <div class="section-inner">
+    <div class="reveal" style="margin-bottom:28px;"><nav class="stage-tracker sm" aria-label="Stages of care"><a href="training.html" class="st-seg st-training">Training</a><a href="modification.html" class="st-seg st-mod">Modification</a><a href="medicine.html" class="st-seg st-med is-active" aria-current="page">Medicine</a></nav></div>
     <div class="stage-label-row reveal">
       <span class="stage-label ink">Specialty</span>
       <div class="stage-rule" style="background:rgba(42,210,201,0.3);"></div>
@@ -1107,14 +1107,10 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     <a href="#cta-band" class="sbar-cta">
       <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
     </a>
-  </div>
-  <div id="vet-bar">
-    <div class="vbar-spacer"></div>
-    <a href="referring-vets.html" class="vbar-link">
+    <a href="referring-vets.html" class="sbar-vet">
       <span class="vbar-eyebrow">For Vets</span>
       <span class="vbar-label">Referring Vets →</span>
     </a>
-    <div class="vbar-spacer-cta"></div>
   </div>
 </div>
 </body>
