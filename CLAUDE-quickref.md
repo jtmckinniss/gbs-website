@@ -17,6 +17,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 
 ## Locked content
 - Specialist names: Behavior Trainers · Behavior Consultants · Veterinary Behaviorist (always capitalized, spelled out).
+- Hero headlines (locked): "Training is the foundation of a healthy mind." · "Modification is where progress happens." · "Medicine treats the brain behind the behavior." No "root" (held back) and no "impact stick".
 - Analogies: Training = "your dog's life coach" · Modification = "your dog's therapist" · Medicine = "your dog's psychiatrist".
 - CTA routing: Training → Offering Tree (Book now → qualification quiz, inert for now); Modification + Medicine → Care Navigation Call.
 - Brand is "Gigi's Behavior." GBS is retired publicly (internal shorthand only).
