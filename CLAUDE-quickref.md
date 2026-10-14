@@ -20,7 +20,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Analogies: Training = "your dog's life coach" · Modification = "your dog's therapist" · Medicine = "your dog's psychiatrist".
 - CTA routing: Training → Offering Tree (Book now → qualification quiz, inert for now); Modification + Medicine → Care Navigation Call.
 - Brand is "Gigi's Behavior." GBS is retired publicly (internal shorthand only).
-- Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
+- "Family," never "owner." Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
 - "1:1" is the standard (not "private" or "one-on-one").
 - No "fail/failure/failing" anywhere; keep the judgment-free sentiment.
 - No individual names except Dr. Gilbert-Gregory (Lead Veterinary Behaviorist, sees Medicine clients) and Dr. Meghan Herron. Lacey → "Client Success Manager."
