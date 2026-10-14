@@ -21,7 +21,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Analogies: Training = "your dog's life coach" · Modification = "your dog's therapist" · Medicine = "your dog's psychiatrist".
 - CTA routing: Training → Offering Tree (Book now → qualification quiz, inert for now); Modification + Medicine → Care Navigation Call.
 - Brand is "Gigi's Behavior." GBS is retired publicly (internal shorthand only).
-- Service-line names in running copy: ALL CAPS + italic via <i class="svc">Modification</i> (CSS uppercases it) (not in headings, nav, buttons, card titles, role titles, appointment names, or For Vets clinical copy). Spelling: "judgement" (Euro).
+- Service-line names in running copy: ALL CAPS + italic via <i class="svc">Modification</i> (CSS uppercases it) (body copy only: not in headlines, pull quotes, nav, buttons, card titles, role titles, appointment names, or For Vets clinical copy). Spelling: "judgement" (Euro).
 - Vet-to-vet services appear only on the For Vets page.
 - "Stage," never "step" or "tier" for levels of care. "Family," never "owner." Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
 - "1:1" is the standard (not "private" or "one-on-one").
