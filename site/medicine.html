@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GBS Behavioral Medicine</title>
+<title>Behavioral Medicine | Gigi's Behavior</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
@@ -238,6 +238,13 @@ a { color: inherit; }
   font-family: var(--font-mono); font-size: 14px; font-weight: 700;
   color: var(--teal); letter-spacing: 0.04em;
 }
+
+.cats-note { background: var(--hero-bg); border-top: 1px solid rgba(255,255,255,0.08); }
+.cats-note p { font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.6); padding-block: 14px; }
+.cats-note strong { color: #fff; font-weight: 700; }
+.reframe-alone { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.16); max-width: 56ch; }
+.reframe-alone-h { font-family: var(--font-display); font-size: 22px; line-height: 1.3; color: #fff; margin-bottom: 8px; }
+.reframe-alone-body { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.78); }
 
 /* ── ================================================== ── */
 /* 02 — REFRAME (kale bg)                                 */
@@ -627,6 +634,8 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; }
 }
+.specialist-person { margin-bottom: 28px; max-width: 220px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.specialist-person-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -637,7 +646,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 <nav id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GBS</span>
+      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
     </a>
     <div class="nav-links">
       <a href="training.html">Training</a>
@@ -658,8 +667,9 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
     <a href="training.html">Training</a>
     <a href="modification.html">Modification</a>
     <a href="medicine.html">Medicine</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="meet-the-team.html">Meet the Team</a>
+    <a href="pricing.html">Cost Transparency</a>
+    <a href="meet-the-team.html">Team</a>
+    <a href="referring-vets.html">For Vets</a>
     <a href="#cta-band" class="nav-mobile-cta">Get started</a>
   </div>
 </nav>
@@ -709,7 +719,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
           When behavior needs <em>medical support</em>.
         </h1>
         <p class="hero-sub reveal reveal-d2">
-          Specialty veterinary behavioral medicine — diagnosis, medication support, and integrated treatment planning. Led by one of fewer than 100 practicing board-certified veterinary behaviorists in the country.
+          Specialty veterinary behavioral medicine — diagnosis, medication support, and integrated treatment planning. Led by one of fewer than 100 practicing board-certified Veterinary Behaviorists in the country.
         </p>
         <div class="hero-ctas reveal reveal-d3">
           <a href="#cta-band" class="btn-primary">Book a call</a>
@@ -730,19 +740,30 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
   </div>
 </section>
 
+<!-- Cats clarifier: Medicine is the only service that sees cats -->
+<div class="cats-note">
+  <div class="section-inner">
+    <p><strong>We see cats, too.</strong> Behavioral Medicine is available for dogs and cats.</p>
+  </div>
+</div>
+
 <!-- ===== 02 REFRAME ===== -->
 <section class="reframe section-pad-sm">
   <div class="section-inner">
     <div class="reframe-inner">
       <div class="reveal">
-        <p class="reframe-quote">"Medication is not failure."</p>
+        <p class="reframe-quote">"Medication is a tool, not a setback."</p>
         <p class="reframe-body">
           Medication may help the brain reach a place where learning and recovery are possible. It creates the conditions — modification is where impact takes root. Together, they work.
         </p>
+        <div class="reframe-alone">
+          <p class="reframe-alone-h">If your dog struggles, you're not alone.</p>
+          <p class="reframe-alone-body">Most dogs need behavioral support at some point. It's the norm, not the exception. At Gigi's Behavior, there's no judgment, only next steps.</p>
+        </div>
       </div>
       <div class="reframe-stat reveal reveal-d2">
         <div class="reframe-stat-num">&lt; 100</div>
-        <p class="reframe-stat-label">practicing board-certified veterinary behaviorists in the United States.</p>
+        <p class="reframe-stat-label">practicing board-certified Veterinary Behaviorists in the United States.</p>
         <p class="reframe-stat-source">Source: ACVB, 2026</p>
       </div>
     </div>
@@ -759,17 +780,17 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 
     <div class="timeline-intro reveal reveal-d2">
       <p>
-        The Medicine Starting Point is your onboarding into Behavioral Medicine. One unified plan through Day 56 — no packages to upgrade, no gaps in care. $590 for one animal.
+        The Medicine Starting Point is your onboarding into Behavioral Medicine. One unified plan through Day 56 — no packages to upgrade, no gaps in care. $590 for one dog.
       </p>
       <div class="timeline-pricing">
         <div>
           <div class="timeline-pricing-main">$590</div>
-          <div class="timeline-pricing-add">one animal, complete bundle</div>
+          <div class="timeline-pricing-add">one dog, complete bundle</div>
         </div>
         <div style="width:1px;height:40px;background:var(--gray-line);"></div>
         <div>
           <div class="timeline-pricing-main">+$300</div>
-          <div class="timeline-pricing-add">second animal</div>
+          <div class="timeline-pricing-add">second dog</div>
         </div>
       </div>
     </div>
@@ -790,7 +811,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
             <span class="timeline-chip">Veterinary Behaviorist</span>
           </div>
           <p class="timeline-desc">
-            Your first appointment. A comprehensive behavioral evaluation — history, diagnosis, and the foundation of your animal's treatment plan.
+            Your first appointment. A comprehensive behavioral evaluation — history, diagnosis, and the foundation of your dog's treatment plan.
           </p>
         </div>
       </div>
@@ -808,7 +829,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
             <span class="timeline-chip">Behavioral Medicine Tech</span>
           </div>
           <p class="timeline-desc">
-            An early check-in to review how your animal is responding to medications or supplements and address any immediate questions.
+            An early check-in to review how your dog is responding to medications or supplements and address any immediate questions.
           </p>
         </div>
       </div>
@@ -823,7 +844,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
           <div class="timeline-appt-name">Medicine Check-In (Virtual)</div>
           <div class="timeline-meta">
             <span class="timeline-chip">15 min</span>
-            <span class="timeline-chip">Vet Behaviorist + Behavioral Medicine Tech</span>
+            <span class="timeline-chip">Veterinary Behaviorist + Behavioral Medicine Tech</span>
           </div>
           <p class="timeline-desc">
             A virtual visit to assess early progress, adjust the plan if needed, and extend prescription eligibility by re-establishing the VCPR.
@@ -841,10 +862,10 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
           <div class="timeline-appt-name">Medicine Led Mod Starter Session (Virtual)</div>
           <div class="timeline-meta">
             <span class="timeline-chip">40 min</span>
-            <span class="timeline-chip">Behavioral Medicine Tech (Vet Behaviorist joins briefly)</span>
+            <span class="timeline-chip">Behavioral Medicine Tech (Veterinary Behaviorist joins briefly)</span>
           </div>
           <p class="timeline-desc">
-            Your first modification session — integrated with your treatment plan. Your Behavioral Medicine Tech leads the work; the vet behaviorist joins briefly to extend the VCPR.
+            Your first modification session — integrated with your treatment plan. Your Behavioral Medicine Tech leads the work; the Veterinary Behaviorist joins briefly to extend the VCPR.
           </p>
         </div>
       </div>
@@ -862,7 +883,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
             <span class="timeline-chip">Veterinary Behaviorist</span>
           </div>
           <p class="timeline-desc">
-            A virtual check-in with the vet behaviorist to review progress, fine-tune the plan, and discuss what comes next.
+            A virtual check-in with the Veterinary Behaviorist to review progress, fine-tune the plan, and discuss what comes next.
           </p>
         </div>
       </div>
@@ -874,7 +895,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
       <div class="what-next-grid">
         <div class="what-next-card">
           <div class="what-next-card-title">Continue with Medicine</div>
-          <p>Add-on check-ins, extended sessions, and vet-to-vet consults are available as your animal's plan evolves.</p>
+          <p>Add-on check-ins, extended sessions, and vet-to-vet consults are available as your dog's plan evolves.</p>
         </div>
         <div class="what-next-card">
           <div class="what-next-card-title">Add Modification</div>
@@ -918,7 +939,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
         </div>
         <div class="expect-card-title">Medicine and Modification together</div>
-        <p>Medicine creates the conditions for learning. Modification is where lasting progress happens. For most animals, both are part of the plan.</p>
+        <p>Medicine creates the conditions for learning. Modification is where lasting progress happens. For most dogs, both are part of the plan.</p>
       </div>
 
       <!-- Card 4 -->
@@ -939,7 +960,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
     <span class="eyebrow eyebrow-cream reveal">Ongoing care</span>
     <h2 class="section-h reveal reveal-d1">After the Starting Point.</h2>
     <p class="addons-intro reveal reveal-d2">
-      Once you've completed the Medicine Starting Point, additional support is available based on your animal's evolving needs.
+      Once you've completed the Medicine Starting Point, additional support is available based on your dog's evolving needs.
     </p>
 
     <div class="addons-grid">
@@ -996,21 +1017,28 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 <!-- ===== 06 ABOUT THE SPECIALIST ===== -->
 <section class="specialist-section section-pad">
   <div class="section-inner">
-    <span class="eyebrow reveal">Your specialist</span>
+    <span class="eyebrow reveal">Your specialists</span>
     <div class="specialist-inner" style="margin-top:48px;">
       <div class="specialist-left reveal">
-        <div class="specialist-avatar">VB</div>
-        <p class="specialist-avatar-note">Photo coming soon</p>
+        <div class="specialist-person">
+          <div class="specialist-avatar">MH</div>
+          <p class="specialist-person-name">Dr. Meghan Herron</p>
+          <p class="specialist-avatar-note">DVM, DACVB · Sr. Director, Behavior, Research, and Education</p>
+        </div>
+        <div class="specialist-person">
+          <div class="specialist-avatar">GG</div>
+          <p class="specialist-person-name">Dr. Gilbert-Gregory</p>
+          <p class="specialist-avatar-note">Veterinary Behaviorist · [credentials pending]</p>
+        </div>
       </div>
       <div class="reveal reveal-d1">
-        <h2 class="specialist-title">Gigi's Veterinary Behaviorist</h2>
-        <p class="specialist-name-pending">Name coming soon</p>
+        <h2 class="specialist-title">Gigi's Veterinary Behaviorists</h2>
         <div class="credential-chips">
           <span class="credential-chip">Diplomate ACVB</span>
           <span class="credential-chip">Board-Certified Veterinary Behaviorist</span>
         </div>
         <p class="specialist-body">
-          Board-certified veterinary behaviorists complete years of specialized training in animal behavior, learning theory, and behavioral pharmacology. They are among the most specialized clinicians in the field — one of fewer than 100 practicing in the United States.
+          Board-certified Veterinary Behaviorists complete years of specialized training in animal behavior, learning theory, and behavioral pharmacology. They are among the most specialized clinicians in the field. Fewer than 100 practice in the United States.
         </p>
         <blockquote class="specialist-pull-quote">
           "Medicine sets the conditions. Modification is where the impact takes root."
@@ -1037,7 +1065,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
       <div class="entry-req reveal reveal-d2">
         <div class="entry-req-num">02</div>
         <div class="entry-req-title">The Care Navigation Call</div>
-        <p>The Care Navigation Call is the only entry into Behavioral Medicine. Lacey will review your animal's history, confirm the referral, and schedule your Initial Assessment.</p>
+        <p>The Care Navigation Call is the only entry into Behavioral Medicine. Our Client Success Manager will review your dog's history, confirm the referral, and schedule your Initial Assessment.</p>
       </div>
     </div>
 
@@ -1059,7 +1087,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
       Ready to <em>take the next step</em>?
     </h2>
     <p class="cta-band-body reveal reveal-d2">
-      Book your free Care Navigation Call. Lacey will review your animal's behavior history, confirm your vet referral, and guide you toward the right starting point.
+      Book your free Care Navigation Call. Our Client Success Manager will review your dog's behavior history, confirm your vet referral, and guide you toward the right starting point.
     </p>
     <div class="cta-band-actions reveal reveal-d3">
       <a href="#" class="btn-butter">Book a call</a>
@@ -1073,7 +1101,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
   <div class="section-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-name">Gigi's <span>Behavior Services</span></div>
+        <div class="footer-brand-name">Gigi's <span>Behavior</span></div>
         <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
         <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGIS.ORG/GBS</div>
       </div>
