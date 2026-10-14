@@ -304,6 +304,6 @@ a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0
 
 /* Service-line names in running copy are capitalized + italicized (SOT).
    Inside text that is already italic, flip back to roman so the name still stands out. */
-i.svc { font-style: italic; }
+i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 blockquote i.svc, .spec-quote i.svc, .cost-drawer-quote i.svc, .philosophy-quote i.svc,
 .specialist-pull-quote i.svc, .behaviorist-pull-quote i.svc, .behaviorist-name-sub i.svc { font-style: normal; }
