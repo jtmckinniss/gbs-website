@@ -301,3 +301,9 @@ a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0
   .stage-tracker, .stage-row { gap: 6px; }
   .st-seg { padding: 8px 10px; font-size: 10px; letter-spacing: 0.1em; }
 }
+
+/* Service-line names in running copy are capitalized + italicized (SOT).
+   Inside text that is already italic, flip back to roman so the name still stands out. */
+i.svc { font-style: italic; }
+blockquote i.svc, .spec-quote i.svc, .cost-drawer-quote i.svc, .philosophy-quote i.svc,
+.specialist-pull-quote i.svc, .behaviorist-pull-quote i.svc, .behaviorist-name-sub i.svc { font-style: normal; }
