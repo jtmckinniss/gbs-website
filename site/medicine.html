@@ -382,12 +382,13 @@ a { color: inherit; }
   background: var(--cream);
 }
 .what-next-card-title {
-  font-family: var(--font-body); font-weight: 800; font-size: 14px;
+  font-family: var(--font-body); font-weight: 800; font-size: 17px;
   letter-spacing: 0.04em; color: var(--ink); margin-bottom: 10px;
 }
 .what-next-card p {
-  font-size: 14px; line-height: 1.6; color: var(--ink-warm);
+  font-size: 15px; line-height: 1.6; color: var(--ink-warm);
 }
+.what-next-card p + p { margin-top: 6px; }
 
 /* ── ================================================== ── */
 /* 04 — WHAT TO EXPECT (black bg)                         */
@@ -960,35 +961,17 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
       Every journey is different. Custom treatment plans from here can include more <i class="svc">Medicine</i>, more <i class="svc">Modification</i>, or both.
     </p>
 
-    <h3 class="addons-sub reveal">Continue with Medicine</h3>
-    <p class="addons-sub-body reveal">Add-on check-ins and extended sessions are available as your dog's plan evolves. <a href="pricing.html#pricing-medicine">See pricing on Cost Transparency.</a></p>
-    <div class="addons-grid">
-      <!-- Row 1 -->
-      <div class="addon-card reveal">
-        <div class="addon-name">Medicine Check-In (Virtual)</div>
-        <div class="addon-meta">
-          <span class="addon-detail">15 min</span>
-        </div>
-        <div class="addon-provider">Veterinary Behaviorist</div>
+    <div class="what-next-grid">
+      <div class="what-next-card reveal">
+        <div class="what-next-card-title">Continue with Medicine</div>
+        <p>We offer 15–30 min check-ins.</p>
       </div>
-      <div class="addon-card reveal reveal-d1">
-        <div class="addon-name">Extended Medicine Check-In (Virtual)</div>
-        <div class="addon-meta">
-          <span class="addon-detail">30 min</span>
-        </div>
-        <div class="addon-provider">Veterinary Behaviorist</div>
-      </div>
-      <!-- Row 2 -->
-      <div class="addon-card reveal" style="grid-column: 1 / -1;">
-        <div class="addon-name">Urgent Behavioral Appointment</div>
-        <div class="addon-meta">
-          <span class="addon-coming-soon">Details coming soon</span>
-        </div>
+      <div class="what-next-card reveal reveal-d1">
+        <div class="what-next-card-title">Continue with Modification</div>
+        <p><i class="svc">Modification</i> offered in 3 locations.</p>
+        <p>Mini-modification sessions to make progress in small windows.</p>
       </div>
     </div>
-
-    <h3 class="addons-sub reveal" style="margin-top:48px;">Continue with Modification</h3>
-    <p class="addons-sub-body reveal">Medicine-Led Modification sessions are available once you've completed the Starting Point. <a href="modification.html">See the <i class="svc">Modification</i> page for details.</a></p>
   </div>
 </section>
 
