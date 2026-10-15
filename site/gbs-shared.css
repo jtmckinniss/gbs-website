@@ -452,3 +452,8 @@ html.cq-lock, html.cq-lock body { overflow: hidden; }
 @media (max-width: 600px) {
   .cq-card { padding: 32px 22px 24px; }
 }
+
+/* ---------- Footer: Gigi's parent logo ---------- */
+.footer-parent { display:inline-flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; }
+.footer-parent img { display:block; height:64px; width:auto; }
+.footer-parent:hover img { opacity:.85; }
