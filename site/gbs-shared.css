@@ -329,18 +329,18 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 }
 #nav .nav-brand { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
 #nav .nav-logo { height: 26px; width: auto; display: block; }
-#nav .nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+#nav .nav-links { display: flex; align-items: center; gap: 6px; margin-left: auto; }
 #nav .nav-links a {
   font-family: var(--font-body); font-size: 11px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase; line-height: 1;
-  color: rgba(255,255,255,0.72); text-decoration: none; padding: 5px 0;
+  color: rgba(255,255,255,0.72); text-decoration: none; padding: 5px 10px;
   transition: color var(--transition);
 }
 #nav .nav-links a:hover { color: #fff; }
-#nav .nav-links a.nav-link-active { background: var(--butter); color: var(--black); padding: 5px 10px; }
+#nav .nav-links a.nav-link-active { background: var(--butter); color: var(--black); }
 #nav .nav-right { display: flex; align-items: center; gap: 16px; }
 #nav .nav-cta {
-  display: inline-block; background: var(--butter); color: var(--black);
+  display: inline-block; min-width: 148px; text-align: center; background: var(--butter); color: var(--black);
   padding: 10px 18px; font-family: var(--font-body); font-size: 10px; font-weight: 800;
   letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; text-decoration: none;
   transition: opacity var(--transition);
@@ -375,5 +375,5 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 @media (max-width: 600px) {
   #nav .nav-inner { padding: 0 16px; gap: 16px; }
   #nav .nav-logo { height: 20px; }
-  #nav .nav-cta { padding: 9px 12px; }
+  #nav .nav-cta { padding: 9px 12px; min-width: 0; }
 }
