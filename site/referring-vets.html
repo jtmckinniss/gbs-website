@@ -698,6 +698,39 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 /* ── BOTTOM STAGE BAR ── */
 
 
+
+/* ═══ Cream-heavy For Vets page (Oct 15): every section cream except the referral form ═══ */
+#hero, #process, #telemedicine { background: var(--cream); border-color: var(--gray-line); }
+#collaboration, #appt-names, #vet-consult { background: var(--cream-soft); border-color: var(--gray-line); }
+:is(#hero, #collaboration, #appt-names, #telemedicine) .eyebrow { color: var(--teal-deep); }
+:is(#hero, #collaboration, #appt-names, #telemedicine) .section-h2 { color: var(--ink); }
+#hero .hero-h1 { color: var(--ink); }
+#hero .hero-sub { color: var(--ink-warm); }
+#hero .btn-ghost { color: var(--ink); border-color: rgba(27,26,24,0.35); }
+#hero .btn-ghost:hover { color: var(--black); border-color: var(--ink); }
+#hero .credential-card { background: var(--black); border-color: var(--black); border-left: 3px solid var(--teal); }
+.collab-body { color: var(--ink-warm); }
+.collab-point { background: var(--cream); border-top-color: var(--butter-border); }
+.collab-point-label { color: var(--butter-text); }
+.collab-point-title { color: var(--ink); }
+.collab-point-body { color: var(--gray-warm); }
+.appt-intro { color: var(--gray-warm); }
+.appt-table thead tr { border-bottom-color: var(--gray-line); }
+.appt-table th { color: var(--gray-warm); }
+.appt-table td { color: var(--ink-warm); border-bottom-color: var(--gray-line); }
+.appt-name { color: var(--ink); }
+.appt-dur, .appt-free { color: var(--teal-deep); }
+.appt-price { color: var(--butter-text); }
+.appt-provider { color: var(--gray-warm); }
+.appt-provider em { color: var(--gray-warm); }
+.appt-tag { background: rgba(14,128,121,0.10); color: var(--teal-deep); }
+.tele-intro { color: var(--ink-warm); }
+.tele-step { background: var(--cream-soft); border: 1px solid var(--gray-line); }
+.tele-step-num { color: rgba(27,26,24,0.18); }
+.tele-step-body { color: var(--ink-warm); }
+.tele-step-body strong { color: var(--ink); }
+.tele-callout { background: var(--black); border-color: var(--black); }
+.tele-callout-body { color: var(--cream); }
 /* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
 @media (min-width: 1081px) { #hero { padding-top: 130px !important; } }
 </style>
@@ -799,7 +832,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
     <div class="collab-intro">
       <div>
         <span class="eyebrow reveal">The collaboration model</span>
-        <h2 class="section-h2 reveal reveal-delay-1" style="color:#fff;">How we <em>work together</em>.</h2>
+        <h2 class="section-h2 reveal reveal-delay-1">How we <em>work together</em>.</h2>
       </div>
       <div>
         <p class="collab-body reveal reveal-delay-2">When you refer a patient to Gigi's, you remain the prescribing partner. Ohio telemedicine regulations limit prescription authority to 14 days per telemedicine visit — after each visit, prescription continuation transitions to you. Gigi's manages the behavioral case, develops the treatment plan, and keeps you informed throughout. Your client should feel supported by a team, not handed off.</p>

@@ -37,6 +37,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Sticky bar: For Vets cell sits right of "Not sure? Book a call" (.sbar-vet); old #vet-bar row removed.
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
+- Homepage For Vets band is INVERTED (black w/ cream) on the homepage only. The For Vets page itself is cream-heavy; only the referral form section stays black.
 - Section colors: Training = butter · Modification = teal · Medicine = black w/ teal + white · For Vets = cream w/ black (nav active link, sticky bar cell, homepage vet band). Cost Transparency + Team active link stay butter.
 - Top menu bar is defined ONCE in gbs-shared.css (#nav block + progress bar). Main row: logo · Training · Modification · Medicine · CTA. Secondary row (.nav-sub, 30px, desktop only): Cost Transparency · Team · For Vets. Each page adds +30px to its opening section on desktop to clear it. Pages must not restyle it. Logo: images/gigis-behavior-logo-teal.png (teal, transparent bg). Active link = butter fill; CTA = butter fill; hamburger below 1080px.
 - No aversive-trainer counts in the funnel chart.
