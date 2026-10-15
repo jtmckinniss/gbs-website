@@ -44,6 +44,9 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Hand-drawn elements are real SVG, not CSS gradients.
 - Hosting: static HTML → GoDaddy cPanel (public_html); team reviews on Netlify.
 
+## Cache-busting
+- Shared files load as gbs-shared.css?v=XXXX, gbs-nav.js?v=XXXX, gbs-class-quiz.js?v=XXXX. Bump the version string in all 8 pages whenever a shared file changes.
+
 ## Class readiness quiz
 - site/gbs-class-quiz.js + .cq-* styles in gbs-shared.css. Opens from ANY element with data-quiz-trigger="training" (all Book a class / class Book now / Offering Tree buttons).
 - Pass = Yes, No, No → 'Choose your class'. Anything else → Care Navigation Call.
