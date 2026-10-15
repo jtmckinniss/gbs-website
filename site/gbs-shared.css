@@ -332,12 +332,19 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 }
 #nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.4); }
 #nav .nav-inner {
-  max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 64px;
-  display: flex; align-items: center; gap: 32px;
+  max-width: 1280px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: auto 1fr auto auto; grid-template-rows: 64px 30px;
+  align-items: center; column-gap: 32px;
 }
+/* Secondary-row band runs full width behind row 2 */
+#nav::after { content: ""; position: absolute; left: 0; right: 0; top: 64px; height: 30px; background: #151515; border-top: 1px solid rgba(255,255,255,0.06); z-index: -1; }
+#nav .nav-brand { grid-column: 1; grid-row: 1; }
+#nav .nav-links { grid-column: 3; grid-row: 1; }
+#nav .nav-right { grid-column: 4; grid-row: 1; }
+#nav .nav-sub-links { grid-column: 3; grid-row: 2; display: flex; align-items: center; gap: 6px; }
 #nav .nav-brand { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
 #nav .nav-logo { height: 26px; width: auto; display: block; }
-#nav .nav-links { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+#nav .nav-links { display: flex; align-items: center; gap: 6px; }
 #nav .nav-links a {
   font-family: var(--font-body); font-size: 11px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase; line-height: 1;
@@ -347,27 +354,22 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 #nav .nav-links a:hover { color: #fff; }
 /* Service-line links match the stage tracker: active = filled stage color; hover = outline in the stage color */
 #nav .nav-links a { box-shadow: inset 0 0 0 1px transparent; transition: color var(--transition), box-shadow var(--transition); }
-#nav .nav-links a[href="training.html"]:hover:not(.nav-link-active)     { color: var(--butter); box-shadow: inset 0 0 0 1px var(--butter); }
-#nav .nav-links a[href="modification.html"]:hover:not(.nav-link-active) { color: var(--teal);   box-shadow: inset 0 0 0 1px var(--teal); }
-#nav .nav-links a[href="medicine.html"]:hover:not(.nav-link-active)     { color: var(--cream);  box-shadow: inset 0 0 0 1px var(--cream); }
-#nav .nav-links a.nav-link-active[href="training.html"]     { background: var(--butter); color: var(--ink); }
-#nav .nav-links a.nav-link-active[href="modification.html"] { background: var(--teal);   color: var(--black); }
-#nav .nav-links a.nav-link-active[href="medicine.html"]     { background: var(--cream);  color: var(--black); }
+#nav .nav-links a.nl-training:hover:not(.nav-link-active)     { color: var(--butter); box-shadow: inset 0 0 0 1px var(--butter); }
+#nav .nav-links a.nl-mod:hover:not(.nav-link-active) { color: var(--teal);   box-shadow: inset 0 0 0 1px var(--teal); }
+#nav .nav-links a.nl-med:hover:not(.nav-link-active)     { color: var(--cream);  box-shadow: inset 0 0 0 1px var(--cream); }
+#nav .nav-links a.nav-link-active.nl-training     { background: var(--butter); color: var(--ink); }
+#nav .nav-links a.nav-link-active.nl-mod { background: var(--teal);   color: var(--black); }
+#nav .nav-links a.nav-link-active.nl-med     { background: var(--cream);  color: var(--black); }
 /* Secondary row: Cost Transparency · Team · For Vets */
-#nav .nav-sub { background: #151515; border-top: 1px solid rgba(255,255,255,0.06); }
-#nav .nav-sub-inner {
-  max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 30px;
-  display: flex; align-items: center; justify-content: flex-start; gap: 6px;
-}
-#nav .nav-sub a {
+#nav .nav-sub-links a {
   font-family: var(--font-body); font-size: 10px; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; line-height: 1;
   color: rgba(255,255,255,0.55); text-decoration: none; padding: 4px 10px;
   transition: color var(--transition);
 }
-#nav .nav-sub a:hover { color: #fff; }
-#nav .nav-sub a.nav-link-active { background: var(--butter); color: var(--black); }
-#nav .nav-sub a.nav-link-active[href="referring-vets.html"] { background: var(--cream); color: var(--black); }
+#nav .nav-sub-links a:hover { color: #fff; }
+#nav .nav-sub-links a.nav-link-active { background: var(--butter); color: var(--black); }
+#nav .nav-sub-links a.nav-link-active.nl-vets { background: var(--cream); color: var(--black); }
 #nav .nav-right { display: flex; align-items: center; gap: 16px; }
 #nav .nav-cta {
   display: inline-block; min-width: 148px; text-align: center; background: var(--butter); color: var(--black);
@@ -397,13 +399,15 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 #nav-mobile-menu a:hover { color: #fff; }
 #nav-mobile-menu .nav-mobile-cta { background: var(--butter); color: var(--black); text-align: center; margin: 12px 20px 16px; border-bottom: none; }
 @media (max-width: 1080px) {
-  #nav .nav-links, #nav .nav-sub { display: none; }
-  #nav .nav-right { margin-left: auto; }
+  #nav .nav-links, #nav .nav-sub-links { display: none; }
+  #nav .nav-inner { grid-template-columns: auto 1fr auto; grid-template-rows: 64px; }
+  #nav .nav-right { grid-column: 3; }
+  #nav::after { display: none; }
   #nav-burger { display: flex; }
   #nav-mobile-menu { display: flex; }
 }
 @media (max-width: 600px) {
-  #nav .nav-inner { padding: 0 16px; gap: 16px; }
+  #nav .nav-inner { padding: 0 16px; column-gap: 16px; }
   #nav .nav-logo { height: 20px; }
   #nav .nav-cta { padding: 9px 12px; min-width: 0; }
 }

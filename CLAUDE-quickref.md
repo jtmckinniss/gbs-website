@@ -39,13 +39,17 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
 - Homepage For Vets band is INVERTED (black w/ cream) on the homepage only. The For Vets page itself is cream-heavy; only the referral form section stays black.
 - Section colors: Training = butter · Modification = teal · Medicine = black w/ teal + white · For Vets = cream w/ black (nav active link, sticky bar cell, homepage vet band). Cost Transparency + Team active link stay butter.
-- Top menu bar is defined ONCE in gbs-shared.css (#nav block + progress bar). Main row: logo · Training · Modification · Medicine · CTA. Secondary row (.nav-sub, 30px, desktop only): Cost Transparency · Team · For Vets, left-aligned under Training via site/gbs-nav.js. No third tier (homepage section menu removed Oct 15). Each page adds +30px to its opening section on desktop to clear it. Pages must not restyle it. Logo: images/gigis-behavior-logo-teal.png (teal, transparent bg). Active link = butter fill; CTA = butter fill; hamburger below 1080px.
+- Top menu bar is defined ONCE in gbs-shared.css (#nav block + progress bar). Main row: logo · Training · Modification · Medicine · CTA. Secondary row (.nav-sub, 30px, desktop only): Cost Transparency · Team · For Vets, left-aligned under Training by CSS grid (row 2 of .nav-inner, column 3); no script. No third tier (homepage section menu removed Oct 15). Each page adds +30px to its opening section on desktop to clear it. Pages must not restyle it. Logo: images/gigis-behavior-logo-teal.png (teal, transparent bg). Active link = butter fill; CTA = butter fill; hamburger below 1080px.
 - No aversive-trainer counts in the funnel chart.
 - Hand-drawn elements are real SVG, not CSS gradients.
 - Hosting: static HTML → GoDaddy cPanel (public_html); team reviews on Netlify.
 
+## Never select by href
+- Netlify can rewrite links (modification.html -> /modification), so CSS/JS must never target a[href="..."]. Nav links carry classes: nl-training, nl-mod, nl-med, nl-cost, nl-team, nl-vets.
+- Pages must not show/hide the menu with their own scripts; the shared CSS owns the 1080px breakpoint.
+
 ## Cache-busting
-- Shared files load as gbs-shared.css?v=XXXX, gbs-nav.js?v=XXXX, gbs-class-quiz.js?v=XXXX. Bump the version string in all 8 pages whenever a shared file changes.
+- Shared files load as gbs-shared.css?v=XXXX, gbs-class-quiz.js?v=XXXX. Bump the version string in all 8 pages whenever a shared file changes.
 
 ## Class readiness quiz
 - site/gbs-class-quiz.js + .cq-* styles in gbs-shared.css. Opens from ANY element with data-quiz-trigger="training" (all Book a class / class Book now / Offering Tree buttons).
