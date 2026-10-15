@@ -218,16 +218,25 @@
   stroke-linejoin: round;
 }
 .sbar-vet {
-  flex: 0 0 160px;
+  flex: 0 0 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 12px 16px;
+  padding: 12px 20px;
   background: #fff;
   text-decoration: none;
   transition: background 150ms ease-out;
+}
+.sbar-vet .vbar-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1.25;
+  text-align: center;
 }
 .sbar-vet:hover {
   background: #F1EFEA;
@@ -239,9 +248,9 @@
   .sbar-cta { flex: 0 0 76px !important; padding: 6px 6px !important; }
   .sbar-cta-label { font-size: 9px; letter-spacing: 0.06em; }
   .sbar-cta .sbar-arrow { display: none; }
-  .sbar-vet { flex: 0 0 64px; padding: 6px 4px; gap: 2px; }
+  .sbar-vet { flex: 0 0 76px; padding: 6px 6px; gap: 2px; }
   .sbar-vet .vbar-eyebrow { display: none; }
-  .sbar-vet .vbar-label { font-size: 9px; white-space: normal; text-align: center; line-height: 1.2; }
+  .sbar-vet .vbar-label { font-size: 9px; letter-spacing: 0.06em; white-space: normal; text-align: center; line-height: 1.25; }
 }
 .vbar-eyebrow {
   font-size: 8px;
