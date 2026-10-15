@@ -1365,22 +1365,22 @@ body {
 }
 
 
-/* ── For Vets band (section color: cream w/ black) ── */
-#vet-band-section { background: var(--cream); border-top: 6px solid var(--black); }
+/* ── For Vets band (inverted: black w/ cream) ── */
+#vet-band-section { background: var(--black); border-top: 1px solid rgba(244,241,233,0.12); border-bottom: 1px solid rgba(244,241,233,0.12); }
 .vb-inner { max-width: 1280px; margin: 0 auto; padding: 88px 40px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
-.vb-tag { display: inline-block; background: var(--black); color: var(--cream); font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 14px; margin-bottom: 24px; }
-.vb-h { font-family: var(--font-display); font-weight: 500; font-size: clamp(38px, 4.6vw, 60px); line-height: 1.04; color: var(--black); margin-bottom: 22px; }
-.vb-h em { font-style: italic; color: var(--teal-deep); }
-.vb-body { font-size: 17px; line-height: 1.65; color: var(--ink-warm); max-width: 52ch; margin-bottom: 32px; }
+.vb-tag { display: inline-block; background: var(--cream); color: var(--black); font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 14px; margin-bottom: 24px; }
+.vb-h { font-family: var(--font-display); font-weight: 500; font-size: clamp(38px, 4.6vw, 60px); line-height: 1.04; color: var(--cream); margin-bottom: 22px; }
+.vb-h em { font-style: italic; color: var(--teal); }
+.vb-body { font-size: 17px; line-height: 1.65; color: rgba(244,241,233,0.75); max-width: 52ch; margin-bottom: 32px; }
 .vb-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-.vb-btn { background: var(--black); color: var(--cream); padding: 16px 32px; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background var(--transition); }
-.vb-btn:hover { background: var(--teal-deep); }
-.vb-link { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 2px solid var(--black); padding-bottom: 3px; }
-.vb-points { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--black); }
-.vb-points li { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(10,10,10,0.18); }
-.vb-num { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--teal-deep); padding-top: 3px; flex-shrink: 0; }
-.vb-points strong { display: block; font-size: 16px; font-weight: 800; color: var(--black); margin-bottom: 4px; }
-.vb-points span:not(.vb-num) { display: block; font-size: 14px; line-height: 1.55; color: var(--gray-warm); }
+.vb-btn { background: var(--cream); color: var(--black); padding: 16px 32px; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background var(--transition); }
+.vb-btn:hover { background: var(--teal); }
+.vb-link { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); text-decoration: none; border-bottom: 2px solid var(--cream); padding-bottom: 3px; }
+.vb-points { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--cream); }
+.vb-points li { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(244,241,233,0.18); }
+.vb-num { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--teal); padding-top: 3px; flex-shrink: 0; }
+.vb-points strong { display: block; font-size: 16px; font-weight: 800; color: var(--cream); margin-bottom: 4px; }
+.vb-points span:not(.vb-num) { display: block; font-size: 14px; line-height: 1.55; color: rgba(244,241,233,0.62); }
 @media (max-width: 860px) {
   .vb-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 64px 20px; }
 }
