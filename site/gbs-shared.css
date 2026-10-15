@@ -219,7 +219,7 @@
   justify-content: center;
   gap: 4px;
   padding: 12px 20px;
-  background: #fff;
+  background: var(--cream);
   text-decoration: none;
   transition: background 150ms ease-out;
 }
@@ -233,7 +233,7 @@
   text-align: center;
 }
 .sbar-vet:hover {
-  background: #F1EFEA;
+  background: var(--cream-deep);
 }
 @media (max-width: 760px) {
   .sbar-item { min-width: 0; padding: 8px 8px; }
@@ -338,6 +338,10 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
 }
 #nav .nav-links a:hover { color: #fff; }
 #nav .nav-links a.nav-link-active { background: var(--butter); color: var(--black); }
+/* Section colors: Training = butter · Modification = teal · Medicine = black w/ teal + white · For Vets = cream w/ black */
+#nav .nav-links a.nav-link-active[href="modification.html"] { background: var(--teal-deep); color: #fff; }
+#nav .nav-links a.nav-link-active[href="medicine.html"] { background: var(--black); color: var(--teal); box-shadow: inset 0 0 0 1px #fff; }
+#nav .nav-links a.nav-link-active[href="referring-vets.html"] { background: var(--cream); color: var(--black); }
 #nav .nav-right { display: flex; align-items: center; gap: 16px; }
 #nav .nav-cta {
   display: inline-block; min-width: 148px; text-align: center; background: var(--butter); color: var(--black);
