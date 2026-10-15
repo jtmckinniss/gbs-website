@@ -31,14 +31,8 @@
   margin: 0;
   padding: 0;
 }
-.nav-links a:hover {
-  color: #fff;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+
+
 
 /* ---------- Reveal animation ---------- */
 .reveal {
@@ -317,3 +311,69 @@ a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0
 /* Service-line names in running copy (body text only) are ALL CAPS italic (SOT).
    Never applied to headlines or pull quotes. */
 i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ==========================================================
+   Top menu bar — ONE definition for every page (do not restyle per page)
+   ========================================================== */
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--butter); z-index: 1000; pointer-events: none; transition: width 80ms linear; }
+#nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 900;
+  background: var(--black);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: box-shadow 200ms ease-out;
+}
+#nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.4); }
+#nav .nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 64px;
+  display: flex; align-items: center; gap: 32px;
+}
+#nav .nav-brand { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+#nav .nav-logo { height: 26px; width: auto; display: block; }
+#nav .nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+#nav .nav-links a {
+  font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; line-height: 1;
+  color: rgba(255,255,255,0.72); text-decoration: none; padding: 5px 0;
+  transition: color var(--transition);
+}
+#nav .nav-links a:hover { color: #fff; }
+#nav .nav-links a.nav-link-active { background: var(--butter); color: var(--black); padding: 5px 10px; }
+#nav .nav-right { display: flex; align-items: center; gap: 16px; }
+#nav .nav-cta {
+  display: inline-block; background: var(--butter); color: var(--black);
+  padding: 10px 18px; font-family: var(--font-body); font-size: 10px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; text-decoration: none;
+  transition: opacity var(--transition);
+}
+#nav .nav-cta:hover { opacity: 0.85; }
+#nav-burger {
+  display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+  width: 32px; height: 32px; padding: 0; background: none; border: none; cursor: pointer; flex-shrink: 0;
+}
+#nav-burger span { display: block; width: 20px; height: 2px; background: #fff; transition: transform 200ms ease, opacity 200ms ease; }
+#nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+#nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+#nav-mobile-menu {
+  display: none; flex-direction: column; background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.08); max-height: 0; overflow: hidden; transition: max-height 250ms ease;
+}
+#nav-mobile-menu.open { max-height: 480px; }
+#nav-mobile-menu a {
+  padding: 16px 20px; font-family: var(--font-body); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75);
+  text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#nav-mobile-menu a:hover { color: #fff; }
+#nav-mobile-menu .nav-mobile-cta { background: var(--butter); color: var(--black); text-align: center; margin: 12px 20px 16px; border-bottom: none; }
+@media (max-width: 1080px) {
+  #nav .nav-links { display: none; }
+  #nav .nav-right { margin-left: auto; }
+  #nav-burger { display: flex; }
+  #nav-mobile-menu { display: flex; }
+}
+@media (max-width: 600px) {
+  #nav .nav-inner { padding: 0 16px; gap: 16px; }
+  #nav .nav-logo { height: 20px; }
+  #nav .nav-cta { padding: 9px 12px; }
+}

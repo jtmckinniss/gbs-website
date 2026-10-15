@@ -28,85 +28,28 @@ a { color: inherit; }
 ::selection { background: var(--teal); color: var(--black); }
 
 /* ── PROGRESS BAR ── */
-#progress-bar {
-  position: fixed; top: 0; left: 0; height: 3px; width: 0;
-  background: var(--butter); z-index: 100; pointer-events: none;
-  transition: width 80ms linear;
-}
 
 /* ── NAV ── */
-#nav {
-  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0;
-  z-index: 90; transition: background var(--transition), backdrop-filter var(--transition);
-}
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1280px; margin: 0 auto;
-  padding: 14px 40px;
-}
-#nav.scrolled {
-  background: rgba(10,10,10,0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.nav-brand { text-decoration: none; display: flex; align-items: center; }
-.nav-logo-placeholder {
-  font-family: var(--font-body);
-  font-size: 14px; font-weight: 800; letter-spacing: 0.1em;
-  color: var(--teal);
-}
-.nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a {
-  font-family: var(--font-body); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-  color: rgba(255,255,255,0.65); transition: color var(--transition);
-}
 
-.nav-link-active {
-  background: var(--butter);
-  color: var(--black) !important;
-  padding: 4px 10px;
-}
 
-.nav-cta {
-  font-family: var(--font-body); font-weight: 800; font-size: 11px;
-  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
-  border: 1.5px solid var(--butter); color: var(--butter);
-  padding: 8px 16px; transition: background var(--transition), color var(--transition);
-}
-.nav-cta:hover { background: var(--butter); color: var(--black); }
-#nav-burger {
-  display: none; flex-direction: column; justify-content: center;
-  gap: 5px; background: none; border: none; cursor: pointer; padding: 4px;
-}
-#nav-burger span {
-  display: block; width: 22px; height: 1.5px; background: rgba(255,255,255,0.8);
-  transition: transform var(--transition), opacity var(--transition);
-}
-#nav-mobile-menu {
-  display: none; flex-direction: column;
-  background: rgba(10,10,10,0.97);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 20px 24px 28px;
-  gap: 4px;
-}
-#nav-mobile-menu.open { display: flex; }
-#nav-mobile-menu a {
-  font-family: var(--font-body); font-weight: 700; font-size: 13px;
-  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-  color: rgba(255,255,255,0.7); padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: color var(--transition);
-}
-#nav-mobile-menu a:last-child { border-bottom: none; }
-#nav-mobile-menu a:hover { color: #fff; }
-.nav-mobile-cta {
-  margin-top: 12px; font-weight: 800 !important;
-  border: 1.5px solid var(--butter) !important; color: var(--butter) !important;
-  padding: 12px 0 !important; text-align: center;
-  border-bottom: 1.5px solid var(--butter) !important;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ── LAYOUT HELPERS ── */
 .section-inner {
@@ -609,8 +552,8 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .nav-links { display: none; }
-  #nav-burger { display: flex; }
+  
+  
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero-stage-num { font-size: 32px; }
   .reframe-inner { grid-template-columns: 1fr; }
@@ -623,7 +566,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .sticky-sidebar { display: none; }
   .section-inner { padding: 0 20px; }
-  .nav-inner { padding: 14px 20px; }
+  
 }
 
 @media (max-width: 600px) {
@@ -681,9 +624,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
-    </a>
+    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
     <div class="nav-links">
       <a href="training.html">Training</a>
       <a href="modification.html">Modification</a>

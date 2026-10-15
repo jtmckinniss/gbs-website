@@ -22,139 +22,35 @@ body {
 }
 
 /* ── SCROLL PROGRESS ── */
-#progress-bar {
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px;
-  width: 0%;
-  background: var(--butter);
-  z-index: 1000;
-  transition: width 0.1s linear;
-}
 
 /* ── NAV ── */
-#nav {
-  position: fixed;
-  top: 3px; left: 0; right: 0;
-  background: var(--black);
-  z-index: 900;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  transition: box-shadow 200ms ease-out;
-}
-#nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.4); }
-.nav-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 40px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.nav-logo {
-  height: 32px;
-  width: auto;
-  display: block;
-}
-.nav-wordmark span { color: var(--butter); }
-.nav-links {
-  display: flex;
-  gap: 28px;
-  margin-left: auto;
-  align-items: center;
-}
-.nav-links a {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--teal);
-  text-decoration: none;
-  transition: color var(--transition);
-}
 
-.nav-links a.active { color: var(--butter); }
-.nav-link-active {
-  background: var(--butter);
-  color: var(--black) !important;
-  padding: 4px 10px;
-}
 
-.nav-cta {
-  background: var(--teal) !important;
-  color: var(--black) !important;
-  padding: 8px 18px;
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: inline-block;
-  transition: opacity var(--transition) !important;
-}
-.nav-cta:hover { opacity: 0.85 !important; }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ── HAMBURGER — hidden on desktop ── */
-#nav-burger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-}
-#nav-burger span {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: #fff;
-  transition: transform 200ms ease, opacity 200ms ease;
-}
-#nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-#nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-#nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-#nav-mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: var(--black);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 250ms ease;
-}
-#nav-mobile-menu.open { max-height: 400px; }
-#nav-mobile-menu a {
-  padding: 16px 20px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-#nav-mobile-menu a:last-child { border-bottom: none; }
-#nav-mobile-menu .nav-mobile-cta {
-  background: var(--teal);
-  color: var(--black);
-  text-align: center;
-  margin: 12px 20px 16px;
-  border-radius: 2px;
-}
+
+
+
+
+
+
+
+
+
+
 
 /* ── SHARED LAYOUT ── */
 .section-inner {
@@ -829,8 +725,8 @@ body {
    MOBILE
 ═══════════════════════════════════════ */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  #nav-burger { display: flex; }
+  
+  
   .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 24px 48px; }
   .hiw-formats, .cost-grid, .wts-options { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
@@ -869,9 +765,7 @@ body {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
-    </a>
+    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
     <div class="nav-links">
       <a href="training.html" class="nav-link-active">Training</a>
       <a href="modification.html">Modification</a>
@@ -1171,8 +1065,6 @@ window.addEventListener('scroll', () => {
 const burger = document.getElementById('nav-burger');
 const mobileMenu = document.getElementById('nav-mobile-menu');
 if (burger && mobileMenu) {
-  mobileMenu.style.display = 'flex';
-  burger.style.display = 'flex';
   burger.addEventListener('click', () => {
     const open = burger.getAttribute('aria-expanded') === 'true';
     burger.setAttribute('aria-expanded', String(!open));

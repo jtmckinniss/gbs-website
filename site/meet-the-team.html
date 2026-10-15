@@ -24,15 +24,6 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
 /* ── PROGRESS BAR ── */
-#progress-bar {
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px;
-  width: 0;
-  background: var(--butter);
-  z-index: 9999;
-  transition: width 60ms linear;
-}
 
 /* ── LAYOUT ── */
 .section-inner {
@@ -45,111 +36,27 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ── NAV ── */
-#nav {
-  position: fixed;
-  top: env(safe-area-inset-top, 0px);
-  left: 0; right: 0;
-  z-index: 100;
-  background: transparent;
-  transition: background var(--transition), border-color var(--transition);
-  border-bottom: 1px solid transparent;
-}
-#nav.scrolled {
-  background: rgba(10,10,10,0.96);
-  border-color: rgba(255,255,255,0.07);
-  backdrop-filter: blur(8px);
-}
-.nav-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 40px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-@media (max-width: 700px) {
-  .nav-inner { padding: 0 20px; }
-}
-.nav-brand { flex-shrink: 0; }
-.nav-logo-placeholder { color: var(--teal); font-weight: 800; font-size: 14px; letter-spacing: 0.1em; }
-.nav-links {
-  display: flex;
-  gap: 28px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-}
-.nav-links a { transition: color var(--transition); }
 
-.nav-link-active {
-  background: var(--butter);
-  color: var(--black) !important;
-  padding: 4px 10px;
-}
-.nav-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-.nav-cta {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--butter);
-  color: var(--ink);
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  transition: opacity var(--transition);
-  display: inline-block;
-}
-.nav-cta:hover { opacity: 0.85; }
-#nav-burger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-#nav-burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #fff;
-  transition: var(--transition);
-}
-#nav-mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: rgba(10,10,10,0.97);
-  padding: 20px 40px 24px;
-  gap: 4px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-}
-#nav-mobile-menu.open { display: flex; }
-#nav-mobile-menu a {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: color var(--transition);
-}
-#nav-mobile-menu a:hover { color: #fff; }
-.nav-mobile-cta {
-  margin-top: 12px;
-  color: var(--butter) !important;
-  border-bottom: none !important;
-}
-@media (max-width: 860px) {
-  .nav-links { display: none; }
-  #nav-burger { display: flex; }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ── HEADLINE EM MARK ── */
 em {
@@ -791,9 +698,7 @@ footer {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
-    </a>
+    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
     <div class="nav-links">
       <a href="training.html">Training</a>
       <a href="modification.html">Modification</a>

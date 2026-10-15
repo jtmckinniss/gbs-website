@@ -28,117 +28,27 @@ a { color: inherit; }
 ::selection { background: var(--teal); color: var(--black); }
 
 /* === PROGRESS BAR === */
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0;
-  background: var(--butter);
-  z-index: 200;
-  transition: width 0.1s linear;
-}
 
 /* === NAV === */
-#nav {
-  position: fixed;
-  top: env(safe-area-inset-top, 0px);
-  left: 0;
-  right: 0;
-  z-index: 100;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-#nav.scrolled {
-  background: rgba(10, 10, 10, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
-}
-.nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px clamp(16px, 4vw, 48px);
-  gap: 24px;
-}
-.nav-brand { text-decoration: none; display: flex; align-items: center; }
-.nav-logo-placeholder {
-  color: var(--teal);
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  font-family: var(--font-body);
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-.nav-links a {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
-  text-decoration: none;
-  transition: color var(--transition);
-}
 
-.nav-link-active {
-  background: var(--butter);
-  color: var(--black) !important;
-  padding: 4px 10px;
-}
 
-.nav-cta {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--black);
-  background: var(--butter);
-  padding: 10px 20px;
-  text-decoration: none;
-  transition: background var(--transition);
-}
-.nav-cta:hover { background: var(--butter-border); }
-#nav-burger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-#nav-burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: rgba(255,255,255,0.8);
-}
-#nav-mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: rgba(10,10,10,0.97);
-  padding: 16px 0 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-#nav-mobile-menu.open { display: flex; }
-#nav-mobile-menu a {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  padding: 13px clamp(16px, 4vw, 48px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  transition: color var(--transition);
-}
-#nav-mobile-menu a:hover { color: #fff; }
-.nav-mobile-cta { color: var(--butter) !important; font-weight: 800 !important; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* === LAYOUT === */
 .section-inner {
@@ -751,9 +661,7 @@ footer {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
-    </a>
+    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
     <div class="nav-links">
       <a href="training.html">Training</a>
       <a href="modification.html" class="nav-link-active">Modification</a>

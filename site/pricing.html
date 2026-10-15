@@ -17,74 +17,30 @@ body { background: var(--black); color: var(--ink); font-family: var(--font-body
 img { max-width: 100%; }
 
 /* ── PROGRESS BAR */
-#progress-bar {
-  position: fixed; top: env(safe-area-inset-top, 0px); left: 0;
-  height: 3px; width: 0; background: var(--butter); z-index: 200;
-  transition: width 80ms linear;
-}
 
 /* ── NAV */
-#nav {
-  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0;
-  z-index: 100; transition: background var(--transition), border-color var(--transition);
-  border-bottom: 1px solid transparent;
-}
-#nav.scrolled { background: rgba(10,10,10,0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom-color: rgba(255,255,255,0.08); }
-.nav-inner {
-  max-width: 1280px; margin: 0 auto; padding: 0 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 64px; gap: 32px;
-}
-.nav-brand { text-decoration: none; flex-shrink: 0; }
-.nav-logo-placeholder { display: block; }
-.nav-links { display: flex; align-items: center; gap: 28px; }
-.nav-links a {
-  font-family: var(--font-body); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
-  color: rgba(255,255,255,0.55); transition: color var(--transition);
-}
 
-.nav-link-active {
-  background: var(--butter);
-  color: var(--black) !important;
-  padding: 4px 10px;
-}
+
+
+
+
+
+
+
+
 
 /* ── BOTTOM STAGE BAR ── */
 
-.nav-cta {
-  font-family: var(--font-body); font-weight: 800; font-size: 11px;
-  letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
-  color: var(--black); background: var(--teal); padding: 9px 18px;
-  transition: opacity var(--transition); white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-#nav-burger {
-  display: none; flex-direction: column; gap: 5px; background: none; border: none;
-  cursor: pointer; padding: 4px; width: 32px;
-}
-#nav-burger span { display: block; height: 2px; background: #fff; transition: var(--transition); }
-#nav-mobile-menu {
-  display: none; flex-direction: column; background: var(--kale-ink);
-  padding: 20px 24px; gap: 4px;
-}
-#nav-mobile-menu.open { display: flex; }
-#nav-mobile-menu a {
-  font-family: var(--font-body); font-weight: 700; font-size: 13px;
-  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-  color: rgba(255,255,255,0.7); padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
-  transition: color var(--transition);
-}
-#nav-mobile-menu a:hover { color: #fff; }
-.nav-mobile-cta {
-  margin-top: 12px; color: var(--teal) !important;
-  border-bottom: none !important;
-}
-@media (max-width: 800px) {
-  .nav-links { display: none; }
-  #nav-burger { display: flex; }
-  .nav-inner { padding: 0 20px; }
-}
+
+
+
+
+
+
+
+
+
+
 
 /* ── SECTION STRUCTURE */
 .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
@@ -668,9 +624,7 @@ a:focus-visible, button:focus-visible {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
-    </a>
+    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
     <div class="nav-links">
       <a href="training.html">Training</a>
       <a href="modification.html">Modification</a>

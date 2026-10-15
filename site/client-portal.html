@@ -32,15 +32,6 @@ img { max-width: 100%; display: block; }
 a { transition: color var(--transition); }
 
 /* ── PROGRESS BAR ── */
-#progress-bar {
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px;
-  width: 0;
-  background: var(--butter);
-  z-index: 200;
-  transition: width 100ms linear;
-}
 
 /* ── SECTION INNER / LAYOUT ── */
 .section-inner {
@@ -53,125 +44,27 @@ a { transition: color var(--transition); }
 }
 
 /* ── NAV ── */
-#nav {
-  position: fixed;
-  top: env(safe-area-inset-top, 0px);
-  left: 0; right: 0;
-  z-index: 100;
-  transition: background 200ms ease-out, box-shadow 200ms ease-out;
-}
-#nav.scrolled {
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.08);
-}
-.nav-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 40px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-@media (max-width: 600px) {
-  .nav-inner { padding: 0 16px; }
-}
-.nav-brand {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.nav-logo-placeholder {
-  display: block;
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-.nav-links a {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  transition: color var(--transition);
-}
 
-@media (max-width: 760px) {
-  .nav-links { display: none; }
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-.nav-cta {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--black);
-  background: var(--butter);
-  text-decoration: none;
-  padding: 9px 18px;
-  transition: opacity var(--transition);
-}
-.nav-cta:hover { opacity: 0.85; }
-#nav-burger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  flex-direction: column;
-  gap: 5px;
-}
-#nav-burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #fff;
-  transition: transform 200ms ease-out, opacity 200ms ease-out;
-}
-@media (max-width: 760px) {
-  #nav-burger { display: flex; }
-}
-#nav-mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: rgba(10,10,10,0.98);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 16px 0;
-}
-#nav-mobile-menu.open { display: flex; }
-#nav-mobile-menu a {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  padding: 12px 24px;
-  transition: color var(--transition);
-}
-#nav-mobile-menu a:hover { color: #fff; }
-.nav-mobile-cta {
-  margin: 8px 24px 0;
-  background: var(--butter);
-  color: var(--black) !important;
-  padding: 12px 24px !important;
-  text-align: center;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ── REVEAL ── */
 
@@ -742,9 +635,7 @@ footer {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-logo-placeholder" style="color:var(--teal);font-weight:800;font-size:14px;letter-spacing:0.1em;">GIGI'S BEHAVIOR</span>
-    </a>
+    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
     <div class="nav-links">
       <a href="training.html">Training</a>
       <a href="modification.html">Modification</a>

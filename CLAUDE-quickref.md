@@ -37,12 +37,12 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Sticky bar: For Vets cell sits right of "Not sure? Book a call" (.sbar-vet); old #vet-bar row removed.
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
+- Top menu bar is defined ONCE in gbs-shared.css (#nav block + progress bar). Pages must not restyle it. Logo: images/gigis-behavior-logo-teal.png (teal, transparent bg). Active link = butter fill; CTA = butter fill; hamburger below 1080px.
 - No aversive-trainer counts in the funnel chart.
 - Hand-drawn elements are real SVG, not CSS gradients.
 - Hosting: static HTML → GoDaddy cPanel (public_html); team reviews on Netlify.
 
 ## Known drift (carried in from README)
-- Nav + progress-bar CSS differs page to page → pick one canonical nav, move to shared CSS.
 - Reveal delay classes: .reveal-1..4 / .reveal-d1..4 / .reveal-delay-1..4; training uses .revealed.
 - Training page has a different (strip) footer.
 - Modification Starting Point: $250 (stage bars, pricing card, multi-animal) vs $225
