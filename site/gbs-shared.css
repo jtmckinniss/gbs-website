@@ -303,11 +303,14 @@ a.st-seg.st-med:not(.is-active):hover      { border-color: var(--cream); color: 
   font-family: var(--font-body); font-size: 9px; font-weight: 800;
   letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.2;
 }
-.stage-tag.t-training { background: var(--butter); color: var(--ink); }
-.stage-tag.t-mod { background: var(--teal-deep); color: #fff; }
-.stage-tag.t-mod.on-teal { background: #fff; color: var(--teal-deep); }
-.stage-tag.t-med { background: var(--cream); color: var(--ink); }
-.stage-tag.t-med.on-light { background: var(--ink); color: var(--cream); }
+/* Tags are OUTLINED in the stage color; the active box below is filled */
+.stage-tag { background: transparent; border: 1px solid currentColor; }
+.stage-tag.t-training { color: var(--butter); }
+.stage-tag.t-mod { color: var(--teal); }
+.stage-tag.t-mod.on-teal { color: #fff; }
+.stage-tag.t-med { color: var(--cream); }
+.stage-tag.t-med.on-light { color: var(--ink); }
+.stage-row.on-light .stage-tag.t-training, .on-light .stage-tag.t-training { color: var(--butter-text); }
 @media (max-width: 600px) {
   .stage-tracker { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 340px; gap: 6px; }
   .st-seg { padding: 6px 2px; font-size: 9px; letter-spacing: 0.08em; }
