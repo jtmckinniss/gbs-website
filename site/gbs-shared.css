@@ -457,3 +457,7 @@ html.cq-lock, html.cq-lock body { overflow: hidden; }
 .footer-parent { display:inline-flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; }
 .footer-parent img { display:block; height:64px; width:auto; }
 .footer-parent:hover img { opacity:.85; }
+.footer-brand-name .footer-logo { display:block; height:26px; width:auto; margin-bottom:6px; }
+/* Footer clears the fixed sticky bar so its bottom row stays visible */
+#footer::after { content:""; display:block; flex-basis:100%; height:80px; }
+@media (max-width:600px){ #footer::after { height:48px; } }
