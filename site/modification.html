@@ -651,6 +651,9 @@ footer {
   .hero-img-wrap .placeholder-img { min-height: 0 !important; height: 100%; }
   .hero-img { min-height: 0 !important; aspect-ratio: 4 / 3; }
 }
+
+/* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
+@media (min-width: 1081px) { section.hero { padding-top: 94px !important; } }
 </style>
 </head>
 <body>
@@ -666,9 +669,6 @@ footer {
       <a href="training.html">Training</a>
       <a href="modification.html" class="nav-link-active">Modification</a>
       <a href="medicine.html">Medicine</a>
-      <a href="pricing.html">Cost Transparency</a>
-      <a href="meet-the-team.html">Team</a>
-      <a href="referring-vets.html">For Vets</a>
     </div>
     <div class="nav-right">
       <a href="#cta-band" class="nav-cta">Get started</a>
@@ -677,6 +677,11 @@ footer {
       </button>
     </div>
   </div>
+  <div class="nav-sub"><div class="nav-sub-inner">
+      <a href="pricing.html">Cost Transparency</a>
+      <a href="meet-the-team.html">Team</a>
+      <a href="referring-vets.html">For Vets</a>
+    </div></div>
   <div id="nav-mobile-menu">
     <a href="training.html">Training</a>
     <a href="modification.html">Modification</a>

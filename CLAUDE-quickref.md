@@ -38,7 +38,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
 - Nav (6 links): Training | Modification | Medicine | Cost Transparency | Team | For Vets.
 - Section colors: Training = butter · Modification = teal · Medicine = black w/ teal + white · For Vets = cream w/ black (nav active link, sticky bar cell, homepage vet band). Cost Transparency + Team active link stay butter.
-- Top menu bar is defined ONCE in gbs-shared.css (#nav block + progress bar). Pages must not restyle it. Logo: images/gigis-behavior-logo-teal.png (teal, transparent bg). Active link = butter fill; CTA = butter fill; hamburger below 1080px.
+- Top menu bar is defined ONCE in gbs-shared.css (#nav block + progress bar). Main row: logo · Training · Modification · Medicine · CTA. Secondary row (.nav-sub, 30px, desktop only): Cost Transparency · Team · For Vets. Each page adds +30px to its opening section on desktop to clear it. Pages must not restyle it. Logo: images/gigis-behavior-logo-teal.png (teal, transparent bg). Active link = butter fill; CTA = butter fill; hamburger below 1080px.
 - No aversive-trainer counts in the funnel chart.
 - Hand-drawn elements are real SVG, not CSS gradients.
 - Hosting: static HTML → GoDaddy cPanel (public_html); team reviews on Netlify.

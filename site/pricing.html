@@ -615,6 +615,9 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
+@media (min-width: 1081px) { #hero { padding-top: 170px !important; } }
 </style>
 </head>
 <body>
@@ -629,9 +632,6 @@ a:focus-visible, button:focus-visible {
       <a href="training.html">Training</a>
       <a href="modification.html">Modification</a>
       <a href="medicine.html">Medicine</a>
-      <a href="pricing.html" class="nav-link-active">Cost Transparency</a>
-      <a href="meet-the-team.html">Team</a>
-      <a href="referring-vets.html">For Vets</a>
     </div>
     <div class="nav-right">
       <a href="#cta-band" class="nav-cta">Get started</a>
@@ -640,6 +640,11 @@ a:focus-visible, button:focus-visible {
       </button>
     </div>
   </div>
+  <div class="nav-sub"><div class="nav-sub-inner">
+      <a href="pricing.html" class="nav-link-active">Cost Transparency</a>
+      <a href="meet-the-team.html">Team</a>
+      <a href="referring-vets.html">For Vets</a>
+    </div></div>
   <div id="nav-mobile-menu">
     <a href="training.html">Training</a>
     <a href="modification.html">Modification</a>

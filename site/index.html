@@ -1363,6 +1363,30 @@ body {
   .cost-body { padding: 20px 16px; gap: 16px; }
   .cost-price { font-size: 28px; }
 }
+
+
+/* ── For Vets band (section color: cream w/ black) ── */
+#vet-band-section { background: var(--cream); border-top: 6px solid var(--black); }
+.vb-inner { max-width: 1280px; margin: 0 auto; padding: 88px 40px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+.vb-tag { display: inline-block; background: var(--black); color: var(--cream); font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 14px; margin-bottom: 24px; }
+.vb-h { font-family: var(--font-display); font-weight: 500; font-size: clamp(38px, 4.6vw, 60px); line-height: 1.04; color: var(--black); margin-bottom: 22px; }
+.vb-h em { font-style: italic; color: var(--teal-deep); }
+.vb-body { font-size: 17px; line-height: 1.65; color: var(--ink-warm); max-width: 52ch; margin-bottom: 32px; }
+.vb-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.vb-btn { background: var(--black); color: var(--cream); padding: 16px 32px; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background var(--transition); }
+.vb-btn:hover { background: var(--teal-deep); }
+.vb-link { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 2px solid var(--black); padding-bottom: 3px; }
+.vb-points { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--black); }
+.vb-points li { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(10,10,10,0.18); }
+.vb-num { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--teal-deep); padding-top: 3px; flex-shrink: 0; }
+.vb-points strong { display: block; font-size: 16px; font-weight: 800; color: var(--black); margin-bottom: 4px; }
+.vb-points span:not(.vb-num) { display: block; font-size: 14px; line-height: 1.55; color: var(--gray-warm); }
+@media (max-width: 860px) {
+  .vb-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 64px 20px; }
+}
+/* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
+@media (min-width: 1081px) { #hero { padding-top: 94px !important; } }
+@media (min-width: 1081px) { #section-nav { top: 97px; } }
 </style>
 </head>
 <body>
@@ -1377,9 +1401,6 @@ body {
       <a href="training.html">Training</a>
       <a href="modification.html">Modification</a>
       <a href="medicine.html">Medicine</a>
-      <a href="pricing.html">Cost Transparency</a>
-      <a href="meet-the-team.html">Team</a>
-      <a href="referring-vets.html">For Vets</a>
     </div>
     <div class="nav-right">
       <a href="#cta-band" class="nav-cta">Get started</a>
@@ -1388,6 +1409,11 @@ body {
       </button>
     </div>
   </div>
+  <div class="nav-sub"><div class="nav-sub-inner">
+      <a href="pricing.html">Cost Transparency</a>
+      <a href="meet-the-team.html">Team</a>
+      <a href="referring-vets.html">For Vets</a>
+    </div></div>
   <div id="nav-mobile-menu">
     <a href="training.html">Training</a>
     <a href="modification.html">Modification</a>
@@ -1572,14 +1598,22 @@ body {
 </section>
 
 <!-- ── REFERRING VETS BAND ── -->
-<section id="vet-band-section" style="background: var(--cream); border-top: 1px solid rgba(0,0,0,0.08);">
-  <div class="section-inner" style="padding: 60px 40px; text-align: center;">
-    <div style="max-width: 760px; margin: 0 auto;">
-      <div class="eyebrow" style="color: rgba(0,0,0,0.45); letter-spacing: 0.16em; margin-bottom: 24px;">FOR REFERRING VETERINARIANS</div>
-      <h2 class="section-h2" style="color: var(--black); margin-bottom: 24px; font-size: clamp(32px, 4vw, 52px);">Clinical collaboration for complex behavior cases</h2>
-      <p style="font-size: 17px; line-height: 1.65; color: var(--gray-warm); margin-bottom: 36px; max-width: 640px; margin-left: auto; margin-right: auto;">Peer-to-peer consultations, medicine-led behavior modification, and direct referral pathways for your clients' behavioral and medicinal needs.</p>
-      <a href="referring-vets.html" class="btn-primary" style="background: var(--black); color: #fff; padding: 14px 36px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; display: inline-block; text-decoration: none; transition: opacity 150ms ease-out;">Refer a Patient</a>
+<section id="vet-band-section">
+  <div class="vb-inner">
+    <div class="vb-lead reveal">
+      <div class="vb-tag">For Referring Veterinarians</div>
+      <h2 class="vb-h">Clinical collaboration for <em>complex behavior cases</em>.</h2>
+      <p class="vb-body">Refer your patients to one of fewer than 100 practicing board-certified Veterinary Behaviorists in the United States, and stay connected to the plan.</p>
+      <div class="vb-actions">
+        <a href="referring-vets.html#referral-form" class="vb-btn">Refer a patient</a>
+        <a href="referring-vets.html" class="vb-link">How referrals work →</a>
+      </div>
     </div>
+    <ul class="vb-points reveal reveal-delay-1">
+      <li><span class="vb-num">01</span><div><strong>Peer-to-peer consultations</strong><span>Talk through a case with our Veterinary Behaviorist before you refer.</span></div></li>
+      <li><span class="vb-num">02</span><div><strong>Medicine-led behavior modification</strong><span>Diagnosis, medication, and modification under one integrated plan.</span></div></li>
+      <li><span class="vb-num">03</span><div><strong>Direct referral pathway</strong><span>A simple handoff for your clients' behavioral and medicinal needs.</span></div></li>
+    </ul>
   </div>
 </section>
 
