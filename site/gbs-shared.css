@@ -270,15 +270,19 @@
 /* ---------- Responsive (shared) ---------- */
 
 /* ── Stage tracker ───────────────────────────────────────────
-   Eyebrow-scale labels, not buttons. Inactive = gray outline + gray text;
-   active = outline + text in the stage color. Base = dark surfaces; .on-light = cream. */
-.stage-tracker { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--font-body); }
+   Compact, eyebrow-scale labels. Inactive = gray outline + gray text;
+   active = outline + text in the stage color. The stage tag (Foundations /
+   Support / Specialty) sits directly above the active stage.
+   Base = dark surfaces; .on-light = cream; .on-teal = teal sections. */
+.stage-row { margin-bottom: 24px; }
+.stage-tracker { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; font-family: var(--font-body); }
+.st-col { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
 .st-seg {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 12px 22px;
-  border: 2px solid rgba(255,255,255,0.16);
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.18);
   background: transparent; color: #6F6B64;
-  font-size: 12px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap; line-height: 1;
   transition: color var(--transition), border-color var(--transition);
 }
@@ -294,12 +298,11 @@ a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0
 .stage-tracker.on-teal .st-seg { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.55); }
 .stage-tracker.on-teal a.st-seg:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
 .stage-tracker.on-teal .st-mod.is-active { border-color: #fff; color: #fff; }
-/* stage tag stacked above the tracker */
-.stage-row { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 28px; }
+/* stage tag: full width of its column, so it sits squarely over the active stage */
 .stage-tag {
-  display: inline-block; padding: 5px 16px;
-  font-family: var(--font-body); font-size: 11px; font-weight: 800;
-  letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2;
+  display: block; text-align: center; padding: 3px 8px;
+  font-family: var(--font-body); font-size: 9px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.2;
 }
 .stage-tag.t-training { background: var(--butter); color: var(--ink); }
 .stage-tag.t-mod { background: var(--teal-deep); color: #fff; }
@@ -307,8 +310,8 @@ a.st-seg:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0
 .stage-tag.t-med { background: var(--cream); color: var(--ink); }
 .stage-tag.t-med.on-light { background: var(--ink); color: var(--cream); }
 @media (max-width: 600px) {
-  .stage-tracker, .stage-row { gap: 6px; }
-  .st-seg { padding: 8px 10px; font-size: 10px; letter-spacing: 0.1em; }
+  .stage-tracker { gap: 6px; }
+  .st-seg { padding: 6px 8px; font-size: 9px; letter-spacing: 0.1em; }
 }
 
 /* Service-line names in running copy (body text only) are ALL CAPS italic (SOT).

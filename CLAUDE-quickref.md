@@ -32,7 +32,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - In-home Modification follow-ups stay (behaviorally required cases, at Gigi's discretion).
 - Public web address: gigisbehavior.org (moves under gigis.org long-term). For Vets page keeps clinical language.
 - Full stage names: Behavioral Training / Behavioral Modification / Behavioral Medicine.
-- Stage indicator: .stage-tracker (gbs-shared.css) — eyebrow-scale outlined labels; inactive gray, active outlined + text in stage color (variants: .on-light, .on-teal). Replaces the radio dials AND the eyebrow over hero/section headlines. Homepage cards carry no indicator. Heroes + Pricing: filled stage tag (.stage-tag t-training|t-mod|t-med) stacked above the tracker inside .stage-row.
+- Stage indicator: .stage-tracker (gbs-shared.css) — eyebrow-scale outlined labels; inactive gray, active outlined + text in stage color (variants: .on-light, .on-teal). Replaces the radio dials AND the eyebrow over hero/section headlines. Homepage cards carry no indicator. Compact size (10px labels, 6x12 padding, 1px outline). Stage tag sits directly over the ACTIVE segment (each segment wrapped in .st-col; tag lives in the active column). Heroes + Pricing carry the tag; Meet the Team has no tag.
 - Hero standard = Training page (1080px container, H1 clamp(36px,4.5vw,58px)/1.08, body 16px/1.7, 4:3 image, content-then-image on mobile). Mod + Med carry a "Hero matched to the Training page" override block.
 - Sticky bar: For Vets cell sits right of "Not sure? Book a call" (.sbar-vet); old #vet-bar row removed.
 - Prices: Training from $42 · Modification from $250 · Medicine from $590.
