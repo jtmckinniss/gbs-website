@@ -407,3 +407,44 @@ i.svc { font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; }
   #nav .nav-logo { height: 20px; }
   #nav .nav-cta { padding: 9px 12px; min-width: 0; }
 }
+
+/* ==========================================================
+   Class readiness quiz (gbs-class-quiz.js) — popup on any
+   [data-quiz-trigger="training"]. Training color = butter.
+   ========================================================== */
+html.cq-lock, html.cq-lock body { overflow: hidden; }
+.cq-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(10,10,10,0.72); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.cq-overlay[hidden] { display: none; }
+.cq-card {
+  position: relative; width: 100%; max-width: 540px; max-height: calc(100vh - 40px); overflow-y: auto;
+  background: var(--cream); color: var(--ink); border-top: 6px solid var(--butter);
+  padding: 40px 40px 32px; box-shadow: 0 24px 64px rgba(0,0,0,0.45); font-family: var(--font-body);
+}
+.cq-card.cq-nav { border-top-color: var(--teal-deep); }
+.cq-close { position: absolute; top: 10px; right: 12px; width: 36px; height: 36px; background: none; border: none; font-size: 26px; line-height: 1; color: var(--gray-warm); cursor: pointer; }
+.cq-close:hover { color: var(--ink); }
+.cq-tag { display: inline-block; border: 1px solid var(--butter-border); color: var(--butter-text); font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 20px; }
+.cq-nav .cq-tag { border-color: var(--teal-deep); color: var(--teal-deep); }
+.cq-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
+.cq-progress span { height: 4px; background: var(--gray-line); }
+.cq-progress span.done { background: var(--butter-border); }
+.cq-progress span.on { background: var(--butter); }
+.cq-count { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-warm); margin-bottom: 14px; }
+.cq-q, .cq-result-h { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.2vw, 30px); line-height: 1.18; color: var(--ink); margin-bottom: 28px; }
+.cq-result-h { margin-bottom: 14px; }
+.cq-answers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cq-answer { padding: 16px; background: transparent; border: 2px solid var(--ink); color: var(--ink); font-family: var(--font-body); font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background var(--transition), color var(--transition); }
+.cq-answer:hover { background: var(--ink); color: var(--cream); }
+.cq-answer:focus-visible { outline: 3px solid var(--butter); outline-offset: 2px; }
+.cq-note { margin-top: 20px; font-size: 14px; line-height: 1.55; color: var(--gray-warm); }
+.cq-back { display: inline-block; margin-top: 18px; background: none; border: none; padding: 0; font-family: var(--font-body); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-warm); cursor: pointer; border-bottom: 1px solid currentColor; }
+.cq-back:hover { color: var(--ink); }
+.cq-result-body { font-size: 16px; line-height: 1.6; color: var(--ink-warm); margin-bottom: 26px; }
+.cq-cta { display: block; text-align: center; padding: 16px 24px; background: var(--butter); color: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: opacity var(--transition); }
+.cq-nav .cq-cta { background: var(--teal-deep); color: #fff; }
+.cq-cta:hover { opacity: 0.88; }
+.cq-cta[aria-disabled="true"] { cursor: default; }
+.cq-cta + .cq-back { display: table; margin: 18px auto 0; }
+@media (max-width: 600px) {
+  .cq-card { padding: 32px 22px 24px; }
+}

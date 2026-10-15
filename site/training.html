@@ -981,7 +981,7 @@ body {
       <div>Current class schedules, exact pricing, and package options are all in the Offering Tree. Availability updates in real time. If a class is showing, there's a spot for your dog.</div>
     </div>
     <div class="cost-cta reveal reveal-delay-2">
-      <a href="#" class="btn-butter">See full pricing in Offering Tree</a>
+      <a href="#" class="btn-butter" data-quiz-trigger="training">See full pricing in Offering Tree</a>
     </div>
   </div>
 </section>
@@ -1029,7 +1029,7 @@ body {
         <div class="wts-option-tag">Ready to book</div>
         <div class="wts-option-h">Browse classes and schedule directly.</div>
         <p class="wts-option-body">See what's running, when it meets, how many spots are left, and what it costs. Book your dog's spot in a few clicks. No account required to browse.</p>
-        <a href="#" class="btn-butter">Go to Offering Tree</a>
+        <a href="#" class="btn-butter" data-quiz-trigger="training">Go to Offering Tree</a>
       </div>
       <div class="wts-option">
         <div class="wts-option-tag">Not sure yet</div>
@@ -1111,5 +1111,6 @@ function updateStageBar() {
 window.addEventListener('scroll', updateStageBar, { passive: true });
 updateStageBar();
 </script>
+<script src="gbs-class-quiz.js" defer></script>
 </body>
 </html>

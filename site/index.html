@@ -1537,7 +1537,7 @@ body {
           </div>
         </div>
         <div class="stage-cta">
-          <a href="#" class="stage-link" style="color:var(--teal-deep);">Book a class →</a>
+          <a href="#" data-quiz-trigger="training" class="stage-link" style="color:var(--teal-deep);">Book a class →</a>
         </div>
       </div>
 
@@ -1796,7 +1796,7 @@ body {
           </div>
           <div class="cost-drawer">
             <div class="cost-drawer-quote">"Think of it as your dog's life coach."</div>
-            <a href="#" class="cost-drawer-cta" style="color:var(--teal-deep);">Book a class →</a>
+            <a href="#" data-quiz-trigger="training" class="cost-drawer-cta" style="color:var(--teal-deep);">Book a class →</a>
           </div>
         </div>
         <div class="cost-card cost-mod reveal reveal-delay-1">
@@ -1922,7 +1922,7 @@ body {
         <div class="footer-col-label">Get started</div>
         <div class="footer-links">
           <a href="#">Care Navigation Call</a>
-          <a href="#">Book a class</a>
+          <a href="#" data-quiz-trigger="training">Book a class</a>
           <a href="#">For referring vets</a>
         </div>
       </div>
@@ -2115,5 +2115,6 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   });
 }
 </script>
+<script src="gbs-class-quiz.js" defer></script>
 </body>
 </html>
