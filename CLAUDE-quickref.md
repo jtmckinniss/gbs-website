@@ -22,7 +22,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - CTA routing: Training → Offering Tree (Book now → qualification quiz, inert for now); Modification + Medicine → Care Navigation Call.
 - Brand is "Gigi's Behavior." GBS is retired publicly (internal shorthand only).
 - Service-line names in running copy: ALL CAPS + italic via <i class="svc">Modification</i> (CSS uppercases it) (body copy only: not in headlines, pull quotes, nav, buttons, card titles, role titles, appointment names, or For Vets clinical copy). Spelling: "judgement" (Euro).
-- Vet-to-vet services appear only on the For Vets page.
+- Vet-to-vet services appear only on the For Vets page or vet-referral content. The homepage For Vets band counts as vet-referral content (Justin, Oct 15). Vet referrals are a key part of the business plan: give them prominence, not a footnote.
 - Service-line pages: Training shows full pricing; Modification + Medicine show Starting Point pricing only and link to Cost Transparency for the rest.
 - After structural regex edits, run an HTML tag-balance check on every page (a bad match broke Medicine once).
 - "Stage," never "step" or "tier" for levels of care. "Family," never "owner." Dog everywhere. Never "pet." Never "dog-only." Cats only via the Medicine clarifier; "animals" only in booking/legal/policy.
