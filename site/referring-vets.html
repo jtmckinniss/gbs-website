@@ -5,1193 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Referring Vets | Gigi's Behavior</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap">
-
-<link rel="stylesheet" href="gbs-shared.css?v=20261015f">
-<style>
-/* ── TOKENS ── */
-:root /* page overrides */ {
-  color-scheme: dark;
-}
-
-/* ── RESET & BASE ── */
-
-body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  color: var(--ink);
-  background: var(--black);
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-
-/* ── PROGRESS BAR ── */
-
-/* ── NAV ── */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ── LAYOUT UTILITIES ── */
-.section-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-/* ── REVEAL ANIMATION ── */
-
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-.reveal-delay-4 { transition-delay: 320ms; }
-
-/* ── EMPHASIS MARK ── */
-em {
-  font-style: normal;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 8px;
-  padding-bottom: 3px;
-  display: inline;
-}
-
-/* ── EYEBROW ── */
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 20px;
-}
-
-/* ── SECTION HEADINGS ── */
-.section-h2 {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 4.5vw, 52px);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.012em;
-}
-
-/* ───────────────────────────── */
-/* 01 — HERO */
-/* ───────────────────────────── */
-#hero {
-  background: var(--black);
-  padding: 100px 0 96px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-.hero-h1 {
-  font-family: var(--font-display);
-  font-size: clamp(44px, 5.8vw, 72px);
-  font-weight: 500;
-  line-height: 0.97;
-  letter-spacing: -0.015em;
-  color: #fff;
-  margin-bottom: 28px;
-  text-wrap: balance;
-}
-.hero-sub {
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.65);
-  max-width: 480px;
-  margin-bottom: 40px;
-}
-.hero-ctas {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn-primary {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--butter);
-  color: var(--ink);
-  padding: 14px 28px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  transition: opacity var(--transition);
-}
-.btn-primary:hover { opacity: 0.87; }
-.btn-ghost {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: transparent;
-  color: rgba(255,255,255,0.75);
-  padding: 14px 28px;
-  border: 1px solid rgba(255,255,255,0.22);
-  display: inline-block;
-  transition: border-color var(--transition), color var(--transition);
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
-
-/* Credential card */
-.credential-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(42,210,201,0.30);
-  border-left: 3px solid var(--teal);
-  padding: 36px 32px;
-}
-.credential-card .cred-role {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 20px;
-}
-.cred-dip {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 500;
-  color: #fff;
-  display: block;
-  margin-bottom: 6px;
-}
-.cred-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.80);
-  margin-bottom: 20px;
-}
-.cred-rule { height: 1px; background: rgba(255,255,255,0.10); margin-bottom: 20px; }
-.cred-stat {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.45);
-  line-height: 1.5;
-}
-.cred-stat strong {
-  font-family: var(--font-mono);
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 4px;
-}
-
-/* ───────────────────────────── */
-/* 02 — COLLABORATION MODEL */
-/* ───────────────────────────── */
-#collaboration {
-  background: var(--kale-ink);
-  padding: 96px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.collab-intro {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 64px;
-  margin-bottom: 64px;
-  align-items: start;
-}
-.collab-body {
-  font-size: 16px;
-  line-height: 1.70;
-  color: rgba(255,255,255,0.65);
-}
-.collab-points {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-.collab-point {
-  background: rgba(255,255,255,0.03);
-  border-top: 2px solid var(--butter-border);
-  padding: 32px 28px;
-}
-.collab-point-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--butter);
-  margin-bottom: 12px;
-}
-.collab-point-title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #fff;
-  margin-bottom: 14px;
-}
-.collab-point-body {
-  font-size: 14px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.55);
-}
-
-/* ───────────────────────────── */
-/* 03 — REFERRAL PROCESS */
-/* ───────────────────────────── */
-#process {
-  background: var(--cream);
-  padding: 96px 0;
-  border-top: 1px solid var(--gray-line);
-}
-#process .section-h2 { color: var(--ink); margin-bottom: 60px; }
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-}
-.process-step {
-  background: var(--cream-soft);
-  border-top: 3px solid var(--teal-deep);
-  padding: 32px 28px;
-}
-.step-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--teal-deep);
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  display: block;
-}
-.step-title {
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.step-body {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--gray-warm);
-}
-
-/* ───────────────────────────── */
-/* 04 — APPOINTMENT NAMES */
-/* ───────────────────────────── */
-#appt-names {
-  background: var(--black);
-  padding: 96px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-#appt-names .section-h2 { color: #fff; margin-bottom: 12px; }
-.appt-intro {
-  font-size: 15px;
-  color: rgba(255,255,255,0.50);
-  margin-bottom: 48px;
-  max-width: 560px;
-}
-.appt-table-wrap { overflow-x: auto; }
-.appt-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.appt-table thead tr {
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-.appt-table th {
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  padding: 12px 20px 12px 0;
-  text-align: left;
-  white-space: nowrap;
-}
-.appt-table td {
-  padding: 18px 20px 18px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  vertical-align: top;
-  color: rgba(255,255,255,0.80);
-  line-height: 1.4;
-}
-.appt-name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 500;
-  color: #fff;
-}
-.appt-dur {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--teal);
-  white-space: nowrap;
-}
-.appt-price {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--butter);
-  white-space: nowrap;
-}
-.appt-free {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--teal);
-}
-.appt-provider {
-  font-size: 13px;
-  color: rgba(255,255,255,0.50);
-}
-.appt-provider em {
-  background-image: none;
-  padding-bottom: 0;
-  font-style: italic;
-  color: rgba(255,255,255,0.35);
-  font-size: 12px;
-}
-.appt-tag {
-  display: inline-block;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: rgba(42,210,201,0.12);
-  color: var(--teal);
-  padding: 3px 8px;
-  margin-top: 6px;
-}
-
-/* ───────────────────────────── */
-/* 05 — OHIO TELEMEDICINE */
-/* ───────────────────────────── */
-#telemedicine {
-  background: var(--kale);
-  padding: 96px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-#telemedicine .section-h2 { color: #fff; margin-bottom: 12px; }
-.tele-intro {
-  font-size: 16px;
-  line-height: 1.70;
-  color: rgba(255,255,255,0.62);
-  max-width: 640px;
-  margin-bottom: 52px;
-}
-.tele-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-bottom: 48px;
-}
-.tele-step {
-  background: rgba(255,255,255,0.04);
-  padding: 32px 28px;
-}
-.tele-step-num {
-  font-family: var(--font-mono);
-  font-size: 32px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.10);
-  line-height: 1;
-  margin-bottom: 16px;
-  display: block;
-}
-.tele-step-body {
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.65);
-}
-.tele-step-body strong { color: rgba(255,255,255,0.90); font-weight: 600; }
-.tele-callout {
-  border: 1px solid var(--butter-border);
-  background: rgba(0,0,0,0.25);
-  padding: 32px 36px;
-  max-width: 720px;
-}
-.tele-callout-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--butter);
-  margin-bottom: 14px;
-  display: block;
-}
-.tele-callout-body {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.35;
-  color: rgba(255,255,255,0.90);
-  font-style: italic;
-}
-
-/* ───────────────────────────── */
-/* 06 — VET-TO-VET CONSULT */
-/* ───────────────────────────── */
-#vet-consult {
-  background: var(--cream-soft);
-  padding: 96px 0;
-  border-top: 1px solid var(--gray-line);
-}
-#vet-consult .section-h2 { color: var(--ink); margin-bottom: 12px; }
-.consult-intro {
-  font-size: 16px;
-  line-height: 1.65;
-  color: var(--gray-warm);
-  max-width: 520px;
-  margin-bottom: 52px;
-}
-.consult-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 52px;
-}
-.consult-card {
-  background: var(--cream);
-  border: 1px solid var(--gray-line);
-  border-top: 3px solid var(--teal-deep);
-  padding: 36px 32px;
-}
-.consult-card-name {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.consult-meta {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
-.consult-meta-item {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-.consult-meta-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gray-warm);
-}
-.consult-meta-val {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--teal-deep);
-}
-.consult-meta-val.free { color: var(--teal-deep); }
-.consult-meta-val.paid { color: var(--ink); }
-.consult-card-body {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--gray-warm);
-}
-.consult-cta { display: inline-block; }
-.btn-teal {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--teal-deep);
-  color: #fff;
-  padding: 14px 28px;
-  border: none;
-  display: inline-block;
-  transition: opacity var(--transition);
-}
-.btn-teal:hover { opacity: 0.87; }
-
-/* ───────────────────────────── */
-/* 07 — REFERRAL FORM */
-/* ───────────────────────────── */
-#refer {
-  background: var(--black);
-  padding: 96px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-#refer .section-h2 { color: #fff; margin-bottom: 12px; }
-.refer-intro {
-  font-size: 16px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.55);
-  max-width: 500px;
-  margin-bottom: 52px;
-}
-.form-placeholder-label {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-  border: 1px solid rgba(255,255,255,0.10);
-  padding: 6px 16px;
-  margin-bottom: 36px;
-}
-.refer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-}
-.form-wrap { max-width: 640px; }
-.form-group { margin-bottom: 20px; }
-.form-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.40);
-  margin-bottom: 8px;
-}
-.form-input {
-  width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.75);
-  font-family: var(--font-body);
-  font-size: 14px;
-  padding: 12px 16px;
-  outline: none;
-  transition: border-color var(--transition);
-  appearance: none;
-}
-.form-input:focus { border-color: rgba(42,210,201,0.50); }
-.form-input::placeholder { color: rgba(255,255,255,0.20); }
-textarea.form-input { resize: vertical; min-height: 96px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-submit {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--butter);
-  color: var(--ink);
-  padding: 14px 32px;
-  border: none;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: opacity var(--transition);
-  width: 100%;
-}
-.form-submit:hover { opacity: 0.87; }
-.form-note {
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.25);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding-top: 20px;
-}
-.form-note strong { color: rgba(255,255,255,0.40); }
-.refer-aside {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  justify-content: flex-start;
-  padding-top: 8px;
-}
-.aside-block {
-  background: rgba(255,255,255,0.03);
-  border-left: 2px solid rgba(42,210,201,0.30);
-  padding: 24px 24px;
-}
-.aside-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 10px;
-  display: block;
-}
-.aside-title {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 8px;
-}
-.aside-body {
-  font-size: 14px;
-  color: rgba(255,255,255,0.45);
-  line-height: 1.6;
-}
-
-/* ───────────────────────────── */
-/* FOOTER */
-/* ───────────────────────────── */
-footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 0 32px; border-top: 1px solid rgba(255,255,255,0.08); }
-
-.footer-links { display: flex; flex-direction: column; gap: 10px; }
-
-/* ───────────────────────────── */
-/* RESPONSIVE */
-/* ───────────────────────────── */
-@media (max-width: 900px) {
-  
-  
-  
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .credential-card { padding: 28px 24px; }
-  .collab-intro { grid-template-columns: 1fr; gap: 32px; }
-  .collab-points { grid-template-columns: 1fr; gap: 2px; }
-  .process-steps { grid-template-columns: 1fr 1fr; gap: 2px; }
-  .tele-grid { grid-template-columns: 1fr; gap: 2px; }
-  .consult-grid { grid-template-columns: 1fr; }
-  .refer-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .section-inner { padding: 0 24px; }
-  #hero, #collaboration, #process, #appt-names, #telemedicine, #vet-consult, #refer { padding: 72px 0; }
-}
-
-@media (max-width: 600px) {
-  .hero-ctas { flex-direction: column; }
-  .btn-primary, .btn-ghost, .btn-teal { width: 100%; text-align: center; }
-  .process-steps { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .form-row { grid-template-columns: 1fr; }
-  .consult-meta { gap: 12px; }
-  #hero, #collaboration, #process, #appt-names, #telemedicine, #vet-consult, #refer { padding: 60px 0; }
-}
-
-/* ── BOTTOM STAGE BAR ── */
-
-
-
-/* ═══ Cream-heavy For Vets page (Oct 15): every section cream except the referral form ═══ */
-#hero, #process, #telemedicine { background: var(--cream); border-color: var(--gray-line); }
-#collaboration, #appt-names, #vet-consult { background: var(--cream-soft); border-color: var(--gray-line); }
-:is(#hero, #collaboration, #appt-names, #telemedicine) .eyebrow { color: var(--teal-deep); }
-:is(#hero, #collaboration, #appt-names, #telemedicine) .section-h2 { color: var(--ink); }
-#hero .hero-h1 { color: var(--ink); }
-#hero .hero-sub { color: var(--ink-warm); }
-#hero .btn-ghost { color: var(--ink); border-color: rgba(27,26,24,0.35); }
-#hero .btn-ghost:hover { color: var(--black); border-color: var(--ink); }
-#hero .credential-card { background: var(--black); border-color: var(--black); border-left: 3px solid var(--teal); }
-.collab-body { color: var(--ink-warm); }
-.collab-point { background: var(--cream); border-top-color: var(--butter-border); }
-.collab-point-label { color: var(--butter-text); }
-.collab-point-title { color: var(--ink); }
-.collab-point-body { color: var(--gray-warm); }
-.appt-intro { color: var(--gray-warm); }
-.appt-table thead tr { border-bottom-color: var(--gray-line); }
-.appt-table th { color: var(--gray-warm); }
-.appt-table td { color: var(--ink-warm); border-bottom-color: var(--gray-line); }
-.appt-name { color: var(--ink); }
-.appt-dur, .appt-free { color: var(--teal-deep); }
-.appt-price { color: var(--butter-text); }
-.appt-provider { color: var(--gray-warm); }
-.appt-provider em { color: var(--gray-warm); }
-.appt-tag { background: rgba(14,128,121,0.10); color: var(--teal-deep); }
-.tele-intro { color: var(--ink-warm); }
-.tele-step { background: var(--cream-soft); border: 1px solid var(--gray-line); }
-.tele-step-num { color: rgba(27,26,24,0.18); }
-.tele-step-body { color: var(--ink-warm); }
-.tele-step-body strong { color: var(--ink); }
-.tele-callout { background: var(--black); border-color: var(--black); }
-.tele-callout-body { color: var(--cream); }
-/* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
-@media (min-width: 1081px) { #hero { padding-top: 130px !important; } }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Gochi+Hand&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="gbs-site.css?v=20261027a">
 </head>
 <body>
-<!-- PROGRESS BAR -->
-<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to content</a>
+<div class="util"><div class="wrap util-in">
+  <a href="client-portal.html">Client portal</a>
+  <a class="util-hi" href="referring-vets.html#refer">Refer a patient</a>
+</div></div>
+<header id="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="index.html" aria-label="Gigi's Behavior home"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="171" height="22"></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="training.html" class="nl nl-training">Training</a>
+      <a href="modification.html" class="nl nl-mod">Modification</a>
+      <a href="medicine.html" class="nl nl-med">Medicine</a>
+      <a href="pricing.html" class="nl nl-cost">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nl nl-team">Team</a>
+      <a href="referring-vets.html" class="nl nl-vets is-active" aria-current="page">For Vets</a>
+    </nav>
+    <a class="btn btn-teal nav-cta" href="#refer">Refer a patient</a>
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="nav-menu" class="nav-menu" aria-label="Menu" hidden>
+    <a href="training.html" class="nl nl-training">Training</a>
+      <a href="modification.html" class="nl nl-mod">Modification</a>
+      <a href="medicine.html" class="nl nl-med">Medicine</a>
+      <a href="pricing.html" class="nl nl-cost">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nl nl-team">Team</a>
+      <a href="referring-vets.html" class="nl nl-vets is-active" aria-current="page">For Vets</a>
+    <a class="btn btn-teal" href="#refer">Refer a patient</a>
+  </nav>
+</header>
+<main id="main">
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
-    <div class="nav-links">
-      <a href="training.html" class="nl-training">Training</a>
-      <a href="modification.html" class="nl-mod">Modification</a>
-      <a href="medicine.html" class="nl-med">Medicine</a>
+<section id="hero" class="hero">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">For Referring Veterinarians</p>
+      <h1 class="h1-sm">A specialist partner <span class="mk"><svg aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M2 17 C 60 9, 160 5, 298 9 C 200 10, 110 14, 4 21 Z" fill="#0E8079"/></svg><span>for behavioral medicine.</span></span></h1>
+      <p class="lede">Gigi's Behavior offers board-certified veterinary behavioral medicine consults for patients whose behavioral presentations warrant specialist evaluation, diagnosis, and integrated treatment planning.</p>
+      <div class="btns"><a class="btn btn-black" href="#refer">Submit a referral</a><a class="btn btn-line-dark" href="#process">How it works</a></div>
     </div>
-    <div class="nav-sub-links">
-      <a href="pricing.html" class="nl-cost">Cost Transparency</a>
-      <a href="meet-the-team.html" class="nl-team">Team</a>
-      <a href="referring-vets.html" class="nl-vets nav-link-active">For Vets</a>
-    </div>
-    <div class="nav-right">
-      <a href="#referral-form" class="nav-cta">Refer a Patient</a>
-      <button id="nav-burger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="card-black" style="padding: 40px">
+      <p class="eyebrow">Gigi's Veterinary Behaviorist</p>
+      <p class="h3">Diplomate ACVB</p>
+      <p class="muted">Board-Certified Veterinary Behaviorist</p>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px 44px; margin-top: 32px; padding-top: 28px; padding-left: 14px; border-top: 1px solid var(--n700)">
+        <span class="ring "><svg aria-hidden="true" viewBox="0 0 300 160" preserveAspectRatio="none" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"><path d="M30 84 C 22 30, 120 8, 190 12 C 270 16, 296 54, 288 92 C 278 140, 180 154, 110 150 C 40 146, 8 112, 34 62"/></svg><span><span class="data" style="font-size: 64px; line-height: 1; color: var(--teal); display: inline-block; padding: 4px 6px">&lt;100</span></span></span>
+        <p style="flex: 1 1 200px; color: var(--n100)">Fewer than 100 practicing board-certified Veterinary Behaviorists in the United States.</p>
+      </div>
     </div>
   </div>
-  <div id="nav-mobile-menu">
-    <a href="training.html">Training</a>
-    <a href="modification.html">Modification</a>
-    <a href="medicine.html">Medicine</a>
-    <a href="pricing.html">Cost Transparency</a>
-    <a href="meet-the-team.html">Team</a>
-    <a href="referring-vets.html" class="nav-link-active">For Vets</a>
-    <a href="#referral-form" class="nav-mobile-cta">Refer a Patient</a>
+</section>
+
+<section id="collaboration" class="band on-white rule-top">
+  <div class="wrap">
+    <p class="eyebrow">The collaboration model</p>
+    <h2 class="h2">How we work together.</h2>
+    <p class="lede">When you refer a patient to Gigi's, you remain the prescribing partner. Ohio telemedicine regulations limit prescription authority to 14 days per telemedicine visit. After each visit, prescription continuation transitions to you. Gigi's manages the behavioral case, develops the treatment plan, and keeps you informed throughout. Your client should feel supported by a team, not handed off.</p>
+    <div class="grid g3 mt-l">
+      <div class="card top-med-ink"><p class="eyebrow" style="margin-bottom: 8px">Prescriptions</p><p class="h3">You prescribe, we manage the case</p><p class="small muted mt-s">We collaborate with you on the prescription transition. You continue the medication your client's animal is already on; we continue managing the behavior plan.</p></div>
+      <div class="card top-med-ink"><p class="eyebrow" style="margin-bottom: 8px">Boundaries</p><p class="h3">Joint care, clear boundaries</p><p class="small muted mt-s">We do not expect you to provide behavior counseling or modification. That stays with us. You handle prescription continuation; we handle everything else.</p></div>
+      <div class="card top-med-ink"><p class="eyebrow" style="margin-bottom: 8px">Communication</p><p class="h3">Communication throughout</p><p class="small muted mt-s">We provide clinical updates on your referred patients and are available for vet-to-vet consults at no charge for the transition call.</p></div>
+    </div>
   </div>
-</nav>
+</section>
+
+<section id="process" class="band">
+  <div class="wrap">
+    <p class="eyebrow">What to expect</p>
+    <h2 class="h2" style="margin-bottom: 40px">The referral process.</h2>
+    <div class="steps">
+      <div><span class="num-lg">01</span><h3 class="h4">You submit a referral</h3><p class="muted small">Use the referral form below, or call us directly. Include the patient's history, presenting complaint, and any current medications.</p></div>
+      <div><span class="num-lg">02</span><h3 class="h4">We schedule the client</h3><p class="muted small">Clients with your referral in hand are scheduled at first available. Clients who haven't yet obtained a referral are scheduled with a 2-week buffer.</p></div>
+      <div><span class="num-lg">03</span><h3 class="h4">Initial Behavioral Medicine Assessment</h3><p class="muted small">A 45-minute virtual appointment with our Veterinary Behaviorist. We complete a comprehensive behavioral evaluation, establish the VCPR, develop a diagnosis and treatment plan, and prescribe when appropriate.</p></div>
+      <div><span class="num-lg">04</span><h3 class="h4">We keep you in the loop</h3><p class="muted small">You'll receive a summary after the initial assessment. For the prescription transition, we coordinate the handoff directly with you or your team.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="appt-names" class="band on-white rule-top">
+  <div class="wrap">
+    <p class="eyebrow">Clinical reference</p>
+    <h2 class="h2">Defined appointment names.</h2>
+    <p class="lede">For clinical records, referral forms, and client communications, use these exact names.</p>
+    <div class="table-wrap mt-l"><table class="t"><thead><tr><th>Appointment name</th><th>Duration</th><th>Price</th><th>Provider</th></tr></thead><tbody><tr><td><strong>Initial Behavioral Medicine Assessment</strong></td><td class="n">45 min</td><td class="n">Bundle</td><td>Veterinary Behaviorist</td></tr><tr><td><strong>Medicine Check-In (Phone)</strong></td><td class="n">10 min</td><td class="n">Bundle</td><td>Behavioral Medicine Tech</td></tr><tr><td><strong>Medicine Check-In (Virtual)</strong><br><span class="tiny muted">Also available standalone at $210</span></td><td class="n">15 min</td><td class="n">Bundle / $210</td><td>Veterinary Behaviorist + Behavioral Medicine Tech</td></tr><tr><td><strong>Medicine Led Mod Starter Session (Virtual)</strong><br><span class="tiny muted">Week 4 combined</span></td><td class="n">40 min</td><td class="n">Bundle</td><td>Behavioral Medicine Tech<br><span class="tiny muted">Veterinary Behaviorist joins briefly</span></td></tr><tr><td><strong>Extended Medicine Check-In (Virtual)</strong></td><td class="n">30 min</td><td class="n">$300</td><td>Veterinary Behaviorist</td></tr><tr><td><strong>Vet-to-Vet Medicine Transition Call</strong><br><span class="tiny muted">Transition support</span></td><td class="n">20 min</td><td class="n">Free</td><td>Veterinary Behaviorist</td></tr><tr><td><strong>Vet-to-Vet Consulting Call</strong></td><td class="n">20 min</td><td class="n">$250</td><td>Veterinary Behaviorist</td></tr></tbody></table></div>
+  </div>
+</section>
+
+<section id="telemedicine" class="band">
+  <div class="wrap split split-top">
+    <div>
+      <p class="eyebrow">Ohio regulations</p>
+      <h2 class="h2">Ohio telemedicine: what this means for you.</h2>
+      <p class="lede">Under Ohio regulations, telemedicine prescriptions require a new VCPR visit every 14 days. This means prescription continuation after each visit transitions to you, the primary veterinarian. Here's how it works in practice:</p>
+    </div>
+    <div>
+      <ol style="list-style: none; padding: 0">
+        <li style="display: flex; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line)"><span class="num">01</span><span class="muted">Gigi's Veterinary Behaviorist prescribes at the initial assessment and at each subsequent virtual visit where the VCPR is re-established.</span></li>
+        <li style="display: flex; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line)"><span class="num">02</span><span class="muted">After 14 days, prescription continuation is your responsibility. Gigi's will coordinate the transition and provide the medication name, dose, and clinical context.</span></li>
+        <li style="display: flex; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)"><span class="num">03</span><span class="muted">You are not responsible for behavioral counseling, modification, or case management. That stays entirely with Gigi's. You're continuing a prescription already in progress.</span></li>
+      </ol>
+      <div class="card-black mt-m"><p class="eyebrow">Key principle</p><p class="h3">Your client should never feel handed off.</p><p class="muted mt-s">Gigi's manages the relationship and the behavior case. You handle prescription continuation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="vet-consult" class="band on-white rule-top">
+  <div class="wrap">
+    <p class="eyebrow">Direct access</p>
+    <h2 class="h2">Questions? Let's talk.</h2>
+    <p class="lede">If you have clinical questions about a current or prospective patient, our Veterinary Behaviorist is available for direct vet-to-vet consults.</p>
+    <div class="grid g2 mt-l">
+      <div class="card top-med-ink flex-card"><p class="h3">Vet-to-Vet Medicine Transition Call</p><p class="meta">Cost <span class="data">Free</span> &middot; Duration <span class="data">20 min</span></p><p class="small muted">For active referral transitions. Coordinate the prescription handoff, review the treatment plan, and ask questions about the case in progress.</p></div>
+      <div class="card top-med-ink flex-card"><p class="h3">Vet-to-Vet Consulting Call</p><p class="meta">Cost <span class="data">$250</span> &middot; Duration <span class="data">20 min</span></p><p class="small muted">For general behavioral medicine questions, case review, or clinical collaboration on a patient not yet referred.</p></div>
+    </div>
+    <a class="btn btn-black mt-m" href="#">Schedule a vet-to-vet call</a>
+  </div>
+</section>
+
+<section id="refer" class="band on-black">
+  <div class="wrap">
+    <p class="eyebrow">Referrals</p>
+    <h2 class="h2">Submit a referral.</h2>
+    <p class="lede">Use the form below to refer a patient. We'll reach out within one business day to schedule. If you prefer, call us directly.</p>
+    <div class="split split-top mt-l">
+      <div style="flex: 3 1 520px">
+        <p class="tiny" style="color: var(--n300); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px">Referral form, placeholder</p>
+        <form id="referral-form">
+          <div class="form-grid">
+            <div class="field"><label for="practice-name">Practice name</label><input type="text" id="practice-name" name="practice-name" placeholder="Your practice name" autocomplete="organization"></div>
+            <div class="field"><label for="vet-name">Referring veterinarian</label><input type="text" id="vet-name" name="vet-name" placeholder="Dr. First Last" autocomplete="name"></div>
+            <div class="field"><label for="patient-name">Patient name (animal)</label><input type="text" id="patient-name" name="patient-name" placeholder="Animal's name"></div>
+            <div class="field"><label for="patient-species">Species</label><input type="text" id="patient-species" name="patient-species" placeholder="Canine / Feline / Other"></div>
+          </div>
+          <div class="field"><label for="presenting-complaint">Presenting complaint</label><textarea id="presenting-complaint" name="presenting-complaint" placeholder="Describe the behavioral presentation and history..."></textarea></div>
+          <div class="field"><label for="current-medications">Current medications</label><textarea id="current-medications" name="current-medications" style="min-height: 72px" placeholder="List medications, doses, and duration..."></textarea></div>
+          <div class="field"><label for="contact-method">Preferred contact method</label><select id="contact-method" name="contact-method"><option value="" disabled selected>Select a preference</option><option value="phone">Phone</option><option value="email">Email</option><option value="fax">Fax</option></select></div>
+          <button type="submit" class="btn btn-teal">Submit referral</button>
+          <p class="small mt-s" style="color: var(--n200)"><strong style="color: #fff">For urgent behavioral presentations, call us directly.</strong> Do not use this form for emergencies.</p>
+        </form>
+        <div id="form-confirm" hidden style="padding: 32px; border: 1px solid var(--teal); margin-top: 16px">
+          <p class="eyebrow">Referral received</p>
+          <p style="color: var(--n100)">Thank you. We'll reach out within one business day to schedule. If you have urgent questions, contact us directly.</p>
+        </div>
+      </div>
+      <div style="flex: 2 1 320px; display: grid; gap: 0">
+        <div style="padding: 22px 0; border-top: 1px solid var(--n700)"><p class="eyebrow" style="margin-bottom: 6px">Response time</p><p class="h4">We'll be in touch within one business day</p><p class="small muted mt-s">Once we receive your referral, our team will contact you or your client to schedule the Initial Behavioral Medicine Assessment.</p></div>
+        <div style="padding: 22px 0; border-top: 1px solid var(--n700)"><p class="eyebrow" style="margin-bottom: 6px">Scheduling note</p><p class="h4">Referral in hand vs. referral outstanding</p><p class="small muted mt-s">Clients with your referral already submitted are scheduled at first available. Clients still waiting on a referral are scheduled with a 2-week buffer to allow administrative time before the appointment.</p></div>
+        <div style="padding: 22px 0; border-top: 1px solid var(--n700); border-bottom: 1px solid var(--n700)"><p class="eyebrow" style="margin-bottom: 6px">Questions?</p><p class="h4">Vet-to-vet consults available</p><p class="small muted mt-s">If you want to discuss a case before submitting a referral, our Veterinary Behaviorist is available for a complimentary Vet-to-Vet Medicine Transition Call. See the section above.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div id="stage-bar-wrap">
   <div id="stage-bar">
-    <a href="training.html" class="sbar-item sbar-training">
-      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.85);">Foundations</div>
-      <div class="sbar-label">Training</div>
-      <div class="sbar-price">From $42</div>
-    </a>
-    <a href="modification.html" class="sbar-item sbar-mod">
-      <div class="sbar-eyebrow" style="color:var(--teal);">Support</div>
-      <div class="sbar-label">Modification</div>
-      <div class="sbar-price">From $250</div>
-    </a>
-    <a href="medicine.html" class="sbar-item sbar-med">
-      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.5);">Specialty</div>
-      <div class="sbar-label">Medicine</div>
-      <div class="sbar-price">From $590</div>
-    </a>
-    <a href="index.html#cta-band" class="sbar-cta">
-      <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
-    </a>
-    <a href="referring-vets.html" class="sbar-vet">
-      <span class="vbar-label">Referring Vets</span>
-    </a>
+    <a href="training.html" class="sbar-item sbar-training"><span class="sbar-eyebrow">Foundations</span><span class="sbar-label">Training</span><span class="sbar-price">From $42</span></a>
+    <a href="modification.html" class="sbar-item sbar-mod"><span class="sbar-eyebrow">Support</span><span class="sbar-label">Modification</span><span class="sbar-price">From $250</span></a>
+    <a href="medicine.html" class="sbar-item sbar-med"><span class="sbar-eyebrow">Specialty</span><span class="sbar-label">Medicine</span><span class="sbar-price">From $590</span></a>
+    <a href="index.html#cta-band" class="sbar-cta">Not sure? Book a call</a>
+    <a href="referring-vets.html" class="sbar-vet">Referring Vets</a>
   </div>
 </div>
-
-<!-- 01 — HERO -->
-<section id="hero">
-  <div class="section-inner">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow reveal">For Referring Veterinarians</span>
-        <h1 class="hero-h1 reveal reveal-delay-1">A specialist partner<br>for <em>behavioral medicine</em>.</h1>
-        <p class="hero-sub reveal reveal-delay-2">Gigi's Behavior offers board-certified veterinary behavioral medicine consults for patients whose behavioral presentations warrant specialist evaluation, diagnosis, and integrated treatment planning.</p>
-        <div class="hero-ctas reveal reveal-delay-3">
-          <a href="#refer" class="btn-primary">Submit a referral</a>
-          <a href="#process" class="btn-ghost">How it works</a>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="credential-card">
-          <div class="cred-role">Gigi's Veterinary Behaviorist</div>
-          <span class="cred-dip">Diplomate ACVB</span>
-          <div class="cred-title">Board-Certified Veterinary Behaviorist</div>
-          <div class="cred-rule"></div>
-          <div class="cred-stat">
-            <strong>&lt;100</strong>
-            Fewer than 100 practicing board-certified Veterinary Behaviorists in the United States.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 02 — THE COLLABORATION MODEL -->
-<section id="collaboration">
-  <div class="section-inner">
-    <div class="collab-intro">
-      <div>
-        <span class="eyebrow reveal">The collaboration model</span>
-        <h2 class="section-h2 reveal reveal-delay-1">How we <em>work together</em>.</h2>
-      </div>
-      <div>
-        <p class="collab-body reveal reveal-delay-2">When you refer a patient to Gigi's, you remain the prescribing partner. Ohio telemedicine regulations limit prescription authority to 14 days per telemedicine visit — after each visit, prescription continuation transitions to you. Gigi's manages the behavioral case, develops the treatment plan, and keeps you informed throughout. Your client should feel supported by a team, not handed off.</p>
-      </div>
-    </div>
-    <div class="collab-points">
-      <div class="collab-point reveal">
-        <div class="collab-point-label">Prescriptions</div>
-        <div class="collab-point-title">You prescribe, we manage the case</div>
-        <div class="collab-point-body">We collaborate with you on the prescription transition. You continue the medication your client's animal is already on; we continue managing the behavior plan.</div>
-      </div>
-      <div class="collab-point reveal reveal-delay-1">
-        <div class="collab-point-label">Boundaries</div>
-        <div class="collab-point-title">Joint care, clear boundaries</div>
-        <div class="collab-point-body">We do not expect you to provide behavior counseling or modification. That stays with us. You handle prescription continuation; we handle everything else.</div>
-      </div>
-      <div class="collab-point reveal reveal-delay-2">
-        <div class="collab-point-label">Communication</div>
-        <div class="collab-point-title">Communication throughout</div>
-        <div class="collab-point-body">We provide clinical updates on your referred patients and are available for vet-to-vet consults at no charge for the transition call.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 — WHAT TO EXPECT -->
-<section id="process">
-  <div class="section-inner">
-    <span class="eyebrow reveal" style="color:var(--teal-deep);">What to expect</span>
-    <h2 class="section-h2 reveal reveal-delay-1">The referral <em>process</em>.</h2>
-    <div class="process-steps" style="margin-top:48px;">
-      <div class="process-step reveal">
-        <span class="step-num">01</span>
-        <div class="step-title">You submit a referral</div>
-        <div class="step-body">Use the referral form below, or call us directly. Include the patient's history, presenting complaint, and any current medications.</div>
-      </div>
-      <div class="process-step reveal reveal-delay-1">
-        <span class="step-num">02</span>
-        <div class="step-title">We schedule the client</div>
-        <div class="step-body">Clients with your referral in hand are scheduled at first available. Clients who haven't yet obtained a referral are scheduled with a 2-week buffer.</div>
-      </div>
-      <div class="process-step reveal reveal-delay-2">
-        <span class="step-num">03</span>
-        <div class="step-title">Initial Behavioral Medicine Assessment</div>
-        <div class="step-body">A 45-minute virtual appointment with our Veterinary Behaviorist. We complete a comprehensive behavioral evaluation, establish the VCPR, develop a diagnosis and treatment plan, and prescribe when appropriate.</div>
-      </div>
-      <div class="process-step reveal reveal-delay-3">
-        <span class="step-num">04</span>
-        <div class="step-title">We keep you in the loop</div>
-        <div class="step-body">You'll receive a summary after the initial assessment. For the prescription transition, we coordinate the handoff directly with you or your team.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 — APPOINTMENT NAMES -->
-<section id="appt-names">
-  <div class="section-inner">
-    <span class="eyebrow reveal">Clinical reference</span>
-    <h2 class="section-h2 reveal reveal-delay-1">Defined appointment names.</h2>
-    <p class="appt-intro reveal reveal-delay-2">For clinical records, referral forms, and client communications — use these exact names.</p>
-    <div class="appt-table-wrap reveal reveal-delay-2">
-      <table class="appt-table">
-        <thead>
-          <tr>
-            <th style="min-width:280px;">Appointment name</th>
-            <th>Duration</th>
-            <th>Price</th>
-            <th>Provider</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="appt-name">Initial Behavioral Medicine Assessment</div></td>
-            <td><span class="appt-dur">45 min</span></td>
-            <td><span class="appt-price">Bundle</span></td>
-            <td><div class="appt-provider">Veterinary Behaviorist</div></td>
-          </tr>
-          <tr>
-            <td><div class="appt-name">Medicine Check-In (Phone)</div></td>
-            <td><span class="appt-dur">10 min</span></td>
-            <td><span class="appt-price">Bundle</span></td>
-            <td><div class="appt-provider">Behavioral Medicine Tech</div></td>
-          </tr>
-          <tr>
-            <td><div class="appt-name">Medicine Check-In (Virtual)</div></td>
-            <td><span class="appt-dur">15 min</span></td>
-            <td><span class="appt-price">Bundle / $210</span></td>
-            <td><div class="appt-provider">Veterinary Behaviorist + Behavioral Medicine Tech<br><em>Also available standalone at $210</em></div></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="appt-name">Medicine Led Mod Starter Session (Virtual)</div>
-              <div class="appt-tag">Week 4 combined</div>
-            </td>
-            <td><span class="appt-dur">40 min</span></td>
-            <td><span class="appt-price">Bundle</span></td>
-            <td><div class="appt-provider">Behavioral Medicine Tech<br><em>Veterinary Behaviorist joins briefly</em></div></td>
-          </tr>
-          <tr>
-            <td><div class="appt-name">Extended Medicine Check-In (Virtual)</div></td>
-            <td><span class="appt-dur">30 min</span></td>
-            <td><span class="appt-price">$300</span></td>
-            <td><div class="appt-provider">Veterinary Behaviorist</div></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="appt-name">Vet-to-Vet Medicine Transition Call</div>
-              <div class="appt-tag">Transition support</div>
-            </td>
-            <td><span class="appt-dur">20 min</span></td>
-            <td><span class="appt-free">Free</span></td>
-            <td><div class="appt-provider">Veterinary Behaviorist</div></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="appt-name">Vet-to-Vet Consulting Call</div>
-            </td>
-            <td><span class="appt-dur">20 min</span></td>
-            <td><span class="appt-price">$250</span></td>
-            <td><div class="appt-provider">Veterinary Behaviorist</div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- 05 — OHIO TELEMEDICINE -->
-<section id="telemedicine">
-  <div class="section-inner">
-    <span class="eyebrow reveal">Ohio regulations</span>
-    <h2 class="section-h2 reveal reveal-delay-1">Ohio telemedicine — <em>what this means for you</em>.</h2>
-    <p class="tele-intro reveal reveal-delay-2">Under Ohio regulations, telemedicine prescriptions require a new VCPR visit every 14 days. This means prescription continuation after each visit transitions to you, the primary veterinarian. Here's how it works in practice:</p>
-    <div class="tele-grid">
-      <div class="tele-step reveal">
-        <span class="tele-step-num">01</span>
-        <div class="tele-step-body">Gigi's Veterinary Behaviorist <strong>prescribes at the initial assessment</strong> and at each subsequent virtual visit where the VCPR is re-established.</div>
-      </div>
-      <div class="tele-step reveal reveal-delay-1">
-        <span class="tele-step-num">02</span>
-        <div class="tele-step-body">After 14 days, <strong>prescription continuation is your responsibility.</strong> Gigi's will coordinate the transition and provide the medication name, dose, and clinical context.</div>
-      </div>
-      <div class="tele-step reveal reveal-delay-2">
-        <span class="tele-step-num">03</span>
-        <div class="tele-step-body">You are <strong>not responsible</strong> for behavioral counseling, modification, or case management — that stays entirely with Gigi's. You're continuing a prescription already in progress.</div>
-      </div>
-    </div>
-    <div class="tele-callout reveal reveal-delay-1">
-      <span class="tele-callout-label">Key principle</span>
-      <p class="tele-callout-body">Your client should never feel handed off. Gigi's manages the relationship and the behavior case. You handle prescription continuation.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 06 — VET-TO-VET CONSULT -->
-<section id="vet-consult">
-  <div class="section-inner">
-    <span class="eyebrow reveal" style="color:var(--teal-deep);">Direct access</span>
-    <h2 class="section-h2 reveal reveal-delay-1">Questions? Let's talk.</h2>
-    <p class="consult-intro reveal reveal-delay-2">If you have clinical questions about a current or prospective patient, our Veterinary Behaviorist is available for direct vet-to-vet consults.</p>
-    <div class="consult-grid">
-      <div class="consult-card reveal">
-        <div class="consult-card-name">Vet-to-Vet Medicine Transition Call</div>
-        <div class="consult-meta">
-          <div class="consult-meta-item">
-            <span class="consult-meta-label">Cost</span>
-            <span class="consult-meta-val free">Free</span>
-          </div>
-          <div class="consult-meta-item">
-            <span class="consult-meta-label">Duration</span>
-            <span class="consult-meta-val" style="color:var(--teal-deep);">20 min</span>
-          </div>
-        </div>
-        <div class="consult-card-body">For active referral transitions. Coordinate the prescription handoff, review the treatment plan, and ask questions about the case in progress.</div>
-      </div>
-      <div class="consult-card reveal reveal-delay-1">
-        <div class="consult-card-name">Vet-to-Vet Consulting Call</div>
-        <div class="consult-meta">
-          <div class="consult-meta-item">
-            <span class="consult-meta-label">Cost</span>
-            <span class="consult-meta-val paid">$250</span>
-          </div>
-          <div class="consult-meta-item">
-            <span class="consult-meta-label">Duration</span>
-            <span class="consult-meta-val" style="color:var(--teal-deep);">20 min</span>
-          </div>
-        </div>
-        <div class="consult-card-body">For general behavioral medicine questions, case review, or clinical collaboration on a patient not yet referred.</div>
-      </div>
-    </div>
-    <div class="reveal reveal-delay-2">
-      <a href="#refer" class="btn-teal consult-cta">Schedule a vet-to-vet call</a>
-    </div>
-  </div>
-</section>
-
-<!-- 07 — REFERRAL FORM -->
-<section id="refer">
-  <div class="section-inner">
-    <span class="eyebrow reveal">Referrals</span>
-    <h2 class="section-h2 reveal reveal-delay-1" style="color:#fff;">Submit a <em>referral</em>.</h2>
-    <p class="refer-intro reveal reveal-delay-2">Use the form below to refer a patient. We'll reach out within one business day to schedule. If you prefer, call us directly.</p>
-    <div class="refer-grid">
-      <div class="form-wrap reveal reveal-delay-2">
-        <div class="form-placeholder-label">Referral form — placeholder</div>
-        <form id="referral-form" onsubmit="handleFormSubmit(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="practice-name">Practice name</label>
-              <input class="form-input" type="text" id="practice-name" name="practice-name" placeholder="Your practice name" autocomplete="organization">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="vet-name">Referring veterinarian</label>
-              <input class="form-input" type="text" id="vet-name" name="vet-name" placeholder="Dr. First Last" autocomplete="name">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="patient-name">Patient name (animal)</label>
-              <input class="form-input" type="text" id="patient-name" name="patient-name" placeholder="Animal's name">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="patient-species">Species</label>
-              <input class="form-input" type="text" id="patient-species" name="patient-species" placeholder="Canine / Feline / Other">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="presenting-complaint">Presenting complaint</label>
-            <textarea class="form-input" id="presenting-complaint" name="presenting-complaint" placeholder="Describe the behavioral presentation and history..."></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="current-medications">Current medications</label>
-            <textarea class="form-input" id="current-medications" name="current-medications" style="min-height:72px;" placeholder="List medications, doses, and duration..."></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="contact-method">Preferred contact method</label>
-            <select class="form-input" id="contact-method" name="contact-method">
-              <option value="" disabled selected>Select a preference</option>
-              <option value="phone">Phone</option>
-              <option value="email">Email</option>
-              <option value="fax">Fax</option>
-            </select>
-          </div>
-          <button type="submit" class="form-submit">Submit referral</button>
-          <div class="form-note">
-            <strong>For urgent behavioral presentations, call us directly.</strong> Do not use this form for emergencies.
-          </div>
-        </form>
-        <div id="form-confirm" hidden style="padding:32px;background:rgba(42,210,201,0.08);border:1px solid rgba(42,210,201,0.25);margin-top:16px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Referral received</div>
-          <div style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;">Thank you. We'll reach out within one business day to schedule. If you have urgent questions, contact us directly.</div>
-        </div>
-      </div>
-      <div class="refer-aside reveal reveal-delay-3">
-        <div class="aside-block">
-          <span class="aside-label">Response time</span>
-          <div class="aside-title">We'll be in touch within one business day</div>
-          <div class="aside-body">Once we receive your referral, our team will contact you or your client to schedule the Initial Behavioral Medicine Assessment.</div>
-        </div>
-        <div class="aside-block">
-          <span class="aside-label">Scheduling note</span>
-          <div class="aside-title">Referral in hand vs. referral outstanding</div>
-          <div class="aside-body">Clients with your referral already submitted are scheduled at first available. Clients still waiting on a referral are scheduled with a 2-week buffer to allow administrative time before the appointment.</div>
-        </div>
-        <div class="aside-block">
-          <span class="aside-label">Questions?</span>
-          <div class="aside-title">Vet-to-vet consults available</div>
-          <div class="aside-body">If you want to discuss a case before submitting a referral, our Veterinary Behaviorist is available for a complimentary Vet-to-Vet Medicine Transition Call. See the section above.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
+</main>
 <footer id="footer">
-  <div class="section-inner">
-    <div class="footer-grid">
+  <div class="wrap">
+    <div class="ft-grid">
       <div>
-        <div class="footer-brand-name"><img class="footer-logo" src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="1249" height="161"></div>
-        <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGISBEHAVIOR.ORG</div>
+        <img class="ft-logo" src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="186" height="24">
+        <p style="margin-top: 16px; color: #fff">Judgement Free Behavior Care. At Every Stage.</p>
+        <p class="tiny" style="margin-top: 10px; letter-spacing: 0.12em; font-weight: 700; color: var(--n300)">GIGISBEHAVIOR.ORG</p>
       </div>
-      <div>
-        <div class="footer-col-label">Stages of care</div>
-        <div class="footer-links">
-          <a href="training.html">Behavioral Training</a>
-          <a href="modification.html">Behavioral Modification</a>
-          <a href="medicine.html">Behavioral Medicine</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-label">Get started</div>
-        <div class="footer-links">
-          <a href="index.html#cta-band">Care Navigation Call</a>
-          <a href="#" data-quiz-trigger="training">Book a class</a>
-          <a href="referring-vets.html">For referring vets</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-label">Gigi's</div>
-        <div class="footer-links">
-          <a href="#">About</a>
-          <a href="#">Rescue &amp; Placement</a>
-          <a href="#">Veterinary Services</a>
-          <a href="#">Resources</a>
-        </div>
-      </div>
+      <div><strong>Stages of care</strong><div class="ft-links"><a href="training.html">Behavioral Training</a><a href="modification.html">Behavioral Modification</a><a href="medicine.html">Behavioral Medicine</a></div></div>
+      <div><strong>Get started</strong><div class="ft-links"><a href="index.html#cta-band">Care Navigation Call</a><a href="#" data-quiz-trigger="training">Book a class</a><a href="referring-vets.html">For referring vets</a></div></div>
+      <div><strong>Gigi's</strong><div class="ft-links"><a href="#">About</a><a href="#">Rescue &amp; Placement</a><a href="#">Veterinary Services</a><a href="#">Resources</a></div></div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-legal">© 2026 Gigi's. All rights reserved. Judgement-Free Adoption™</div>
-      <a class="footer-parent" href="https://gigis.org"><img src="images/gigis-logo-teal.png" alt="Gigi's" width="764" height="566"><span class="footer-url">GIGIS.ORG</span></a>
+    <div class="ft-bottom">
+      <p>&copy; 2026 Gigi's. All rights reserved. Judgement Free Adoption<span class="tm">&trade;</span></p>
+      <a class="ft-parent" href="https://gigis.org"><img src="images/gigis-logo-teal.png" alt="Gigi's" width="86" height="64">GIGIS.ORG</a>
     </div>
   </div>
 </footer>
-
+<script src="gbs-class-quiz.js?v=20261027a"></script>
 <script>
-const bar = document.getElementById('progress-bar');
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-  bar.style.width = Math.min(pct, 100) + '%';
-}, { passive: true });
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
-const navBurger = document.getElementById('nav-burger');
-const navMobileMenu = document.getElementById('nav-mobile-menu');
-navBurger.addEventListener('click', () => {
-  const isOpen = navMobileMenu.classList.toggle('open');
-  navBurger.setAttribute('aria-expanded', isOpen);
-});
-navMobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => { navMobileMenu.classList.remove('open'); navBurger.setAttribute('aria-expanded', 'false'); });
-});
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
-}, { threshold: 0.12 });
-reveals.forEach(el => revealObs.observe(el));
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  reveals.forEach(el => el.classList.add('visible'));
-}
-function handleFormSubmit(e) {
-  e.preventDefault();
-  document.getElementById('referral-form').hidden = true;
-  document.getElementById('form-confirm').hidden = false;
-}
-(function(){
-  var bar = document.getElementById('stage-bar-wrap');
-  if(!bar) return;
-  var shown = false;
-  window.addEventListener('scroll', function(){
-    var y = window.pageYOffset || document.documentElement.scrollTop;
-    if(y > 300 && !shown){ bar.classList.add('visible'); shown = true; }
-    else if(y <= 300 && shown){ bar.classList.remove('visible'); shown = false; }
-  }, {passive:true});
+(function () {
+  var b = document.querySelector('.nav-burger'), m = document.getElementById('nav-menu');
+  if (b && m) {
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', String(!open));
+      b.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      m.hidden = open;
+    });
+    m.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', 'Open menu'); m.hidden = true; }
+    });
+  }
+  var bar = document.getElementById('stage-bar-wrap'), hero = document.querySelector('.hero');
+  function check() {
+    var limit = hero ? hero.offsetTop + hero.offsetHeight - 80 : 300;
+    if (window.scrollY > limit) bar.classList.add('visible'); else bar.classList.remove('visible');
+  }
+  if (bar) { window.addEventListener('scroll', check, { passive: true }); check(); }
 })();
 </script>
-
-<script src="gbs-class-quiz.js?v=20261015f" defer></script>
+<script>
+(function () {
+  var f = document.getElementById('referral-form');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    f.hidden = true;
+    var c = document.getElementById('form-confirm'); c.hidden = false; c.setAttribute('tabindex', '-1'); c.focus();
+  });
+})();
+</script>
 </body>
 </html>

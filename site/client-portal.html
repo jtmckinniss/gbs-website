@@ -6,953 +6,173 @@
 <title>Client Portal | Gigi's Behavior</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="gbs-shared.css?v=20261015f">
-<style>
-/* ── LAYOUT: single-column portal page; black hero, cream/kale alternating sections ── */
-:root /* page overrides */ {
-  /* page tokens */ --bg: var(--black);
-  --fg: #fff;
-}
-
-/* No dark-mode overrides: this page commits to its own palette intentionally */
-
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body {
-  background: var(--black);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-::selection { background: var(--teal); color: var(--black); }
-img { max-width: 100%; display: block; }
-a { transition: color var(--transition); }
-
-/* ── PROGRESS BAR ── */
-
-/* ── SECTION INNER / LAYOUT ── */
-.section-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-@media (max-width: 600px) {
-  .section-inner { padding: 0 16px; }
-}
-
-/* ── NAV ── */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ── REVEAL ── */
-
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-1 { transition-delay: 0ms; }
-.reveal-2 { transition-delay: 80ms; }
-.reveal-3 { transition-delay: 160ms; }
-.reveal-4 { transition-delay: 240ms; }
-
-/* ── EMPHASIS MARK (hand-drawn teal stroke on em) ── */
-em {
-  font-style: normal;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 8px;
-  padding-bottom: 3px;
-  display: inline;
-}
-
-/* ── EYEBROW ── */
-.eyebrow {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--teal);
-  display: block;
-  margin-bottom: 16px;
-}
-.eyebrow.on-cream { color: var(--teal-deep); }
-
-/* ── SECTION PAD ── */
-.section-pad { padding: 96px 0; }
-.section-pad-sm { padding: 64px 0; }
-@media (max-width: 600px) {
-  .section-pad { padding: 64px 0; }
-  .section-pad-sm { padding: 48px 0; }
-}
-
-/* ══════════════════════════════════════════
-   01 — HERO / LOGIN
-══════════════════════════════════════════ */
-#portal-login {
-  background: var(--black);
-  padding-top: calc(64px + env(safe-area-inset-top, 0px));
-  padding-bottom: 0;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  padding: 80px 0 80px;
-}
-@media (max-width: 860px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 48px;
-    padding: 60px 0;
-  }
-}
-.hero-left {}
-.hero-h1 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(44px, 6.5vw, 80px);
-  line-height: 0.96;
-  letter-spacing: -0.02em;
-  color: #fff;
-  margin-top: 8px;
-  text-wrap: balance;
-}
-.hero-sub {
-  margin-top: 24px;
-  font-size: 17px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.65);
-  max-width: 46ch;
-}
-.hero-cta-wrap {
-  margin-top: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-.btn-primary {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--butter);
-  color: var(--black);
-  text-decoration: none;
-  padding: 18px 36px;
-  border: none;
-  cursor: pointer;
-  transition: opacity var(--transition), box-shadow var(--transition);
-}
-.btn-primary:hover {
-  opacity: 0.9;
-  box-shadow: 4px 4px 0 var(--butter-border);
-}
-.hero-new-note {
-  font-size: 13px;
-  color: rgba(255,255,255,0.45);
-}
-.hero-new-note a {
-  color: rgba(255,255,255,0.65);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-.hero-new-note a:hover { color: var(--teal); }
-
-/* Portal mockup */
-.portal-mockup {
-  background: #0D0D0D;
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-}
-.portal-mockup::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--teal);
-}
-.mockup-topbar {
-  background: #141414;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.mockup-dots {
-  display: flex;
-  gap: 6px;
-}
-.mockup-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  display: block;
-}
-.mockup-url {
-  flex: 1;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 5px 12px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.04em;
-}
-.mockup-body {
-  padding: 24px 20px 28px;
-}
-.mockup-logo-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-.mockup-logo-chip {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--teal);
-  text-transform: uppercase;
-}
-.mockup-logo-sep {
-  width: 1px;
-  height: 14px;
-  background: rgba(255,255,255,0.15);
-}
-.mockup-logo-sub {
-  font-family: var(--font-body);
-  font-size: 10px;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.08em;
-}
-.mockup-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.mockup-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 14px 14px;
-  position: relative;
-}
-.mockup-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 2px;
-  height: 100%;
-  background: var(--teal);
-  opacity: 0.6;
-}
-.mockup-card.butter-accent::before { background: var(--butter); opacity: 0.7; }
-.mockup-card-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 6px;
-}
-.mockup-card-value {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.2;
-}
-.mockup-full-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 14px 14px;
-  margin-bottom: 10px;
-  position: relative;
-}
-.mockup-full-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 2px;
-  height: 100%;
-  background: var(--butter);
-  opacity: 0.7;
-}
-.mockup-full-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 6px;
-}
-.mockup-full-value {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: rgba(255,255,255,0.7);
-}
-.mockup-pill-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.mockup-pill {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.35);
-}
-.mockup-pill.active {
-  border-color: var(--teal);
-  color: var(--teal);
-}
-
-/* ══════════════════════════════════════════
-   02 — WHAT'S IN THE PORTAL
-══════════════════════════════════════════ */
-#what-you-can-do {
-  background: var(--cream);
-  color: var(--ink);
-}
-.section-h2 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(32px, 4.8vw, 56px);
-  line-height: 0.98;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.section-h2.on-dark { color: #fff; }
-.capability-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin-top: 56px;
-}
-@media (max-width: 680px) {
-  .capability-grid { grid-template-columns: 1fr; }
-}
-.cap-card {
-  background: var(--cream-soft);
-  border: 1px solid var(--gray-line);
-  padding: 36px 32px;
-  transition: box-shadow var(--transition), transform var(--transition);
-}
-.cap-card:hover {
-  box-shadow: 4px 4px 0 var(--teal-deep);
-  transform: translate(-1px, -1px);
-}
-.cap-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 20px;
-  flex-shrink: 0;
-}
-.cap-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 21px;
-  line-height: 1.14;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.cap-desc {
-  font-size: 15px;
-  color: var(--ink-warm);
-  line-height: 1.65;
-}
-
-/* ══════════════════════════════════════════
-   03 — CONTACT & SUPPORT
-══════════════════════════════════════════ */
-#contact {
-  background: var(--black);
-  color: #fff;
-  text-align: center;
-}
-.phone-display {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: clamp(48px, 9vw, 96px);
-  color: var(--teal);
-  letter-spacing: -0.01em;
-  line-height: 1;
-  margin: 28px 0 16px;
-  display: block;
-  word-break: break-all;
-}
-.phone-note {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 40px;
-}
-.contact-secondary {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.contact-link-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.contact-link-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-}
-.contact-link-action {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--teal);
-  text-decoration: none;
-  transition: opacity var(--transition);
-}
-.contact-link-action:hover { opacity: 0.7; }
-
-/* ══════════════════════════════════════════
-   04 — FOR EXISTING CLIENTS
-══════════════════════════════════════════ */
-#existing-clients {
-  background: var(--kale);
-  color: #fff;
-  border-top: 2px solid var(--butter-border);
-}
-.existing-body {
-  font-size: 17px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.75);
-  max-width: 64ch;
-  margin-top: 24px;
-}
-.client-notes-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin-top: 40px;
-}
-@media (max-width: 640px) {
-  .client-notes-grid { grid-template-columns: 1fr; }
-}
-.client-note {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 28px 28px;
-}
-.client-note-title {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--butter);
-  margin-bottom: 12px;
-}
-.client-note-body {
-  font-size: 14px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.65);
-}
-.access-note {
-  margin-top: 36px;
-  padding: 16px 20px;
-  border-left: 2px solid var(--butter-border);
-  font-size: 14px;
-  color: rgba(255,255,255,0.55);
-  font-style: italic;
-}
-.access-note strong {
-  color: rgba(255,255,255,0.8);
-  font-style: normal;
-}
-.phone-inline {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--teal);
-}
-
-/* ══════════════════════════════════════════
-   05 — URGENT CARE
-══════════════════════════════════════════ */
-#urgent {
-  background: var(--cream);
-  color: var(--ink);
-}
-.urgent-h2 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(30px, 4.5vw, 52px);
-  line-height: 1.02;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.urgent-body {
-  margin-top: 20px;
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--ink-warm);
-  max-width: 58ch;
-}
-.urgent-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin-top: 40px;
-}
-@media (max-width: 640px) {
-  .urgent-options { grid-template-columns: 1fr; }
-}
-.urgent-option {
-  background: var(--cream-soft);
-  border: 1px solid var(--gray-line);
-  padding: 28px 28px;
-}
-.urgent-option-title {
-  font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 10px;
-}
-.urgent-phone {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--teal-deep);
-  display: block;
-  margin-bottom: 8px;
-}
-.urgent-option-body {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--ink-warm);
-}
-.urgent-disclaimer {
-  margin-top: 36px;
-  padding: 16px 20px;
-  border-left: 2px solid var(--gray-line);
-  font-size: 13px;
-  color: var(--gray-warm);
-  line-height: 1.6;
-}
-
-/* ── FOOTER ── */
-footer {
-  background: var(--black);
-  color: rgba(255,255,255,0.55);
-  padding: 64px 0 32px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-@media (max-width: 840px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-}
-@media (max-width: 480px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-/* ── BOTTOM STAGE BAR ── */
-
-
-/* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
-@media (min-width: 1081px) { #portal-login { padding-top: 94px !important; } }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Gochi+Hand&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="gbs-site.css?v=20261027a">
 </head>
 <body>
-<!-- Progress bar -->
-<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to content</a>
+<div class="util"><div class="wrap util-in">
+  <a href="client-portal.html">Client portal</a>
+  <a class="util-hi" href="referring-vets.html#refer">Refer a patient</a>
+</div></div>
+<header id="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="index.html" aria-label="Gigi's Behavior home"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="171" height="22"></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="training.html" class="nl nl-training">Training</a>
+      <a href="modification.html" class="nl nl-mod">Modification</a>
+      <a href="medicine.html" class="nl nl-med">Medicine</a>
+      <a href="pricing.html" class="nl nl-cost">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nl nl-team">Team</a>
+      <a href="referring-vets.html" class="nl nl-vets">For Vets</a>
+    </nav>
+    <a class="btn btn-teal nav-cta" href="#">Log in</a>
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="nav-menu" class="nav-menu" aria-label="Menu" hidden>
+    <a href="training.html" class="nl nl-training">Training</a>
+      <a href="modification.html" class="nl nl-mod">Modification</a>
+      <a href="medicine.html" class="nl nl-med">Medicine</a>
+      <a href="pricing.html" class="nl nl-cost">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nl nl-team">Team</a>
+      <a href="referring-vets.html" class="nl nl-vets">For Vets</a>
+    <a class="btn btn-teal" href="#">Log in</a>
+  </nav>
+</header>
+<main id="main">
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
-    <div class="nav-links">
-      <a href="training.html" class="nl-training">Training</a>
-      <a href="modification.html" class="nl-mod">Modification</a>
-      <a href="medicine.html" class="nl-med">Medicine</a>
+<section id="portal-login" class="hero on-black">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Client Portal</p>
+      <h1 class="h1-sm">Your care, <span class="mk"><svg aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M2 17 C 60 9, 160 5, 298 9 C 200 10, 110 14, 4 21 Z" fill="#2AD2C9"/></svg><span>all in one place.</span></span></h1>
+      <p class="lede">Manage your appointments, complete intake forms, and stay connected with your care team, all through the Gigi's client portal.</p>
+      <div class="btns"><a class="btn btn-teal" href="#">Log in to the client portal</a></div>
+      <p class="small mt-m" style="color: var(--n200)">New to Gigi's Behavior? Start with a <a href="index.html#cta-band" style="color: var(--teal); font-weight: 600">Care Navigation Call</a>.</p>
     </div>
-    <div class="nav-sub-links">
-      <a href="pricing.html" class="nl-cost">Cost Transparency</a>
-      <a href="meet-the-team.html" class="nl-team">Team</a>
-      <a href="referring-vets.html" class="nl-vets">For Vets</a>
-    </div>
-    <div class="nav-right">
-      <a href="#portal-login" class="nav-cta">Log in</a>
-      <button id="nav-burger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <div style="position: relative; padding: 24px 0 24px 24px">
+      <div role="img" aria-label="Preview of the Gigi's Behavior client portal" style="background: var(--cream-soft); color: var(--ink); border-top: 6px solid var(--teal); padding: 26px">
+        <p class="tiny" style="font-family: var(--data); color: var(--ink-2)">gigisbehavior.org/portal</p>
+        <p class="h3" style="margin: 8px 0 14px">Gigi's Behavior Client Portal</p>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line)"><span class="tiny" style="font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2)">Upcoming Appointments</span><span class="small" style="text-align: right">Medicine Check-In (Virtual) &middot; Nov 4 &middot; 2:00 PM</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line)"><span class="tiny" style="font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2)">Care Plan</span><span class="small" style="text-align: right">Month 2 active</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line)"><span class="tiny" style="font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2)">Manage Medications</span><span class="small" style="text-align: right">2 active</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line)"><span class="tiny" style="font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2)">Your Care Team</span><span class="small" style="text-align: right">Dr. SGG &middot; Behavioral Medicine Tech &middot; Client Success Manager</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px" class="lab-mod"><span class="chip">Intake Forms</span><span class="chip">Appointments</span><span class="chip">Resources</span></div>
+      </div>
+      <svg class="dd" aria-hidden="true" viewBox="0 0 40 40" fill="none" stroke="#E8C46B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="right: -8px; top: 0; width: 40px; height: 40px"><path d="M20 3 C 21 13, 24 18, 37 20 C 24 22, 21 27, 20 37 C 19 27, 16 22, 3 20 C 16 18, 19 13, 20 3 Z"/></svg>
+      <svg class="dd" aria-hidden="true" viewBox="0 0 120 80" fill="none" stroke="#E8C46B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="left: -30px; bottom: -6px; width: 100px; height: 68px"><path d="M6 70 C 30 66, 60 50, 86 18"/><path d="M70 20 L88 16 L88 34"/></svg>
     </div>
   </div>
-  <div id="nav-mobile-menu">
-    <a href="training.html">Training</a>
-    <a href="modification.html">Modification</a>
-    <a href="medicine.html">Medicine</a>
-    <a href="pricing.html">Cost Transparency</a>
-    <a href="meet-the-team.html">Team</a>
-    <a href="referring-vets.html">For Vets</a>
-    <a href="#portal-login" class="nav-mobile-cta">Log in</a>
+</section>
+
+<section id="what-you-can-do" class="band">
+  <div class="wrap">
+    <p class="eyebrow">What you can do</p>
+    <h2 class="h2">Everything you need, in one place.</h2>
+    <div class="grid g4 mt-l">
+      <div class="card top-teal"><p class="h4">Complete your intake form</p><p class="small muted mt-s">Before your first appointment, complete your dog's intake form directly in the portal. It's thorough, and it's what allows us to make the most of every session.</p></div>
+      <div class="card top-teal"><p class="h4">Request appointments</p><p class="small muted mt-s">Request follow-up sessions for <i class="svc">Training</i>, <i class="svc">Modification</i>, or <i class="svc">Medicine</i>, based on your existing care plan. New to Gigi's Behavior? Start with a Care Navigation Call.</p></div>
+      <div class="card top-teal"><p class="h4">View upcoming appointments</p><p class="small muted mt-s">See what's scheduled, when, and with which specialist. Add to your calendar directly from the portal.</p></div>
+      <div class="card top-teal"><p class="h4">Manage medications</p><p class="small muted mt-s">For families in the <i class="svc">Behavioral Medicine</i> program: track your dog's current medications, review dosing instructions, and coordinate refills with your care team.</p></div>
+    </div>
   </div>
-</nav>
+</section>
+
+<section id="contact" class="band on-kale">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Support</p>
+      <h2 class="h2">Need help? Text us.</h2>
+      <p class="lede">For questions about the portal, your appointments, or your care plan, text us. We respond during business hours.</p>
+    </div>
+    <div>
+      <p class="ring "><svg aria-hidden="true" viewBox="0 0 300 160" preserveAspectRatio="none" fill="none" stroke="#2AD2C9" stroke-width="3" stroke-linecap="round"><path d="M30 84 C 22 30, 120 8, 190 12 C 270 16, 296 54, 288 92 C 278 140, 180 154, 110 150 C 40 146, 8 112, 34 62"/></svg><span><span class="data" style="font-size: clamp(36px, 4.4vw, 56px); line-height: 1; color: #fff; display: inline-block; padding: 8px 10px">937-826-3119</span></span></p>
+      <p class="small mt-m" style="color: var(--n200)">Texts only. This number does not accept calls.</p>
+      <div class="mt-m" style="display: grid; gap: 14px">
+        <p class="small" style="color: var(--n100)">Urgent behavioral concern? <a class="go" href="#urgent">Urgent Behavioral Appointment</a></p>
+        <p class="small" style="color: var(--n100)">New to Gigi's Behavior? <a class="go" href="index.html#cta-band">Book a Care Navigation Call</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="existing-clients" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Current clients</p>
+    <h2 class="h2">Already working with us?</h2>
+    <p class="lede">If you're a current Gigi's Behavior client, the portal is how you stay connected between sessions. Your care team updates your records after every appointment. You can request follow-up sessions, review your dog's care plan, and communicate with your team.</p>
+    <div class="grid g2 mt-l">
+      <div class="card top-train"><p class="h3">Training clients</p><p class="muted mt-s">Schedule your next class directly through the portal or through the Offering Tree. Your trainer's notes are in your portal after each session.</p></div>
+      <div class="card top-mod-deep"><p class="h3">Modification and Medicine clients</p><p class="muted mt-s">Request follow-up sessions through the portal. Your consultant or Behavioral Medicine Tech reviews requests and confirms scheduling. Emergency or urgent concerns? Text us.</p></div>
+    </div>
+    <p class="small muted mt-m">Can't access your portal? Text 937-826-3119 and we'll help you get in.</p>
+  </div>
+</section>
+
+<section id="urgent" class="band on-black">
+  <div class="wrap">
+    <p class="eyebrow">Urgent care</p>
+    <h2 class="h2">Urgent behavioral concerns.</h2>
+    <p class="lede">If your dog is showing dangerous behavior (aggression that puts people or other animals at risk, extreme panic, or sudden behavioral change), don't wait for a scheduled appointment.</p>
+    <div class="grid g2 mt-l">
+      <div class="card-dark top-mod"><p class="eyebrow">Text us first</p><p class="data" style="font-size: 32px">937-826-3119</p><p class="muted mt-s">If you're a current client, text us. We'll assess the urgency and help you decide what to do next.</p></div>
+      <div class="card-dark top-med"><p class="eyebrow lab-med">Urgent Behavioral Appointment</p><p class="muted">An appointment for urgent behavioral presentations. Details and scheduling coming soon.</p></div>
+    </div>
+    <p class="small mt-m" style="color: var(--n200)">This is not an emergency veterinary service. If your dog requires immediate veterinary care, contact your primary vet or an emergency clinic.</p>
+  </div>
+</section>
 
 <div id="stage-bar-wrap">
   <div id="stage-bar">
-    <a href="training.html" class="sbar-item sbar-training">
-      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.85);">Foundations</div>
-      <div class="sbar-label">Training</div>
-      <div class="sbar-price">From $42</div>
-    </a>
-    <a href="modification.html" class="sbar-item sbar-mod">
-      <div class="sbar-eyebrow" style="color:var(--teal);">Support</div>
-      <div class="sbar-label">Modification</div>
-      <div class="sbar-price">From $250</div>
-    </a>
-    <a href="medicine.html" class="sbar-item sbar-med">
-      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.5);">Specialty</div>
-      <div class="sbar-label">Medicine</div>
-      <div class="sbar-price">From $590</div>
-    </a>
-    <a href="index.html#cta-band" class="sbar-cta">
-      <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
-    </a>
-    <a href="referring-vets.html" class="sbar-vet">
-      <span class="vbar-label">Referring Vets</span>
-    </a>
+    <a href="training.html" class="sbar-item sbar-training"><span class="sbar-eyebrow">Foundations</span><span class="sbar-label">Training</span><span class="sbar-price">From $42</span></a>
+    <a href="modification.html" class="sbar-item sbar-mod"><span class="sbar-eyebrow">Support</span><span class="sbar-label">Modification</span><span class="sbar-price">From $250</span></a>
+    <a href="medicine.html" class="sbar-item sbar-med"><span class="sbar-eyebrow">Specialty</span><span class="sbar-label">Medicine</span><span class="sbar-price">From $590</span></a>
+    <a href="index.html#cta-band" class="sbar-cta">Not sure? Book a call</a>
+    <a href="referring-vets.html" class="sbar-vet">Referring Vets</a>
   </div>
 </div>
-
-<!-- ══ 01 — HERO / LOGIN ══ -->
-<section id="portal-login">
-  <div class="section-inner">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="reveal reveal-1">
-          <span class="eyebrow">Client Portal</span>
-          <h1 class="hero-h1">Your care,<br><em>all in one place</em>.</h1>
-        </div>
-        <p class="hero-sub reveal reveal-2">Manage your appointments, complete intake forms, and stay connected with your care team — all through the Gigi's client portal.</p>
-        <div class="hero-cta-wrap reveal reveal-3">
-          <a href="#" class="btn-primary">Log in to the client portal</a>
-          <p class="hero-new-note">New to Gigi's Behavior? Start with a <a href="index.html#cta-band">Care Navigation Call</a>.</p>
-        </div>
-      </div>
-
-      <!-- Portal mockup -->
-      <div class="portal-mockup reveal reveal-4" aria-hidden="true">
-        <div class="mockup-topbar">
-          <div class="mockup-dots"><span></span><span></span><span></span></div>
-          <div class="mockup-url">gigisbehavior.org/portal</div>
-        </div>
-        <div class="mockup-body">
-          <div class="mockup-logo-row">
-            <span class="mockup-logo-chip">Gigi's Behavior</span>
-            <span class="mockup-logo-sep"></span>
-            <span class="mockup-logo-sub">Client Portal</span>
-          </div>
-          <div class="mockup-full-card">
-            <div class="mockup-full-label">Upcoming Appointments</div>
-            <div class="mockup-full-value">Medicine Check-In (Virtual) · Nov 4 · 2:00 PM</div>
-          </div>
-          <div class="mockup-row">
-            <div class="mockup-card">
-              <div class="mockup-card-label">Care Plan</div>
-              <div class="mockup-card-value">Month 2 active</div>
-            </div>
-            <div class="mockup-card butter-accent">
-              <div class="mockup-card-label">Manage Medications</div>
-              <div class="mockup-card-value">2 active</div>
-            </div>
-          </div>
-          <div class="mockup-full-card" style="background:rgba(42,210,201,0.04);border-color:rgba(42,210,201,0.15);">
-            <div class="mockup-full-label" style="color:rgba(42,210,201,0.5);">Your Care Team</div>
-            <div class="mockup-full-value" style="color:rgba(255,255,255,0.55);font-size:13px;">Dr. SGG · Behavioral Medicine Tech · Client Success Manager</div>
-          </div>
-          <div class="mockup-pill-row">
-            <span class="mockup-pill active">Intake Forms</span>
-            <span class="mockup-pill active">Appointments</span>
-            <span class="mockup-pill">Resources</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 02 — WHAT YOU CAN DO ══ -->
-<section id="what-you-can-do">
-  <div class="section-inner section-pad">
-    <div class="reveal reveal-1">
-      <span class="eyebrow on-cream">What you can do</span>
-      <h2 class="section-h2">Everything you need,<br><em>in one place</em>.</h2>
-    </div>
-    <div class="capability-grid">
-      <div class="cap-card reveal reveal-1">
-        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="6" y="6" width="28" height="28" stroke="#0E8079" stroke-width="1.5"/>
-          <path d="M12 20h16M20 12v16" stroke="#0E8079" stroke-width="1.5" stroke-linecap="square"/>
-          <rect x="10" y="10" width="8" height="8" fill="#E8C46B" opacity="0.3"/>
-        </svg>
-        <div class="cap-title">Complete your intake form</div>
-        <p class="cap-desc">Before your first appointment, complete your dog's intake form directly in the portal. It's thorough — and it's what allows us to make the most of every session.</p>
-      </div>
-      <div class="cap-card reveal reveal-2">
-        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="6" y="8" width="28" height="24" stroke="#0E8079" stroke-width="1.5"/>
-          <path d="M6 14h28" stroke="#0E8079" stroke-width="1.5"/>
-          <rect x="12" y="4" width="2" height="8" fill="#0E8079"/>
-          <rect x="26" y="4" width="2" height="8" fill="#0E8079"/>
-          <path d="M13 22h8M13 27h14" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="square"/>
-        </svg>
-        <div class="cap-title">Request appointments</div>
-        <p class="cap-desc">Request follow-up sessions for <i class="svc">Training</i>, <i class="svc">Modification</i>, or <i class="svc">Medicine</i> — based on your existing care plan. New to Gigi's Behavior? Start with a Care Navigation Call.</p>
-      </div>
-      <div class="cap-card reveal reveal-3">
-        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="20" cy="20" r="13" stroke="#2AD2C9" stroke-width="1.5"/>
-          <path d="M20 13v7l5 3" stroke="#2AD2C9" stroke-width="1.5" stroke-linecap="square"/>
-          <path d="M6 20h4M30 20h4M20 6v4M20 30v4" stroke="#0E8079" stroke-width="1" stroke-linecap="square" opacity="0.4"/>
-        </svg>
-        <div class="cap-title">View upcoming appointments</div>
-        <p class="cap-desc">See what's scheduled, when, and with which specialist. Add to your calendar directly from the portal.</p>
-      </div>
-      <div class="cap-card reveal reveal-4">
-        <svg class="cap-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="8" y="10" width="24" height="20" stroke="#0E8079" stroke-width="1.5"/>
-          <path d="M8 16h24" stroke="#C9A84C" stroke-width="1.5"/>
-          <path d="M14 22h5M14 27h12" stroke="#0E8079" stroke-width="1.5" stroke-linecap="square"/>
-          <circle cx="30" cy="11" r="5" fill="#1B1A18" stroke="#0E8079" stroke-width="1.5"/>
-          <path d="M28 11h4M30 9v4" stroke="#2AD2C9" stroke-width="1" stroke-linecap="square"/>
-        </svg>
-        <div class="cap-title">Manage medications</div>
-        <p class="cap-desc">For families in the <i class="svc">Behavioral Medicine</i> program: track your dog's current medications, review dosing instructions, and coordinate refills with your care team.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 03 — CONTACT & SUPPORT ══ -->
-<section id="contact">
-  <div class="section-inner section-pad" style="text-align:center;">
-    <div class="reveal reveal-1">
-      <span class="eyebrow">Support</span>
-      <h2 class="section-h2 on-dark">Need help? <em>Text us.</em></h2>
-    </div>
-    <p class="reveal reveal-2" style="margin-top:20px;font-size:17px;color:rgba(255,255,255,0.65);max-width:52ch;margin-left:auto;margin-right:auto;line-height:1.7;">For questions about the portal, your appointments, or your care plan — text us. We respond during business hours.</p>
-    <span class="phone-display reveal reveal-3" aria-label="Phone number 937-826-3119">937-826-3119</span>
-    <p class="phone-note reveal reveal-3">Texts only — this number does not accept calls.</p>
-    <div class="contact-secondary reveal reveal-4">
-      <div class="contact-link-group">
-        <span class="contact-link-label">Urgent behavioral concern?</span>
-        <a href="medicine.html#urgent" class="contact-link-action">Urgent Behavioral Appointment</a>
-      </div>
-      <div class="contact-link-group">
-        <span class="contact-link-label">New to Gigi's Behavior?</span>
-        <a href="index.html#cta-band" class="contact-link-action">Book a Care Navigation Call</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 04 — FOR EXISTING CLIENTS ══ -->
-<section id="existing-clients">
-  <div class="section-inner section-pad">
-    <div class="reveal reveal-1">
-      <span class="eyebrow">Current clients</span>
-      <h2 class="section-h2 on-dark">Already working with us?</h2>
-    </div>
-    <p class="existing-body reveal reveal-2">If you're a current Gigi's Behavior client, the portal is how you stay connected between sessions. Your care team updates your records after every appointment. You can request follow-up sessions, review your dog's care plan, and communicate with your team.</p>
-    <div class="client-notes-grid reveal reveal-3">
-      <div class="client-note">
-        <div class="client-note-title">Training clients</div>
-        <p class="client-note-body">Schedule your next class directly through the portal or through the Offering Tree. Your trainer's notes are in your portal after each session.</p>
-      </div>
-      <div class="client-note">
-        <div class="client-note-title">Modification and Medicine clients</div>
-        <p class="client-note-body">Request follow-up sessions through the portal. Your consultant or Behavioral Medicine Tech reviews requests and confirms scheduling. Emergency or urgent concerns? Text us.</p>
-      </div>
-    </div>
-    <div class="access-note reveal reveal-4">
-      <strong>Can't access your portal?</strong> Text <span class="phone-inline">937-826-3119</span> and we'll help you get in.
-    </div>
-  </div>
-</section>
-
-<!-- ══ 05 — URGENT CARE ══ -->
-<section id="urgent">
-  <div class="section-inner section-pad">
-    <div class="reveal reveal-1">
-      <span class="eyebrow on-cream">Urgent care</span>
-      <h2 class="urgent-h2">Urgent behavioral concerns.</h2>
-    </div>
-    <p class="urgent-body reveal reveal-2">If your dog is showing dangerous behavior — aggression that puts people or other animals at risk, extreme panic, or sudden behavioral change — don't wait for a scheduled appointment.</p>
-    <div class="urgent-options reveal reveal-3">
-      <div class="urgent-option">
-        <div class="urgent-option-title">Text us first</div>
-        <span class="urgent-phone">937-826-3119</span>
-        <p class="urgent-option-body">If you're a current client, text us. We'll assess the urgency and help you decide what to do next.</p>
-      </div>
-      <div class="urgent-option">
-        <div class="urgent-option-title">Urgent Behavioral Appointment</div>
-        <p class="urgent-option-body">An appointment for urgent behavioral presentations. Details and scheduling coming soon.</p>
-      </div>
-    </div>
-    <div class="urgent-disclaimer reveal reveal-4">
-      This is not an emergency veterinary service. If your dog requires immediate veterinary care, contact your primary vet or an emergency clinic.
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
+</main>
 <footer id="footer">
-  <div class="section-inner">
-    <div class="footer-grid">
+  <div class="wrap">
+    <div class="ft-grid">
       <div>
-        <div class="footer-brand-name"><img class="footer-logo" src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="1249" height="161"></div>
-        <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGISBEHAVIOR.ORG</div>
+        <img class="ft-logo" src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="186" height="24">
+        <p style="margin-top: 16px; color: #fff">Judgement Free Behavior Care. At Every Stage.</p>
+        <p class="tiny" style="margin-top: 10px; letter-spacing: 0.12em; font-weight: 700; color: var(--n300)">GIGISBEHAVIOR.ORG</p>
       </div>
-      <div>
-        <div class="footer-col-label">Stages of care</div>
-        <div class="footer-links">
-          <a href="training.html">Behavioral Training</a>
-          <a href="modification.html">Behavioral Modification</a>
-          <a href="medicine.html">Behavioral Medicine</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-label">Get started</div>
-        <div class="footer-links">
-          <a href="index.html#cta-band">Care Navigation Call</a>
-          <a href="#" data-quiz-trigger="training">Book a class</a>
-          <a href="referring-vets.html">For referring vets</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-label">Gigi's</div>
-        <div class="footer-links">
-          <a href="#">About</a>
-          <a href="#">Rescue &amp; Placement</a>
-          <a href="#">Veterinary Services</a>
-          <a href="#">Resources</a>
-        </div>
-      </div>
+      <div><strong>Stages of care</strong><div class="ft-links"><a href="training.html">Behavioral Training</a><a href="modification.html">Behavioral Modification</a><a href="medicine.html">Behavioral Medicine</a></div></div>
+      <div><strong>Get started</strong><div class="ft-links"><a href="index.html#cta-band">Care Navigation Call</a><a href="#" data-quiz-trigger="training">Book a class</a><a href="referring-vets.html">For referring vets</a></div></div>
+      <div><strong>Gigi's</strong><div class="ft-links"><a href="#">About</a><a href="#">Rescue &amp; Placement</a><a href="#">Veterinary Services</a><a href="#">Resources</a></div></div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-legal">© 2026 Gigi's. All rights reserved. Judgement-Free Adoption™</div>
-      <a class="footer-parent" href="https://gigis.org"><img src="images/gigis-logo-teal.png" alt="Gigi's" width="764" height="566"><span class="footer-url">GIGIS.ORG</span></a>
+    <div class="ft-bottom">
+      <p>&copy; 2026 Gigi's. All rights reserved. Judgement Free Adoption<span class="tm">&trade;</span></p>
+      <a class="ft-parent" href="https://gigis.org"><img src="images/gigis-logo-teal.png" alt="Gigi's" width="86" height="64">GIGIS.ORG</a>
     </div>
   </div>
 </footer>
-
+<script src="gbs-class-quiz.js?v=20261027a"></script>
 <script>
-const bar = document.getElementById('progress-bar');
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-  bar.style.width = Math.min(pct, 100) + '%';
-}, { passive: true });
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
-const navBurger = document.getElementById('nav-burger');
-const navMobileMenu = document.getElementById('nav-mobile-menu');
-navBurger.addEventListener('click', () => {
-  const isOpen = navMobileMenu.classList.toggle('open');
-  navBurger.setAttribute('aria-expanded', isOpen);
-});
-navMobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => { navMobileMenu.classList.remove('open'); navBurger.setAttribute('aria-expanded', 'false'); });
-});
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
-}, { threshold: 0.12 });
-reveals.forEach(el => revealObs.observe(el));
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  reveals.forEach(el => el.classList.add('visible'));
-}
-(function(){
-  var bar = document.getElementById('stage-bar-wrap');
-  if(!bar) return;
-  var shown = false;
-  window.addEventListener('scroll', function(){
-    var y = window.pageYOffset || document.documentElement.scrollTop;
-    if(y > 300 && !shown){ bar.classList.add('visible'); shown = true; }
-    else if(y <= 300 && shown){ bar.classList.remove('visible'); shown = false; }
-  }, {passive:true});
+(function () {
+  var b = document.querySelector('.nav-burger'), m = document.getElementById('nav-menu');
+  if (b && m) {
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', String(!open));
+      b.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      m.hidden = open;
+    });
+    m.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', 'Open menu'); m.hidden = true; }
+    });
+  }
+  var bar = document.getElementById('stage-bar-wrap'), hero = document.querySelector('.hero');
+  function check() {
+    var limit = hero ? hero.offsetTop + hero.offsetHeight - 80 : 300;
+    if (window.scrollY > limit) bar.classList.add('visible'); else bar.classList.remove('visible');
+  }
+  if (bar) { window.addEventListener('scroll', check, { passive: true }); check(); }
 })();
 </script>
-
-<script src="gbs-class-quiz.js?v=20261015f" defer></script>
 </body>
 </html>

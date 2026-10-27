@@ -6,1096 +6,248 @@
 <title>Behavioral Medicine | Gigi's Behavior</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="gbs-shared.css?v=20261015f">
-<style>
-/* ── Layout: single-column sections alternating dark/cream as GBS reference ── */
-:root /* page overrides */ {
-  --hero-bg: #0F0E0C;
-}
-
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body {
-  background: var(--black);
-  color: var(--ink);
-  font-family: var(--font-body);
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-::selection { background: var(--teal); color: var(--black); }
-
-/* ── PROGRESS BAR ── */
-
-/* ── NAV ── */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ── LAYOUT HELPERS ── */
-.section-inner {
-  max-width: 1280px; margin: 0 auto;
-  padding: 0 40px;
-}
-.section-pad { padding: 96px 0; }
-.section-pad-sm { padding: 72px 0; }
-
-/* ── REVEAL ANIMATION ── */
-
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-d1 { transition-delay: 80ms; }
-.reveal-d2 { transition-delay: 160ms; }
-.reveal-d3 { transition-delay: 240ms; }
-.reveal-d4 { transition-delay: 320ms; }
-
-/* ── IMAGE PLACEHOLDER ── */
-.img-placeholder {
-  background: repeating-linear-gradient(
-    45deg, #cacaca, #cacaca 8px, #e8e8e8 8px, #e8e8e8 16px
-  );
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-body); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: #fff; text-align: center; padding: 20px;
-}
-
-/* ── EYEBROW ── */
-.eyebrow {
-  font-family: var(--font-body); font-weight: 800; font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--teal); display: block; margin-bottom: 16px;
-}
-.eyebrow-cream { color: var(--butter-text); }
-
-/* ── SECTION HEADLINE EM STROKE ── */
-.hero-h em, .section-h em {
-  font-style: normal;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='8' viewBox='0 0 300 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5.5 C20 4, 60 3.5, 100 4.5 S180 6, 240 5 S280 4, 300 5' stroke='%2300B4A6' stroke-width='2.5' stroke-linecap='round' fill='none' opacity='0.85'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: 0 100%;
-  background-size: 100% 8px; padding-bottom: 3px; display: inline;
-}
-
-/* ── SECTION HEADLINE ── */
-.section-h {
-  font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(36px, 5.5vw, 60px);
-  line-height: 0.98; letter-spacing: -0.012em;
-  text-wrap: balance;
-}
-
-/* ── PULL-QUOTE em ── */
-.pull-quote em { font-style: italic; color: var(--teal); }
-
-/* ── ================================================== ── */
-/* 01 — HERO                                              */
-/* ── ================================================== ── */
-.hero {
-  background: var(--hero-bg);
-  color: #fff;
-  padding-top: calc(80px + env(safe-area-inset-top, 0px));
-  padding-bottom: 0;
-  position: relative;
-  overflow: hidden;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
-  padding-top: 48px;
-}
-.hero-eyebrow-row {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 24px;
-}
-.hero-stage-num {
-  font-family: var(--font-mono); font-size: 48px; font-weight: 700;
-  color: var(--teal); letter-spacing: -0.02em; line-height: 1;
-  opacity: 0.6; align-self: flex-end;
-}
-.hero-h {
-  font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(46px, 7.5vw, 72px);
-  line-height: 0.94; letter-spacing: -0.014em;
-  margin-bottom: 28px; text-wrap: balance;
-}
-.hero-sub {
-  font-size: clamp(15px, 1.8vw, 18px); line-height: 1.6;
-  color: rgba(255,255,255,0.72); max-width: 48ch; margin-bottom: 36px;
-}
-.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn-primary {
-  display: inline-block; text-decoration: none;
-  font-family: var(--font-body); font-weight: 800; font-size: 12px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  background: var(--butter); color: var(--ink);
-  padding: 14px 28px; border: none; cursor: pointer;
-  transition: opacity var(--transition);
-}
-.btn-primary:hover { opacity: 0.88; }
-.btn-ghost {
-  display: inline-block; text-decoration: none;
-  font-family: var(--font-body); font-weight: 800; font-size: 12px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  border: 1.5px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85);
-  padding: 14px 28px;
-  transition: border-color var(--transition), color var(--transition);
-}
-.btn-ghost:hover { border-color: #fff; color: #fff; }
-.hero-image-col { position: relative; }
-.hero-img {
-  width: 100%; aspect-ratio: 4 / 3;
-  min-height: 320px;
-}
-.price-anchor {
-  background: var(--ink-warm);
-  padding: 16px 24px;
-  display: flex; align-items: center; gap: 12px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.price-anchor-label {
-  font-family: var(--font-body); font-weight: 700; font-size: 10px;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-}
-.price-anchor-price {
-  font-family: var(--font-mono); font-size: 14px; font-weight: 700;
-  color: var(--teal); letter-spacing: 0.04em;
-}
-
-.cats-note { background: var(--hero-bg); border-top: 1px solid rgba(255,255,255,0.08); }
-.cats-note p { font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.6); padding-block: 14px; }
-.cats-note strong { color: #fff; font-weight: 700; }
-.reframe-alone { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.16); max-width: 56ch; }
-.reframe-alone-h { font-family: var(--font-display); font-size: 22px; line-height: 1.3; color: #fff; margin-bottom: 8px; }
-.reframe-alone-body { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.78); }
-
-/* ── ================================================== ── */
-/* 02 — REFRAME (kale bg)                                 */
-/* ── ================================================== ── */
-.reframe {
-  background: var(--kale);
-  color: #fff;
-  border-left: 8px solid var(--butter);
-}
-.reframe-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 48px;
-  align-items: center;
-}
-.reframe-quote {
-  font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(28px, 4.5vw, 48px);
-  line-height: 1.06; letter-spacing: -0.01em;
-  font-style: italic; color: #fff;
-  margin-bottom: 20px;
-}
-.reframe-body {
-  font-size: 17px; line-height: 1.7;
-  color: rgba(255,255,255,0.78); max-width: 56ch;
-}
-.reframe-stat {
-  text-align: center; min-width: 200px; flex-shrink: 0;
-  padding: 32px; border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.15);
-}
-.reframe-stat-num {
-  font-family: var(--font-mono); font-size: 72px; font-weight: 700;
-  color: var(--teal); line-height: 1; letter-spacing: -0.02em;
-}
-.reframe-stat-label {
-  font-size: 13px; line-height: 1.55;
-  color: rgba(255,255,255,0.65); margin-top: 12px; max-width: 18ch;
-  margin-left: auto; margin-right: auto;
-}
-.reframe-stat-source {
-  font-family: var(--font-mono); font-size: 10px;
-  color: rgba(255,255,255,0.3); margin-top: 10px;
-  letter-spacing: 0.04em;
-}
-
-/* ── ================================================== ── */
-/* 03 — TIMELINE (cream bg)                               */
-/* ── ================================================== ── */
-.timeline-section { background: var(--cream-soft); }
-.timeline-intro {
-  max-width: 680px; margin-bottom: 56px;
-}
-.timeline-intro p {
-  font-size: 17px; line-height: 1.7; color: var(--ink-warm); margin-top: 16px;
-}
-.timeline-pricing {
-  display: inline-flex; align-items: center; gap: 16px; margin-top: 20px;
-  padding: 14px 20px; border: 1px solid var(--gray-line); background: var(--cream-deep);
-}
-.timeline-pricing-main {
-  font-family: var(--font-mono); font-size: 22px; font-weight: 700;
-  color: var(--ink); letter-spacing: -0.01em;
-}
-.timeline-pricing-add {
-  font-size: 13px; color: var(--gray-warm);
-}
-
-/* Vertical timeline */
-.timeline { position: relative; padding-left: 0; }
-.timeline::before {
-  content: ''; position: absolute;
-  left: 28px; top: 0; bottom: 0;
-  width: 1px; background: var(--gray-line);
-}
-.timeline-step {
-  display: grid; grid-template-columns: 56px 1fr;
-  gap: 0 28px; margin-bottom: 0; position: relative;
-}
-.timeline-step:not(:last-child) { margin-bottom: 0; }
-.timeline-step + .timeline-step { border-top: 1px solid var(--gray-line); padding-top: 32px; margin-top: 32px; }
-
-.timeline-dot {
-  width: 56px; height: 56px; flex-shrink: 0;
-  background: var(--ink); color: #fff;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  position: relative; z-index: 1;
-}
-.timeline-dot-label {
-  font-family: var(--font-mono); font-size: 16px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--teal); line-height: 1; margin-bottom: 3px;
-}
-.timeline-dot-day {
-  font-family: var(--font-mono); font-size: 19px; font-weight: 700;
-  color: #fff; line-height: 1;
-}
-.timeline-content { padding-bottom: 0; }
-.timeline-appt-name {
-  font-family: var(--font-body); font-weight: 800; font-size: 16px;
-  letter-spacing: 0.02em; color: var(--ink); margin-bottom: 6px;
-}
-.timeline-meta {
-  display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px;
-}
-.timeline-chip {
-  font-family: var(--font-body); font-weight: 600; font-size: 11px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--gray-warm); display: flex; align-items: center; gap: 5px;
-}
-.timeline-chip::before {
-  content: ''; width: 3px; height: 3px; border-radius: 50%;
-  background: var(--teal-deep); flex-shrink: 0;
-}
-.timeline-desc {
-  font-size: 15px; line-height: 1.65; color: var(--ink-warm); max-width: 58ch;
-}
-
-/* What comes next */
-.what-next {
-  margin-top: 64px; padding-top: 48px;
-  border-top: 1px solid var(--gray-line);
-}
-.what-next-title {
-  font-family: var(--font-body); font-weight: 800; font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gray-warm); margin-bottom: 24px;
-}
-.what-next-intro { font-size: 16px; line-height: 1.6; color: var(--ink-warm); max-width: 60ch; margin: -12px 0 24px; }
-.what-next-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-}
-.what-next-card {
-  padding: 28px; border: 1px solid var(--gray-line);
-  background: var(--cream);
-}
-.what-next-card-title {
-  font-family: var(--font-body); font-weight: 800; font-size: 17px;
-  letter-spacing: 0.04em; color: var(--ink); margin-bottom: 10px;
-}
-.what-next-card p {
-  font-size: 15px; line-height: 1.6; color: var(--ink-warm);
-}
-.what-next-card p + p { margin-top: 6px; }
-.what-next-link { color: var(--teal-deep); font-weight: 700; }
-
-/* ── ================================================== ── */
-/* 04 — WHAT TO EXPECT (black bg)                         */
-/* ── ================================================== ── */
-.expect-section {
-  background: var(--black); color: #fff;
-}
-.expect-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1px; background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.08);
-  margin-top: 56px;
-}
-.expect-card {
-  background: var(--black);
-  padding: 40px 36px;
-}
-.expect-icon {
-  width: 44px; height: 44px; margin-bottom: 20px;
-  background: rgba(42,210,201,0.08);
-  border: 1px solid rgba(42,210,201,0.2);
-  display: flex; align-items: center; justify-content: center;
-}
-.expect-icon svg { width: 20px; height: 20px; stroke: var(--teal); fill: none; stroke-width: 1.5; }
-.expect-card-title {
-  font-family: var(--font-body); font-weight: 800; font-size: 15px;
-  letter-spacing: 0.02em; color: #fff; margin-bottom: 12px;
-}
-.expect-card p {
-  font-size: 14px; line-height: 1.7;
-  color: rgba(255,255,255,0.65);
-}
-
-/* ── ================================================== ── */
-/* 05 — ADD-ONS (cream bg)                                */
-/* ── ================================================== ── */
-.addons-section { background: var(--cream-soft); }
-.addons-sub { font-family: var(--font-body); font-weight: 800; font-size: 17px; letter-spacing: 0.01em; color: var(--ink); margin: 40px 0 8px; }
-.addons-sub-body { font-size: 15px; line-height: 1.65; color: var(--ink-warm); max-width: 62ch; margin-bottom: 20px; }
-.addons-sub-body a { color: var(--teal-deep); font-weight: 700; }
-.addons-intro {
-  max-width: 600px; font-size: 17px; line-height: 1.7;
-  color: var(--ink-warm); margin-top: 16px; margin-bottom: 48px;
-}
-.addons-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1px; background: var(--gray-line);
-  border: 1px solid var(--gray-line); margin-bottom: 32px;
-}
-.addon-card {
-  background: var(--cream-soft);
-  padding: 28px 32px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.addon-name {
-  font-family: var(--font-body); font-weight: 700; font-size: 15px;
-  color: var(--ink); letter-spacing: 0.01em;
-}
-.addon-meta {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-}
-.addon-price {
-  font-family: var(--font-mono); font-size: 20px; font-weight: 700;
-  color: var(--ink); line-height: 1;
-}
-.addon-price.free { color: var(--teal-deep); }
-.addon-detail {
-  font-size: 12px; color: var(--gray-warm);
-  font-family: var(--font-body); font-weight: 500;
-  letter-spacing: 0.04em; text-transform: uppercase;
-}
-.addon-provider {
-  font-size: 13px; color: var(--ink-warm);
-}
-.addon-coming-soon {
-  font-family: var(--font-body); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--butter-text); background: rgba(232,196,107,0.12);
-  padding: 2px 10px; align-self: flex-start;
-}
-.addons-note {
-  font-size: 14px; line-height: 1.65; color: var(--ink-warm);
-  border-left: 3px solid var(--teal-deep); padding-left: 16px;
-  max-width: 58ch;
-}
-.addons-note a { color: var(--teal-deep); text-decoration: underline; }
-
-/* ── ================================================== ── */
-/* 06 — ABOUT THE SPECIALIST (ink bg)                     */
-/* ── ================================================== ── */
-.specialist-section {
-  background: var(--ink); color: #fff;
-}
-.specialist-inner {
-  display: grid; grid-template-columns: auto 1fr;
-  gap: 64px; align-items: flex-start;
-}
-.specialist-left { flex-shrink: 0; }
-.specialist-avatar {
-  width: 120px; height: 120px; border-radius: 50%;
-  background: var(--teal-deep);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 32px; font-weight: 500;
-  color: var(--cream); margin-bottom: 12px;
-  position: relative;
-}
-.specialist-avatar-note {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 400;
-  color: rgba(255,255,255,0.3); letter-spacing: 0.06em; text-align: center;
-}
-.specialist-title {
-  font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(24px, 3vw, 32px); line-height: 1.1;
-  color: #fff; margin-bottom: 6px;
-}
-.specialist-name-pending {
-  font-family: var(--font-display); font-style: italic;
-  font-size: 16px; color: rgba(255,255,255,0.4); margin-bottom: 20px;
-}
-.credential-chips {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
-}
-.credential-chip {
-  font-family: var(--font-body); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  border: 1px solid var(--teal); color: var(--cream);
-  padding: 5px 12px;
-}
-.specialist-body {
-  font-size: 16px; line-height: 1.75;
-  color: rgba(255,255,255,0.7); max-width: 54ch; margin-bottom: 32px;
-}
-.specialist-pull-quote {
-  font-family: var(--font-display); font-style: italic;
-  font-size: clamp(22px, 3vw, 30px); line-height: 1.3;
-  color: var(--teal); max-width: 42ch; line-height: 1.4;
-  border-left: 3px solid var(--teal); padding-left: 24px;
-}
-
-/* ── ================================================== ── */
-/* 07 — ENTRY REQUIREMENTS (kale bg)                      */
-/* ── ================================================== ── */
-.entry-section {
-  background: var(--kale);
-  color: #fff;
-  border-left: 8px solid var(--butter);
-}
-.entry-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 48px; margin-top: 48px;
-}
-.entry-req {
-  padding: 36px 32px; border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.1);
-}
-.entry-req-num {
-  font-family: var(--font-mono); font-size: 32px; font-weight: 700;
-  color: var(--butter); line-height: 1; margin-bottom: 16px;
-}
-.entry-req-title {
-  font-family: var(--font-body); font-weight: 800; font-size: 16px;
-  letter-spacing: 0.04em; color: #fff; margin-bottom: 12px;
-}
-.entry-req p {
-  font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.72);
-}
-.entry-schedule-note {
-  margin-top: 40px; padding: 24px; background: rgba(0,0,0,0.15);
-  border: 1px solid rgba(255,255,255,0.1); max-width: 600px;
-  font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.6);
-}
-.entry-schedule-note strong { color: rgba(255,255,255,0.9); font-weight: 700; }
-.entry-cta-wrap { margin-top: 40px; }
-.btn-butter {
-  display: inline-block; text-decoration: none;
-  font-family: var(--font-body); font-weight: 800; font-size: 13px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  background: var(--butter); color: var(--ink);
-  padding: 16px 32px; transition: opacity var(--transition);
-}
-.btn-butter:hover { opacity: 0.88; }
-
-/* ── ================================================== ── */
-/* 08 — CTA BAND (black)                                  */
-/* ── ================================================== ── */
-#cta-band {
-  background: var(--black); color: #fff;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.cta-band-eyebrow {
-  font-family: var(--font-body); font-weight: 800; font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--teal); margin-bottom: 20px;
-}
-.cta-band-h {
-  font-family: var(--font-display); font-weight: 500;
-  font-size: clamp(36px, 5vw, 56px);
-  line-height: 0.98; letter-spacing: -0.012em;
-  margin-bottom: 20px; text-wrap: balance;
-}
-.cta-band-body {
-  font-size: 17px; line-height: 1.7;
-  color: rgba(255,255,255,0.65);
-  max-width: 54ch; margin: 0 auto 36px;
-}
-.cta-band-actions {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
-}
-
-/* ── FOOTER ── */
-footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 64px 0 32px; border-top: 1px solid rgba(255,255,255,0.08); }
-
-.footer-links { display: flex; flex-direction: column; gap: 10px; }
-
-/* ── BOTTOM STAGE BAR ── */
-
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  
-  
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-stage-num { font-size: 32px; }
-  .reframe-inner { grid-template-columns: 1fr; }
-  .reframe-stat { min-width: unset; }
-  .specialist-inner { grid-template-columns: 1fr; gap: 40px; }
-  .entry-grid { grid-template-columns: 1fr; gap: 24px; }
-  .expect-grid { grid-template-columns: 1fr; }
-  .addons-grid { grid-template-columns: 1fr; }
-  .what-next-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .sticky-sidebar { display: none; }
-  .section-inner { padding: 0 20px; }
-  
-}
-
-@media (max-width: 600px) {
-  .footer-grid { grid-template-columns: 1fr; }
-  .hero-ctas { flex-direction: column; }
-  .btn-primary, .btn-ghost, .btn-butter { width: 100%; text-align: center; }
-  .timeline::before { left: 20px; }
-  .timeline-step { grid-template-columns: 40px 1fr; gap: 0 16px; }
-  .timeline-dot { width: 40px; height: 40px; }
-  .timeline-dot-label { font-size: 12px; }
-  .timeline-dot-day { font-size: 16px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal { transition: none; }
-}
-.specialist-person { margin-bottom: 28px; max-width: 220px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.specialist-person-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 6px; }
-
-/* ── Hero matched to the Training page (spacing + sizing) ── */
-@media (min-width: 761px) {
-  .hero { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
-  .hero > .section-inner { max-width: 1080px; margin-inline: auto; padding-inline: 40px; }
-  .hero-grid { gap: 64px; align-items: center; padding-top: 80px; padding-bottom: 72px; }
-  .hero-left { padding-bottom: 0; }
-  .hero-h { font-size: clamp(36px, 4.5vw, 58px); line-height: 1.08; letter-spacing: 0; margin-bottom: 22px; text-wrap: wrap; }
-  .hero-subhead, .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 480px; margin-bottom: 36px; }
-  .hero-right { align-self: center; }
-  .hero-img-wrap { flex: none; min-height: 0; aspect-ratio: 4 / 3; }
-  .hero-img-wrap .placeholder-img { min-height: 0 !important; height: 100%; }
-  .hero-img { min-height: 0 !important; aspect-ratio: 4 / 3; }
-}
-
-/* Mobile: match the Training hero too */
-@media (max-width: 760px) {
-  .hero { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
-  .hero-ctas .btn-primary, .hero-ctas .btn-ghost, .hero-ctas .btn-butter { width: auto; }
-  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 56px; padding-bottom: 48px; }
-  .hero-grid > * { min-width: 0; }
-  .hero-right { order: 0; }
-  .hero-left { padding-bottom: 0; }
-  .hero-h { font-size: 36px; line-height: 1.08; letter-spacing: 0; text-wrap: wrap; margin-bottom: 22px; }
-  .hero-subhead, .hero-sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65); }
-  .hero-ctas { flex-direction: row; flex-wrap: wrap; gap: 14px; }
-  .hero-img-wrap { min-height: 0; aspect-ratio: 4 / 3; }
-  .hero-img-wrap .placeholder-img { min-height: 0 !important; height: 100%; }
-  .hero-img { min-height: 0 !important; aspect-ratio: 4 / 3; }
-}
-
-/* Room for the secondary nav row (desktop only; it is hidden below 1081px) */
-@media (min-width: 1081px) { section.hero { padding-top: 94px !important; } }
-
-/* STAGE-COLOR HERO (trial, 2026-10-15) — delete this block to revert */
-.hero{background:var(--black)!important;border-top:4px solid var(--teal)}
-.hero .hero-h em{color:var(--teal)!important}
-.hero .price-anchor{background:#141414!important;border-top:1px solid var(--teal)!important}
-.hero + .cats-note{background:var(--black)!important}
-/* END STAGE-COLOR HERO */
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Gochi+Hand&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="gbs-site.css?v=20261027a">
 </head>
 <body>
-<!-- Progress bar -->
-<div id="progress-bar"></div>
+<a class="sr-only" href="#main">Skip to content</a>
+<div class="util"><div class="wrap util-in">
+  <a href="client-portal.html">Client portal</a>
+  <a class="util-hi" href="referring-vets.html#refer">Refer a patient</a>
+</div></div>
+<header id="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="index.html" aria-label="Gigi's Behavior home"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="171" height="22"></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="training.html" class="nl nl-training">Training</a>
+      <a href="modification.html" class="nl nl-mod">Modification</a>
+      <a href="medicine.html" class="nl nl-med is-active" aria-current="page">Medicine</a>
+      <a href="pricing.html" class="nl nl-cost">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nl nl-team">Team</a>
+      <a href="referring-vets.html" class="nl nl-vets">For Vets</a>
+    </nav>
+    <a class="btn btn-teal nav-cta" href="#cta-band">Book a free call</a>
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="nav-menu" class="nav-menu" aria-label="Menu" hidden>
+    <a href="training.html" class="nl nl-training">Training</a>
+      <a href="modification.html" class="nl nl-mod">Modification</a>
+      <a href="medicine.html" class="nl nl-med is-active" aria-current="page">Medicine</a>
+      <a href="pricing.html" class="nl nl-cost">Cost Transparency</a>
+      <a href="meet-the-team.html" class="nl nl-team">Team</a>
+      <a href="referring-vets.html" class="nl nl-vets">For Vets</a>
+    <a class="btn btn-teal" href="#cta-band">Book a free call</a>
+  </nav>
+</header>
+<main id="main">
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand"><img src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" class="nav-logo" width="1249" height="161"></a>
-    <div class="nav-links">
-      <a href="training.html" class="nl-training">Training</a>
-      <a href="modification.html" class="nl-mod">Modification</a>
-      <a href="medicine.html" class="nl-med nav-link-active">Medicine</a>
+<section id="hero" class="hero on-black" style="padding-bottom: 56px">
+  <div class="wrap split">
+    <div>
+      <nav class="stage-tracker" aria-label="Stages of care"><div class="st-col"><a href="training.html" class="st-seg st-training">Training</a></div><div class="st-col"><a href="modification.html" class="st-seg st-mod">Modification</a></div><div class="st-col"><span class="stage-tag t-med">Specialty</span><a href="medicine.html" class="st-seg st-med is-active" aria-current="page">Medicine</a></div></nav>
+      <h1 class="h1-sm">Medicine treats the <span class="mk"><svg aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M2 17 C 60 9, 160 5, 298 9 C 200 10, 110 14, 4 21 Z" fill="#2AD2C9"/></svg><span>brain</span></span> behind the behavior.</h1>
+      <p class="lede">Specialty veterinary behavioral medicine: diagnosis, medication support, and integrated treatment planning. Led by one of fewer than 100 practicing board-certified Veterinary Behaviorists in the country.</p>
+      <div class="btns"><a class="btn btn-teal" href="#cta-band">Book a call</a><a class="btn btn-line-light" href="#timeline">How it works</a></div>
     </div>
-    <div class="nav-sub-links">
-      <a href="pricing.html" class="nl-cost">Cost Transparency</a>
-      <a href="meet-the-team.html" class="nl-team">Team</a>
-      <a href="referring-vets.html" class="nl-vets">For Vets</a>
-    </div>
-    <div class="nav-right">
-      <a href="#cta-band" class="nav-cta">Get started</a>
-      <button id="nav-burger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <div>
+      <div class="ph ph-empty" role="img" aria-label="Photo placeholder: Behavioral Medicine hero image" style="height: 420px; border: 1px solid var(--n700)">[PHOTO &middot; Behavioral Medicine hero image]<svg class="dd" aria-hidden="true" viewBox="0 0 300 160" preserveAspectRatio="none" fill="none" stroke="#2AD2C9" stroke-width="2.6" stroke-linecap="round" style="left: 10%; top: 30%; width: 80%; height: 40%"><path d="M30 84 C 22 30, 120 8, 190 12 C 270 16, 296 54, 288 92 C 278 140, 180 154, 110 150 C 40 146, 8 112, 34 62"/></svg></div>
+      <div style="background: #141414; border-top: 1px solid var(--teal); padding: 16px 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px">
+        <p class="eyebrow" style="margin: 0">The Medicine Starting Point</p><p class="price" style="color: var(--teal)">From $590</p>
+      </div>
     </div>
   </div>
-  <div id="nav-mobile-menu">
-    <a href="training.html">Training</a>
-    <a href="modification.html">Modification</a>
-    <a href="medicine.html">Medicine</a>
-    <a href="pricing.html">Cost Transparency</a>
-    <a href="meet-the-team.html">Team</a>
-    <a href="referring-vets.html">For Vets</a>
-    <a href="#cta-band" class="nav-mobile-cta">Get started</a>
+  <div class="wrap"><p class="small mt-l" style="color: var(--n200); padding-top: 18px; border-top: 1px solid var(--n700)"><strong style="color: #fff">We see cats, too.</strong> <i class="svc">Behavioral Medicine</i> is available for dogs and cats.</p></div>
+</section>
+
+<section class="band-sm on-kale">
+  <div class="wrap split">
+    <div>
+      <blockquote class="quote" style="color: #fff">&ldquo;Medication is a tool, not a setback.&rdquo;</blockquote>
+      <p class="muted mt-s" style="font-size: 17px">Medication will help the brain reach a place where learning and recovery are possible. It creates the conditions so <i class="svc">Modification</i> can make progress happen. Together, they work.</p>
+      <div style="border-left: 4px solid var(--teal); padding-left: 24px; margin-top: 28px">
+        <p class="h3">If your dog struggles, you're not alone.</p>
+        <p class="muted mt-s">Most dogs need behavioral support at some point. It's the norm, not the exception. At Gigi's Behavior, there's no judgement, only progress.</p>
+      </div>
+    </div>
+    <div class="center">
+      <p class="ring "><svg aria-hidden="true" viewBox="0 0 300 160" preserveAspectRatio="none" fill="none" stroke="#2AD2C9" stroke-width="3" stroke-linecap="round"><path d="M30 84 C 22 30, 120 8, 190 12 C 270 16, 296 54, 288 92 C 278 140, 180 154, 110 150 C 40 146, 8 112, 34 62"/></svg><span><span class="data" style="font-size: clamp(64px, 8vw, 104px); line-height: 1; color: #fff; display: inline-block; padding: 8px 10px">&lt; 100</span></span></p>
+      <p class="h4 mt-m" style="max-width: 360px; margin-left: auto; margin-right: auto">practicing board-certified Veterinary Behaviorists in the United States.</p>
+      <p class="tiny" style="color: var(--n300); margin-top: 8px">Source: ACVB, 2026</p>
+    </div>
   </div>
-</nav>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">What to know</p>
+    <h2 class="h2">What to expect.</h2>
+    <div class="grid g4 mt-l">
+      <div class="card top-teal"><p class="h4">A vet referral from your current vet</p><p class="small muted mt-s">A referral from your primary veterinarian is required before scheduling. Gigi's collaborates with your vet throughout care. Your primary vet remains the prescribing partner after each telemedicine visit.</p></div>
+      <div class="card top-teal"><p class="h4">Telehealth-first care</p><p class="small muted mt-s">All <i class="svc">Behavioral Medicine</i> appointments are virtual. Ohio regulations limit telemedicine prescriptions to 14 days per visit. Your primary vet handles prescription continuation. Gigi's manages the behavior case throughout.</p></div>
+      <div class="card top-teal"><p class="h4">Medicine and Modification together</p><p class="small muted mt-s"><i class="svc">Medicine</i> creates the conditions for learning. <i class="svc">Modification</i> is where lasting progress happens. For most dogs, both are part of the plan.</p></div>
+      <div class="card top-teal"><p class="h4">Progress in months, not days</p><p class="small muted mt-s">Real impact is measured over months. You'll have regular check-ins, an evolving plan, and a team that's with you for the long term.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="band on-black">
+  <div class="wrap">
+    <div class="head-row">
+      <div><p class="eyebrow">How it works</p><h2 class="h2">One plan. Five touchpoints.</h2><p class="lede">The Medicine Starting Point is your onboarding into <i class="svc">Behavioral Medicine</i>. One unified plan through Day 56. $590 for one dog.</p></div>
+      <div style="display: flex; gap: 32px">
+        <div><p class="price-lg" style="color: var(--teal)">$590</p><p class="meta mt-s">one dog, complete bundle</p></div>
+        <div><p class="price-lg">+$300</p><p class="meta mt-s">second dog</p></div>
+      </div>
+    </div>
+    <div style="position: relative">
+      <svg class="dd" aria-hidden="true" viewBox="0 0 1000 30" preserveAspectRatio="none" fill="none" stroke="#2AD2C9" stroke-width="2.4" stroke-linecap="round" style="left: 0; top: 0; width: 100%; height: 26px"><path d="M10 14 C 120 4, 220 22, 330 13 C 440 4, 540 24, 650 14 C 760 5, 860 22, 990 12"/></svg>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 28px">
+        <div style="position: relative; padding-top: 34px">
+        <span aria-hidden="true" style="position: absolute; top: 2px; left: 0; width: 22px; height: 22px; border: 2.5px solid var(--teal); border-radius: 50%; background: var(--black)"></span>
+        <p class="data" style="font-size: 32px; line-height: 1; color: var(--teal)">Day 1</p>
+        <p class="h4" style="margin-top: 10px">Initial Behavioral Medicine Assessment</p>
+        <p class="meta" style="margin-top: 4px">Veterinary Behaviorist</p>
+        <p class="small muted" style="margin-top: 8px">A full behavioral evaluation and the start of your dog's treatment plan.</p>
+      </div>
+        <div style="position: relative; padding-top: 34px">
+        <span aria-hidden="true" style="position: absolute; top: 2px; left: 0; width: 22px; height: 22px; border: 2.5px solid var(--teal); border-radius: 50%; background: var(--black)"></span>
+        <p class="data" style="font-size: 32px; line-height: 1; color: var(--teal)">Day 7</p>
+        <p class="h4" style="margin-top: 10px">Medicine Check-In (Phone)</p>
+        <p class="meta" style="margin-top: 4px">Behavioral Medicine Tech</p>
+        <p class="small muted" style="margin-top: 8px">A quick check on how your dog is responding to medication.</p>
+      </div>
+        <div style="position: relative; padding-top: 34px">
+        <span aria-hidden="true" style="position: absolute; top: 2px; left: 0; width: 22px; height: 22px; border: 2.5px solid var(--teal); border-radius: 50%; background: var(--black)"></span>
+        <p class="data" style="font-size: 32px; line-height: 1; color: var(--teal)">Week 2</p>
+        <p class="h4" style="margin-top: 10px">Medicine Check-In (Virtual)</p>
+        <p class="meta" style="margin-top: 4px">Veterinary Behaviorist + Behavioral Medicine Tech</p>
+        <p class="small muted" style="margin-top: 8px">A virtual visit to review early progress and adjust the plan.</p>
+      </div>
+        <div style="position: relative; padding-top: 34px">
+        <span aria-hidden="true" style="position: absolute; top: 2px; left: 0; width: 22px; height: 22px; border: 2.5px solid var(--teal); border-radius: 50%; background: var(--black)"></span>
+        <p class="data" style="font-size: 32px; line-height: 1; color: var(--teal)">Week 4</p>
+        <p class="h4" style="margin-top: 10px">Medicine Led Mod Starter Session (Virtual)</p>
+        <p class="meta" style="margin-top: 4px">Behavioral Medicine Tech (Veterinary Behaviorist joins briefly)</p>
+        <p class="small muted" style="margin-top: 8px">Your first <i class="svc">Modification</i> session, built into your treatment plan.</p>
+      </div>
+        <div style="position: relative; padding-top: 34px">
+        <span aria-hidden="true" style="position: absolute; top: 2px; left: 0; width: 22px; height: 22px; border: 2.5px solid var(--teal); border-radius: 50%; background: var(--black)"></span>
+        <p class="data" style="font-size: 32px; line-height: 1; color: var(--teal)">Mo. 2</p>
+        <p class="h4" style="margin-top: 10px">Medicine Check-In (Virtual)</p>
+        <p class="meta" style="margin-top: 4px">Veterinary Behaviorist</p>
+        <p class="small muted" style="margin-top: 8px">Review progress, fine-tune the plan, and talk through what's next.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="add-ons" class="band">
+  <div class="wrap">
+    <p class="eyebrow">What comes next</p>
+    <h2 class="h2">After the Starting Point.</h2>
+    <p class="lede">Every journey is different. From here, your dog's custom treatment plan will include more <i class="svc">Medicine</i> and more <i class="svc">Modification</i>. To continue with Medicine-Led Modification, keep up with your scheduled <i class="svc">Medicine</i> appointments.</p>
+    <div class="grid g2 mt-l">
+      <div class="card top-med-ink flex-card"><p class="h3">Continue with Medicine</p><p class="muted">We offer 15&ndash;30 min check-ins.</p><a class="go" style="margin-top: auto" href="pricing.html#pricing-medicine">See pricing on Cost Transparency</a></div>
+      <div class="card top-mod-deep flex-card"><p class="h3">Continue with Modification</p><ul class="ticks muted"><li><i class="svc">Modification</i> offered in 3 locations.</li><li>Mini-modification sessions to make progress in small windows.</li></ul><a class="go" style="margin-top: auto" href="modification.html">See the Modification page for details</a></div>
+    </div>
+    <div class="card-black mt-s" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px"><p class="h3">Urgent Behavioral Appointment</p><p class="meta">Details coming soon</p></div>
+  </div>
+</section>
+
+<section class="band on-soft rule-top">
+  <div class="wrap split split-top">
+    <div>
+      <p class="eyebrow">Your specialists</p>
+      <div style="display: grid; gap: 22px; margin-top: 8px">
+        <div style="display: flex; gap: 18px; align-items: center"><span style="position: relative; flex: 0 0 auto; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; font-family: var(--data); font-weight: 700; font-size: 18px; color: #0E8079" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="#0E8079" stroke-width="2.2" stroke-linecap="round" style="position: absolute; inset: 0; width: 64px; height: 64px"><path d="M34 4 C 52 5, 61 18, 60 33 C 59 50, 46 61, 31 60 C 15 59, 4 47, 5 31 C 6 16, 17 5, 38 7"/></svg>GG</span><div><p class="h3">Dr. Gilbert-Gregory</p><p class="small muted">Lead Veterinary Behaviorist &middot; Sees clients in <i class="svc">Behavioral Medicine</i></p></div></div>
+        <div style="display: flex; gap: 18px; align-items: center"><span style="position: relative; flex: 0 0 auto; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; font-family: var(--data); font-weight: 700; font-size: 18px; color: #0E8079" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="#0E8079" stroke-width="2.2" stroke-linecap="round" style="position: absolute; inset: 0; width: 64px; height: 64px"><path d="M34 4 C 52 5, 61 18, 60 33 C 59 50, 46 61, 31 60 C 15 59, 4 47, 5 31 C 6 16, 17 5, 38 7"/></svg>MH</span><div><p class="h3">Dr. Meghan Herron</p><p class="small muted">DVM, DACVB &middot; Sr. Director, Behavior, Research, and Education</p></div></div>
+      </div>
+    </div>
+    <div>
+      <h2 class="h2-sm">Gigi's Veterinary Behaviorists</h2>
+      <p class="chip mt-s" style="color: var(--teal-text)">Diplomate ACVB Board-Certified Veterinary Behaviorist</p>
+      <p class="muted mt-s">Board-certified Veterinary Behaviorists complete years of specialized training in animal behavior, learning theory, and behavioral pharmacology. They are among the most specialized clinicians in the field. Fewer than 100 practice in the United States.</p>
+      <blockquote class="quote mt-m" style="font-size: 26px; border-left: 4px solid var(--teal-deep); padding-left: 20px">&ldquo;Medicine sets the conditions. Modification makes progress happen.&rdquo;</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Before you begin</p>
+    <h2 class="h2">Before you schedule.</h2>
+    <div class="grid g2 mt-l">
+      <div class="card"><span class="num">01</span><p class="h3 mt-s">A vet referral</p><p class="muted mt-s">A referral from your primary veterinarian is required. If you don't have one yet, the Care Navigation Call can help you get started.</p></div>
+      <div class="card"><span class="num">02</span><p class="h3 mt-s">The Care Navigation Call</p><p class="muted mt-s">The Care Navigation Call is the only entry into <i class="svc">Behavioral Medicine</i>. Our Client Success Manager will review your dog's history, confirm the referral, and schedule your Initial Assessment.</p></div>
+    </div>
+    <div class="mt-m" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+      <p class="small muted" style="flex: 1 1 520px"><strong style="color: var(--ink)">On scheduling:</strong> Families with a referral in hand are scheduled for the first available appointment. Families with a referral outstanding are scheduled with a 2-week buffer to allow admin time before the appointment.</p>
+      <a class="btn btn-black" href="#cta-band">Book a care navigation call</a>
+    </div>
+  </div>
+</section>
+
+<section id="cta-band" class="band on-deep">
+  <div class="wrap split">
+    <div><p class="eyebrow">Care Navigation</p><h2 class="h2">Ready for the <span class="mk"><svg aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M2 17 C 60 9, 160 5, 298 9 C 200 10, 110 14, 4 21 Z" fill="#0E8079"/></svg><span>next stage?</span></span></h2></div>
+    <div>
+      <p class="muted" style="font-size: 17px">Book your free Care Navigation Call. Our Client Success Manager will review your dog's behavior history, confirm your vet referral, and guide you toward the right starting point.</p>
+      <div class="btns"><a class="btn btn-black" href="#">Book a call</a><a class="btn btn-line-dark" href="modification.html">Explore Modification</a></div>
+    </div>
+  </div>
+</section>
 
 <div id="stage-bar-wrap">
   <div id="stage-bar">
-    <a href="training.html" class="sbar-item sbar-training ">
-      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.85);">Foundations</div>
-      <div class="sbar-label">Training</div>
-      <div class="sbar-price">From $42</div>
-    </a>
-    <a href="modification.html" class="sbar-item sbar-mod ">
-      <div class="sbar-eyebrow" style="color:var(--teal);">Support</div>
-      <div class="sbar-label">Modification</div>
-      <div class="sbar-price">From $250</div>
-    </a>
-    <a href="medicine.html" class="sbar-item sbar-med sbar-active">
-      <div class="sbar-eyebrow" style="color:rgba(255,255,255,0.5);">Specialty</div>
-      <div class="sbar-label">Medicine</div>
-      <div class="sbar-price">From $590</div>
-    </a>
-    <a href="#cta-band" class="sbar-cta">
-      <div class="sbar-cta-label">Not sure? Book a call <svg class="sbar-arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M2,9 C10,6.5 20,6 30,8 M2,10.2 C12,7.8 21,7.2 29,9"/><path d="M30,8 L23,4.8 M30,8 L24,12.5"/></svg></div>
-    </a>
-    <a href="referring-vets.html" class="sbar-vet">
-      <span class="vbar-label">Referring Vets</span>
-    </a>
+    <a href="training.html" class="sbar-item sbar-training"><span class="sbar-eyebrow">Foundations</span><span class="sbar-label">Training</span><span class="sbar-price">From $42</span></a>
+    <a href="modification.html" class="sbar-item sbar-mod"><span class="sbar-eyebrow">Support</span><span class="sbar-label">Modification</span><span class="sbar-price">From $250</span></a>
+    <a href="medicine.html" class="sbar-item sbar-med is-current"><span class="sbar-eyebrow">Specialty</span><span class="sbar-label">Medicine</span><span class="sbar-price">From $590</span></a>
+    <a href="#cta-band" class="sbar-cta">Not sure? Book a call</a>
+    <a href="referring-vets.html" class="sbar-vet">Referring Vets</a>
   </div>
 </div>
-
-<!-- ===== 01 HERO ===== -->
-<section class="hero">
-  <div class="section-inner" style="padding-top:0;padding-bottom:0;width:100%;">
-    <div class="hero-grid section-pad">
-      <!-- LEFT -->
-      <div>
-        <div class="stage-row"><nav class="stage-tracker" aria-label="Stages of care"><span class="st-col"><a href="training.html" class="st-seg st-training">Training</a></span><span class="st-col"><a href="modification.html" class="st-seg st-mod">Modification</a></span><span class="st-col"><span class="stage-tag t-med">Specialty</span><a href="medicine.html" class="st-seg st-med is-active" aria-current="page">Medicine</a></span></nav></div>
-        <h1 class="hero-h reveal reveal-d1">
-          Medicine treats the <em>brain</em> behind the behavior.
-        </h1>
-        <p class="hero-sub reveal reveal-d2">
-          Specialty veterinary behavioral medicine — diagnosis, medication support, and integrated treatment planning. Led by one of fewer than 100 practicing board-certified Veterinary Behaviorists in the country.
-        </p>
-        <div class="hero-ctas reveal reveal-d3">
-          <a href="#cta-band" class="btn-primary">Book a call</a>
-          <a href="index.html#how-it-works" class="btn-ghost">How it works</a>
-        </div>
-      </div>
-      <!-- RIGHT -->
-      <div class="hero-image-col reveal reveal-d2">
-        <div class="hero-img img-placeholder" style="min-height:340px;">
-          Behavioral Medicine<br>Hero Image
-        </div>
-        <div class="price-anchor">
-          <span class="price-anchor-label">The Medicine Starting Point</span>
-          <span class="price-anchor-price">From $590</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Cats clarifier: Medicine is the only service that sees cats -->
-<div class="cats-note">
-  <div class="section-inner">
-    <p><strong>We see cats, too.</strong> <i class="svc">Behavioral Medicine</i> is available for dogs and cats.</p>
-  </div>
-</div>
-
-<!-- ===== 02 REFRAME ===== -->
-<section class="reframe section-pad-sm">
-  <div class="section-inner">
-    <div class="reframe-inner">
-      <div class="reveal">
-        <p class="reframe-quote">"Medication is a tool, not a setback."</p>
-        <p class="reframe-body">
-          Medication will help the brain reach a place where learning and recovery are possible. It creates the conditions so <i class="svc">Modification</i> can make progress happen. Together, they work.
-        </p>
-        <div class="reframe-alone">
-          <p class="reframe-alone-h">If your dog struggles, you're not alone.</p>
-          <p class="reframe-alone-body">Most dogs need behavioral support at some point. It's the norm, not the exception. At Gigi's Behavior, there's no judgement, only progress.</p>
-        </div>
-      </div>
-      <div class="reframe-stat reveal reveal-d2">
-        <div class="reframe-stat-num">&lt; 100</div>
-        <p class="reframe-stat-label">practicing board-certified Veterinary Behaviorists in the United States.</p>
-        <p class="reframe-stat-source">Source: ACVB, 2026</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 04 WHAT TO EXPECT ===== -->
-<section class="expect-section section-pad">
-  <div class="section-inner">
-    <span class="eyebrow reveal">What to know</span>
-    <h2 class="section-h reveal reveal-d1" style="color:#fff;">
-      What to <em>expect</em>.
-    </h2>
-
-    <div class="expect-grid">
-      <!-- Card 1 -->
-      <div class="expect-card reveal">
-        <div class="expect-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <div class="expect-card-title">A vet referral from your current vet</div>
-        <p>A referral from your primary veterinarian is required before scheduling. Gigi's collaborates with your vet throughout care — your primary vet remains the prescribing partner after each telemedicine visit.</p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="expect-card reveal reveal-d1">
-        <div class="expect-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
-        </div>
-        <div class="expect-card-title">Telehealth-first care</div>
-        <p>All <i class="svc">Behavioral Medicine</i> appointments are virtual. Ohio regulations limit telemedicine prescriptions to 14 days per visit — your primary vet handles prescription continuation. Gigi's manages the behavior case throughout.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="expect-card reveal reveal-d2">
-        <div class="expect-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-        </div>
-        <div class="expect-card-title">Medicine and Modification together</div>
-        <p><i class="svc">Medicine</i> creates the conditions for learning. <i class="svc">Modification</i> is where lasting progress happens. For most dogs, both are part of the plan.</p>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="expect-card reveal reveal-d3">
-        <div class="expect-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <div class="expect-card-title">Progress in months, not days</div>
-        <p>Real impact is measured over months. You'll have regular check-ins, an evolving plan, and a team that's with you for the long term.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 03 MEDICINE STARTING POINT ===== -->
-<section class="timeline-section section-pad">
-  <div class="section-inner">
-    <span class="eyebrow eyebrow-cream reveal">How it works</span>
-    <h2 class="section-h reveal reveal-d1">
-      One plan. Five <em>touchpoints</em>.
-    </h2>
-
-    <div class="timeline-intro reveal reveal-d2">
-      <p>
-        The Medicine Starting Point is your onboarding into <i class="svc">Behavioral Medicine</i>. One unified plan through Day 56. $590 for one dog.
-      </p>
-      <div class="timeline-pricing">
-        <div>
-          <div class="timeline-pricing-main">$590</div>
-          <div class="timeline-pricing-add">one dog, complete bundle</div>
-        </div>
-        <div style="width:1px;height:40px;background:var(--gray-line);"></div>
-        <div>
-          <div class="timeline-pricing-main">+$300</div>
-          <div class="timeline-pricing-add">second dog</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline">
-      <!-- Step 1 -->
-      <div class="timeline-step reveal">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
-          <div class="timeline-dot">
-            <span class="timeline-dot-label">Day</span>
-            <span class="timeline-dot-day">1</span>
-          </div>
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-appt-name">Initial Behavioral Medicine Assessment</div>
-          <div class="timeline-meta">
-            <span class="timeline-chip">Veterinary Behaviorist</span>
-          </div>
-          <p class="timeline-desc">A full behavioral evaluation and the start of your dog's treatment plan.</p>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="timeline-step reveal reveal-d1">
-        <div class="timeline-dot">
-          <span class="timeline-dot-label">Day</span>
-          <span class="timeline-dot-day">7</span>
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-appt-name">Medicine Check-In (Phone)</div>
-          <div class="timeline-meta">
-            <span class="timeline-chip">Behavioral Medicine Tech</span>
-          </div>
-          <p class="timeline-desc">A quick check on how your dog is responding to medication.</p>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="timeline-step reveal reveal-d2">
-        <div class="timeline-dot">
-          <span class="timeline-dot-label">Week</span>
-          <span class="timeline-dot-day">2</span>
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-appt-name">Medicine Check-In (Virtual)</div>
-          <div class="timeline-meta">
-            <span class="timeline-chip">Veterinary Behaviorist + Behavioral Medicine Tech</span>
-          </div>
-          <p class="timeline-desc">A virtual visit to review early progress and adjust the plan.</p>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="timeline-step reveal reveal-d3">
-        <div class="timeline-dot">
-          <span class="timeline-dot-label">Week</span>
-          <span class="timeline-dot-day">4</span>
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-appt-name">Medicine Led Mod Starter Session (Virtual)</div>
-          <div class="timeline-meta">
-            <span class="timeline-chip">Behavioral Medicine Tech (Veterinary Behaviorist joins briefly)</span>
-          </div>
-          <p class="timeline-desc">Your first <i class="svc">Modification</i> session, built into your treatment plan.</p>
-        </div>
-      </div>
-
-      <!-- Step 5 -->
-      <div class="timeline-step reveal reveal-d4">
-        <div class="timeline-dot">
-          <span class="timeline-dot-label">Mo.</span>
-          <span class="timeline-dot-day">2</span>
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-appt-name">Medicine Check-In (Virtual)</div>
-          <div class="timeline-meta">
-            <span class="timeline-chip">Veterinary Behaviorist</span>
-          </div>
-          <p class="timeline-desc">Review progress, fine-tune the plan, and talk through what's next.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 05 ADD-ONS ===== -->
-<section class="addons-section section-pad" id="add-ons">
-  <div class="section-inner">
-    <span class="eyebrow eyebrow-cream reveal">What comes next</span>
-    <h2 class="section-h reveal reveal-d1">After the Starting Point.</h2>
-    <p class="addons-intro reveal reveal-d2">
-      Every journey is different. From here, your dog's custom treatment plan will include more <i class="svc">Medicine</i> and more <i class="svc">Modification</i>. To continue with Medicine-Led Modification, keep up with your scheduled <i class="svc">Medicine</i> appointments.
-    </p>
-
-    <div class="what-next-grid">
-      <div class="what-next-card reveal">
-        <div class="what-next-card-title">Continue with Medicine</div>
-        <p>We offer 15–30 min check-ins.</p>
-        <p><a href="pricing.html#pricing-medicine" class="what-next-link">See pricing on Cost Transparency</a></p>
-      </div>
-      <div class="what-next-card reveal reveal-d1">
-        <div class="what-next-card-title">Continue with Modification</div>
-        <p><i class="svc">Modification</i> offered in 3 locations.</p>
-        <p>Mini-modification sessions to make progress in small windows.</p>
-        <p><a href="modification.html" class="what-next-link">See the <i class="svc">Modification</i> page for details</a></p>
-      </div>
-      <div class="what-next-card reveal" style="grid-column: 1 / -1;">
-        <div class="what-next-card-title">Urgent Behavioral Appointment</div>
-        <p><span class="addon-coming-soon">Details coming soon</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 06 ABOUT THE SPECIALIST ===== -->
-<section class="specialist-section section-pad">
-  <div class="section-inner">
-    <span class="eyebrow reveal">Your specialists</span>
-    <div class="specialist-inner" style="margin-top:48px;">
-      <div class="specialist-left reveal">
-        <div class="specialist-person">
-          <div class="specialist-avatar">GG</div>
-          <p class="specialist-person-name">Dr. Gilbert-Gregory</p>
-          <p class="specialist-avatar-note">Lead Veterinary Behaviorist · Sees clients in <i class="svc">Behavioral Medicine</i></p>
-        </div>
-        <div class="specialist-person">
-          <div class="specialist-avatar">MH</div>
-          <p class="specialist-person-name">Dr. Meghan Herron</p>
-          <p class="specialist-avatar-note">DVM, DACVB · Sr. Director, Behavior, Research, and Education</p>
-        </div>
-      </div>
-      <div class="reveal reveal-d1">
-        <h2 class="specialist-title">Gigi's Veterinary Behaviorists</h2>
-        <div class="credential-chips">
-          <span class="credential-chip">Diplomate ACVB</span>
-          <span class="credential-chip">Board-Certified Veterinary Behaviorist</span>
-        </div>
-        <p class="specialist-body">
-          Board-certified Veterinary Behaviorists complete years of specialized training in animal behavior, learning theory, and behavioral pharmacology. They are among the most specialized clinicians in the field. Fewer than 100 practice in the United States.
-        </p>
-        <blockquote class="specialist-pull-quote">
-          "Medicine sets the conditions. Modification makes progress happen."
-        </blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 07 ENTRY REQUIREMENTS ===== -->
-<section class="entry-section section-pad">
-  <div class="section-inner">
-    <span class="eyebrow reveal">Before you begin</span>
-    <h2 class="section-h reveal reveal-d1" style="color:#fff;">
-      Before you <em>schedule</em>.
-    </h2>
-
-    <div class="entry-grid">
-      <div class="entry-req reveal reveal-d1">
-        <div class="entry-req-num">01</div>
-        <div class="entry-req-title">A vet referral</div>
-        <p>A referral from your primary veterinarian is required. If you don't have one yet, the Care Navigation Call can help you get started.</p>
-      </div>
-      <div class="entry-req reveal reveal-d2">
-        <div class="entry-req-num">02</div>
-        <div class="entry-req-title">The Care Navigation Call</div>
-        <p>The Care Navigation Call is the only entry into <i class="svc">Behavioral Medicine</i>. Our Client Success Manager will review your dog's history, confirm the referral, and schedule your Initial Assessment.</p>
-      </div>
-    </div>
-
-    <div class="entry-schedule-note reveal">
-      <strong>On scheduling:</strong> Families with a referral in hand are scheduled for the first available appointment. Families with a referral outstanding are scheduled with a 2-week buffer to allow admin time before the appointment.
-    </div>
-
-    <div class="entry-cta-wrap reveal">
-      <a href="#cta-band" class="btn-butter">Book a care navigation call</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 08 CTA BAND ===== -->
-<section class="section-pad" id="cta-band">
-  <div class="section-inner" style="text-align:center;">
-    <p class="cta-band-eyebrow reveal">Care Navigation</p>
-    <h2 class="cta-band-h section-h reveal reveal-d1" style="color:#fff;">
-      Ready for the <em>next stage</em>?
-    </h2>
-    <p class="cta-band-body reveal reveal-d2">
-      Book your free Care Navigation Call. Our Client Success Manager will review your dog's behavior history, confirm your vet referral, and guide you toward the right starting point.
-    </p>
-    <div class="cta-band-actions reveal reveal-d3">
-      <a href="#" class="btn-butter">Book a call</a>
-      <a href="modification.html" class="btn-ghost">Explore Modification</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
+</main>
 <footer id="footer">
-  <div class="section-inner">
-    <div class="footer-grid">
+  <div class="wrap">
+    <div class="ft-grid">
       <div>
-        <div class="footer-brand-name"><img class="footer-logo" src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="1249" height="161"></div>
-        <div class="footer-tagline">Judgement-free behavior care.<br>At every stage.</div>
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);">GIGISBEHAVIOR.ORG</div>
+        <img class="ft-logo" src="images/gigis-behavior-logo-teal.png" alt="Gigi's Behavior" width="186" height="24">
+        <p style="margin-top: 16px; color: #fff">Judgement Free Behavior Care. At Every Stage.</p>
+        <p class="tiny" style="margin-top: 10px; letter-spacing: 0.12em; font-weight: 700; color: var(--n300)">GIGISBEHAVIOR.ORG</p>
       </div>
-      <div>
-        <div class="footer-col-label">Stages of care</div>
-        <div class="footer-links">
-          <a href="training.html">Behavioral Training</a>
-          <a href="modification.html">Behavioral Modification</a>
-          <a href="medicine.html">Behavioral Medicine</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-label">Get started</div>
-        <div class="footer-links">
-          <a href="#cta-band">Care Navigation Call</a>
-          <a href="#" data-quiz-trigger="training">Book a class</a>
-          <a href="referring-vets.html">For referring vets</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-label">Gigi's</div>
-        <div class="footer-links">
-          <a href="#">About</a>
-          <a href="#">Rescue &amp; Placement</a>
-          <a href="#">Veterinary Services</a>
-          <a href="#">Resources</a>
-        </div>
-      </div>
+      <div><strong>Stages of care</strong><div class="ft-links"><a href="training.html">Behavioral Training</a><a href="modification.html">Behavioral Modification</a><a href="medicine.html">Behavioral Medicine</a></div></div>
+      <div><strong>Get started</strong><div class="ft-links"><a href="#cta-band">Care Navigation Call</a><a href="#" data-quiz-trigger="training">Book a class</a><a href="referring-vets.html">For referring vets</a></div></div>
+      <div><strong>Gigi's</strong><div class="ft-links"><a href="#">About</a><a href="#">Rescue &amp; Placement</a><a href="#">Veterinary Services</a><a href="#">Resources</a></div></div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-legal">© 2026 Gigi's. All rights reserved. Judgement-Free Adoption™</div>
-      <a class="footer-parent" href="https://gigis.org"><img src="images/gigis-logo-teal.png" alt="Gigi's" width="764" height="566"><span class="footer-url">GIGIS.ORG</span></a>
+    <div class="ft-bottom">
+      <p>&copy; 2026 Gigi's. All rights reserved. Judgement Free Adoption<span class="tm">&trade;</span></p>
+      <a class="ft-parent" href="https://gigis.org"><img src="images/gigis-logo-teal.png" alt="Gigi's" width="86" height="64">GIGIS.ORG</a>
     </div>
   </div>
 </footer>
-
+<script src="gbs-class-quiz.js?v=20261027a"></script>
 <script>
-const bar = document.getElementById('progress-bar');
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-  bar.style.width = Math.min(pct, 100) + '%';
-}, { passive: true });
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
-const navBurger = document.getElementById('nav-burger');
-const navMobileMenu = document.getElementById('nav-mobile-menu');
-navBurger.addEventListener('click', () => {
-  const isOpen = navMobileMenu.classList.toggle('open');
-  navBurger.setAttribute('aria-expanded', isOpen);
-});
-navMobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => { navMobileMenu.classList.remove('open'); navBurger.setAttribute('aria-expanded', 'false'); });
-});
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
-}, { threshold: 0.12 });
-reveals.forEach(el => revealObs.observe(el));
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  reveals.forEach(el => el.classList.add('visible'));
-}
-
-(function(){
-  var bar = document.getElementById('stage-bar-wrap');
-  if(!bar) return;
-  var shown = false;
-  window.addEventListener('scroll', function(){
-    var y = window.pageYOffset || document.documentElement.scrollTop;
-    if(y > 300 && !shown){ bar.classList.add('visible'); shown = true; }
-    else if(y <= 300 && shown){ bar.classList.remove('visible'); shown = false; }
-  }, {passive:true});
+(function () {
+  var b = document.querySelector('.nav-burger'), m = document.getElementById('nav-menu');
+  if (b && m) {
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') === 'true';
+      b.setAttribute('aria-expanded', String(!open));
+      b.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      m.hidden = open;
+    });
+    m.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', 'Open menu'); m.hidden = true; }
+    });
+  }
+  var bar = document.getElementById('stage-bar-wrap'), hero = document.querySelector('.hero');
+  function check() {
+    var limit = hero ? hero.offsetTop + hero.offsetHeight - 80 : 300;
+    if (window.scrollY > limit) bar.classList.add('visible'); else bar.classList.remove('visible');
+  }
+  if (bar) { window.addEventListener('scroll', check, { passive: true }); check(); }
 })();
 </script>
-
-<script src="gbs-class-quiz.js?v=20261015f" defer></script>
 </body>
 </html>
