@@ -1,7 +1,7 @@
 /* Referral portal popup for vets (Nov 9). Opens from any [data-portal-link]. */
 (function () {
   var LOGIN_URL = 'https://gigis.rvetlink.com/Account/Login?ReturnUrl=%2FChart';
-  var GUEST_URL = 'https://gigis.rvetlink.com/referral/new'; // rVetLink guest referral (standard rVetLink path; confirm it loads)
+  var GUEST_URL = 'https://gigis.rvetlink.com/referral/new'; // rVetLink guest referral (confirmed by Justin, Nov 9)
   var wrap, lastFocus;
   function build() {
     wrap = document.createElement('div');
