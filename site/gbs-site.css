@@ -541,3 +541,4 @@ html.cnm-lock { overflow: hidden; }
 .appt-details > summary::-webkit-details-marker { display: none; }
 .appt-details > summary span { font-size: 18px; font-weight: 400; }
 .appt-details[open] > summary span { transform: rotate(45deg); }
+@media (max-width: 600px) { #footer { padding-bottom: 40px; } } /* sticky bar removed Nov 9 */
