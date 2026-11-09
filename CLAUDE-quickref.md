@@ -7,7 +7,7 @@ The `redesign` branch rebuilds all 8 pages in homepage direction D + the handwri
 - Every graphic (photo, placeholder, data figure) carries a hand-drawn element: Gluten note (6 words max), drawn arrow, sparkle, squiggle, or drawn ring (.ring / .dd / .note helpers in the CSS). Handwriting never on nav, buttons, forms, pricing rows.
 - Fonts: EB Garamond (display), Montserrat (body), Gluten (informal handwritten notes, chosen Nov 9), Courier New (figures, prices).
 - Top menu: utility bar (Client portal, Refer a patient) + black bar; same six links with classes nl-*; active = 3px underline in the section color; hamburger below 1180px. CTA "Book a free call" (For Vets: "Refer a patient"; Portal: "Log in").
-- Stage tracker and sticky bottom bar kept, restyled square.
+- Stage tracker RETIRED (Nov 9): every former tracker is now an eyebrow reading "Stage: Service line" (Foundations: Training · Support: Modification · Specialty: Medicine), in the stage color. Sticky bottom bar kept.
 - Homepage concern finder: routing text is a DRAFT for the team to correct (in the FINDER_JS block of index.html).
 - HTML files are the source of truth from here; edit them directly.
 
