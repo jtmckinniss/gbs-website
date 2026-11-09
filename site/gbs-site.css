@@ -352,15 +352,15 @@ main { overflow-x: clip; }
 .dd-wrap { position: static; display: flex; }
 .dd-wrap.open > .nl2 { border-bottom-color: var(--teal); }
 .dd-wrap.open .car { transform: rotate(180deg); }
-.dd { display: none; position: absolute; top: 100%; left: 216px; background: #111; border: 1px solid var(--n700); border-top: 3px solid var(--teal); padding: 26px; gap: 26px; z-index: 60; box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
-.dd-wrap.open .dd { display: flex; }
-@media (hover: hover) and (min-width: 1181px) { .dd-wrap:hover .dd { display: flex; } .dd-wrap:hover > .nl2 { border-bottom-color: var(--teal); } }
+.ddp { display: none; position: absolute; top: 100%; left: 216px; background: #111; border: 1px solid var(--n700); border-top: 3px solid var(--teal); padding: 26px; gap: 26px; z-index: 60; box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+.dd-wrap.open .ddp { display: flex; }
+@media (hover: hover) and (min-width: 1181px) { .dd-wrap:hover .ddp { display: flex; } .dd-wrap:hover > .nl2 { border-bottom-color: var(--teal); } }
 .dd-col { display: grid; min-width: 300px; }
 .dd-k { font: 800 11px/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin: 0 0 10px; }
 .dd-c { display: flex; justify-content: space-between; gap: 20px; color: #fff; text-decoration: none; font-size: 15px; padding: 12px 0; border-top: 1px solid var(--n700); }
 .dd-c:hover { color: var(--teal); }
-#dd-svc .dd { left: 0; right: 0; }
-#dd-svc .dd > div:first-child { flex: 1; }
+#dd-svc .ddp { left: 0; right: 0; }
+#dd-svc .ddp > div:first-child { flex: 1; }
 .dd-svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .dd-s { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #fff; border-top: 4px solid; padding-top: 14px; }
 .dd-s:hover strong { text-decoration: underline; text-underline-offset: 4px; }
@@ -391,7 +391,7 @@ main { overflow-x: clip; }
 .m2 .m-call { position: sticky; bottom: 0; background: var(--black); padding-top: 16px; }
 .m2 .m-call .btn { display: block; margin-top: 0; }
 /* Subsections on cream with black text (chosen Nov 9) */
-.dd { background: var(--cream); border-color: var(--line); }
+.ddp { background: var(--cream); border-color: var(--line); }
 .dd-k { color: var(--teal-text); }
 .dd-c { color: var(--ink); border-top-color: var(--line); }
 .dd-c:hover { color: var(--teal-text); }
