@@ -460,3 +460,28 @@ main { overflow-x: clip; }
 @media (max-width: 1340px) { .nav2 .nav-in { gap: 26px; } .nav2 .nav-logo { padding-right: 26px; } .nav2 .nav-links { gap: 20px; } .nav2 .nav-logo img { height: 32px; } }
 @media (max-width: 1180px) { .nav2 .nav-logo { border-right: 0; padding-right: 0; } .nav2 .nav-in { min-height: 76px; } .nav2 .nav-logo img { height: 28px; } }
 @media (max-width: 600px) { .nav2 .nav-logo img { height: 24px; } }
+/* Never distort the logo (Nov 9 fix) */
+.nav-logo, .nav2 .nav-logo { flex: 0 0 auto; }
+.nav-logo img, .ft-logo { flex: 0 0 auto; max-width: none; width: auto; object-fit: contain; }
+@media (max-width: 1340px) { .nav2 .nav-logo img { height: 28px; } }
+@media (max-width: 1180px) { .nav2 .nav-logo img { height: 26px; } }
+@media (max-width: 600px) {
+  .nav2 .nav-logo img { height: 18px; }
+  .nav2 .nav-in { gap: 10px; }
+  .nav2 .nav-btns .btn.nav-cta { padding: 10px 10px; font-size: 10.5px; letter-spacing: 0.05em; }
+  .nav2 .nav-burger { width: 44px; height: 44px; margin-left: 6px; }
+}
+@media (max-width: 380px) { .nav2 .nav-logo img { height: 15px; } .wrap { padding: 0 16px; } }
+
+/* Finder result: give "what happens next" its own surface (Nov 9) */
+.result-wide .rw-right { background: var(--kale); padding: 26px 28px 30px; margin: -6px 0; }
+.result-wide ol { font-size: 16px; color: #fff; }
+.result-wide ol li::before { width: 48px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 0 12px -4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160' preserveAspectRatio='none' fill='none' stroke='%232AD2C9' stroke-width='9' stroke-linecap='round'%3E%3Cpath d='M30 84 C 22 30, 120 8, 190 12 C 270 16, 296 54, 288 92 C 278 140, 180 154, 110 150 C 40 146, 8 112, 34 62'/%3E%3C/svg%3E") no-repeat center / 100% 100%; }
+.result-wide ol li:not(:last-child)::after { top: 18px; }
+@media (max-width: 900px) {
+  .result-wide .rw-right { margin: 0 -24px; padding: 24px; }
+  .result-wide ol li { padding-left: 58px; }
+  .result-wide ol li::before { margin: 0; top: -8px; }
+}
+@media (min-width: 1181px) and (max-width: 1260px) { .nav2 .nav-links { gap: 16px; } .nav2 .nav-btns { gap: 8px; } .nav2 .nav-btns .btn { padding: 12px 12px; } }
