@@ -439,3 +439,14 @@ main { overflow-x: clip; }
   .finder-top > :first-child { margin-bottom: 28px; flex: none !important; }
   .finder-stat { order: 9; margin-top: 36px; }
 }
+/* Header buttons (Nov 9): two teal outlines + solid call */
+.btn-line-teal { background: transparent; color: var(--teal); border: 1px solid var(--teal); }
+.btn-line-teal:hover, .btn-line-teal[aria-current] { background: rgba(42,210,201,0.12); }
+.nav-btns { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.nav2 .nav-btns .btn { padding: 13px 16px; font-size: 12px; white-space: nowrap; }
+.nav2 .nav-btns .nav-cta { margin-left: 0; }
+@media (max-width: 1340px) { .nav2 .nav-links { gap: 22px; } .nav-in { gap: 24px; } }
+@media (max-width: 1180px) {
+  .nav-btns .nav-sec { display: none; }
+  .nav2 .nav-btns .btn.nav-cta { display: inline-block !important; padding: 11px 12px; font-size: 11px; letter-spacing: 0.06em; }
+}
