@@ -620,3 +620,5 @@ html.cnm-lock { overflow: hidden; }
 .card-black .hand, .card-black .vn, .card-dark .hand, .card-dark .vn,
 .result .hand, .result .vn, .result-wide .hand,
 .bg-deep .hand, .bg-deep .vn { color: var(--butter); }
+/* Gluten is never bold (Justin, Nov 9) */
+.hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 400 !important; }
