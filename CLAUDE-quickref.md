@@ -7,6 +7,9 @@ The `redesign` branch rebuilds all 8 pages in homepage direction D + the handwri
 - Every graphic (photo, placeholder, data figure) carries a hand-drawn element: Gluten note (6 words max), drawn arrow, hand-drawn asterisk (replaced the sparkle Nov 9), squiggle, or drawn ring (.ring / .dd / .note helpers in the CSS). Handwriting never on nav, buttons, forms, pricing rows.
 - Voice notes (Nov 9): .vn handwritten asides with drawn up-arrow, in the flow (not absolute), 6 words max, never on nav/buttons/forms/price rows; none on For Vets (clinical audience). Team to review all wording.
 - For Vets positioning (Justin, Nov 9): "Your trusted partner for behavior." Comprehensive behavior at every stage; "We handle behavior, so you can focus on the rest." Medicine = "our most collaborative referral program". Three service-line cards sit under the hero. Model cards are bullets.
+- Medicine = "animal" rule (Justin, Nov 9): whenever copy talks about Medicine, say animal(s), not dog(s) (Medicine also sees cats). Brand anchor line "If your dog struggles..." left as is pending decision.
+- Service-name styling REVERSED (Justin, Nov 9): service names in body copy are plain text (no italic caps; <i class="svc"> removed).
+- Team page headings: "Like your dog's coaches." / "Like your dog's therapists." / "Like your animal's psychiatrist."; italic subhead = role name.
 - Stage order rule (Justin, Nov 9): always list in stage order: Training → Modification → Medicine; classes Puppy Preschool → Skills & Manners (Foundations, Advanced) → Tricks.
 - Heading rule (Nov 9, option B): serif (EB Garamond) for EVERY heading level incl. .h4 item titles; Montserrat for body and labels; body text steps lighter (#5A544B, small muted #6E685E). No eyebrow that repeats the card title. Prices in Courier with a drawn ring.
 - Fonts: EB Garamond (display), Montserrat (body), Gluten (informal handwritten notes, chosen Nov 9), Courier New (figures, prices).

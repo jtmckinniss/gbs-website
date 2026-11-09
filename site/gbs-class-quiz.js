@@ -118,7 +118,7 @@
       var h = el('h2', 'cq-result-h', 'Great news. We can’t wait to meet you and your pup.');
       h.id = 'cq-title';
       card.appendChild(h);
-      card.appendChild(el('p', 'cq-result-body', 'Your dog sounds ready for group <i class="svc">Training</i>. Pick the class and time that work for your family.'));
+      card.appendChild(el('p', 'cq-result-body', 'Your dog sounds ready for group Training. Pick the class and time that work for your family.'));
       var a = el('a', 'cq-cta', 'Choose your class');
       a.href = CLASS_BOOKING_URL;
       deadLink(a);
