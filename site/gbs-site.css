@@ -450,3 +450,13 @@ main { overflow-x: clip; }
   .nav-btns .nav-sec { display: none; }
   .nav2 .nav-btns .btn.nav-cta { display: inline-block !important; padding: 11px 12px; font-size: 11px; letter-spacing: 0.06em; }
 }
+/* Logo prominence (Nov 9, option C) + one continuous black header */
+.util { background: var(--black); }
+.nav2 .nav-in { min-height: 88px; gap: 36px; }
+.nav2 .nav-logo { align-self: stretch; display: flex; align-items: center; padding-right: 36px; border-right: 1px solid var(--n700); }
+.nav2 .nav-logo img { height: 36px; width: auto; }
+.nav2 .nav-links { gap: 26px; }
+.nav2 .ddp { left: 300px; }
+@media (max-width: 1340px) { .nav2 .nav-in { gap: 26px; } .nav2 .nav-logo { padding-right: 26px; } .nav2 .nav-links { gap: 20px; } .nav2 .nav-logo img { height: 32px; } }
+@media (max-width: 1180px) { .nav2 .nav-logo { border-right: 0; padding-right: 0; } .nav2 .nav-in { min-height: 76px; } .nav2 .nav-logo img { height: 28px; } }
+@media (max-width: 600px) { .nav2 .nav-logo img { height: 24px; } }
