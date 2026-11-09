@@ -98,12 +98,12 @@
         <p style="flex: 1 1 280px">of dogs show at least one behavior their family finds problematic. Early support is the easiest way to stay ahead of it.<br><span class="tiny muted">Range across Voith 1985; Campbell 1986; O'Farrell 1992; Mart&iacute;nez 2011 (per Boyd et al. 2018).</span></p>
       </div>
     </div>
-    <div class="card-black result" aria-live="polite" style="position: relative; overflow: hidden"><span class="r-wipe" aria-hidden="true" style="position: absolute; inset: 0; background: var(--teal); transform: scaleY(0); transform-origin: top; z-index: 10; pointer-events: none"></span>
+    <div class="card-black result" aria-live="polite">
       <p class="eyebrow" style="margin: 0">Where most families start</p>
-      <h3 class="h3" id="r-start" style="font-size: 36px">A free Care Navigation Call</h3>
+      <div style="position: relative"><span class="r-line" aria-hidden="true" style="position: absolute; left: -8px; right: -8px; top: 0; height: 2px; background: var(--teal); opacity: 0; pointer-events: none; z-index: 1"></span><div class="r-body" style="display: flex; flex-direction: column; gap: 14px"><h3 class="h3" id="r-start" style="font-size: 36px">A free Care Navigation Call</h3>
       <p class="meta" id="r-meta" style="color: var(--teal); font-size: 16px; font-weight: 700">Free &middot; 15 minutes &middot; with our Client Success Manager</p>
       <p id="r-usually" style="color: var(--n100)">Usually leads to Behavioral Modification with a Certified Dog Behavior Consultant.</p>
-      <ol id="r-steps"><li>Tell us what walks look like right now.</li><li>Start a plan with a Certified Dog Behavior Consultant.</li><li>Practice together between sessions. Real impact is measured in months, not days.</li></ol>
+      <ol id="r-steps"><li>Tell us what walks look like right now.</li><li>Start a plan with a Certified Dog Behavior Consultant.</li><li>Practice together between sessions. Real impact is measured in months, not days.</li></ol></div></div>
       <a class="btn btn-teal" id="r-cta" href="#cta-band">Book a free call</a>
     </div>
   </div>
@@ -371,15 +371,12 @@
       var d = D[b.getAttribute('data-concern')];
       if (b.getAttribute('aria-pressed') === 'true') return;
       btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-      var w = document.querySelector('.r-wipe');
-      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!w || still || !w.animate) { fill(d); return; }
-      var down = w.animate([{ transform: 'scaleY(0)', transformOrigin: 'top' }, { transform: 'scaleY(1)', transformOrigin: 'top' }], { duration: 260, easing: 'cubic-bezier(.6,0,.4,1)', fill: 'forwards' });
-      down.onfinish = function () {
-        fill(d);
-        var off = w.animate([{ transform: 'scaleY(1)', transformOrigin: 'bottom' }, { transform: 'scaleY(0)', transformOrigin: 'bottom' }], { duration: 320, delay: 60, easing: 'cubic-bezier(.6,0,.4,1)', fill: 'forwards' });
-        off.onfinish = function () { down.cancel(); off.cancel(); };
-      };
+      var body = document.querySelector('.r-body'), line = document.querySelector('.r-line');
+      fill(d);
+      if (!body || !body.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var ease = 'cubic-bezier(.4,0,.2,1)', dur = 520;
+      body.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: dur, easing: ease });
+      line.animate([{ top: '0%', opacity: 1 }, { top: '100%', opacity: 1, offset: 0.9 }, { top: '100%', opacity: 0 }], { duration: dur + 80, easing: ease });
     });
   });
   function fill(d) {
