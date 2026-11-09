@@ -390,3 +390,23 @@ main { overflow-x: clip; }
 .m2 .m-sec a { color: var(--n200); text-decoration: none; font-size: 14px; }
 .m2 .m-call { position: sticky; bottom: 0; background: var(--black); padding-top: 16px; }
 .m2 .m-call .btn { display: block; margin-top: 0; }
+/* Subsections on cream with black text (Nov 9 option) */
+.dd { background: var(--cream); border-color: var(--line); }
+.dd-k { color: var(--teal-text); }
+.dd-c { color: var(--ink); border-top-color: var(--line); }
+.dd-c:hover { color: var(--teal-text); }
+.dd-s { color: var(--ink); }
+.dd-s:nth-child(1) { border-top-color: var(--butter) !important; }
+.dd-s:nth-child(2) { border-top-color: var(--teal) !important; }
+.dd-s:nth-child(3) { border-top-color: var(--ink) !important; }
+.dd-s:nth-child(1) .dd-eb { color: var(--butter-text) !important; }
+.dd-s:nth-child(2) .dd-eb { color: var(--teal-text) !important; }
+.dd-s:nth-child(3) .dd-eb { color: var(--ink) !important; }
+.dd-d { color: var(--ink-2); }
+.dd-p { color: var(--teal-text); }
+.m2 .m-sub { background: var(--cream); border-left: 3px solid var(--teal); padding: 6px 16px 10px; margin: 0; border-bottom: 0; }
+.m2 .m-sub a { color: var(--ink); border-bottom: 1px solid var(--line); }
+.m2 .m-sub a:last-child { border-bottom: 0; }
+.m2 .m-sub a:nth-child(1) small { color: var(--butter-text) !important; }
+.m2 .m-sub a:nth-child(2) small { color: var(--teal-text) !important; }
+.m2 .m-sub a:nth-child(3) small { color: var(--ink) !important; }
