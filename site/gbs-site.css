@@ -622,3 +622,7 @@ html.cnm-lock { overflow: hidden; }
 .bg-deep .hand, .bg-deep .vn { color: var(--butter); }
 /* Gluten is never bold (Justin, Nov 9) */
 .hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 400 !important; }
+/* Gluten tilt (Justin, Nov 9): -2deg, rising right; inline-block so it rotates as a unit */
+.hand, .vn span, .analogy, .cnm-note { display: inline-block; transform: rotate(-2deg); transform-origin: left center; }
+.note { transform: rotate(-2deg); }
+.analogy { display: block; width: max-content; max-width: 100%; }
