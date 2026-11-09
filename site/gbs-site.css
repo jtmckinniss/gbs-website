@@ -410,3 +410,32 @@ main { overflow-x: clip; }
 .m2 .m-sub a:nth-child(1) small { color: var(--butter-text) !important; }
 .m2 .m-sub a:nth-child(2) small { color: var(--teal-text) !important; }
 .m2 .m-sub a:nth-child(3) small { color: var(--ink) !important; }
+
+/* Finder, wide result layout (Nov 9) */
+.finder-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; margin-bottom: 32px; }
+.concerns-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .concerns-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .concerns-3 { grid-template-columns: 1fr; } }
+.result-wide { margin-top: 28px; padding: 44px 48px; gap: 18px; }
+.rw-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px 64px; align-items: start; }
+.rw-left { display: flex; flex-direction: column; gap: 14px; }
+.result-wide ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 44px; counter-reset: step; font-size: 15px; line-height: 1.5; }
+.result-wide ol li { position: relative; counter-increment: step; padding-top: 6px; }
+.result-wide ol li::before { content: counter(step); display: block; font-family: var(--data); font-weight: 700; font-size: 26px; line-height: 1; color: var(--teal); margin-bottom: 10px; }
+.result-wide ol li:not(:last-child)::after { content: ""; position: absolute; top: 8px; right: -40px; width: 34px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 30' fill='none' stroke='%23E8C46B' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 16 C 14 8, 32 10, 50 15'/%3E%3Cpath d='M42 7.5 L 51 15 L 41.5 21'/%3E%3C/svg%3E") no-repeat center / contain; }
+.rw-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 8px; padding-top: 24px; border-top: 1px solid var(--n700); }
+.rw-cta .btn { margin-top: 0; }
+@media (max-width: 900px) {
+  .result-wide { padding: 32px 24px; }
+  .rw-grid { grid-template-columns: 1fr; }
+  .result-wide ol { grid-template-columns: 1fr; gap: 18px; }
+  .result-wide ol li { padding-left: 40px; padding-top: 0; }
+  .result-wide ol li::before { position: absolute; left: 0; top: 0; margin: 0; font-size: 22px; }
+  .result-wide ol li:not(:last-child)::after { display: none; }
+}
+@media (max-width: 900px) {
+  #concerns > .wrap { display: flex; flex-direction: column; }
+  .finder-top { display: contents; }
+  .finder-top > :first-child { margin-bottom: 28px; flex: none !important; }
+  .finder-stat { order: 9; margin-top: 36px; }
+}
