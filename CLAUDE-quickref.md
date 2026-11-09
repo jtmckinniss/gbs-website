@@ -4,8 +4,8 @@ The `redesign` branch rebuilds all 8 pages in homepage direction D + the handwri
 
 - One stylesheet: site/gbs-site.css (?v=20261027a). gbs-shared.css is retired on this branch. Quiz JS unchanged (gbs-class-quiz.js).
 - Look: cream ground (#F4F1E9), black and deep green (#16291F) bands, bright teal on dark, teal-deep on cream. Square, ALL CAPS buttons only: NEVER rounded buttons (Justin, inflexible).
-- Every graphic (photo, placeholder, data figure) carries a hand-drawn element: Gochi Hand note (6 words max), drawn arrow, sparkle, squiggle, or drawn ring (.ring / .dd / .note helpers in the CSS). Handwriting never on nav, buttons, forms, pricing rows.
-- Fonts: EB Garamond (display), Montserrat (body), Gochi Hand (notes), Courier New (figures, prices).
+- Every graphic (photo, placeholder, data figure) carries a hand-drawn element: Gluten note (6 words max), drawn arrow, sparkle, squiggle, or drawn ring (.ring / .dd / .note helpers in the CSS). Handwriting never on nav, buttons, forms, pricing rows.
+- Fonts: EB Garamond (display), Montserrat (body), Gluten (informal handwritten notes, chosen Nov 9), Courier New (figures, prices).
 - Top menu: utility bar (Client portal, Refer a patient) + black bar; same six links with classes nl-*; active = 3px underline in the section color; hamburger below 1180px. CTA "Book a free call" (For Vets: "Refer a patient"; Portal: "Log in").
 - Stage tracker and sticky bottom bar kept, restyled square.
 - Homepage concern finder: routing text is a DRAFT for the team to correct (in the FINDER_JS block of index.html).
