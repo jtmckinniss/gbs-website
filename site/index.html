@@ -108,7 +108,7 @@
           </div>
           <div class="rw-right">
             <div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 6px; margin-bottom: 4px"><svg viewBox="0 0 60 46" fill="none" stroke="#E8C46B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: 40px; height: 31px; flex: 0 0 auto; transform: scaleX(-1)"><path d="M56 6 C 40 4, 22 10, 14 24 C 10 31, 9 36, 10 41"/><path d="M3.5 33 L 10 41.5 L 17 34.5"/></svg><p class="hand" style="margin: 0 0 14px; font-size: 24px; line-height: 1; color: #E8C46B">here's what happens next</p></div>
-            <ol id="r-steps"><li>Tell us what walks look like right now.</li><li>Start a plan with a Certified Dog Behavior Consultant.</li><li>Practice together between sessions. Real impact is measured in months, not days.</li></ol>
+            <ol id="r-steps"><li>Tell us what walks look like right now.</li><li>Start a plan with a Certified Dog Behavior Consultant.</li><li>Practice together between sessions. Real impact is measured in months, not days.</li></ol><p id="r-foot" class="tiny" style="margin: 14px 0 0; color: var(--n200)" hidden></p>
           </div>
         </div>
       </div>
@@ -347,7 +347,7 @@
     reactive: [CALL, META, 'Book a free call', '#cta-band', 'Usually leads to Behavioral Modification with a Certified Dog Behavior Consultant.', ['Tell us what walks look like right now.', 'Start a plan with a Certified Dog Behavior Consultant.', 'Practice together between sessions. Real impact is measured in months, not days.']],
     separation: [CALL, META, 'Book a free call', '#cta-band', 'Often Behavioral Modification. Sometimes Behavioral Medicine helps the brain reach a place where learning is possible.', ['Share what happens when you leave the house.', 'Get matched with a Behavior Consultant or our Veterinary Behaviorist.', 'Follow one plan your whole team shares.']],
     aggression: [CALL, META, 'Book a free call', '#cta-band', 'Behavioral Modification or Behavioral Medicine, depending on what is behind it.', ['Tell us what happened. No judgement.', 'Decide together whether Modification or Medicine fits best.', 'Work through it with specialists who treat this routinely.']],
-    fighting: [CALL, META, 'Book a free call', '#cta-band', 'Usually Behavioral Modification. Both animals are seen together at the same appointment.', ['Tell us how your animals are getting along.', 'Both animals are seen together at one appointment.', 'Follow-up appointments cover your whole household.']],
+    fighting: [CALL, META, 'Book a free call', '#cta-band', 'Usually Behavioral Modification. Both animals are seen together at the same appointment.', ['Tell us how your animals are getting along.', 'Both animals are evaluated in one appointment.*', 'Follow-up appointments cover your whole household.'], '*Animals in conflict won\u2019t necessarily be in the same room.'],
     listen: ['A class', 'Classes from $42 \u00b7 group and 1-on-1', 'Book a class', 'quiz', 'Behavioral Training builds skills and confidence. Think of it as your dog\u2019s life coach.', ['Answer three quick questions to make sure group class is a fit.', 'Choose Puppy Preschool, Tricks or Skills & Manners.', 'Practice at home between classes.']],
     notsure: [CALL, META, 'Book a free call', '#cta-band', "That's common. You don't need to know what you need before you start.", ['Book 15 minutes with our Client Success Manager.', "Talk through what's going on at home.", 'Leave with a clear next step.']]
   };
@@ -375,6 +375,7 @@
       else { cta.setAttribute('href', d[3]); cta.removeAttribute('data-quiz-trigger'); }
       var ol = $('r-steps'); ol.innerHTML = '';
       d[5].forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+      var fn = $('r-foot'); fn.textContent = d[6] || ''; fn.hidden = !d[6];
   }
 })();
 </script>
