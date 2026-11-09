@@ -631,3 +631,5 @@ html.cnm-lock { overflow: hidden; }
 .vn { margin-top: 18px; }
 /* Gluten weight: Light 300 everywhere (Justin, Nov 9) */
 .hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 300 !important; }
+/* Gluten weight: 250 everywhere (Justin, Nov 9) */
+.hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 250 !important; }
