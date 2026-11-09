@@ -611,3 +611,4 @@ html.cnm-lock { overflow: hidden; }
 .portal-feats .h4 { color: #fff; font-size: 20px; }
 .portal-feats .small { color: var(--n200); margin: 4px 0 0; }
 @media (max-width: 600px) { .portal-feats { grid-template-columns: 1fr; } }
+.analogy { font-family: var(--hand); font-style: normal; font-weight: 500; font-size: clamp(26px, 2.5vw, 32px); line-height: 1.1; margin-top: 16px; }
