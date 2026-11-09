@@ -390,7 +390,7 @@ main { overflow-x: clip; }
 .m2 .m-sec a { color: var(--n200); text-decoration: none; font-size: 14px; }
 .m2 .m-call { position: sticky; bottom: 0; background: var(--black); padding-top: 16px; }
 .m2 .m-call .btn { display: block; margin-top: 0; }
-/* Subsections on cream with black text (Nov 9 option) */
+/* Subsections on cream with black text (chosen Nov 9) */
 .dd { background: var(--cream); border-color: var(--line); }
 .dd-k { color: var(--teal-text); }
 .dd-c { color: var(--ink); border-top-color: var(--line); }
