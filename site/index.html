@@ -89,7 +89,7 @@
           <button type="button" class="concern" data-concern="reactive" aria-pressed="true">Barks or lunges on walks</button>
           <button type="button" class="concern" data-concern="separation" aria-pressed="false">Panics when left alone</button>
           <button type="button" class="concern" data-concern="aggression" aria-pressed="false">Growls, snaps or bites</button>
-          <button type="button" class="concern" data-concern="fighting" aria-pressed="false">My dogs fight at home</button>
+          <button type="button" class="concern" data-concern="fighting" aria-pressed="false">My animals fight at home</button>
           <button type="button" class="concern" data-concern="listen" aria-pressed="false">Doesn't listen to me</button>
           <button type="button" class="concern" data-concern="notsure" aria-pressed="false">Not sure, or something else</button>
       </fieldset>
@@ -98,7 +98,7 @@
         <p style="flex: 1 1 280px">of dogs show at least one behavior their family finds problematic. Early support is the easiest way to stay ahead of it.<br><span class="tiny muted">Range across Voith 1985; Campbell 1986; O'Farrell 1992; Mart&iacute;nez 2011 (per Boyd et al. 2018).</span></p>
       </div>
     </div>
-    <div class="card-black result" aria-live="polite">
+    <div class="card-black result" aria-live="polite" style="position: relative; overflow: hidden"><span class="r-wipe" aria-hidden="true" style="position: absolute; inset: 0; background: var(--teal); transform: scaleY(0); transform-origin: top; z-index: 10; pointer-events: none"></span>
       <p class="eyebrow" style="margin: 0">Where most families start</p>
       <h3 class="h3" id="r-start" style="font-size: 36px">A free Care Navigation Call</h3>
       <p class="meta" id="r-meta" style="color: var(--teal); font-size: 16px; font-weight: 700">Free &middot; 15 minutes &middot; with our Client Success Manager</p>
@@ -369,15 +369,27 @@
   btns.forEach(function (b) {
     b.addEventListener('click', function () {
       var d = D[b.getAttribute('data-concern')];
+      if (b.getAttribute('aria-pressed') === 'true') return;
       btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var w = document.querySelector('.r-wipe');
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!w || still || !w.animate) { fill(d); return; }
+      var down = w.animate([{ transform: 'scaleY(0)', transformOrigin: 'top' }, { transform: 'scaleY(1)', transformOrigin: 'top' }], { duration: 260, easing: 'cubic-bezier(.6,0,.4,1)', fill: 'forwards' });
+      down.onfinish = function () {
+        fill(d);
+        var off = w.animate([{ transform: 'scaleY(1)', transformOrigin: 'bottom' }, { transform: 'scaleY(0)', transformOrigin: 'bottom' }], { duration: 320, delay: 60, easing: 'cubic-bezier(.6,0,.4,1)', fill: 'forwards' });
+        off.onfinish = function () { down.cancel(); off.cancel(); };
+      };
+    });
+  });
+  function fill(d) {
       $('r-start').textContent = d[0]; $('r-meta').textContent = d[1]; $('r-usually').textContent = d[4];
       var cta = $('r-cta'); cta.textContent = d[2];
       if (d[3] === 'quiz') { cta.setAttribute('href', '#'); cta.setAttribute('data-quiz-trigger', 'training'); }
       else { cta.setAttribute('href', d[3]); cta.removeAttribute('data-quiz-trigger'); }
       var ol = $('r-steps'); ol.innerHTML = '';
       d[5].forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
-    });
-  });
+  }
 })();
 </script>
 </body>
