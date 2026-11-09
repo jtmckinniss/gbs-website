@@ -589,3 +589,4 @@ html.cnm-lock { overflow: hidden; }
 .mf-item { display: flex; flex-direction: column; gap: 4px; }
 .mf-item .eyebrow { margin: 0; font-size: 10.5px; }
 .mf-wide { grid-column: 1 / -1; }
+#nav { border-bottom: 0; } /* header bottom line removed Nov 9 */
