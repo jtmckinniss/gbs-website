@@ -549,3 +549,8 @@ html.cnm-lock { overflow: hidden; }
 .vpm-opt .btn { align-self: flex-start; margin-top: 8px; }
 .vpm-help { margin: 10px 0 0; }
 @media (max-width: 600px) { .vpm-opts { grid-template-columns: 1fr; } .vpm-opt + .vpm-opt { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 16px; } }
+/* Homepage collaboration band on cream, to break from the black specialists band (Nov 9) */
+.collab-light { background: var(--cream-soft); color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.collab-light .eyebrow { color: var(--teal-text); }
+.collab-light .muted, .collab-light .small.muted { color: var(--ink-2); }
+.collab-light .quote { color: var(--ink); }
