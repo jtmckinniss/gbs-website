@@ -629,3 +629,5 @@ html.cnm-lock { overflow: hidden; }
 /* Tilted Gluten clearance (Nov 9): keep the rising end clear of the line above */
 .analogy { margin-top: 30px; }
 .vn { margin-top: 18px; }
+/* Gluten weight: Light 300 everywhere (Justin, Nov 9) */
+.hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 300 !important; }
