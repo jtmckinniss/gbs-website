@@ -612,3 +612,11 @@ html.cnm-lock { overflow: hidden; }
 .portal-feats .small { color: var(--n200); margin: 4px 0 0; }
 @media (max-width: 600px) { .portal-feats { grid-template-columns: 1fr; } }
 .analogy { font-family: var(--hand); font-style: normal; font-weight: 500; font-size: clamp(26px, 2.5vw, 32px); line-height: 1.1; margin-top: 16px; }
+
+/* Gluten color rule (Justin, Nov 9): butter on black / deep teal / kale; dark teal on white / cream */
+.hand, .vn, .analogy, .cnm-note { color: var(--teal-text); }
+.on-black .hand, .on-black .vn, .on-black .analogy,
+.on-kale .hand, .on-kale .vn, .on-kale .analogy,
+.card-black .hand, .card-black .vn, .card-dark .hand, .card-dark .vn,
+.result .hand, .result .vn, .result-wide .hand,
+.bg-deep .hand, .bg-deep .vn { color: var(--butter); }
