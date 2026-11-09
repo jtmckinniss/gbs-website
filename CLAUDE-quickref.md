@@ -11,6 +11,7 @@ The `redesign` branch rebuilds all 8 pages in homepage direction D + the handwri
 - Homepage concern finder: routing text is a DRAFT for the team to correct (in the FINDER_JS block of index.html).
 - HTML files are the source of truth from here; edit them directly.
 - GBS messaging v2.6 DECIDED items applied (Nov 9): Medicine Starting Point $690 everywhere; "medication will help" replaced with SOT §06/§03 conditional wording; 14-day prescription-transfer story, Ohio telemedicine section, VCPR cameo and Vet-to-Vet Medicine Transition Call removed; five-touchpoint timeline and all Medicine durations removed (G3/G4 HOLD); vet referral REQUIRED for anything Medicine (Justin, Nov 9, overrides v2.6 "expected"); Gigi's can request it with family authorization; medication copy rewritten in plain language (Justin, Nov 9). Vet-to-Vet Consulting Call kept. Second-dog Medicine price removed pending a decision. Do NOT publish v2.6 HOLD items (For Vets three-model copy, on-site exam, durations).
+- Justin, Nov 9: second dog Medicine +$300 ($990 for two); medication NOT included in the $690, medication management IS (Medicine line); For Vets shows three models (Gigi's-Managed featured, Vet-Partnered, Vet-to-Vet) using Justin's vet-facing copy; families only ever see Gigi's-Managed. Durations still HOLD.
 - `redesign` was merged into `staging` on Nov 9 (old design is in git history). `main` untouched until "ship it."
 
 # GBS Website Rebuild 2.1.1 — Quick Reference
