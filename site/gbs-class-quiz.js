@@ -8,7 +8,7 @@
    ========================================================== */
 (function () {
   var CLASS_BOOKING_URL = '#';   // TODO: class booking page (Offering Tree)
-  var CARE_NAV_URL = '#';        // TODO: Care Navigation Call booking page
+  var CARE_NAV_URL = 'https://app.vello.idexx.com/book/hcNFo5meTuC2VaM_ydL3mw'; // Vello Care Navigation Call (popup intercepts first)
 
   var QUESTIONS = [
     { q: 'Can your dog take treats and focus on you when other dogs and people are around?', pass: 'yes' },
