@@ -130,7 +130,7 @@
       h2.id = 'cq-title';
       card.appendChild(h2);
       card.appendChild(el('p', 'cq-result-body', 'That’s common, and it’s exactly what we’re here for. A free 15-minute Care Navigation Call with our Client Success Manager will get you to the right stage of care and the right professional.'));
-      var b = el('a', 'cq-cta', 'Book a free Care Navigation Call');
+      var b = el('a', 'cq-cta', 'Book a free call');
       b.href = CARE_NAV_URL;
       deadLink(b);
       card.appendChild(b);
