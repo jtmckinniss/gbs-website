@@ -10,6 +10,8 @@ The `redesign` branch rebuilds all 8 pages in homepage direction D + the handwri
 - Stage tracker RETIRED (Nov 9): every former tracker is now an eyebrow reading "Stage: Service line" (Foundations: Training · Support: Modification · Specialty: Medicine), in the stage color. Sticky bottom bar kept.
 - Homepage concern finder: routing text is a DRAFT for the team to correct (in the FINDER_JS block of index.html).
 - HTML files are the source of truth from here; edit them directly.
+- GBS messaging v2.6 DECIDED items applied (Nov 9): Medicine Starting Point $690 everywhere; "medication will help" replaced with SOT §06/§03 conditional wording; 14-day prescription-transfer story, Ohio telemedicine section, VCPR cameo and Vet-to-Vet Medicine Transition Call removed; five-touchpoint timeline and all Medicine durations removed (G3/G4 HOLD); referral now "expected". Vet-to-Vet Consulting Call kept. Second-dog Medicine price removed pending a decision. Do NOT publish v2.6 HOLD items (For Vets three-model copy, on-site exam, durations).
+- `redesign` was merged into `staging` on Nov 9 (old design is in git history). `main` untouched until "ship it."
 
 # GBS Website Rebuild 2.1.1 — Quick Reference
 Session opened: 2026-10-13 · Working dir: /home/claude/gbs-2.1.1/
