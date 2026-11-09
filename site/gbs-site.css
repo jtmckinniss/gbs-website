@@ -590,3 +590,18 @@ html.cnm-lock { overflow: hidden; }
 .mf-item .eyebrow { margin: 0; font-size: 10.5px; }
 .mf-wide { grid-column: 1 / -1; }
 #nav { border-bottom: 0; } /* header bottom line removed Nov 9 */
+/* Team page: people cards (Nov 9) */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 20px; }
+.person { background: var(--cream-soft); border: 1px solid var(--line); display: flex; flex-direction: column; }
+.person-ph { position: relative; height: 260px; border: 0; border-bottom: 1px solid var(--line); }
+.person-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
+.person-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+.person-chips .chip { font-size: 10px; padding: 4px 8px; color: var(--ink); }
+.person-dog { margin: 6px 0 0; color: var(--ink-2); }
+.person-dark { background: #141414; border-color: var(--n700); }
+.person-dark .person-ph { border-bottom-color: var(--n700); }
+.person-dark .person-chips .chip { color: var(--teal); }
+.person-dark .person-dog { color: var(--n200); }
+.person-dark .person-dog strong { color: #fff; }
+/* Service-line analogy under hero H1 (Nov 9) */
+.analogy { margin: 14px 0 0; font-family: var(--display); font-style: italic; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }

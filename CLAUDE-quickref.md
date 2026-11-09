@@ -9,7 +9,7 @@ The `redesign` branch rebuilds all 8 pages in homepage direction D + the handwri
 - For Vets positioning (Justin, Nov 9): "Your trusted partner for behavior." Comprehensive behavior at every stage; "We handle behavior, so you can focus on the rest." Medicine = "our most collaborative referral program". Three service-line cards sit under the hero. Model cards are bullets.
 - Medicine = "animal" rule (Justin, Nov 9): whenever copy talks about Medicine, say animal(s), not dog(s) (Medicine also sees cats). Includes the Judgement Free line on the Medicine page ("If your animal struggles...").
 - Service-name styling REVERSED (Justin, Nov 9): service names in body copy are plain text (no italic caps; <i class="svc"> removed).
-- Team page headings: "Like your dog's coaches." / "Like your dog's therapists." / "Like your animal's psychiatrist."; italic subhead = role name.
+- Team page (Nov 9): people-focused grid per stage (bio photo, name, role, credential chips, brief bio, 'Their dog') with placeholders; analogy sections removed. Analogies live under each service-line hero: Like your dog's life coach / therapist / Like your animal's psychiatrist.
 - Stage order rule (Justin, Nov 9): always list in stage order: Training → Modification → Medicine; classes Puppy Preschool → Skills & Manners (Foundations, Advanced) → Tricks.
 - Heading rule (Nov 9, option B): serif (EB Garamond) for EVERY heading level incl. .h4 item titles; Montserrat for body and labels; body text steps lighter (#5A544B, small muted #6E685E). No eyebrow that repeats the card title. Prices in Courier with a drawn ring.
 - Fonts: EB Garamond (display), Montserrat (body), Gluten (informal handwritten notes, chosen Nov 9), Courier New (figures, prices).
