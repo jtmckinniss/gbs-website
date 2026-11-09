@@ -582,3 +582,4 @@ html.cnm-lock { overflow: hidden; }
 .vpm-opt .btn { height: 60px; min-height: 0; padding: 0 12px; white-space: nowrap; font-size: 12px; }
 .vpm-opt > .small { height: 3.2em; min-height: 0; margin: 0; }
 @media (max-width: 600px) { .vpm-opt { padding-right: 0; } }
+.vpm-opt .btn { align-self: stretch; display: flex; align-items: center; justify-content: center; min-height: 52px; white-space: nowrap; }
