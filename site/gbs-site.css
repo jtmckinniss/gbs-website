@@ -506,3 +506,13 @@ main { overflow-x: clip; }
 .fn-toggle { margin-top: 28px; background: none; border: 0; padding: 4px 0; cursor: pointer; color: var(--teal); font: 800 12px/1 var(--body); letter-spacing: 0.12em; text-transform: uppercase; display: inline-flex; gap: 10px; align-items: center; }
 .fn-toggle span { font-size: 18px; font-weight: 400; }
 .fn-toggle:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+/* Heading hierarchy B (Nov 9): serif = every heading level; Montserrat = text and labels */
+:root { --ink-2: #5A544B; }
+.h3 { font-size: clamp(28px, 2.8vw, 36px); line-height: 1.06; }
+.h4 { font-family: var(--display); font-weight: 500; font-size: 23px; line-height: 1.15; letter-spacing: -0.01em; }
+.eyebrow { margin-bottom: 12px; }
+.h3 + p, .h3 + .muted { margin-top: 14px; }
+.small.muted { color: #6E685E; }
+.on-black .small.muted, .on-kale .small.muted, .card-dark .small.muted, .card-black .small.muted { color: var(--n200); }
+.h4 + .small, .h4 + p.small { margin-top: 8px; }
