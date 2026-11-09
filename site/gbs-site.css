@@ -626,3 +626,6 @@ html.cnm-lock { overflow: hidden; }
 .hand, .vn span, .analogy, .cnm-note { display: inline-block; transform: rotate(-2deg); transform-origin: left center; }
 .note { transform: rotate(-2deg); }
 .analogy { display: block; width: max-content; max-width: 100%; }
+/* Tilted Gluten clearance (Nov 9): keep the rising end clear of the line above */
+.analogy { margin-top: 30px; }
+.vn { margin-top: 18px; }
