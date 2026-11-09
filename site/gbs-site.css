@@ -605,3 +605,9 @@ html.cnm-lock { overflow: hidden; }
 .person-dark .person-dog strong { color: #fff; }
 /* Service-line analogy under hero H1 (Nov 9) */
 .analogy { margin: 14px 0 0; font-family: var(--display); font-style: italic; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }
+/* Client portal: features folded into hero (Nov 9) */
+.portal-feats { list-style: none; padding: 0; margin: 26px 0 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; }
+.portal-feats li { border-top: 2px solid var(--teal); padding-top: 12px; }
+.portal-feats .h4 { color: #fff; font-size: 20px; }
+.portal-feats .small { color: var(--n200); margin: 4px 0 0; }
+@media (max-width: 600px) { .portal-feats { grid-template-columns: 1fr; } }
