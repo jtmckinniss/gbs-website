@@ -542,3 +542,10 @@ html.cnm-lock { overflow: hidden; }
 .appt-details > summary span { font-size: 18px; font-weight: 400; }
 .appt-details[open] > summary span { transform: rotate(45deg); }
 @media (max-width: 600px) { #footer { padding-bottom: 40px; } } /* sticky bar removed Nov 9 */
+/* Vet referral portal popup (Nov 9) */
+.vpm-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px; border-top: 1px solid var(--line); }
+.vpm-opt { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 6px 0; }
+.vpm-opt + .vpm-opt { padding-left: 24px; padding-right: 0; border-left: 1px solid var(--line); }
+.vpm-opt .btn { align-self: flex-start; margin-top: 8px; }
+.vpm-help { margin: 10px 0 0; }
+@media (max-width: 600px) { .vpm-opts { grid-template-columns: 1fr; } .vpm-opt + .vpm-opt { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 16px; } }
