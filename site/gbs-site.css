@@ -633,3 +633,23 @@ html.cnm-lock { overflow: hidden; }
 .hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 300 !important; }
 /* Gluten weight: 250 everywhere (Justin, Nov 9) */
 .hand, .vn, .vn span, .analogy, .note, .cnm-note { font-weight: 250 !important; }
+
+/* Client portal quick links + urgent (Nov 20) */
+.ql-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 18px; }
+.ql-card { display: flex; flex-direction: column; gap: 10px; padding: 26px 24px; background: var(--cream-soft); border: 1px solid var(--line); border-top: 6px solid var(--ink); }
+.ql-feat { border-top-color: var(--teal); }
+.ql-card .btn { align-self: flex-start; margin-top: auto; }
+.ql-note { color: var(--ink-2); margin: 0 0 6px; }
+.ql-card .vn { margin-top: 10px; }
+.btn[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+.urg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 56px; }
+.urg-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; color: var(--n100); font-size: 15px; line-height: 1.5; }
+.urg-list li { position: relative; padding-left: 20px; }
+.urg-list li::before { content: ""; position: absolute; left: 2px; top: 0.66em; width: 9px; height: 2px; background: #F26157; transform: rotate(-8deg); }
+.urg-emergency { background: #F26157; color: var(--ink); padding: 24px 26px; }
+.urg-emergency .small { color: var(--ink); margin: 6px 0 0; }
+.urg-list-dark { color: var(--ink); grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+.urg-list-dark li::before { background: var(--ink); }
+.btn-urgent { background: #F26157; color: var(--ink); border: 1px solid #F26157; display: inline-block; }
+.btn-urgent:hover { background: #ff7a70; }
+@media (max-width: 900px) { .urg-grid { grid-template-columns: 1fr; } .urg-list-dark { grid-template-columns: 1fr; } }
