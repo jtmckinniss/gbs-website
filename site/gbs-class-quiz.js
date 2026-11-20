@@ -7,7 +7,7 @@
    set CLASS_BOOKING_URL and CARE_NAV_URL below.
    ========================================================== */
 (function () {
-  var CLASS_BOOKING_URL = '#';   // TODO: class booking page (Offering Tree)
+  var CLASS_BOOKING_URL = '#';   // TODO: class booking page
   var CARE_NAV_URL = 'https://app.vello.idexx.com/book/hcNFo5meTuC2VaM_ydL3mw'; // Vello Care Navigation Call (popup intercepts first)
 
   var QUESTIONS = [
