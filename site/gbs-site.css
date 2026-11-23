@@ -690,3 +690,8 @@ html.cnm-lock { overflow: hidden; }
 .cats { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid var(--n700); color: var(--n100); font-size: 16px; }
 .cats strong { font-family: var(--display); font-weight: 500; font-size: 22px; color: #fff; margin-right: 6px; }
 .cats-ast { width: 26px; height: 26px; flex: 0 0 auto; }
+
+/* Training hero: trainer credentials with awarding agencies (Nov 23) */
+.creds { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; font-size: 14px; color: var(--n200); }
+.creds strong { color: #fff; font-weight: 700; }
+.creds a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
