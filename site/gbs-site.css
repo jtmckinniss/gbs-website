@@ -658,3 +658,6 @@ html.cnm-lock { overflow: hidden; }
 .ugm-panel { border-top-color: #F26157; }
 .ugm .cnm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 24px; }
 .ugm .cnm-lede + .cnm-lede { margin-top: 12px; }
+
+/* Header buttons fit longer labels: Referring Vets / Current Clients (Nov 23) */
+@media (min-width:1181px){.nav2 .nav-btns{gap:8px}.nav2 .nav-btns .btn{padding-left:14px;padding-right:14px;letter-spacing:.08em}}@media (min-width:1181px) and (max-width:1440px){.nav2 .nav-links{gap:16px}.nav2 .nav-in{gap:20px}.nav2 .nav-logo{padding-right:20px}}@media (min-width:1181px) and (max-width:1260px){.nav2 .nav-btns .btn{padding-left:10px;padding-right:10px}.nav2 .nav-links{gap:14px}}
