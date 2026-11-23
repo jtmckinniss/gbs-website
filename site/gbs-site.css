@@ -684,3 +684,4 @@ html.cnm-lock { overflow: hidden; }
 .jr-d { margin-top: 8px; color: var(--n200); font-size: 15px; line-height: 1.55; }
 .jr-fine { margin-top: 14px; color: var(--n300); max-width: 820px; }
 .jr-w { font-family: var(--data); font-weight: 700; font-size: 13px; letter-spacing: .02em; color: var(--butter); margin-bottom: 4px; }
+.jr-box { border: 1px solid var(--n700); border-top: 4px solid var(--teal); padding: 22px 24px; color: var(--n200); font-size: 15px; line-height: 1.55; max-width: 360px; align-self: start; }
