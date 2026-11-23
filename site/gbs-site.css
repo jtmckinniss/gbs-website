@@ -664,3 +664,8 @@ html.cnm-lock { overflow: hidden; }
 
 /* Services dropdown: bold the analogy role (Nov 23) */
 .dd-an { font-weight: 700; color: var(--ink); }
+
+/* Mobile menu: Referring Vets / Current Clients as outline buttons (Nov 23) */
+.m2 .m-sec { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 0 4px; }
+.m2 .m-sec a.btn { color: var(--teal); font-size: 12px; text-align: center; justify-content: center; padding: 14px 10px; }
+.m2 .m-sec a:not(.btn) { grid-column: 1 / -1; padding-top: 6px; }
