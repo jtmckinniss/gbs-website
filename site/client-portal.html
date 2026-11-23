@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Gluten:wght@100..900&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
-<link rel="stylesheet" href="gbs-site.css?v=20261120a">
+<link rel="stylesheet" href="gbs-site.css?v=20261123a">
 </head>
 <body>
 <a class="sr-only" href="#main">Skip to content</a>
@@ -42,11 +42,11 @@
   <div class="wrap split">
     <div>
       <p class="eyebrow">For existing clients</p>
-      <h1 class="h1-sm">Your care, <span class="mk"><svg aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M2 17 C 60 9, 160 5, 298 9 C 200 10, 110 14, 4 21 Z" fill="#2AD2C9"/></svg><span>all in one place.</span></span></h1>
+      <h1 class="h1-sm">Welcome back. Your care, <span class="mk"><svg aria-hidden="true" viewBox="0 0 300 24" preserveAspectRatio="none"><path d="M2 17 C 60 9, 160 5, 298 9 C 200 10, 110 14, 4 21 Z" fill="#2AD2C9"/></svg><span>all in one place.</span></span></h1>
       <p class="lede">Manage your appointments, complete intake forms, and stay connected with your care team, all through the Gigi's client portal.</p>
       <ul class="portal-feats"><li><p class="h4">Complete your intake form</p><p class="small">Before your first appointment, so we can make the most of every session.</p></li><li><p class="h4">Request appointments</p><p class="small">Follow-up sessions for Training, Modification or Medicine, based on your care plan.</p></li><li><p class="h4">View upcoming appointments</p><p class="small">See what's scheduled, when and with which specialist.</p></li><li><p class="h4">Manage medications</p><p class="small">For Behavioral Medicine families: track your animal's medications and coordinate refills.</p></li></ul>
       <div class="btns" style="flex-direction: column; align-items: flex-start"><a class="btn btn-teal" href="#">Log in to the client portal</a><a class="btn btn-line-light" href="#" data-quiz-trigger="training">Book additional classes</a></div>
-      <p class="small mt-m" style="color: var(--n200)">This page is for current Gigi's Behavior clients. New to Gigi's Behavior? <a href="index.html#cta-band" style="color: var(--teal); font-weight: 600">Book a free call</a>.</p>
+      
     </div>
     <div style="position: relative; padding: 24px 0 24px 24px">
       <div role="img" aria-label="Preview of the Gigi's Behavior client portal" style="background: var(--cream-soft); color: var(--ink); border-top: 6px solid var(--teal); padding: 26px">
@@ -60,6 +60,18 @@
       </div>
       <svg class="dd" aria-hidden="true" viewBox="0 0 40 40" fill="none" stroke="#E8C46B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="right: -8px; top: 0; width: 40px; height: 40px"><path d="M21.8 4.6 C 21 10, 19 15, 19.8 21 C 20.4 26, 18.6 30, 18.9 35.2"/><path d="M5.8 14.4 C 11 15.4, 15.6 19.4, 21 20.6 C 26 21.8, 30 24.2, 34.6 25.2"/><path d="M31.6 9.4 C 28 13, 24.6 17.6, 20 21.4 C 16 24.8, 13.4 28.4, 9.6 31.2"/></svg>
       <svg class="dd" aria-hidden="true" viewBox="0 0 120 80" fill="none" stroke="#E8C46B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="left: -30px; bottom: -6px; width: 100px; height: 68px"><path d="M6 70 C 30 66, 60 50, 86 18"/><path d="M70 20 L88 16 L88 34"/></svg>
+    </div>
+  </div>
+</section>
+
+<section id="new-here" class="band-sm">
+  <div class="wrap">
+    <p class="eyebrow">New to Gigi's Behavior?</p>
+    <h2 class="h3">Start here instead.</h2>
+    <div class="grid g3 mt-m">
+      <div class="card flex-card"><p class="h4">Training</p><p class="small muted mt-s">Classes for puppies and adult dogs. Book on your own, no call needed.</p><a class="btn btn-line-dark" style="align-self: flex-start; margin-top: auto" href="#" data-quiz-trigger="training">Find the right class</a></div>
+      <div class="card flex-card"><p class="h4">Modification or Medicine</p><p class="small muted mt-s">Start with a free 15-minute call with our Client Success Manager.</p><a class="btn btn-teal" style="align-self: flex-start; margin-top: auto" href="index.html#cta-band">Book a free call</a></div>
+      <div class="card flex-card"><p class="h4">Veterinarians</p><p class="small muted mt-s">Referring a patient? Send it through our referral portal.</p><a class="btn btn-line-dark" style="align-self: flex-start; margin-top: auto" href="https://gigis.rvetlink.com/referral/new" data-portal-link>Submit a referral</a></div>
     </div>
   </div>
 </section>
@@ -191,6 +203,7 @@
 <script src="gbs-vet-modal.js?v=20261109c"></script>
 <script src="gbs-call-modal.js?v=20261109a"></script>
 <script src="gbs-class-quiz.js?v=20261109a"></script>
+<script src="gbs-urgent-gate.js?v=20261123a"></script>
 <script>
 (function () {
   var b = document.querySelector('.nav-burger'), m = document.getElementById('nav-menu');

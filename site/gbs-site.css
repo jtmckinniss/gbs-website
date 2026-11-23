@@ -653,3 +653,8 @@ html.cnm-lock { overflow: hidden; }
 .btn-urgent { background: #F26157; color: var(--ink); border: 1px solid #F26157; display: inline-block; }
 .btn-urgent:hover { background: #ff7a70; }
 @media (max-width: 900px) { .urg-grid { grid-template-columns: 1fr; } .urg-list-dark { grid-template-columns: 1fr; } }
+
+/* Urgent form gate popup (Nov 23) */
+.ugm-panel { border-top-color: #F26157; }
+.ugm .cnm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 24px; }
+.ugm .cnm-lede + .cnm-lede { margin-top: 12px; }
