@@ -815,3 +815,4 @@ html { scroll-behavior: smooth; }
 .models-grid .btn { justify-self: start; align-self: start; }
 .models-grid .model-foot { align-content: start; }
 .models-grid .model-desc > p:first-child + .model-list { margin-top: 12px; }
+.models-grid .card-black .model-desc { background: #1E1E1E; border-color: rgba(255,255,255,0.22) !important; }
