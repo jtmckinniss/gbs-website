@@ -1073,3 +1073,15 @@ html { scroll-behavior: smooth; }
 .vl-chev { width: 18px; height: 18px; flex: 0 0 auto; }
 .vl-act { position: absolute; right: 16px; bottom: 16px; padding: 10px 18px; background: #2a5bc4; color: #fff; border-radius: 999px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(42,91,196,.4); }
 .vl-cap { font-size: 12px; color: var(--n300); }
+/* For Clients: emergency box cream with thick coral top; jump bar (Nov 24) */
+.urg-emergency { background: var(--cream-soft); color: var(--ink); border-top: 8px solid #F26157; }
+.urg-emergency .h3, .urg-emergency .h4 { color: var(--ink); }
+.cp-jump { background: var(--black); padding: 0 0 36px; }
+.cp-jump-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cp-j { display: flex; align-items: center; justify-content: center; text-align: center; padding: 18px 16px; font: 800 12px/1.2 var(--body); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: #fff; border: 2px solid var(--teal); }
+.cp-j:hover, .cp-j:focus-visible { background: var(--teal); color: var(--ink); }
+.cp-j-urg { background: #F26157; border-color: #F26157; color: var(--ink); }
+.cp-j-urg:hover, .cp-j-urg:focus-visible { background: #fff; border-color: #fff; }
+@media (max-width: 640px) { .cp-jump-row { grid-template-columns: 1fr; } }
+#urgent, #quick-links, #scheduling { scroll-margin-top: 90px; }
+.urg-emergency .urg-list-dark li::before { background: #F26157; }
