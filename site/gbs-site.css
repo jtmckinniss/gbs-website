@@ -717,3 +717,7 @@ html.cnm-lock { overflow: hidden; }
 /* Cost page: class cards as link targets (Nov 24) */
 [id^="price-"] { scroll-margin-top: 110px; }
 [id^="price-"]:target { outline: 2px solid var(--butter); outline-offset: 4px; }
+
+/* Care team: credential chips link to awarding agencies (Nov 24) */
+a.chip { text-decoration: none; color: inherit; transition: background .15s; }
+a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
