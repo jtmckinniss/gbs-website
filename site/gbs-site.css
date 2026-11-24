@@ -836,3 +836,4 @@ html { scroll-behavior: smooth; }
 .on-kale .card .muted { color: var(--ink-2); }
 .on-kale .card .price { color: var(--ink); }
 .conflict-light .conf-h, .conflict-light .conf-row { border-color: var(--line) !important; }
+.conf-note { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-style: italic; }
