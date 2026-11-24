@@ -825,3 +825,4 @@ html { scroll-behavior: smooth; }
   .ref-tab { writing-mode: horizontal-tb; rotate: none; transform: none; top: auto; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); padding: 14px 18px; }
 }
 .models-grid > div { grid-row: span 4 !important; }
+.refer-notes > div { padding-top: 22px; border-top: 1px solid var(--n700); }
