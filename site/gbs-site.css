@@ -790,3 +790,9 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 .fmt-one + .webinars::before { content: ""; position: absolute; left: 0; right: 0; top: -49px; border-top: 1px solid var(--line); }
 #classes { scroll-margin-top: 100px; }
 html { scroll-behavior: smooth; }
+/* Light cards sitting on dark sections keep dark text */
+.on-kale .card, .on-black .card { color: var(--ink); }
+.on-kale .card .h3, .on-black .card .h3 { color: var(--ink); }
+.on-kale .card .lab-train, .on-black .card .lab-train { color: var(--butter-text); }
+.on-kale .card .lab-mod, .on-black .card .lab-mod { color: var(--teal-text); }
+.on-kale .card .lab-med, .on-black .card .lab-med { color: var(--ink); }
