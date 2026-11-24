@@ -121,6 +121,8 @@
       card.appendChild(el('p', 'cq-result-body', 'Your dog sounds ready for group Training. Pick the class and time that work for your family.'));
       var a = el('a', 'cq-cta', 'Choose your class');
       a.href = CLASS_BOOKING_URL;
+      a.target = '_blank';
+      a.rel = 'noopener';
       deadLink(a);
       card.appendChild(a);
     } else {
