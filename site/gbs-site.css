@@ -713,3 +713,7 @@ html.cnm-lock { overflow: hidden; }
 .offer { display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; padding: 18px 0; border-top: 1px solid var(--line); }
 .offer-btn { flex: 0 0 auto; white-space: nowrap; }
 @media (max-width: 560px) { .offer { flex-direction: column; align-items: flex-start; } }
+
+/* Cost page: class cards as link targets (Nov 24) */
+[id^="price-"] { scroll-margin-top: 110px; }
+[id^="price-"]:target { outline: 2px solid var(--butter); outline-offset: 4px; }
