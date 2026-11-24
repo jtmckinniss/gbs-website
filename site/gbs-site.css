@@ -788,3 +788,5 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 .fmt-one { margin-top: 48px !important; padding-top: 48px; border-top: 1px solid var(--line); }
 .fmt-one + .webinars { margin-top: 96px !important; }
 .fmt-one + .webinars::before { content: ""; position: absolute; left: 0; right: 0; top: -49px; border-top: 1px solid var(--line); }
+#classes { scroll-margin-top: 100px; }
+html { scroll-behavior: smooth; }
