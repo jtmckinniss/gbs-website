@@ -708,3 +708,8 @@ html.cnm-lock { overflow: hidden; }
 .cred-n { font-size: 11px; line-height: 1.35; color: var(--n300); }
 @media (max-width: 1100px) { .cred-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .cred-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Training offerings: Book button on each row (Nov 24) */
+.offer { display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; padding: 18px 0; border-top: 1px solid var(--line); }
+.offer-btn { flex: 0 0 auto; padding: 12px 22px; font-size: 12px; }
+@media (max-width: 560px) { .offer { flex-direction: column; align-items: flex-start; } }
