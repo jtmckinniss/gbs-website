@@ -721,3 +721,10 @@ html.cnm-lock { overflow: hidden; }
 /* Care team: credential chips link to awarding agencies (Nov 24) */
 a.chip { text-decoration: none; color: inherit; transition: background .15s; }
 a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
+
+/* Credential tiles inside care team cards (light background) (Nov 24) */
+.cred-row-card { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important; margin-top: 4px; }
+.card .cred { border-color: var(--line); }
+.card .cred:hover, .card .cred:focus-visible { border-color: var(--teal-deep); }
+.card .cred-a { color: var(--ink); }
+.card .cred-n { color: var(--n500, #5f5a52); }
