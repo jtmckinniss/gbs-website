@@ -753,3 +753,8 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 .soon { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 2px 8px; border: 1px solid currentColor; font: 700 10px/1.3 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--butter-text); }
 .card-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
 .webinars .offer:first-of-type { margin-top: 14px; }
+.webinars { padding: 32px 34px; }
+.web-head { display: flex; gap: 16px; align-items: flex-start; }
+.web-item { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px; border: 1px solid var(--kale-rule); }
+.web-item .btn { align-self: flex-start; margin-top: auto; }
+.soon-dark { color: var(--butter); }
