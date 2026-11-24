@@ -7,7 +7,8 @@
    set CLASS_BOOKING_URL and CARE_NAV_URL below.
    ========================================================== */
 (function () {
-  var CLASS_BOOKING_URL = 'https://gigisbehavior.as.me/schedule/f381a863';   // Acuity class booking (Justin, Nov 24)
+  var CLASS_BOOKING_URL = 'https://gigisbehavior.as.me/schedule/f381a863/?categories[]=Training%20and%20Behavior%20Classes';   // Adult classes (Skills & Manners, Tricks, 1-on-1). Puppy buttons pass data-book-url (Justin, Nov 24)
+  var bookUrl = CLASS_BOOKING_URL;
   var CARE_NAV_URL = 'https://app.vello.idexx.com/book/hcNFo5meTuC2VaM_ydL3mw'; // Vello Care Navigation Call (popup intercepts first)
 
   var QUESTIONS = [
@@ -120,7 +121,7 @@
       card.appendChild(h);
       card.appendChild(el('p', 'cq-result-body', 'Your dog sounds ready for group Training. Pick the class and time that work for your family.'));
       var a = el('a', 'cq-cta', 'Choose your class');
-      a.href = CLASS_BOOKING_URL;
+      a.href = bookUrl;
       a.target = '_blank';
       a.rel = 'noopener';
       deadLink(a);
@@ -163,6 +164,6 @@
 
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('[data-quiz-trigger="training"]');
-    if (t) open(e);
+    if (t) { bookUrl = t.getAttribute('data-book-url') || CLASS_BOOKING_URL; open(e); }
   });
 })();
