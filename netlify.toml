@@ -1,3 +1,9 @@
 [build]
   publish = "site"
   command = ""
+
+# Team page removed for now (Phase 2). Send old links home.
+[[redirects]]
+  from = "/meet-the-team.html"
+  to = "/"
+  status = 302
