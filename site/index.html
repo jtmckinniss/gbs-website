@@ -677,8 +677,19 @@
       });
     }
   }
+  /* A pick-one set of answers must be answered (Justin, Nov 24). Optional lone tick boxes and
+     "Also true?" items stay optional. Checked at every level that is showing. */
+  function isGroup(x) { var main = x.kids.filter(function (k) { return !k.also; }); return main.length > 1 || !!ALT[x.id]; }
+  function complete(x) {
+    var main = x.kids.filter(function (k) { return !k.also; });
+    if (isGroup(x) && !alts[x.id] && !main.some(function (k) { return ticked[k.id]; })) return false;
+    return main.every(function (k) { return !ticked[k.id] || !k.kids.length || complete(k); });
+  }
   function renderFollow(focusKey) {
     tfmList.innerHTML = ''; level(current, tfmList, 0);
+    var ok = complete(current), done = tfm.querySelector('.tfm-actions [data-tfm-done]');
+    done.disabled = !ok; done.setAttribute('aria-disabled', String(!ok));
+    $('tfm-note').textContent = ok ? 'select the one that fits' : 'pick one to continue';
     if (focusKey) { var f = tfmList.querySelector('input[data-key="' + focusKey + '"]'); if (f) f.focus(); }
   }
   function follow(x) {
@@ -686,7 +697,11 @@
     renderFollow(null);
     popOpen(tfm, '#tfm-list input');
   }
-  function doneFollow() { popClose(tfm); }
+  function doneFollow() {
+    /* Closed without the required answer: untick the option too, so nothing is left half-answered. */
+    if (current && ticked[current.id] && !complete(current)) { delete ticked[current.id]; clearKids(current); sync(); update(); }
+    popClose(tfm);
+  }
   tfm.addEventListener('click', function (e) { if (e.target.closest('[data-tfm-done]')) doneFollow(); });
 
   /* ---- Result popup ---- */

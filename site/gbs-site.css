@@ -1034,3 +1034,5 @@ html { scroll-behavior: smooth; }
 /* Stat callout box on green (Nov 24) */
 .stat-inline { background: var(--kale-panel); border: 1px solid var(--kale-rule); border-left: 6px solid var(--teal); padding: 22px 26px; margin-top: 28px; }
 .stat-inline p { font-size: 16px; }
+/* Follow-up Done stays disabled until a required answer is picked (Nov 24) */
+.tfm-actions .btn[disabled] { background: var(--cream-deep); border-color: var(--line); color: #8A847A; cursor: not-allowed; }
