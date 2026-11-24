@@ -32,9 +32,9 @@
           ['Before your first class', [WEBINAR]]] },
     oneonone: { t: 'Skills & Manners: 1-on-1', m: '6 sessions · In person at Gigi\'s',
       o: 'The Skills & Manners curriculum, delivered 1-on-1 with a credentialed trainer. The same skills as group classes, without the group.',
-      s: [['Who it\'s for', ['Families who need schedule flexibility', 'Dogs who do better in a quieter setting', FAMILY]],
+      s: [['Who it\'s for', ['Families who need schedule flexibility', 'Dogs who do better in a quieter setting']],
           ['What you\'ll learn', ['The full Skills & Manners Foundations or Advanced curriculum']],
-          ['Before your first session', [WEBINAR]]] }
+          ['Before your first session', [FAMILY, WEBINAR]]] }
   };
   var wrap, last;
   function build() {
@@ -56,11 +56,21 @@
     wrap.querySelector('.cd-m').textContent = c.m;
     wrap.querySelector('.cd-o').textContent = c.o;
     var box = wrap.querySelector('.cd-secs'); box.innerHTML = '';
+    // Checklist first: "Who can attend" merged into "Before your first class/session" (checkmarks).
+    // Everything else renders as plain bullets.
+    var checks = [], beforeTitle = 'Before your first class', rest = [];
     c.s.forEach(function (sec) {
-      var d = el('div', 'cd-sec'); d.appendChild(el('p', 'cd-h', sec[0]));
-      var ul = el('ul', 'ticks muted'); sec[1].forEach(function (t) { ul.appendChild(el('li', '', t)); });
-      d.appendChild(ul); box.appendChild(d);
+      if (sec[0] === 'Who can attend') checks = sec[1].concat(checks);
+      else if (/^Before your first/.test(sec[0])) { beforeTitle = sec[0]; checks = checks.concat(sec[1]); }
+      else rest.push(sec);
     });
+    function addSec(title, items, cls) {
+      var d = el('div', 'cd-sec'); d.appendChild(el('p', 'cd-h', title));
+      var ul = el('ul', cls); items.forEach(function (t) { ul.appendChild(el('li', '', t)); });
+      d.appendChild(ul); box.appendChild(d);
+    }
+    if (checks.length) addSec(beforeTitle, checks, 'ticks muted');
+    rest.forEach(function (sec) { addSec(sec[0], sec[1], 'cd-bullets muted'); });
     wrap.hidden = false; document.documentElement.classList.add('cnm-lock');
     wrap.querySelector('.cd-panel').scrollTop = 0;
     wrap.querySelector('.cnm-x').focus();
