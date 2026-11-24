@@ -2,7 +2,7 @@
    Any [data-jotform="urgent"] link first asks "Are you a current client?"
    Yes -> the urgent form. No -> emergency guidance + Book a free call. */
 (function () {
-  var URGENT_URL = '#'; // TODO: urgent Jotform URL (Justin to provide)
+  var URGENT_URL = 'https://form.jotform.com/260484526770058'; // Urgent behavior Jotform (Justin, Nov 24)
   var wrap, lastFocus, src;
 
   function build() {
@@ -17,7 +17,7 @@
           '<p class="eyebrow">Urgent behavioral concern</p>' +
           '<h2 class="h2-sm" id="ugm-h1">Are you a current Gigi\'s Behavior client?</h2>' +
           '<p class="cnm-lede">This form is for families already in care with our team.</p>' +
-          '<div class="cnm-actions"><a class="btn btn-urgent ugm-yes" href="' + URGENT_URL + '">Yes, continue to the form</a>' +
+          '<div class="cnm-actions"><a class="btn btn-urgent ugm-yes" href="' + URGENT_URL + '" target="_blank" rel="noopener">Yes, continue to the form</a>' +
           '<button type="button" class="btn btn-line-dark ugm-no">No, not yet</button></div>' +
         '</div>' +
         '<div class="ugm-step" data-step="new" hidden>' +
@@ -34,7 +34,7 @@
       if (e.target.closest('[data-ugm-close]')) { close(true); return; }
       if (e.target.closest('.ugm-no')) { show('new'); return; }
       if (e.target.closest('.ugm-back')) { show('ask'); return; }
-      if (e.target.closest('.ugm-call')) { close(false); } // the call popup takes over
+      if (e.target.closest('.ugm-call') || e.target.closest('.ugm-yes')) { close(false); }
     });
   }
   function show(step) {
