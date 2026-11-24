@@ -774,3 +774,12 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
   .cd-sec .ticks, .cd-bullets { gap: 5px; font-size: 13.5px; }
   .cd-panel .btn { margin-top: 14px; }
 }
+
+/* Training formats: group cards + 1-on-1 card, shared by Training and Cost pages (Nov 24) */
+.fmt-head { max-width: 720px; margin-bottom: 20px; }
+.fmt-head .muted { margin-top: 8px; }
+.fmt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fmt-one { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 40px; align-items: start; }
+.fmt-one .fmt-head { margin-bottom: 0; }
+@media (max-width: 1180px) { .fmt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .fmt-grid, .fmt-one { grid-template-columns: 1fr; } }
