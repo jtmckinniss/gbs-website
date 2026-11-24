@@ -88,7 +88,8 @@
           <ul class="trx-picks" id="trx-picks"></ul>
           <p class="trx-empty" id="trx-empty">Nothing picked yet. Tap anything that sounds like home as you go.</p>
           <button type="button" class="btn btn-black trx-see" data-tri-see>Not sure? See where to start</button>
-          <div class="trx-sum-foot"><span class="tiny muted">Judgement free. Change anything, anytime.</span><button type="button" class="trx-clear" id="trx-clear" hidden>Start over</button></div>
+          <button type="button" class="trx-clear" id="trx-clear" hidden>Start over</button>
+          <div class="trx-sum-foot"><span class="tiny muted">Judgement free. Change anything, anytime.</span></div>
         </aside>
       </div>
     </div>
@@ -525,8 +526,9 @@
       p.textContent = 'There are no more questions. Our board-certified veterinary behaviorist sees cats on our Behavioral Medicine pathway, and we’ll talk through next steps on a free call.';
       panel.appendChild(p);
       var nav = document.createElement('div'); nav.className = 'trx-nav';
-      var back = document.createElement('button'); back.type = 'button'; back.className = 'trx-link'; back.textContent = '← This is for a dog';
-      back.addEventListener('click', function () { species = null; step = 0; sync(); update(); });
+      var back = document.createElement('button'); back.type = 'button'; back.className = 'btn btn-line-dark trx-reset';
+      back.innerHTML = RESET_ICON + '<span>Start over</span>';
+      back.addEventListener('click', startOver);
       var see = document.createElement('button'); see.type = 'button'; see.className = 'btn btn-black'; see.setAttribute('data-tri-see', ''); see.textContent = 'See where we’d lean';
       see.addEventListener('click', openResult);
       nav.appendChild(back); nav.appendChild(see); panel.appendChild(nav);
@@ -571,9 +573,8 @@
     var n = 0;
     if (species) {
       var sp = document.createElement('li'); sp.className = 'trx-pick trx-pick-sp';
-      sp.innerHTML = '<div class="trx-pick-t"><span class="trx-pick-f">Helping</span><span class="trx-pick-l"></span></div><div class="trx-pick-a"><button type="button" class="trx-link">Change</button></div>';
+      sp.innerHTML = '<div class="trx-pick-t"><span class="trx-pick-f">Helping</span><span class="trx-pick-l"></span></div>';
       sp.querySelector('.trx-pick-l').textContent = species === 'cat' ? 'My cat' : 'My dog';
-      sp.querySelector('button').addEventListener('click', function () { species = null; step = 0; ticked = {}; alts = {}; sync(); update(); focusPanel(); });
       ul.appendChild(sp);
     }
     G.forEach(function (g) {
@@ -606,7 +607,7 @@
     document.querySelector('.trx-sum .trx-see').hidden = !(species === 'cat' || step === G.length);
   }
 
-  function sync() { renderProgress(); renderPanel(); renderSummary(); }
+  function sync() { renderProgress(); renderPanel(); renderSummary(); $('trx').classList.toggle('is-cat', species === 'cat'); }
   function focusPanel() {
     var top = $('trx').getBoundingClientRect().top;
     if (top < 0) $('trx').scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -615,7 +616,10 @@
   function goTo(id) { species = 'dog'; for (var i = 0; i < G.length; i++) if (G[i].id === id) step = i + 1; sync(); }
   function openResult() { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; }
 
-  $('trx-clear').addEventListener('click', function () { species = null; step = 0; ticked = {}; alts = {}; sync(); update(); focusPanel(); });
+  var RESET_ICON = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>';
+  function startOver() { species = null; step = 0; ticked = {}; alts = {}; sync(); update(); focusPanel(); }
+  $('trx-clear').innerHTML = RESET_ICON + '<span>Start over</span>';
+  $('trx-clear').addEventListener('click', startOver);
   sync();
 
   /* ---- Follow-up popup ---- */
@@ -738,7 +742,7 @@
   }
   function fill(r) {
     var d = r.d;
-    document.querySelectorAll('[data-tri-see]').forEach(function (b) { b.textContent = Object.keys(ticked).length ? 'See where we\u2019d lean' : 'Not sure? See where to start'; });
+    document.querySelectorAll('[data-tri-see]').forEach(function (b) { b.textContent = (Object.keys(ticked).length || species === 'cat') ? 'See where we\u2019d lean' : 'Not sure? See where to start'; });
     $('r-eyebrow').textContent = d === R.n ? 'Where to start' : 'Where we’d lean';
     $('r-start').textContent = d[0]; $('r-meta').textContent = d[1]; $('r-usually').textContent = d[4];
     var cta = $('r-cta'); cta.textContent = d[2];

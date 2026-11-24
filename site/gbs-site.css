@@ -1036,3 +1036,13 @@ html { scroll-behavior: smooth; }
 .stat-inline p { font-size: 16px; }
 /* Follow-up Done stays disabled until a required answer is picked (Nov 24) */
 .tfm-actions .btn[disabled] { background: var(--cream-deep); border-color: var(--line); color: #8A847A; cursor: not-allowed; }
+/* Clear "Start over" (Nov 24) */
+.trx-clear { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; padding: 12px 16px; background: transparent; border: 1.5px solid var(--n300); color: #fff; font: 700 13px/1 var(--body); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+.trx-clear:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+.trx-clear svg, .trx-reset svg { width: 16px; height: 16px; flex: 0 0 auto; }
+.trx-reset { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+/* Cat path: one frame, no repeated answers panel (Nov 24) */
+.trx.is-cat .trx-layout { grid-template-columns: minmax(0, 1fr); }
+.trx.is-cat .trx-sum { display: none; }
+.trx-nav .trx-reset { margin-left: 0; }
+.trx.is-cat .trx-note { display: none; }
