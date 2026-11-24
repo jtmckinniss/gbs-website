@@ -742,3 +742,11 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 /* Bright teal top bars on cream/white become dark teal for contrast (Justin, Nov 24) */
 .cnm-panel { border-top-color: var(--teal-deep); }
 .card.top-mod, .card-white.top-mod, .card.top-teal, .card-white.top-teal, .ql-feat { border-top-color: var(--teal-deep); }
+
+/* Class details popup sections (Nov 24) */
+.cd-panel { max-width: 640px; }
+.cd-m { margin-top: 6px; }
+.cd-o { margin-top: 14px; font-size: 15px; }
+.cd-sec { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.cd-h { font: 700 11px/1.3 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--teal-text, #0A6660); margin-bottom: 10px; }
+.cd-sec .ticks { font-size: 14px; gap: 8px; }
