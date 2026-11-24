@@ -1031,3 +1031,6 @@ html { scroll-behavior: smooth; }
 .trx-sum .trx-see[hidden] { display: none; }
 .stat-inline { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 24px; }
 .stat-inline p { flex: 1 1 240px; font-size: 15px; }
+/* Stat callout box on green (Nov 24) */
+.stat-inline { background: var(--kale-panel); border: 1px solid var(--kale-rule); border-left: 6px solid var(--teal); padding: 22px 26px; margin-top: 28px; }
+.stat-inline p { font-size: 16px; }
