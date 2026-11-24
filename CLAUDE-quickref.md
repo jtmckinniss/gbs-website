@@ -112,3 +112,4 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Justin, Nov 23: Vet-to-Vet card renamed "Vet-to-Vet Medication Consult" with medication-only scope copy (SOT update pending; open: 15 vs 20 min, who pays).
 - SOT CHANGE PENDING (Justin, Nov 24): Puppy Preschool is a 4-class series on a rotating schedule; families can start any week and drop in. SOT v2.5/2.6 §14.2 lists it as "Drop-in" only. Tricks is also now a 6-week series with drop-in option (team feedback, Nov 24).
 - SOT CHANGE PENDING (team, Nov 24): Training role label "Credentialed Trainers" replaces "Behavior Trainers" (applied on Training page; Team and Cost pages still say Behavior Trainer). "Obedience" softened: "more than getting your dog to listen... the foundation of a healthy relationship."
+- Justin, Nov 24: bright teal (#2AD2C9) never on cream or white; light cards and accents use deep teal (#0E8079).

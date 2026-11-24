@@ -728,3 +728,6 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 .card .cred:hover, .card .cred:focus-visible { border-color: var(--teal-deep); }
 .card .cred-a { color: var(--ink); }
 .card .cred-n { color: var(--n500, #5f5a52); }
+
+/* Bright teal never sits on cream or white: light cards use deep teal (Justin, Nov 24) */
+.card.top-mod, .card-white.top-mod { border-top-color: var(--teal-deep); }
