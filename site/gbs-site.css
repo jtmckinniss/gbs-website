@@ -818,11 +818,10 @@ html { scroll-behavior: smooth; }
 .models-grid .card-black .model-desc { background: #1E1E1E; border-color: rgba(255,255,255,0.22) !important; }
 
 /* For Vets: sticky Submit a referral tab (Nov 24) */
-.ref-tab { position: fixed; z-index: 70; right: 0; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; rotate: 180deg; background: var(--teal); color: var(--ink); text-decoration: none; font: 800 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; padding: 22px 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); transition: opacity .2s, visibility .2s; }
-.ref-tab:hover, .ref-tab:focus-visible { background: #fff; }
-.ref-tab-hide { opacity: 0; visibility: hidden; }
+.ref-tab { position: fixed; z-index: 9000; right: 0; top: 50%; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); background: var(--teal); color: var(--ink); text-decoration: none; font: 800 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; padding: 22px 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.ref-tab:hover, .ref-tab:focus-visible { background: #fff; color: var(--ink); }
 @media (max-width: 760px) {
-  .ref-tab { writing-mode: horizontal-tb; rotate: none; transform: none; top: auto; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); padding: 14px 18px; }
+  .ref-tab { writing-mode: horizontal-tb; transform: none; top: auto; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); padding: 14px 18px; }
 }
 .models-grid > div { grid-row: span 4 !important; }
 .refer-notes > div { padding-top: 22px; border-top: 1px solid var(--n700); }
