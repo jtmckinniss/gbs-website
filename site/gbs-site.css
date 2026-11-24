@@ -837,3 +837,6 @@ html { scroll-behavior: smooth; }
 .on-kale .card .price { color: var(--ink); }
 .conflict-light .conf-h, .conflict-light .conf-row { border-color: var(--line) !important; }
 .conf-note { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-style: italic; }
+.conf-row-mid { align-items: center; }
+.conf-price { text-align: right; }
+.conf-price .tiny { margin-top: 2px; }
