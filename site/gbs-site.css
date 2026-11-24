@@ -397,7 +397,7 @@ main { overflow-x: clip; }
 .dd-c:hover { color: var(--teal-text); }
 .dd-s { color: var(--ink); }
 .dd-s:nth-child(1) { border-top-color: var(--butter) !important; }
-.dd-s:nth-child(2) { border-top-color: var(--teal) !important; }
+.dd-s:nth-child(2) { border-top-color: var(--teal-deep) !important; }
 .dd-s:nth-child(3) { border-top-color: var(--ink) !important; }
 .dd-s:nth-child(1) .dd-eb { color: var(--butter-text) !important; }
 .dd-s:nth-child(2) .dd-eb { color: var(--teal-text) !important; }
