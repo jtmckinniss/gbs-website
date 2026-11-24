@@ -26,13 +26,13 @@
           step(2, 'Tell us about your dog', 'A few details about your dog.') +
           step(3, 'Pick a time', 'Choose a time for your free 15-minute call with our Client Success Manager.') +
         '</ol>' +
-        '<div class="cnm-actions"><a class="btn btn-teal cnm-go" href="' + VELLO_URL + '">Continue</a>' +
+        '<div class="cnm-actions"><a class="btn btn-teal cnm-go" href="' + VELLO_URL + '" target="_blank" rel="noopener">Continue</a>' +
         '<button type="button" class="cnm-later" data-cnm-close>Not now</button>' +
         '<span class="hand cnm-note" aria-hidden="true">it\'s free, and only 15 minutes</span></div>' +
         '<p class="tiny muted cnm-fine">You\'ll finish on our client booking site.</p>' +
       '</div>';
     document.body.appendChild(wrap);
-    wrap.addEventListener('click', function (e) { if (e.target.closest('[data-cnm-close]')) close(); });
+    wrap.addEventListener('click', function (e) { if (e.target.closest('[data-cnm-close]') || e.target.closest('.cnm-go')) close(); });
   }
   function open() {
     if (!wrap) build();

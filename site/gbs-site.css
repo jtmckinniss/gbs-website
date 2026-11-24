@@ -732,7 +732,7 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 /* Bright teal never sits on cream or white: light cards use deep teal (Justin, Nov 24) */
 .card.top-mod, .card-white.top-mod { border-top-color: var(--teal-deep); }
 
-/* MOCKUP styles */
+/* Cost page: price rows and conflict boxes (Nov 24) */
 .pkg { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; }
 .pkg b { font-family: var(--data); font-weight: 700; }
 .card-dark .pkg { border-color: var(--kale-rule); color: var(--n100); }
