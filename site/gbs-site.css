@@ -1009,3 +1009,23 @@ html { scroll-behavior: smooth; }
   .trx-note { display: none; }
   .trx-nav .btn { width: 100%; }
 }
+
+/* Triage guided steps (Nov 24 rev): progress bar, dog/cat choice, two-column layout */
+.trx-top { align-items: center; flex-wrap: nowrap; gap: 16px; }
+.trx-prog { flex: 1 1 auto; height: 8px; background: var(--cream-deep); border: 1px solid var(--line); position: relative; overflow: hidden; }
+.trx-prog span { position: absolute; inset: 0 auto 0 0; width: 12%; background: var(--teal-deep); transition: width .35s cubic-bezier(.4,0,.2,1); }
+.trx-prog-t { flex: 0 0 auto; font: 700 12px/1 var(--data); letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.trx-layout { grid-template-columns: minmax(0, 1fr) 320px; }
+.trx-hint { width: 100%; margin: 4px 0 0; font-size: 14.5px; color: var(--ink-2); }
+.trx-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.trx-choice { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: 16px; row-gap: 4px; align-items: center; text-align: left; padding: 22px 22px; background: #fff; border: 1.5px solid var(--line); border-radius: 0; cursor: pointer; color: var(--ink); transition: border-color .15s, background-color .15s; }
+.trx-choice:hover { border-color: var(--black); background: #EAF8F7; }
+.trx-choice:focus-visible { outline: 3px solid var(--teal-deep); outline-offset: 2px; }
+.trx-ico { grid-row: 1 / span 2; width: 64px; height: 64px; color: var(--teal-text); }
+.trx-choice-t { font: 500 28px/1.1 var(--display); align-self: end; }
+.trx-choice-s { font-size: 14px; line-height: 1.4; color: var(--ink-2); align-self: start; }
+.trx-catnote { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 60ch; }
+.trx-pick-sp .trx-pick-f { order: -1; text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; font-weight: 700; color: var(--teal); }
+@media (max-width: 1099px) { .trx-layout { grid-template-columns: minmax(0, 1fr) 300px; } }
+@media (max-width: 760px) { .trx-layout { grid-template-columns: minmax(0, 1fr); } .trx-top { flex-wrap: wrap; } .trx-prog { flex-basis: 100%; order: 2; } }
+.trx-sum .trx-see[hidden] { display: none; }

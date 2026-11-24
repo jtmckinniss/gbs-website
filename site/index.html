@@ -81,18 +81,18 @@
     </div>
     <div class="trx" id="trx">
       <div class="trx-top">
-        <label class="trx-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><span class="sr-only">Search what you're seeing</span><input type="search" id="trx-q" placeholder="Search: barking, vet visits, potty training" autocomplete="off"></label>
-        <span class="trx-note" aria-hidden="true"><svg viewBox="0 0 60 40" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M56 6 C 40 4, 22 10, 12 26"/><path d="M8 18 L 11.5 28 L 21 24"/></svg><span class="hand">tap everything that fits</span></span>
+        <div class="trx-prog" role="progressbar" aria-label="Progress" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1"><span id="trx-progress"></span></div>
+        <span class="trx-prog-t" id="trx-progress-t">Step 1 of 8</span>
+        <span class="trx-note" aria-hidden="true"><svg viewBox="0 0 60 40" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M56 6 C 40 4, 22 10, 12 26"/><path d="M8 18 L 11.5 28 L 21 24"/></svg><span class="hand">about two minutes</span></span>
       </div>
       <div class="trx-layout">
-        <div class="trx-cats" role="tablist" aria-label="Topics" id="trx-cats"></div>
         <div class="trx-main" id="trx-panel" role="tabpanel" tabindex="-1"></div>
         <aside class="trx-sum" aria-label="Your answers">
           <div class="trx-sum-head"><p class="eyebrow" style="margin: 0">Your answers</p><span class="trx-n" id="trx-n" aria-live="polite">0</span></div>
           <ul class="trx-picks" id="trx-picks"></ul>
-          <p class="trx-empty" id="trx-empty">Nothing picked yet. Choose a topic and tap anything that sounds like home.</p>
+          <p class="trx-empty" id="trx-empty">Nothing picked yet. Tap anything that sounds like home as you go.</p>
           <button type="button" class="btn btn-black trx-see" data-tri-see>Not sure? See where to start</button>
-          <div class="trx-sum-foot"><span class="tiny muted">Judgement free. Change anything, anytime.</span><button type="button" class="trx-clear" id="trx-clear" hidden>Clear all</button></div>
+          <div class="trx-sum-foot"><span class="tiny muted">Judgement free. Change anything, anytime.</span><button type="button" class="trx-clear" id="trx-clear" hidden>Start over</button></div>
         </aside>
       </div>
     </div>
@@ -365,8 +365,6 @@
   function o(id, label, tier, kids, safety, also) { return { id: id, label: label, tier: tier, kids: kids || [], safety: !!safety, also: !!also }; }
   /* Options, categories and order from the team's prioritization doc (Nov 24). */
   var G = [
-    { id: 'species', title: 'Species', items: [
-      o('cat', 'I’m looking for help for my cat', 't1') ] },
     { id: 'walks', title: 'Out and about', items: [
       o('leash-dogs', 'Barks or lunges at dogs on leash', 't3'),
       o('leash-people', 'Barks or lunges at people on leash', 't2'),
@@ -474,35 +472,18 @@
     }
   });
 
-  /* ---- Option browser (Nov 24 UX): topic tabs, search, tap tiles, live "Your answers" panel ---- */
-  var cat = G[0].id, query = '';
-  var catsEl = $('trx-cats'), panel = $('trx-panel'), qEl = $('trx-q');
-  function groupOf(id) { for (var i = 0; i < G.length; i++) { if (G[i].items.some(function (x) { return x.id === id; })) return G[i]; } return null; }
-  function topPicked(g) { return g.items.filter(function (x) { return ticked[x.id]; }).length; }
-  function norm(t) { return t.toLowerCase().replace(/[‘’']/g, ''); }
-  function matches(x, q) { return norm(x.label).indexOf(q) > -1 || x.kids.some(function (k) { return matches(k, q); }); }
+  /* ---- Guided steps (Nov 24): dog or cat first, then every topic in order; live "Your answers" panel.
+     Cat goes straight to the Behavioral Medicine result with no questions (team). ---- */
+  var species = null, step = 0;          /* step 0 = dog or cat; steps 1..G.length = topics */
+  var panel = $('trx-panel');
+  var TOTAL = G.length + 1;
 
-  function renderCats() {
-    catsEl.innerHTML = '';
-    G.forEach(function (g, i) {
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'trx-cat';
-      b.setAttribute('role', 'tab'); b.id = 'tab-' + g.id; b.setAttribute('aria-controls', 'trx-panel');
-      var on = !query && g.id === cat; b.setAttribute('aria-selected', String(on)); b.tabIndex = on || (query && i === 0) ? 0 : -1;
-      var n = topPicked(g);
-      b.innerHTML = '<span class="trx-cat-t"></span>' + (n ? '<span class="trx-badge">' + n + '</span>' : '');
-      b.querySelector('.trx-cat-t').textContent = g.title;
-      b.addEventListener('click', function () { setCat(g.id, true); });
-      b.addEventListener('keydown', function (e) {
-        var k = e.key, j = i;
-        if (k === 'ArrowDown' || k === 'ArrowRight') j = (i + 1) % G.length;
-        else if (k === 'ArrowUp' || k === 'ArrowLeft') j = (i - 1 + G.length) % G.length;
-        else if (k === 'Home') j = 0; else if (k === 'End') j = G.length - 1; else return;
-        e.preventDefault(); setCat(G[j].id); var t = $('tab-' + G[j].id); if (t) t.focus();
-      });
-      catsEl.appendChild(b);
-    });
-    var sel = catsEl.querySelector('[aria-selected="true"]');
-    if (sel && catsEl.scrollWidth > catsEl.clientWidth) catsEl.scrollLeft = sel.offsetLeft - 16;
+  function renderProgress() {
+    var bar = $('trx-progress'), lab = $('trx-progress-t');
+    var done = species === 'cat' ? TOTAL : step + 1;
+    bar.style.width = Math.round(done / TOTAL * 100) + '%';
+    bar.parentNode.setAttribute('aria-valuenow', String(done));
+    lab.textContent = species === 'cat' ? 'Done' : 'Step ' + (step + 1) + ' of ' + TOTAL;
   }
 
   function tile(x) {
@@ -519,9 +500,7 @@
         m.innerHTML = '<span class="trx-fu-t"></span><button type="button" class="trx-link">' + (picks.length ? 'Change' : 'Answer') + '</button>';
         m.querySelector('.trx-fu-t').textContent = picks.length ? picks.join(' · ') : 'One quick follow-up';
         m.querySelector('button').addEventListener('click', function () { follow(x); });
-      } else {
-        m.innerHTML = '<span class="trx-fu-hint">+ one quick follow-up</span>';
-      }
+      } else m.innerHTML = '<span class="trx-fu-hint">+ one quick follow-up</span>';
       w.appendChild(m);
     }
     c.addEventListener('change', function () {
@@ -531,53 +510,76 @@
     return w;
   }
 
+  function choice(label, sub, onPick, icon) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'trx-choice';
+    b.innerHTML = icon + '<span class="trx-choice-t"></span><span class="trx-choice-s"></span>';
+    b.querySelector('.trx-choice-t').textContent = label; b.querySelector('.trx-choice-s').textContent = sub;
+    b.addEventListener('click', onPick); return b;
+  }
+  var DOG = '<svg class="trx-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 30c-4-2-6-8-4-14 5 0 9 3 11 7"/><path d="M50 30c4-2 6-8 4-14-5 0-9 3-11 7"/><path d="M19 24c3-4 8-6 13-6s10 2 13 6c3 5 3 13 0 19-3 6-8 9-13 9s-10-3-13-9c-3-6-3-14 0-19z"/><circle cx="25.5" cy="33" r="1.6" fill="currentColor"/><circle cx="38.5" cy="33" r="1.6" fill="currentColor"/><path d="M29 41c1.5 1.5 4.5 1.5 6 0"/><path d="M32 38v3"/></svg>';
+  var CAT = '<svg class="trx-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 26 14 10l12 8c4-1 8-1 12 0l12-8-2 16"/><path d="M16 26c-3 6-2 14 3 19 4 4 8 6 13 6s9-2 13-6c5-5 6-13 3-19"/><path d="M24 35c1-1.5 3-1.5 4 0"/><path d="M36 35c1-1.5 3-1.5 4 0"/><path d="M30 41h4l-2 2z" fill="currentColor"/><path d="M10 40l10-1M10 45l10-3M54 40l-10-1M54 45l-10-3"/></svg>';
+
   function renderPanel() {
     panel.innerHTML = '';
     var head = document.createElement('div'); head.className = 'trx-panel-head';
-    var grid = document.createElement('div'); grid.className = 'trx-grid';
-    if (query) {
-      var q = norm(query), hits = 0;
-      head.innerHTML = '<h3 class="h3 trx-h"></h3><button type="button" class="trx-link">Back to topics</button>';
-      head.querySelector('button').addEventListener('click', function () { qEl.value = ''; query = ''; sync(); });
-      G.forEach(function (g) {
-        var found = g.items.filter(function (x) { return matches(x, q); });
-        if (!found.length) return;
-        var lab = document.createElement('p'); lab.className = 'trx-sub'; lab.textContent = g.title; grid.appendChild(lab);
-        found.forEach(function (x) { grid.appendChild(tile(x)); hits++; });
-      });
-      head.querySelector('.trx-h').textContent = hits ? hits + (hits === 1 ? ' match' : ' matches') + ' for “' + query + '”' : 'No matches for “' + query + '”';
+    if (species === 'cat') {
+      head.innerHTML = '<h3 class="h3 trx-h">For cats, we start with Behavioral Medicine</h3>';
       panel.appendChild(head);
-      if (!hits) {
-        var none = document.createElement('p'); none.className = 'trx-none';
-        none.textContent = 'Try another word, or browse the topics. If nothing fits, that’s okay: see where to start and we’ll talk it through.';
-        panel.appendChild(none);
-      }
-      panel.appendChild(grid);
+      var p = document.createElement('p'); p.className = 'trx-catnote';
+      p.textContent = 'There are no more questions. Our board-certified veterinary behaviorist sees cats on our Behavioral Medicine pathway, and we’ll talk through next steps on a free call.';
+      panel.appendChild(p);
+      var nav = document.createElement('div'); nav.className = 'trx-nav';
+      var back = document.createElement('button'); back.type = 'button'; back.className = 'trx-link'; back.textContent = '← This is for a dog';
+      back.addEventListener('click', function () { species = null; step = 0; sync(); update(); });
+      var see = document.createElement('button'); see.type = 'button'; see.className = 'btn btn-black'; see.setAttribute('data-tri-see', ''); see.textContent = 'See where we’d lean';
+      see.addEventListener('click', openResult);
+      nav.appendChild(back); nav.appendChild(see); panel.appendChild(nav);
       return;
     }
-    var gi = G.findIndex(function (g) { return g.id === cat; }), g = G[gi];
-    head.innerHTML = '<p class="trx-step"></p><h3 class="h3 trx-h"></h3>';
-    head.querySelector('.trx-step').textContent = 'Topic ' + (gi + 1) + ' of ' + G.length;
+    if (step === 0) {
+      head.innerHTML = '<h3 class="h3 trx-h">First, who are we helping?</h3>';
+      panel.appendChild(head);
+      var row = document.createElement('div'); row.className = 'trx-choices';
+      row.appendChild(choice('My dog', 'A few quick topics, about two minutes', function () { species = 'dog'; step = 1; sync(); update(); focusPanel(); }, DOG));
+      row.appendChild(choice('My cat', 'No questions. We’ll show you where to start', function () { species = 'cat'; ticked = {}; alts = {}; sync(); update(); openResult(); }, CAT));
+      panel.appendChild(row);
+      return;
+    }
+    var g = G[step - 1];
+    head.innerHTML = '<h3 class="h3 trx-h"></h3><p class="trx-hint">Tap any that fit, or skip if none do.</p>';
     head.querySelector('.trx-h').textContent = g.title;
     panel.appendChild(head);
+    var grid = document.createElement('div'); grid.className = 'trx-grid';
     g.items.forEach(function (x) { grid.appendChild(tile(x)); });
     panel.appendChild(grid);
-    var nav = document.createElement('div'); nav.className = 'trx-nav';
-    if (gi > 0) {
-      var pv = document.createElement('button'); pv.type = 'button'; pv.className = 'trx-link trx-prev';
-      pv.textContent = '← ' + G[gi - 1].title; pv.addEventListener('click', function () { setCat(G[gi - 1].id, true); });
-      nav.appendChild(pv);
+    var nav2 = document.createElement('div'); nav2.className = 'trx-nav';
+    var pv = document.createElement('button'); pv.type = 'button'; pv.className = 'trx-link';
+    pv.textContent = '← Back'; pv.addEventListener('click', function () { step -= 1; sync(); focusPanel(); });
+    nav2.appendChild(pv);
+    var nx = document.createElement('button'); nx.type = 'button';
+    var picked = g.items.some(function (x) { return ticked[x.id]; });
+    if (step < G.length) {
+      nx.className = 'btn btn-line-dark trx-next';
+      nx.textContent = (picked ? 'Next: ' : 'None of these. Next: ') + G[step].title;
+      nx.addEventListener('click', function () { step += 1; sync(); focusPanel(); });
+    } else {
+      nx.className = 'btn btn-black trx-next'; nx.setAttribute('data-tri-see', '');
+      nx.textContent = 'See where we’d lean'; nx.addEventListener('click', openResult);
     }
-    var nx = document.createElement('button'); nx.type = 'button'; nx.className = 'btn btn-line-dark trx-next';
-    if (gi < G.length - 1) { nx.textContent = 'Next: ' + G[gi + 1].title + ' →'; nx.addEventListener('click', function () { setCat(G[gi + 1].id, true); }); }
-    else { nx.className = 'btn btn-black trx-next'; nx.setAttribute('data-tri-see', ''); nx.textContent = 'See where we’d lean'; nx.addEventListener('click', openResult); }
-    nav.appendChild(nx);
-    panel.appendChild(nav);
+    nav2.appendChild(nx);
+    panel.appendChild(nav2);
   }
 
   function renderSummary() {
     var ul = $('trx-picks'); ul.innerHTML = '';
     var n = 0;
+    if (species) {
+      var sp = document.createElement('li'); sp.className = 'trx-pick trx-pick-sp';
+      sp.innerHTML = '<div class="trx-pick-t"><span class="trx-pick-f">Helping</span><span class="trx-pick-l"></span></div><div class="trx-pick-a"><button type="button" class="trx-link">Change</button></div>';
+      sp.querySelector('.trx-pick-l').textContent = species === 'cat' ? 'My cat' : 'My dog';
+      sp.querySelector('button').addEventListener('click', function () { species = null; step = 0; ticked = {}; alts = {}; sync(); update(); focusPanel(); });
+      ul.appendChild(sp);
+    }
     G.forEach(function (g) {
       g.items.forEach(function (x) {
         if (!ticked[x.id]) return; n++;
@@ -602,24 +604,22 @@
       });
     });
     $('trx-n').textContent = n; $('trx-n').classList.toggle('is-on', n > 0);
-    $('trx-empty').hidden = n > 0; $('trx-clear').hidden = n === 0;
+    $('trx-empty').hidden = n > 0 || species === 'cat';
+    $('trx-clear').hidden = !species;
+    /* Families go through every topic: the panel's See button appears only at the end (or for cats). */
+    document.querySelector('.trx-sum .trx-see').hidden = !(species === 'cat' || step === G.length);
   }
 
-  function sync() { renderCats(); renderPanel(); renderSummary(); }
-  function setCat(id, focusPanel) {
-    cat = id; query = ''; qEl.value = ''; sync();
-    if (focusPanel) {
-      var top = $('trx').getBoundingClientRect().top;
-      if (top < 0 || window.innerWidth < 900) $('trx-panel').scrollIntoView({ block: 'start', behavior: 'smooth' });
-      panel.focus({ preventScroll: true });
-    }
+  function sync() { renderProgress(); renderPanel(); renderSummary(); }
+  function focusPanel() {
+    var top = $('trx').getBoundingClientRect().top;
+    if (top < 0) $('trx').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    panel.focus({ preventScroll: true });
   }
+  function goTo(id) { species = 'dog'; for (var i = 0; i < G.length; i++) if (G[i].id === id) step = i + 1; sync(); }
   function openResult() { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; }
 
-  var qt = null;
-  qEl.addEventListener('input', function () { clearTimeout(qt); qt = setTimeout(function () { query = qEl.value.trim(); sync(); }, 120); });
-  qEl.addEventListener('keydown', function (e) { if (e.key === 'Escape') { qEl.value = ''; query = ''; sync(); } });
-  $('trx-clear').addEventListener('click', function () { ticked = {}; alts = {}; sync(); update(); });
+  $('trx-clear').addEventListener('click', function () { species = null; step = 0; ticked = {}; alts = {}; sync(); update(); focusPanel(); });
   sync();
 
   /* ---- Follow-up popup ---- */
@@ -703,6 +703,7 @@
   $('r-cta').addEventListener('click', function () { popClose(trm); });
 
   function pick() {
+    if (species === 'cat') return { key: 't1-cat', d: R.t1, safety: false };
     var best = null, safety = false;
     Object.keys(ticked).forEach(function (id) {
       var x = byId[id][0];
@@ -741,7 +742,7 @@
   /* Nav links (?c=KEY) from the old six concerns now jump to the matching topic. */
   var MAP = { reactive: 'walks', separation: 'general', aggression: 'bites', fighting: 'animals', listen: 'skills', notsure: 'general' };
   var pc = new URLSearchParams(location.search).get('c');
-  if (MAP[pc]) { setCat(MAP[pc]); setTimeout(function () { document.getElementById('trx').scrollIntoView({ block: 'start' }); }, 50); }
+  if (MAP[pc]) { goTo(MAP[pc]); setTimeout(function () { document.getElementById('trx').scrollIntoView({ block: 'start' }); }, 50); }
   update();
 })();
 </script>
