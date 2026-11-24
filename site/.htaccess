@@ -1,0 +1,12 @@
+# Gigi's Behavior — GoDaddy cPanel (Apache) config
+DirectoryIndex index.html
+
+# Old GoDaddy Websites + Marketing pages -> new pages (301 permanent)
+RedirectMatch 301 ^/000061752018/?$ /client-portal.html
+RedirectMatch 301 ^/for-vets/?$ /referring-vets.html
+RedirectMatch 301 ^/for-behavior-pros/?$ /
+RedirectMatch 301 ^/our-experts/?$ /
+RedirectMatch 301 ^/specialties-(&|%26)-services/?$ /#stages
+RedirectMatch 301 ^/service-prices-(&|%26)-packages/?$ /pricing.html
+# Team page removed for launch (Phase 2)
+RedirectMatch 302 ^/meet-the-team\.html$ /

@@ -121,3 +121,4 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Homepage class schedule promo moment, possibly pulling upcoming classes from the Acuity API (server-side only; no API credentials in site code).
 - Tricks becomes a two-tier class: Tricks Foundations / Tricks Advanced.
 - No team member names anywhere on the site for launch (Justin, Nov 24). Roles only: Veterinary Behaviorist, Behavioral Medicine Tech, Certified Dog Behavior Consultant, Credentialed Trainers, Client Success Manager, on-site veterinarian.
+- Old-site redirects (Justin, Nov 24): in site/.htaccess (GoDaddy cPanel) and netlify.toml. /000061752018 -> client-portal (assumed old Client Portal page), /for-vets -> referring-vets, /service-prices-&-packages -> pricing, /specialties-&-services -> home #stages, /for-behavior-pros and /our-experts -> home.

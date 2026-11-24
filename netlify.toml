@@ -7,3 +7,43 @@
   from = "/meet-the-team.html"
   to = "/"
   status = 302
+
+[[redirects]]
+  from = "/000061752018"
+  to = "/client-portal.html"
+  status = 301
+
+[[redirects]]
+  from = "/for-vets"
+  to = "/referring-vets.html"
+  status = 301
+
+[[redirects]]
+  from = "/for-behavior-pros"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/our-experts"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/specialties-&-services"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/specialties-%26-services"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/service-prices-&-packages"
+  to = "/pricing.html"
+  status = 301
+
+[[redirects]]
+  from = "/service-prices-%26-packages"
+  to = "/pricing.html"
+  status = 301
