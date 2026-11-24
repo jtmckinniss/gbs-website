@@ -840,3 +840,71 @@ html { scroll-behavior: smooth; }
 .conf-row-mid { align-items: center; }
 .conf-price { text-align: right; }
 .conf-price .tiny { margin-top: 2px; }
+
+/* Triage tool (Nov 20): full option list, inline follow-ups, one result */
+.tri-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; margin: 4px 0 10px; }
+.tri-count { margin: 0; font-family: var(--data); font-size: 15px; color: var(--ink-2); }
+.tri-count span { font-weight: 700; color: var(--ink); }
+.tri-clear { margin-left: 12px; background: none; border: 0; padding: 0; font: inherit; font-family: var(--body); font-size: 13px; font-weight: 700; color: var(--teal-text); text-decoration: underline; cursor: pointer; }
+.tri-pick { display: flex; align-items: flex-end; gap: 4px; }
+.tri-pick .hand { font-size: 22px; line-height: 1; margin-bottom: 14px; }
+.tri-pick svg { width: 34px; height: 26px; flex: 0 0 auto; }
+.tri-groups { columns: 3 300px; column-gap: 16px; }
+.tri-groups > .tri-group { break-inside: avoid; margin-bottom: 16px; }
+.tri-group { margin: 0; min-width: 0; background: var(--cream-soft); border: 1px solid var(--line); border-top: 4px solid var(--ink); padding: 18px 20px 12px; }
+.tri-group.tri-focus { border-top-color: var(--teal-deep); box-shadow: 0 0 0 2px var(--teal-deep); }
+.tri-group legend { float: left; width: 100%; padding: 0; margin: 0 0 8px; font-size: 21px; }
+.tri-group legend + * { clear: both; }
+.tri-box { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); cursor: pointer; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+.tri-box input { appearance: none; -webkit-appearance: none; flex: 0 0 auto; width: 20px; height: 20px; margin: 1px 0 0; border: 1.5px solid var(--ink); border-radius: 0; background: #fff; display: grid; place-content: center; cursor: pointer; }
+.tri-box input::after { content: ""; width: 11px; height: 6px; border-left: 2.5px solid var(--black); border-bottom: 2.5px solid var(--black); transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
+.tri-box input:checked { background: var(--teal); border-color: var(--black); }
+.tri-box input:checked::after { opacity: 1; }
+.tri-box input:focus-visible { outline: 3px solid var(--teal-deep); outline-offset: 2px; }
+.tri-box:has(input:checked) { color: var(--ink); font-weight: 600; }
+.tri-kids { margin: 0 0 6px 9px; padding-left: 21px; border-left: 2px solid var(--teal-deep); }
+.tri-kids[hidden] { display: none; }
+.tri-sub > .tri-box { border-top: 0; padding: 6px 0; font-size: 14.5px; }
+.tri-urgent { margin: 4px 0 0; padding: 12px 14px; border-left: 4px solid var(--butter); background: rgba(232, 196, 107, 0.12); color: #fff; font-weight: 600; font-size: 15px; line-height: 1.5; }
+.tri-urgent[hidden] { display: none; }
+/* Result: lean is the headline; steps count from 1 */
+.tri-result ol { counter-reset: step 0; }
+@media (max-width: 560px) { .tri-group { padding: 16px 16px 10px; } }
+
+/* Triage popups (Nov 20): follow-up popup + result popup */
+.tri-head .tri-bar { flex: 1 1 auto; }
+.tri-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.tri-bar .tri-see { margin: 0; }
+.tri-bar-end { margin-top: 8px; padding-top: 22px; border-top: 1px solid var(--line); }
+.tri-end-note { display: inline-flex; align-items: center; gap: 6px; }
+.tri-end-note svg { width: 40px; height: 22px; flex: 0 0 auto; }
+.tri-end-note .hand { font-size: 21px; line-height: 1; }
+.tri-more { margin: -2px 0 8px 32px; font-size: 13.5px; line-height: 1.4; color: var(--teal-text); font-weight: 600; }
+.tri-more[hidden] { display: none; }
+.tri-edit { margin-left: 6px; background: none; border: 0; padding: 0; font: inherit; color: var(--ink); text-decoration: underline; cursor: pointer; }
+.trm { position: fixed; inset: 0; z-index: 1900; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.trm[hidden] { display: none; }
+.trm-backdrop { position: absolute; inset: 0; background: rgba(10,10,10,0.72); }
+.trm .result-wide { position: relative; margin: 0; width: min(1080px, 100%); max-height: calc(100vh - 40px); overflow: auto; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+.trm-x { position: absolute; top: 12px; right: 14px; width: 40px; height: 40px; background: none; border: 0; font-size: 30px; line-height: 1; color: #fff; cursor: pointer; z-index: 2; }
+.tfm-panel { position: relative; background: var(--cream); color: var(--ink); width: min(560px, 100%); max-height: calc(100vh - 40px); overflow: auto; padding: 36px 40px 28px; border-top: 6px solid var(--teal-deep); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+.tfm-h { margin: 8px 40px 18px 0; font-size: 28px; }
+.tfm-list > .tri-item:first-child > .tri-box { border-top: 1px solid var(--line); }
+.tfm-list .tri-kids { margin-top: 2px; }
+.tfm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 22px; }
+.tfm-actions .btn { margin: 0; }
+.tfm-actions .hand { font-size: 21px; line-height: 1; }
+@media (max-width: 600px) {
+  .tfm-panel { padding: 30px 20px 22px; }
+  .trm { padding: 10px; align-items: flex-start; }
+  .trm .result-wide { max-height: calc(100vh - 20px); }
+  .tri-bar .tri-see { flex: 1 1 100%; }
+}
+/* Follow-up alternative answer (Nov 20) */
+.tfm-list .tri-alt > .tri-box { border-top: 1px dashed var(--line); }
+.tfm-list .tri-kids .tri-alt > .tri-box { border-top: 0; }
+/* Follow-up popups are select-one (Nov 20): radios keep the square box look */
+.tri-box input[type="radio"] { border-radius: 0; }
+/* Follow-up popup: independent "Also true?" items (Nov 24) */
+.tfm-also { margin: 18px 0 2px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-text); }
+.tfm-also + .tri-item > .tri-box { border-top: 1px solid var(--line); }

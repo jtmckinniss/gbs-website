@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Gluten:wght@100..900&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
-<link rel="stylesheet" href="gbs-site.css?v=20261124zi">
+<link rel="stylesheet" href="gbs-site.css?v=20261124tri">
 </head>
 <body>
 <a class="sr-only" href="#main">Skip to content</a>
@@ -85,23 +85,21 @@
         <p style="flex: 1 1 280px">of dogs show at least one behavior their family finds problematic. Early support is the easiest way to stay ahead of it.<br><span class="tiny muted">Range across Voith 1985; Campbell 1986; O'Farrell 1992; Mart&iacute;nez 2011 (per Boyd et al. 2018).</span></p>
       </div>
     </div>
-    <fieldset class="concerns concerns-3">
-        <legend class="sr-only">Choose what sounds most like home</legend>
-          <button type="button" class="concern" data-concern="reactive" aria-pressed="true">Barks or lunges on walks</button>
-          <button type="button" class="concern" data-concern="separation" aria-pressed="false">Panics when left alone</button>
-          <button type="button" class="concern" data-concern="aggression" aria-pressed="false">Growls, snaps or bites</button>
-          <button type="button" class="concern" data-concern="fighting" aria-pressed="false">My animals fight at home</button>
-          <button type="button" class="concern" data-concern="listen" aria-pressed="false">Doesn't listen to me</button>
-          <button type="button" class="concern" data-concern="notsure" aria-pressed="false">Not sure, or something else</button>
-      </fieldset>
-    <div class="card-black result result-wide" aria-live="polite">
-      <p class="eyebrow" style="margin: 0">Where most families start</p>
+    <div class="tri-head"><div class="tri-bar"><p class="tri-count"><span class="tri-n">0</span> selected <button type="button" class="tri-clear" hidden>Clear all</button></p></div><div class="tri-pick" aria-hidden="true"><span class="hand">tick everything that fits</span><svg viewBox="0 0 60 46" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8 C 20 6, 36 12, 44 26 C 47 32, 48 36, 47 41"/><path d="M40 34 L 47 42 L 54 34"/></svg></div></div>
+    <div class="tri-groups" id="tri-groups"></div>
+    <div class="tri-bar tri-bar-end"><p class="tri-count"><span class="tri-n">0</span> selected <button type="button" class="tri-clear" hidden>Clear all</button></p><button type="button" class="btn btn-black tri-see" data-tri-see>See where we'd lean</button><span class="tri-end-note" aria-hidden="true"><svg viewBox="0 0 56 30" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M54 18 C 42 24, 24 22, 6 14"/><path d="M14 6.5 L 5.5 13.8 L 15.5 18.5"/></svg><span class="hand">nothing fits? that's okay</span></span></div>
+    <div class="trm" id="trm" hidden>
+      <div class="trm-backdrop" data-trm-close></div>
+    <div class="card-black result result-wide" id="tri-result" role="dialog" aria-modal="true" aria-labelledby="r-start">
+      <button type="button" class="trm-x" data-trm-close aria-label="Close">&times;</button>
+      <p class="eyebrow" style="margin: 0" id="r-eyebrow">Where we'd lean</p>
       <div style="position: relative"><span class="r-line" aria-hidden="true" style="position: absolute; left: -8px; right: -8px; top: 0; height: 2px; background: var(--teal); opacity: 0; pointer-events: none; z-index: 1"></span>
-        <div class="r-body rw-grid">
-          <div class="rw-left rw-step1">
-            <h3 class="h3" id="r-start" style="font-size: 40px">A free Care Navigation Call</h3>
+        <div class="r-body rw-grid tri-result">
+          <div class="rw-left">
+            <h3 class="h3" id="r-start" style="font-size: 40px">Let's figure it out together</h3>
             <p class="meta" id="r-meta" style="color: var(--teal); font-size: 16px; font-weight: 700">Free &middot; 15 minutes &middot; with our Client Success Manager</p>
-            <p id="r-usually" style="color: var(--n100)">Usually leads to Behavioral Modification with a Certified Dog Behavior Consultant.</p>
+            <p id="r-usually" style="color: var(--n100)"></p>
+            <p id="r-urgent" class="tri-urgent" hidden>If someone has been hurt, get medical care first. Until we can meet, keep your dog safely separated from people, and contact your veterinarian about immediate safety. When you book, let us know it's urgent.</p>
           </div>
           <div class="rw-right">
             <div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 6px; margin-bottom: 4px"><svg viewBox="0 0 60 46" fill="none" stroke="#E8C46B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: 40px; height: 31px; flex: 0 0 auto; transform: scaleX(-1)"><path d="M56 6 C 40 4, 22 10, 14 24 C 10 31, 9 36, 10 41"/><path d="M3.5 33 L 10 41.5 L 17 34.5"/></svg><p class="hand" style="margin: 0 0 14px; font-size: 24px; line-height: 1">here's what happens next</p></div>
@@ -110,6 +108,17 @@
         </div>
       </div>
       <div class="rw-cta"><a class="btn btn-teal" style="margin-top: 0" id="r-cta" href="#cta-band">Book a free call</a><span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 6px"><svg viewBox="0 0 56 30" fill="none" stroke="#E8C46B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: 42px; height: 22px; flex: 0 0 auto"><path d="M54 18 C 42 24, 24 22, 6 14"/><path d="M14 6.5 L 5.5 13.8 L 15.5 18.5"/></svg><span class="hand" style="font-size: 22px; line-height: 1">no judgement, only progress</span></span></div>
+    </div>
+    </div>
+    <div class="trm tfm" id="tfm" hidden>
+      <div class="trm-backdrop" data-tfm-done></div>
+      <div class="tfm-panel" role="dialog" aria-modal="true" aria-labelledby="tfm-h">
+        <button type="button" class="cnm-x" data-tfm-done aria-label="Close">&times;</button>
+        <p class="eyebrow">Tell us a bit more</p>
+        <h3 class="h3 tfm-h" id="tfm-h"></h3>
+        <div class="tfm-list" id="tfm-list"></div>
+        <div class="tfm-actions"><button type="button" class="btn btn-teal" data-tfm-done>Done</button><span class="hand" aria-hidden="true" id="tfm-note">select the one that fits</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -336,42 +345,299 @@
 })();
 </script>
 <script>
+/* TRIAGE TOOL prototype (Nov 20, popups). Source of truth: project doc "WIP_Triage_Logic" v1.6 + team tier chart.
+   Families tick options (follow-ups open under their parent). Highest tier wins; nothing ticked = neutral.
+   Tiers are internal and never shown. Routing and wording are DRAFTS pending clinical sign-off. */
 (function () {
-  var CALL = 'A free Care Navigation Call', META = 'Free \u00b7 15 minutes \u00b7 with our Client Success Manager';
-  var D = {
-    reactive: [CALL, META, 'Book a free call', '#cta-band', 'Usually leads to Behavioral Modification with a Certified Dog Behavior Consultant.', ['Tell us what walks look like right now.', 'Start a plan with a Certified Dog Behavior Consultant.', 'Practice together between sessions. Real impact is measured in months, not days.']],
-    separation: [CALL, META, 'Book a free call', '#cta-band', 'Often Behavioral Modification. Sometimes Behavioral Medicine can make learning easier.', ['Share what happens when you leave the house.', 'Get matched with a Behavior Consultant or a Veterinary Behaviorist.', 'Follow one plan your whole team shares.']],
-    aggression: [CALL, META, 'Book a free call', '#cta-band', 'Behavioral Modification or Behavioral Medicine, depending on what is behind it.', ['Tell us what happened. No judgement.', 'Decide together whether Modification or Medicine fits best.', 'Work through it with specialists who treat this routinely.']],
-    fighting: [CALL, META, 'Book a free call', '#cta-band', 'Usually Behavioral Modification. Both animals are seen together at the same appointment.', ['Tell us how your animals are getting along.', 'Both animals are evaluated in one appointment.*', 'Follow-up appointments cover your whole household.'], '*Animals in conflict won\u2019t necessarily be in the same room.'],
-    listen: ['A class', 'Classes from $42 \u00b7 group and 1-on-1', 'Book a class', 'quiz', 'Behavioral Training builds skills and confidence. Think of it as your dog\u2019s life coach.', ['Answer three quick questions to make sure group class is a fit.', 'Choose Puppy Preschool, Skills & Manners or Tricks.', 'Practice at home between classes.']],
-    notsure: [CALL, META, 'Book a free call', '#cta-band', "That's common. You don't need to know what you need before you start.", ['Book 15 minutes with our Client Success Manager.', "Talk through what's going on at home.", 'Leave with a clear next step.']]
+  var META_CALL = 'Starts with a free call · with our Client Success Manager';
+  /* [eyebrow-free lean title, meta, cta label, href|'quiz', explanation, [step1, step2, step3]] */
+  var R = {
+    n:  ["Let's figure it out together", META_CALL, 'Book a free call', '#cta-band', "You don't need to know what kind of help you need. Tell us what's going on, and we'll help you find the right fit.", ['Book a free call.', "Talk through what's going on at home.", 'Leave with a clear next step.']],
+    t1: ['Behavioral Medicine', META_CALL + ' · vet referral required', 'Book a free call', '#cta-band', "Thank you for telling us. Your situation calls for an evaluation by a board-certified veterinary behaviorist, for proper documentation, veterinary oversight and a safety assessment. A vet referral is required, and we can request it with your permission.", ['Book a free call.', 'We request your vet referral, with your permission.', 'Start with our Veterinary Behaviorist in a virtual visit.']],
+    t2: ['Behavioral Medicine, strongly recommended', META_CALL, 'Book a free call', '#cta-band', "That sounds hard, and you're not alone. When safety, injury, medication or veterinary complexity is involved, Behavioral Medicine is strongly recommended. Behavioral Modification could be an option after we talk. Choosing Medicine never commits you to medication.", ['Book a free call and tell us what you’re seeing.', 'Talk through Medicine, and Modification if it fits.', 'Start a plan with our Veterinary Behaviorist.']],
+    t3: ['Medicine or Modification', META_CALL, 'Book a free call', '#cta-band', "Many families feel this way before they reach out. For concerns like this, either Behavioral Medicine or Behavioral Modification could be a good fit. Let's talk more and find the right one together.", ['Book a free call.', 'Talk through both pathways together.', 'Get your first session on the calendar.']],
+    t4: ['Behavioral Modification', META_CALL, 'Book a free call', '#cta-band', "Behavioral Modification is likely where we'd start: a 1-on-1 plan built around what you're seeing at home. Behavioral Medicine could also be an option, and we'll talk it through.", ['Book a free call.', 'Confirm Modification is the right start.', 'Begin a 1-on-1 plan with a Behavior Consultant.']],
+    t5: ['Classes or 1-on-1 skills', 'Classes from $42 · group and 1-on-1', 'Book a class', 'quiz', "It sounds like a little fine-tuning. Group classes for puppies and adult dogs may be a good fit. If your dog does better with fewer distractions, the same curriculum comes as 1-on-1 Skills & Manners.", ['Answer three quick questions.', 'Choose Puppy Preschool, Skills & Manners or Tricks.', 'Not ready for group yet? We’ll set up 1-on-1.']]
   };
-  var btns = document.querySelectorAll('.concern');
+  var RANK = ['t1', 't2', 't3', 't4', 't5'];
+
+  /* Groups are plain topics for scanning (not tiers). o(id, label, tier, kids, safety) */
+  function o(id, label, tier, kids, safety, also) { return { id: id, label: label, tier: tier, kids: kids || [], safety: !!safety, also: !!also }; }
+  /* Options, categories and order from the team's prioritization doc (Nov 24). */
+  var G = [
+    { id: 'species', title: 'Species', items: [
+      o('cat', 'I’m looking for help for my cat', 't1') ] },
+    { id: 'walks', title: 'Out and about', items: [
+      o('leash-dogs', 'Barks or lunges at dogs on leash', 't3'),
+      o('leash-people', 'Barks or lunges at people on leash', 't2'),
+      o('pulls', 'Pulls too hard on the leash', 't5'),
+      o('car', 'Doesn’t like car rides', 't5', [
+        o('car-panic', 'Panics in the car, and it keeps us from taking them most places', 't2'),
+        o('car-uneasy', 'Uncomfortable in the car, so we only take them when necessary', 't4') ]) ] },
+    { id: 'general', title: 'General behavior', items: [
+      o('noise', 'Fearful of loud noises', 't3', [
+        o('noise-panic', 'Panics and/or hurts themselves during storms, fireworks or other loud events', 't2') ]),
+      o('anxious', 'Anxious, nervous or on edge most of the time', 't2'),
+      o('repetitive', 'Frequently spins, chases lights or shadows, or chews or licks themselves, and it’s hard to get them to stop', 't2'),
+      o('sleep', 'Wakes me up multiple times or keeps me up all night', 't2'),
+      o('shutdown', 'Won’t leave the house or a room in the house, or won’t go for walks', 't2'),
+      o('alone', 'Doesn’t like being left alone', 't3', [
+        o('cant-leave', 'I can barely leave home because of panic, damage to the home, or them hurting themselves', 't2'),
+        o('alone-avoid', 'Not sure about panic, but their behavior keeps me from leaving them whenever possible', 't2'),
+        o('under6', 'They’re under 6 months old', 't2', null, false, true) ]) ] },
+    { id: 'bites', title: 'Growling, biting or guarding', items: [
+      o('aggr', 'Growls, snaps or bites people', 't3', [
+        o('bit-person', 'Has bitten a person', 't2', [
+          o('bite-l4', 'The bite(s) caused punctures, or several bites broke skin in one incident', 't1', null, true),
+          o('bite-reported', 'The bite(s) were reported to the health department', 't1') ], true),
+        o('under1', 'They’re under 1 year old', 't2', null, false, true) ]),
+      o('guarding', 'Guards food, toys or other possessions', 't3'),
+      o('designation', 'Has, or may soon get, a “dangerous,” “vicious” or “nuisance” designation', 't1'),
+      o('legal', 'We’re facing, or expect to face, legal action', 't1') ] },
+    { id: 'animals', title: 'With other animals in our home', items: [
+      o('tension-dogs', 'Tension or fights with other dogs in our household', 't3', [
+        o('dogs-injury', 'Fights have caused injuries to people or dogs', 't2', null, true),
+        o('dogs-noinjury', 'Fights have not caused injuries', 't3'),
+        o('dogs-cant', 'Can’t be around another dog in our household without fighting', 't2') ]),
+      o('tension-cats', 'Tension or fights with the cats in our household', 't3', [
+        o('cats-injury', 'Fights have caused injuries to people', 't2', null, true),
+        o('cats-noinjury', 'Fights have not caused injuries', 't3'),
+        o('cats-room', 'Can’t be in the same room as our cat without chasing or fighting', 't3', [
+          o('cat-risk', 'Has injured, or could injure, a cat that lives with us or will be joining us', 't2') ]) ]) ] },
+    { id: 'skills', title: 'Manners and skills', items: [
+      o('basics', 'Needs the basics: sit, down, stay', 't5'),
+      o('listen', 'Doesn’t listen to me', 't4'),
+      o('recall', 'Needs help coming when called', 't5'),
+      o('jumping', 'Jumps up when happy to meet someone', 't5'),
+      o('counter', 'Steals food from counters or tables', 't5'),
+      o('potty', 'Needs potty training', null, [
+        o('potty-puppy', 'As a puppy (under 4 months)', 't5'),
+        o('potty-adult', 'As an adult', 't4') ]),
+      o('therapy', 'Looking for the foundations to work toward becoming a therapy dog', 't5'),
+      o('cgc', 'Looking for the foundations to work toward Canine Good Citizen certification', 't5'),
+      o('leash-walk', 'I want my dog to walk better on leash', 't5'),
+      o('no-group', 'Needs basic skills but doesn’t do well in group classes', 't5'),
+      o('stuck', 'We’ve tried training and it hasn’t really helped', 't2') ] },
+    { id: 'health', title: 'Vet visits, medication and health', items: [
+      o('vet', 'Doesn’t like going to the vet', 't5', [
+        o('vet-blocked', 'Their behavior at the vet keeps us from getting veterinary care', 't2'),
+        o('vet-avoid', 'We can get veterinary care when absolutely needed, but try to avoid the vet because of their behavior there', 't3') ]),
+      o('medical', 'Has a medical condition that is or could be affecting their behavior', 't2'),
+      o('sudden-change', 'Has had a sudden, unexplained change in behavior', 't2'),
+      o('vet-referred', 'My vet referred us to a veterinary behaviorist', 't1'),
+      o('med-intent', 'I’d like to explore or adjust my dog’s behavior medication', 't1'),
+      o('med-history', 'Has tried behavior medication without the change we hoped for', 't2'),
+      o('pica', 'Often swallows non-food items, like socks, plastic or underwear', 't2'),
+      o('water', 'Drinks excessive amounts of water every day', 't2'),
+      o('gi-stress', 'Gets diarrhea or vomits when stressed', 't2'),
+      o('lick-injury', 'Licks themselves to the point of injury or baldness', 't2'),
+      o('insurance', 'I plan to submit the costs of behavior services to my pet insurance', 't1') ] },
+    { id: 'family', title: 'Family concerns', items: [
+      o('baby', 'We’re expecting a baby and want to prepare our dog for the change', 't4', [
+        o('baby-worry', 'I’m very worried about how our dog will react around our baby', 't2') ]),
+      o('adults', 'Doesn’t do well with one or more adults in our household', 't3', [
+        o('adults-growl', 'Has growled or snapped at an adult in our household', 't3'),
+        o('adults-bit', 'Has bitten an adult in our household', 't2') ]),
+      o('children', 'Doesn’t do well with one or more children in our household', 't3', [
+        o('children-bit', 'Has growled, snapped or bitten a child who lives with us or often visits', 't2') ]) ] }
+  ];
+
   var $ = function (id) { return document.getElementById(id); };
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var d = D[b.getAttribute('data-concern')];
-      if (b.getAttribute('aria-pressed') === 'true') return;
-      btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-      var body = document.querySelector('.r-body'), line = document.querySelector('.r-line');
-      fill(d);
-      if (!body || !body.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var ease = 'cubic-bezier(.4,0,.2,1)', dur = 520;
-      body.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: dur, easing: ease });
-      line.animate([{ top: '0%', opacity: 1 }, { top: '100%', opacity: 1, offset: 0.9 }, { top: '100%', opacity: 0 }], { duration: dur + 80, easing: ease });
-    });
-  });
-  var pc = new URLSearchParams(location.search).get('c');
-  if (pc) { var pb = document.querySelector('.concern[data-concern="' + pc + '"]'); if (pb) pb.click(); }
-  function fill(d) {
-      $('r-start').textContent = d[0]; $('r-meta').textContent = d[1]; $('r-usually').textContent = d[4];
-      var cta = $('r-cta'); cta.textContent = d[2];
-      if (d[3] === 'quiz') { cta.setAttribute('href', '#'); cta.setAttribute('data-quiz-trigger', 'training'); }
-      else { cta.setAttribute('href', d[3]); cta.removeAttribute('data-quiz-trigger'); }
-      var ol = $('r-steps'); ol.innerHTML = '';
-      d[5].forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
-      var fn = $('r-foot'); fn.textContent = d[6] || ''; fn.hidden = !d[6];
+  var ticked = {}, byId = {};
+  function index(list) { list.forEach(function (x) { (byId[x.id] = byId[x.id] || []).push(x); index(x.kids); }); }
+  G.forEach(function (g) { index(g.items); });
+  var alts = {};
+  function clearKids(x) { delete alts[x.id]; x.kids.forEach(function (y) { delete ticked[y.id]; clearKids(y); }); }
+  function chosen(x, out) { x.kids.forEach(function (y) { if (ticked[y.id]) { out.push(y.label); chosen(y, out); } }); if (alts[x.id] && ALT[x.id]) out.push(ALT[x.id]); return out; }
+
+  /* ---- Popups: shared open/close with focus return + trap ---- */
+  var openPop = null, lastFocus = null;
+  function popOpen(el, focusSel) {
+    lastFocus = document.activeElement; el.hidden = false; openPop = el;
+    document.documentElement.classList.add('cnm-lock');
+    var f = el.querySelector(focusSel); if (f) f.focus();
   }
+  function popClose(el) {
+    if (!el || el.hidden) return;
+    el.hidden = true; openPop = null; document.documentElement.classList.remove('cnm-lock');
+    if (lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus();
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!openPop || document.querySelector('.cnm:not([hidden]), .cq-overlay:not([hidden])')) return;
+    if (e.key === 'Escape') { openPop === tfm ? doneFollow() : popClose(openPop); return; }
+    if (e.key === 'Tab') {
+      var f = openPop.querySelectorAll('a[href], button, input');
+      f = Array.prototype.filter.call(f, function (n) { return n.offsetParent !== null; });
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ---- Option list (follow-ups live in the popup, with a summary line under the parent) ---- */
+  function row(x) {
+    var wrap = document.createElement('div'); wrap.className = 'tri-item';
+    var l = document.createElement('label'); l.className = 'tri-box';
+    var c = document.createElement('input'); c.type = 'checkbox'; c.setAttribute('data-id', x.id);
+    var t = document.createElement('span'); t.textContent = x.label;
+    l.appendChild(c); l.appendChild(t); wrap.appendChild(l);
+    if (x.kids.length) {
+      var sm = document.createElement('p'); sm.className = 'tri-more'; sm.hidden = true;
+      sm.innerHTML = '<span class="tri-more-t"></span> <button type="button" class="tri-edit">Edit</button>';
+      sm.querySelector('.tri-edit').addEventListener('click', function () { follow(x); });
+      wrap.appendChild(sm);
+    }
+    c.addEventListener('change', function () {
+      if (c.checked) { ticked[x.id] = 1; sync(); update(); if (x.kids.length) follow(x); }
+      else { delete ticked[x.id]; clearKids(x); sync(); update(); }
+    });
+    return wrap;
+  }
+  function sync() {
+    document.querySelectorAll('#tri-groups input[data-id]').forEach(function (c) {
+      var id = c.getAttribute('data-id'), x = byId[id][0]; c.checked = !!ticked[id];
+      var sm = c.closest('.tri-item').querySelector('.tri-more');
+      if (sm) {
+        var picks = chosen(x, []);
+        sm.hidden = !ticked[id];
+        sm.querySelector('.tri-more-t').textContent = picks.length ? '↳ ' + picks.join(' · ') : '↳ No more details';
+      }
+    });
+    var n = Object.keys(ticked).length;
+    document.querySelectorAll('.tri-n').forEach(function (e) { e.textContent = n; });
+    document.querySelectorAll('.tri-clear').forEach(function (e) { e.hidden = !n; });
+  }
+
+  var host = $('tri-groups');
+  G.forEach(function (g) {
+    var f = document.createElement('fieldset'); f.className = 'tri-group'; f.id = 'tg-' + g.id;
+    var lg = document.createElement('legend'); lg.className = 'h4'; lg.textContent = g.title; f.appendChild(lg);
+    g.items.forEach(function (x) { f.appendChild(row(x)); });
+    host.appendChild(f);
+  });
+  document.querySelectorAll('.tri-clear').forEach(function (b) { b.addEventListener('click', function () { ticked = {}; alts = {}; sync(); update(); }); });
+
+  /* ---- Follow-up popup ---- */
+  var tfm = $('tfm'), tfmList = $('tfm-list');
+  /* Popups live at page level so the sticky nav can't sit above them. */
+  document.body.appendChild(tfm); document.body.appendChild($('trm'));
+  /* Every follow-up level has an alternative answer (Justin, Nov 20). Picking it clears that level's
+     options; picking an option clears it. Potty puppy/adult are either/or. */
+  var ALT = {
+    'car': 'No, we can still usually take them most places',
+    'noise': 'No, they don\u2019t panic or hurt themselves during loud events',
+    'alone': 'No, they\u2019re uneasy, but we can still leave home',
+    'bit-person': 'None of these',
+    'vet': 'Neither of these; we can still get the veterinary care they need',
+    'baby': 'We\u2019re not too worried, but we want to be proactive about their relationship',
+    'adults': 'Neither of these',
+    'children': 'Hasn\u2019t growled, snapped or bitten a child who lives with us or often visits'
+  };
+  var current = null;
+  /* Follow-ups are select-one at every level (Justin, Nov 20): radios named per level. */
+  function box(key, label, on, depth, onChange, group, type) {
+    var w = document.createElement('div'); w.className = 'tri-item' + (depth ? ' tri-sub' : '');
+    var l = document.createElement('label'); l.className = 'tri-box';
+    var c = document.createElement('input'); c.type = type || 'radio'; if (c.type === 'radio') c.name = 'tf-' + group;
+    c.checked = on; c.setAttribute('data-key', key);
+    var t = document.createElement('span'); t.textContent = label;
+    l.appendChild(c); l.appendChild(t); w.appendChild(l);
+    c.addEventListener('change', function () { onChange(c.checked); renderFollow(key); sync(); update(); });
+    return w;
+  }
+  function level(parent, host, depth) {
+    var main = parent.kids.filter(function (k) { return !k.also; });
+    var extra = parent.kids.filter(function (k) { return k.also; });
+    var lone = main.length === 1 && !ALT[parent.id];
+    main.forEach(function (y) {
+      var w = box(y.id, y.label, !!ticked[y.id], depth, function (on) {
+        if (!on) { delete ticked[y.id]; clearKids(y); return; }
+        ticked[y.id] = 1; delete alts[parent.id];
+        main.forEach(function (z) { if (z !== y) { delete ticked[z.id]; clearKids(z); } });
+      }, parent.id, lone ? 'checkbox' : 'radio');
+      if (y.kids.length && ticked[y.id]) {
+        var k = document.createElement('div'); k.className = 'tri-kids'; level(y, k, depth + 1); w.appendChild(k);
+      }
+      host.appendChild(w);
+    });
+    if (ALT[parent.id]) {
+      var a = box(parent.id + '--alt', ALT[parent.id], !!alts[parent.id], depth, function (on) {
+        if (!on) return;
+        alts[parent.id] = 1; main.forEach(function (z) { delete ticked[z.id]; clearKids(z); });
+      }, parent.id, 'radio');
+      a.classList.add('tri-alt'); host.appendChild(a);
+    }
+    if (extra.length) {
+      var h = document.createElement('p'); h.className = 'tfm-also'; h.textContent = 'Also true?'; host.appendChild(h);
+      extra.forEach(function (y) {
+        host.appendChild(box(y.id, y.label, !!ticked[y.id], depth, function (on) {
+          if (on) ticked[y.id] = 1; else delete ticked[y.id];
+        }, null, 'checkbox'));
+      });
+    }
+  }
+  function renderFollow(focusKey) {
+    tfmList.innerHTML = ''; level(current, tfmList, 0);
+    if (focusKey) { var f = tfmList.querySelector('input[data-key="' + focusKey + '"]'); if (f) f.focus(); }
+  }
+  function follow(x) {
+    current = x; $('tfm-h').textContent = x.label;
+    renderFollow(null);
+    popOpen(tfm, '#tfm-list input');
+  }
+  function doneFollow() { popClose(tfm); }
+  tfm.addEventListener('click', function (e) { if (e.target.closest('[data-tfm-done]')) doneFollow(); });
+
+  /* ---- Result popup ---- */
+  var trm = $('trm');
+  document.querySelectorAll('[data-tri-see]').forEach(function (b) {
+    b.addEventListener('click', function () { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; });
+  });
+  trm.addEventListener('click', function (e) { if (e.target.closest('[data-trm-close]')) popClose(trm); });
+  /* The CTA hands off to the call popup or the class quiz; close ours first. */
+  $('r-cta').addEventListener('click', function () { popClose(trm); });
+
+  function pick() {
+    var best = null, safety = false;
+    Object.keys(ticked).forEach(function (id) {
+      var x = byId[id][0];
+      if (x.safety) safety = true;
+      if (x.tier && (!best || RANK.indexOf(x.tier) < RANK.indexOf(best))) best = x.tier;
+    });
+    return { key: (best || 'n') + (safety ? '-s' : ''), d: R[best || 'n'], safety: safety };
+  }
+
+  var shown = '';
+  function update(animate) {
+    var r = pick(); fill(r);
+    if (r.key === shown && !animate) return;
+    var first = !shown && !animate; shown = r.key;
+    if (trm.hidden && !animate) return;
+    var body = document.querySelector('.r-body'), line = document.querySelector('.r-line');
+    if (first || !body || !body.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ease = 'cubic-bezier(.4,0,.2,1)', dur = 520;
+    body.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: dur, easing: ease });
+    line.animate([{ top: '0%', opacity: 1 }, { top: '100%', opacity: 1, offset: 0.9 }, { top: '100%', opacity: 0 }], { duration: dur + 80, easing: ease });
+  }
+  function fill(r) {
+    var d = r.d;
+    document.querySelectorAll('[data-tri-see]').forEach(function (b) { b.textContent = Object.keys(ticked).length ? 'See where we\u2019d lean' : 'Not sure? See where to start'; });
+    $('r-eyebrow').textContent = d === R.n ? 'Where to start' : 'Where we’d lean';
+    $('r-start').textContent = d[0]; $('r-meta').textContent = d[1]; $('r-usually').textContent = d[4];
+    var cta = $('r-cta'); cta.textContent = d[2];
+    if (d[3] === 'quiz') { cta.setAttribute('href', '#'); cta.setAttribute('data-quiz-trigger', 'training'); }
+    else { cta.setAttribute('href', d[3]); cta.removeAttribute('data-quiz-trigger'); }
+    var ol = $('r-steps'); ol.innerHTML = '';
+    d[5].forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
+    $('r-foot').hidden = true;
+    $('r-urgent').hidden = !r.safety;
+  }
+
+  /* Nav links (?c=KEY) from the old six concerns now jump to the matching topic. */
+  var MAP = { reactive: 'walks', separation: 'general', aggression: 'bites', fighting: 'animals', listen: 'skills', notsure: 'general' };
+  var pc = new URLSearchParams(location.search).get('c'), tg = MAP[pc] && $('tg-' + MAP[pc]);
+  if (tg) { tg.classList.add('tri-focus'); setTimeout(function () { tg.scrollIntoView({ block: 'start' }); }, 50); }
+  update();
 })();
 </script>
 <script>
