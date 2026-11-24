@@ -826,3 +826,8 @@ html { scroll-behavior: smooth; }
 .refer-notes > div { padding-top: 22px; border-top: 1px solid var(--n700); }
 /* Active menu underline sits just under the label, not at the header's bottom edge (Nov 24) */
 .nl2 { align-self: center; height: auto; padding: 8px 0 6px; }
+.conf-h { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.card-dark .conf-h { border-color: var(--kale-rule); }
+.conf-h + .conf-row { border-top: 0; margin-top: 8px; padding-top: 6px; }
+.conf-row-2 { margin-top: 10px; padding-top: 10px; }
+.conf-l { font-weight: 600; font-size: 15px; }
