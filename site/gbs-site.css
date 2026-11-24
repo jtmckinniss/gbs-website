@@ -799,3 +799,19 @@ html { scroll-behavior: smooth; }
 /* Homepage quick links label (sits on the hero's dark edge) */
 .doors { margin-top: -116px; }
 .doors-label { color: var(--teal); margin: 0 0 12px; }
+
+/* For Vets model cards: rows line up across cards; description in its own inset box (Nov 24) */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 900px) {
+    .models-grid > div { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+    .models-grid > div > * { min-width: 0; }
+    .models-grid .model-foot { align-self: stretch; }
+  }
+}
+.models-grid .model-desc { border-top: 0 !important; padding: 18px 20px !important; margin-top: 20px !important; background: var(--cream); border: 1px solid var(--line) !important; }
+.models-grid .card-black .model-desc { background: #151515; border-color: var(--n700) !important; }
+.models-grid .model-desc .model-list { margin-top: 0; }
+.models-grid .model-desc > p:first-child { margin-top: 0; }
+.models-grid .btn { justify-self: start; align-self: start; }
+.models-grid .model-foot { align-content: start; }
+.models-grid .model-desc > p:first-child + .model-list { margin-top: 12px; }
