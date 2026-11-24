@@ -85,9 +85,23 @@
         <p style="flex: 1 1 280px">of dogs show at least one behavior their family finds problematic. Early support is the easiest way to stay ahead of it.<br><span class="tiny muted">Range across Voith 1985; Campbell 1986; O'Farrell 1992; Mart&iacute;nez 2011 (per Boyd et al. 2018).</span></p>
       </div>
     </div>
-    <div class="tri-head"><div class="tri-bar"><p class="tri-count"><span class="tri-n">0</span> selected <button type="button" class="tri-clear" hidden>Clear all</button></p></div><div class="tri-pick" aria-hidden="true"><span class="hand">tick everything that fits</span><svg viewBox="0 0 60 46" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8 C 20 6, 36 12, 44 26 C 47 32, 48 36, 47 41"/><path d="M40 34 L 47 42 L 54 34"/></svg></div></div>
-    <div class="tri-groups" id="tri-groups"></div>
-    <div class="tri-bar tri-bar-end"><p class="tri-count"><span class="tri-n">0</span> selected <button type="button" class="tri-clear" hidden>Clear all</button></p><button type="button" class="btn btn-black tri-see" data-tri-see>See where we'd lean</button><span class="tri-end-note" aria-hidden="true"><svg viewBox="0 0 56 30" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M54 18 C 42 24, 24 22, 6 14"/><path d="M14 6.5 L 5.5 13.8 L 15.5 18.5"/></svg><span class="hand">nothing fits? that's okay</span></span></div>
+    <div class="trx" id="trx">
+      <div class="trx-top">
+        <label class="trx-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg><span class="sr-only">Search what you're seeing</span><input type="search" id="trx-q" placeholder="Search: barking, vet visits, potty training" autocomplete="off"></label>
+        <span class="trx-note" aria-hidden="true"><svg viewBox="0 0 60 40" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M56 6 C 40 4, 22 10, 12 26"/><path d="M8 18 L 11.5 28 L 21 24"/></svg><span class="hand">tap everything that fits</span></span>
+      </div>
+      <div class="trx-layout">
+        <div class="trx-cats" role="tablist" aria-label="Topics" id="trx-cats"></div>
+        <div class="trx-main" id="trx-panel" role="tabpanel" tabindex="-1"></div>
+        <aside class="trx-sum" aria-label="Your answers">
+          <div class="trx-sum-head"><p class="eyebrow" style="margin: 0">Your answers</p><span class="trx-n" id="trx-n" aria-live="polite">0</span></div>
+          <ul class="trx-picks" id="trx-picks"></ul>
+          <p class="trx-empty" id="trx-empty">Nothing picked yet. Choose a topic and tap anything that sounds like home.</p>
+          <button type="button" class="btn btn-black trx-see" data-tri-see>Not sure? See where to start</button>
+          <div class="trx-sum-foot"><span class="tiny muted">Judgement free. Change anything, anytime.</span><button type="button" class="trx-clear" id="trx-clear" hidden>Clear all</button></div>
+        </aside>
+      </div>
+    </div>
     <div class="trm" id="trm" hidden>
       <div class="trm-backdrop" data-trm-close></div>
     <div class="card-black result result-wide" id="tri-result" role="dialog" aria-modal="true" aria-labelledby="r-start">
@@ -99,7 +113,7 @@
             <h3 class="h3" id="r-start" style="font-size: 40px">Let's figure it out together</h3>
             <p class="meta" id="r-meta" style="color: var(--teal); font-size: 16px; font-weight: 700">Free &middot; 15 minutes &middot; with our Client Success Manager</p>
             <p id="r-usually" style="color: var(--n100)"></p>
-            <p id="r-urgent" class="tri-urgent" hidden>If someone has been hurt, get medical care first. Until we can meet, keep your dog safely separated from people, and contact your veterinarian about immediate safety. When you book, let us know it's urgent.</p>
+            <p id="r-urgent" class="tri-urgent" hidden>If someone has been hurt, get medical care first. Please contact your veterinarian about an immediate safety plan. When you book, let us know it's urgent.</p>
           </div>
           <div class="rw-right">
             <div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 6px; margin-bottom: 4px"><svg viewBox="0 0 60 46" fill="none" stroke="#E8C46B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: 40px; height: 31px; flex: 0 0 auto; transform: scaleX(-1)"><path d="M56 6 C 40 4, 22 10, 14 24 C 10 31, 9 36, 10 41"/><path d="M3.5 33 L 10 41.5 L 17 34.5"/></svg><p class="hand" style="margin: 0 0 14px; font-size: 24px; line-height: 1">here's what happens next</p></div>
@@ -353,11 +367,11 @@
   /* [eyebrow-free lean title, meta, cta label, href|'quiz', explanation, [step1, step2, step3]] */
   var R = {
     n:  ["Let's figure it out together", META_CALL, 'Book a free call', '#cta-band', "You don't need to know what kind of help you need. Tell us what's going on, and we'll help you find the right fit.", ['Book a free call.', "Talk through what's going on at home.", 'Leave with a clear next step.']],
-    t1: ['Behavioral Medicine', META_CALL + ' · vet referral required', 'Book a free call', '#cta-band', "Thank you for telling us. Your situation calls for an evaluation by a board-certified veterinary behaviorist, for proper documentation, veterinary oversight and a safety assessment. A vet referral is required, and we can request it with your permission.", ['Book a free call.', 'We request your vet referral, with your permission.', 'Start with our Veterinary Behaviorist in a virtual visit.']],
-    t2: ['Behavioral Medicine, strongly recommended', META_CALL, 'Book a free call', '#cta-band', "That sounds hard, and you're not alone. When safety, injury, medication or veterinary complexity is involved, Behavioral Medicine is strongly recommended. Behavioral Modification could be an option after we talk. Choosing Medicine never commits you to medication.", ['Book a free call and tell us what you’re seeing.', 'Talk through Medicine, and Modification if it fits.', 'Start a plan with our Veterinary Behaviorist.']],
-    t3: ['Medicine or Modification', META_CALL, 'Book a free call', '#cta-band', "Many families feel this way before they reach out. For concerns like this, either Behavioral Medicine or Behavioral Modification could be a good fit. Let's talk more and find the right one together.", ['Book a free call.', 'Talk through both pathways together.', 'Get your first session on the calendar.']],
-    t4: ['Behavioral Modification', META_CALL, 'Book a free call', '#cta-band', "Behavioral Modification is likely where we'd start: a 1-on-1 plan built around what you're seeing at home. Behavioral Medicine could also be an option, and we'll talk it through.", ['Book a free call.', 'Confirm Modification is the right start.', 'Begin a 1-on-1 plan with a Behavior Consultant.']],
-    t5: ['Classes or 1-on-1 skills', 'Classes from $42 · group and 1-on-1', 'Book a class', 'quiz', "It sounds like a little fine-tuning. Group classes for puppies and adult dogs may be a good fit. If your dog does better with fewer distractions, the same curriculum comes as 1-on-1 Skills & Manners.", ['Answer three quick questions.', 'Choose Puppy Preschool, Skills & Manners or Tricks.', 'Not ready for group yet? We’ll set up 1-on-1.']]
+    t1: ['Behavioral Medicine', META_CALL + ' · vet referral required', 'Book a free call', '#cta-band', "Thank you for telling us. Your situation calls for an evaluation by a board-certified veterinary behaviorist on our Behavioral Medicine pathway, for proper documentation, veterinary oversight and a safety assessment. A vet referral is required, and we can discuss all of those details during our call.", ['Book a free call.', 'We request your vet referral, with your permission.', 'Start with our Veterinary Behaviorist in a virtual visit.']],
+    t2: ['Behavioral Medicine, strongly recommended', META_CALL, 'Book a free call', '#cta-band', "That sounds hard, and you're not alone. When safety, injury, medication or veterinary complexity is involved, our Behavioral Medicine pathway is strongly recommended. Our Behavioral Modification pathway may be an option. Let's talk to find out more.", ['Book a free call and tell us what you’re seeing.', 'Talk through Medicine, and Modification if it fits.', 'Start a plan with our Veterinary Behaviorist.']],
+    t3: ['Medicine or Modification', META_CALL, 'Book a free call', '#cta-band', "Based on what you’ve selected, it sounds like either our Behavioral Medicine pathway with our board-certified veterinary behaviorist or our Behavioral Modification pathway with our certified behavior consultant would be a reasonable starting point.", ['Book a free call.', 'Talk through both pathways together.', 'Get your first session on the calendar.']],
+    t4: ['Behavioral Modification', META_CALL, 'Book a free call', '#cta-band', "Based on what you’ve selected, it sounds like our Behavioral Modification pathway with our certified behavior consultant would be a reasonable starting point. Behavioral Medicine could also be an appropriate option, and we'll talk it through during your navigation call.", ['Book a free call.', 'Confirm Modification is the right start.', 'Begin a 1-on-1 plan with a Behavior Consultant.']],
+    t5: ['Classes or 1-on-1 skills', 'Classes from $42 · group and 1-on-1', 'Book a class', 'quiz', "It sounds like a little fine-tuning. Group classes may be a good fit. If your dog does better with fewer distractions, the same Skills & Manners curriculum is available in a private setting.", ['Answer three quick questions.', 'Choose Puppy Preschool, Skills & Manners or Tricks.', 'Not ready for group yet? We’ll set up 1-on-1.']]
   };
   var RANK = ['t1', 't2', 't3', 't4', 't5'];
 
@@ -474,48 +488,153 @@
     }
   });
 
-  /* ---- Option list (follow-ups live in the popup, with a summary line under the parent) ---- */
-  function row(x) {
-    var wrap = document.createElement('div'); wrap.className = 'tri-item';
-    var l = document.createElement('label'); l.className = 'tri-box';
-    var c = document.createElement('input'); c.type = 'checkbox'; c.setAttribute('data-id', x.id);
-    var t = document.createElement('span'); t.textContent = x.label;
-    l.appendChild(c); l.appendChild(t); wrap.appendChild(l);
+  /* ---- Option browser (Nov 24 UX): topic tabs, search, tap tiles, live "Your answers" panel ---- */
+  var cat = G[0].id, query = '';
+  var catsEl = $('trx-cats'), panel = $('trx-panel'), qEl = $('trx-q');
+  function groupOf(id) { for (var i = 0; i < G.length; i++) { if (G[i].items.some(function (x) { return x.id === id; })) return G[i]; } return null; }
+  function topPicked(g) { return g.items.filter(function (x) { return ticked[x.id]; }).length; }
+  function norm(t) { return t.toLowerCase().replace(/[‘’']/g, ''); }
+  function matches(x, q) { return norm(x.label).indexOf(q) > -1 || x.kids.some(function (k) { return matches(k, q); }); }
+
+  function renderCats() {
+    catsEl.innerHTML = '';
+    G.forEach(function (g, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'trx-cat';
+      b.setAttribute('role', 'tab'); b.id = 'tab-' + g.id; b.setAttribute('aria-controls', 'trx-panel');
+      var on = !query && g.id === cat; b.setAttribute('aria-selected', String(on)); b.tabIndex = on || (query && i === 0) ? 0 : -1;
+      var n = topPicked(g);
+      b.innerHTML = '<span class="trx-cat-t"></span>' + (n ? '<span class="trx-badge">' + n + '</span>' : '');
+      b.querySelector('.trx-cat-t').textContent = g.title;
+      b.addEventListener('click', function () { setCat(g.id, true); });
+      b.addEventListener('keydown', function (e) {
+        var k = e.key, j = i;
+        if (k === 'ArrowDown' || k === 'ArrowRight') j = (i + 1) % G.length;
+        else if (k === 'ArrowUp' || k === 'ArrowLeft') j = (i - 1 + G.length) % G.length;
+        else if (k === 'Home') j = 0; else if (k === 'End') j = G.length - 1; else return;
+        e.preventDefault(); setCat(G[j].id); var t = $('tab-' + G[j].id); if (t) t.focus();
+      });
+      catsEl.appendChild(b);
+    });
+    var sel = catsEl.querySelector('[aria-selected="true"]');
+    if (sel && catsEl.scrollWidth > catsEl.clientWidth) catsEl.scrollLeft = sel.offsetLeft - 16;
+  }
+
+  function tile(x) {
+    var w = document.createElement('div'); w.className = 'trx-tile' + (ticked[x.id] ? ' is-on' : '');
+    var l = document.createElement('label'); l.className = 'trx-hit';
+    var c = document.createElement('input'); c.type = 'checkbox'; c.className = 'trx-input'; c.setAttribute('data-id', x.id); c.checked = !!ticked[x.id];
+    var box = document.createElement('span'); box.className = 'trx-box'; box.setAttribute('aria-hidden', 'true');
+    var t = document.createElement('span'); t.className = 'trx-t'; t.textContent = x.label;
+    l.appendChild(c); l.appendChild(box); l.appendChild(t); w.appendChild(l);
     if (x.kids.length) {
-      var sm = document.createElement('p'); sm.className = 'tri-more'; sm.hidden = true;
-      sm.innerHTML = '<span class="tri-more-t"></span> <button type="button" class="tri-edit">Edit</button>';
-      sm.querySelector('.tri-edit').addEventListener('click', function () { follow(x); });
-      wrap.appendChild(sm);
+      var picks = chosen(x, []);
+      var m = document.createElement('div'); m.className = 'trx-fu';
+      if (ticked[x.id]) {
+        m.innerHTML = '<span class="trx-fu-t"></span><button type="button" class="trx-link">' + (picks.length ? 'Change' : 'Answer') + '</button>';
+        m.querySelector('.trx-fu-t').textContent = picks.length ? picks.join(' · ') : 'One quick follow-up';
+        m.querySelector('button').addEventListener('click', function () { follow(x); });
+      } else {
+        m.innerHTML = '<span class="trx-fu-hint">+ one quick follow-up</span>';
+      }
+      w.appendChild(m);
     }
     c.addEventListener('change', function () {
       if (c.checked) { ticked[x.id] = 1; sync(); update(); if (x.kids.length) follow(x); }
       else { delete ticked[x.id]; clearKids(x); sync(); update(); }
     });
-    return wrap;
-  }
-  function sync() {
-    document.querySelectorAll('#tri-groups input[data-id]').forEach(function (c) {
-      var id = c.getAttribute('data-id'), x = byId[id][0]; c.checked = !!ticked[id];
-      var sm = c.closest('.tri-item').querySelector('.tri-more');
-      if (sm) {
-        var picks = chosen(x, []);
-        sm.hidden = !ticked[id];
-        sm.querySelector('.tri-more-t').textContent = picks.length ? '↳ ' + picks.join(' · ') : '↳ No more details';
-      }
-    });
-    var n = Object.keys(ticked).length;
-    document.querySelectorAll('.tri-n').forEach(function (e) { e.textContent = n; });
-    document.querySelectorAll('.tri-clear').forEach(function (e) { e.hidden = !n; });
+    return w;
   }
 
-  var host = $('tri-groups');
-  G.forEach(function (g) {
-    var f = document.createElement('fieldset'); f.className = 'tri-group'; f.id = 'tg-' + g.id;
-    var lg = document.createElement('legend'); lg.className = 'h4'; lg.textContent = g.title; f.appendChild(lg);
-    g.items.forEach(function (x) { f.appendChild(row(x)); });
-    host.appendChild(f);
-  });
-  document.querySelectorAll('.tri-clear').forEach(function (b) { b.addEventListener('click', function () { ticked = {}; alts = {}; sync(); update(); }); });
+  function renderPanel() {
+    panel.innerHTML = '';
+    var head = document.createElement('div'); head.className = 'trx-panel-head';
+    var grid = document.createElement('div'); grid.className = 'trx-grid';
+    if (query) {
+      var q = norm(query), hits = 0;
+      head.innerHTML = '<h3 class="h3 trx-h"></h3><button type="button" class="trx-link">Back to topics</button>';
+      head.querySelector('button').addEventListener('click', function () { qEl.value = ''; query = ''; sync(); });
+      G.forEach(function (g) {
+        var found = g.items.filter(function (x) { return matches(x, q); });
+        if (!found.length) return;
+        var lab = document.createElement('p'); lab.className = 'trx-sub'; lab.textContent = g.title; grid.appendChild(lab);
+        found.forEach(function (x) { grid.appendChild(tile(x)); hits++; });
+      });
+      head.querySelector('.trx-h').textContent = hits ? hits + (hits === 1 ? ' match' : ' matches') + ' for “' + query + '”' : 'No matches for “' + query + '”';
+      panel.appendChild(head);
+      if (!hits) {
+        var none = document.createElement('p'); none.className = 'trx-none';
+        none.textContent = 'Try another word, or browse the topics. If nothing fits, that’s okay: see where to start and we’ll talk it through.';
+        panel.appendChild(none);
+      }
+      panel.appendChild(grid);
+      return;
+    }
+    var gi = G.findIndex(function (g) { return g.id === cat; }), g = G[gi];
+    head.innerHTML = '<p class="trx-step"></p><h3 class="h3 trx-h"></h3>';
+    head.querySelector('.trx-step').textContent = 'Topic ' + (gi + 1) + ' of ' + G.length;
+    head.querySelector('.trx-h').textContent = g.title;
+    panel.appendChild(head);
+    g.items.forEach(function (x) { grid.appendChild(tile(x)); });
+    panel.appendChild(grid);
+    var nav = document.createElement('div'); nav.className = 'trx-nav';
+    if (gi > 0) {
+      var pv = document.createElement('button'); pv.type = 'button'; pv.className = 'trx-link trx-prev';
+      pv.textContent = '← ' + G[gi - 1].title; pv.addEventListener('click', function () { setCat(G[gi - 1].id, true); });
+      nav.appendChild(pv);
+    }
+    var nx = document.createElement('button'); nx.type = 'button'; nx.className = 'btn btn-line-dark trx-next';
+    if (gi < G.length - 1) { nx.textContent = 'Next: ' + G[gi + 1].title + ' →'; nx.addEventListener('click', function () { setCat(G[gi + 1].id, true); }); }
+    else { nx.className = 'btn btn-black trx-next'; nx.setAttribute('data-tri-see', ''); nx.textContent = 'See where we’d lean'; nx.addEventListener('click', openResult); }
+    nav.appendChild(nx);
+    panel.appendChild(nav);
+  }
+
+  function renderSummary() {
+    var ul = $('trx-picks'); ul.innerHTML = '';
+    var n = 0;
+    G.forEach(function (g) {
+      g.items.forEach(function (x) {
+        if (!ticked[x.id]) return; n++;
+        var li = document.createElement('li'); li.className = 'trx-pick';
+        li.innerHTML = '<div class="trx-pick-t"><span class="trx-pick-l"></span><span class="trx-pick-f"></span></div><div class="trx-pick-a"></div>';
+        li.querySelector('.trx-pick-l').textContent = x.label;
+        var f = li.querySelector('.trx-pick-f');
+        if (x.kids.length) {
+          var picks = chosen(x, []);
+          f.textContent = picks.length ? picks.join(' · ') : 'Follow-up not answered';
+          if (!picks.length) f.classList.add('is-open');
+          var e = document.createElement('button'); e.type = 'button'; e.className = 'trx-link'; e.textContent = picks.length ? 'Change' : 'Answer';
+          e.setAttribute('aria-label', (picks.length ? 'Change' : 'Answer') + ' follow-up for ' + x.label);
+          e.addEventListener('click', function () { follow(x); });
+          li.querySelector('.trx-pick-a').appendChild(e);
+        } else f.remove();
+        var r = document.createElement('button'); r.type = 'button'; r.className = 'trx-x'; r.innerHTML = '&times;';
+        r.setAttribute('aria-label', 'Remove ' + x.label);
+        r.addEventListener('click', function () { delete ticked[x.id]; clearKids(x); sync(); update(); });
+        li.querySelector('.trx-pick-a').appendChild(r);
+        ul.appendChild(li);
+      });
+    });
+    $('trx-n').textContent = n; $('trx-n').classList.toggle('is-on', n > 0);
+    $('trx-empty').hidden = n > 0; $('trx-clear').hidden = n === 0;
+  }
+
+  function sync() { renderCats(); renderPanel(); renderSummary(); }
+  function setCat(id, focusPanel) {
+    cat = id; query = ''; qEl.value = ''; sync();
+    if (focusPanel) {
+      var top = $('trx').getBoundingClientRect().top;
+      if (top < 0 || window.innerWidth < 900) $('trx-panel').scrollIntoView({ block: 'start', behavior: 'smooth' });
+      panel.focus({ preventScroll: true });
+    }
+  }
+  function openResult() { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; }
+
+  var qt = null;
+  qEl.addEventListener('input', function () { clearTimeout(qt); qt = setTimeout(function () { query = qEl.value.trim(); sync(); }, 120); });
+  qEl.addEventListener('keydown', function (e) { if (e.key === 'Escape') { qEl.value = ''; query = ''; sync(); } });
+  $('trx-clear').addEventListener('click', function () { ticked = {}; alts = {}; sync(); update(); });
+  sync();
 
   /* ---- Follow-up popup ---- */
   var tfm = $('tfm'), tfmList = $('tfm-list');
@@ -635,8 +754,8 @@
 
   /* Nav links (?c=KEY) from the old six concerns now jump to the matching topic. */
   var MAP = { reactive: 'walks', separation: 'general', aggression: 'bites', fighting: 'animals', listen: 'skills', notsure: 'general' };
-  var pc = new URLSearchParams(location.search).get('c'), tg = MAP[pc] && $('tg-' + MAP[pc]);
-  if (tg) { tg.classList.add('tri-focus'); setTimeout(function () { tg.scrollIntoView({ block: 'start' }); }, 50); }
+  var pc = new URLSearchParams(location.search).get('c');
+  if (MAP[pc]) { setCat(MAP[pc]); setTimeout(function () { document.getElementById('trx').scrollIntoView({ block: 'start' }); }, 50); }
   update();
 })();
 </script>
