@@ -831,3 +831,8 @@ html { scroll-behavior: smooth; }
 .conf-h + .conf-row { border-top: 0; margin-top: 8px; padding-top: 6px; }
 .conf-row-2 { margin-top: 10px; padding-top: 10px; }
 .conf-l { font-weight: 600; font-size: 15px; }
+/* Cream conflict box on the green Modification section */
+.conflict-light { background: var(--cream-soft); }
+.on-kale .card .muted { color: var(--ink-2); }
+.on-kale .card .price { color: var(--ink); }
+.conflict-light .conf-h, .conflict-light .conf-row { border-color: var(--line) !important; }
