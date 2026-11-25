@@ -86,12 +86,14 @@
       <div class="trx-layout">
         <div class="trx-main" id="trx-panel" role="tabpanel" tabindex="-1"></div>
         <aside class="trx-sum" aria-label="Your answers">
-          <div class="trx-sum-head"><p class="eyebrow" style="margin: 0">Your answers</p><span class="trx-n" id="trx-n" aria-live="polite">0</span></div>
+          <button type="button" class="trx-sum-head" id="trx-sum-head" aria-expanded="false" aria-controls="trx-sum-body"><span class="eyebrow" style="margin: 0">Your answers</span><span class="trx-sum-r"><span class="trx-n" id="trx-n" aria-live="polite">0</span><svg class="trx-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+          <div class="trx-sum-body" id="trx-sum-body">
           <ul class="trx-picks" id="trx-picks"></ul>
           <p class="trx-empty" id="trx-empty">Nothing picked yet.</p>
           <button type="button" class="btn btn-black trx-see" data-tri-see>Not sure? See where to start</button>
           <button type="button" class="trx-clear" id="trx-clear" hidden>Start over</button>
           <div class="trx-sum-foot"><span class="tiny muted"><strong class="trx-jf">Judgement Free.</strong> Change anything, anytime.</span></div>
+          </div>
         </aside>
       </div>
     </div>
@@ -106,6 +108,7 @@
             <h3 class="h3" id="r-start" style="font-size: 40px">Let's figure it out together</h3>
             <p class="meta" id="r-meta" style="color: var(--teal); font-size: 16px; font-weight: 700">Free &middot; 15 minutes &middot; with our Client Success Manager</p>
             <div class="r-why" id="r-why" hidden></div>
+            <a class="btn btn-teal r-cta-m" id="r-cta-m" href="#cta-band">Book a free call</a>
             <p id="r-usually" style="color: var(--n100)"></p>
             <div class="r-paths" id="r-paths" hidden></div>
             <p id="r-urgent" class="tri-urgent" hidden>If someone has been hurt, get medical care first. Please contact your veterinarian about an immediate safety plan. When you book, let us know it's urgent.</p>
@@ -492,6 +495,19 @@
   var panel = $('trx-panel');
   var TOTAL = G.length + 1;
 
+  /* Hand-drawn topic icons (Nov 24) */
+  var SV = '<svg class="trx-tico" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+  var TICON = {
+    walks: SV + '<path d="M9 51c7-9 15-17 26-23"/><path d="M35 28c3-8 10-13 16-10 5 3 3 11-4 13-5 1-9-1-12-3"/><circle cx="9" cy="51" r="3"/></svg>',
+    general: SV + '<path d="M16 37c-7 0-9-10-2-12-1-8 10-12 15-6 3-7 15-6 15 2 8-1 10 11 2 13"/><path d="M16 37c3 3 10 4 14 1 4 3 11 3 16-1"/><circle cx="20" cy="47" r="2.2"/><circle cx="14" cy="53" r="1.4"/></svg>',
+    bites: SV + '<path d="M17 15c5-4 9 1 13 0s9-5 13 0c5 6 1 14-1 24-1 7-6 8-7 1-1-6-4-6-5 0-1 7-6 6-7-1-2-10-7-18-6-24z"/></svg>',
+    animals: SV + '<ellipse cx="17" cy="38" rx="6" ry="5"/><circle cx="10" cy="29" r="2.4"/><circle cx="16" cy="25" r="2.4"/><circle cx="23" cy="27" r="2.4"/><ellipse cx="42" cy="26" rx="6" ry="5"/><circle cx="35" cy="17" r="2.4"/><circle cx="41" cy="13" r="2.4"/><circle cx="48" cy="15" r="2.4"/></svg>',
+    skills: SV + '<circle cx="30" cy="31" r="17"/><path d="M15 23c8 4 8 14 1 19"/><path d="M45 21c-7 4-8 14-1 19"/></svg>',
+    vetvisits: SV + '<path d="M16 10v14c0 9 13 9 13 0V10"/><path d="M22 33v6c0 9 16 9 16-1v-6"/><circle cx="38" cy="28" r="4"/></svg>',
+    health: SV + '<path d="M15 39l18-18a8.5 8.5 0 0 1 12 12L27 51a8.5 8.5 0 0 1-12-12z"/><path d="M24 30l9 9"/></svg>',
+    family: SV + '<path d="M10 30 30 12l20 18"/><path d="M16 25v25h28V25"/><path d="M26 50V38h8v12"/></svg>'
+  };
+  var dir = 1, animStep = null, lastOn = null;
   function renderProgress() {
     var bar = $('trx-progress'), lab = $('trx-progress-t');
     var done = species === 'cat' ? TOTAL : step + 1;
@@ -501,7 +517,7 @@
   }
 
   function tile(x) {
-    var w = document.createElement('div'); w.className = 'trx-tile' + (ticked[x.id] ? ' is-on' : '');
+    var w = document.createElement('div'); w.className = 'trx-tile' + (ticked[x.id] ? ' is-on' : '') + (lastOn === x.id ? ' just-on' : '');
     var l = document.createElement('label'); l.className = 'trx-hit';
     var c = document.createElement('input'); c.type = 'checkbox'; c.className = 'trx-input'; c.setAttribute('data-id', x.id); c.checked = !!ticked[x.id];
     var box = document.createElement('span'); box.className = 'trx-box'; box.setAttribute('aria-hidden', 'true');
@@ -518,7 +534,7 @@
       w.appendChild(m);
     }
     c.addEventListener('change', function () {
-      if (c.checked) { ticked[x.id] = 1; sync(); update(); if (x.kids.length) follow(x); }
+      if (c.checked) { ticked[x.id] = 1; lastOn = x.id; sync(); lastOn = null; update(); if (x.kids.length) follow(x); }
       else { delete ticked[x.id]; clearKids(x); sync(); update(); }
     });
     return w;
@@ -565,7 +581,8 @@
       var sf = document.createElement('div'); sf.className = 'trx-safety'; sf.setAttribute('role', 'alert');
       sf.textContent = $('r-urgent').textContent; panel.appendChild(sf);
     }
-    head.innerHTML = '<h3 class="h3 trx-h"></h3><p class="trx-hint">Tap any that fit, or skip if none do.</p>';
+    head.innerHTML = (TICON[g.id] || '') + '<div class="trx-ht"><h3 class="h3 trx-h"></h3><p class="trx-hint">Tap any that fit, or skip if none do.</p></div>';
+    head.classList.add('has-ico');
     head.querySelector('.trx-h').textContent = g.title;
     panel.appendChild(head);
     var grid = document.createElement('div'); grid.className = 'trx-grid';
@@ -573,20 +590,29 @@
     panel.appendChild(grid);
     var nav2 = document.createElement('div'); nav2.className = 'trx-nav';
     var pv = document.createElement('button'); pv.type = 'button'; pv.className = 'trx-link';
-    pv.textContent = '← Back'; pv.addEventListener('click', function () { step -= 1; sync(); focusPanel(); });
+    pv.textContent = '← Back'; pv.addEventListener('click', function () { dir = -1; step -= 1; sync(); focusPanel(); });
     nav2.appendChild(pv);
     var nx = document.createElement('button'); nx.type = 'button';
     var picked = g.items.some(function (x) { return ticked[x.id]; });
     if (step < G.length) {
       nx.className = 'btn btn-line-dark trx-next';
       nx.textContent = (picked ? 'Next: ' : 'None of these. Next: ') + G[step].title;
-      nx.addEventListener('click', function () { step += 1; sync(); focusPanel(); });
+      nx.addEventListener('click', function () { dir = 1; step += 1; sync(); focusPanel(); });
     } else {
       nx.className = 'btn btn-black trx-next'; nx.setAttribute('data-tri-see', '');
       nx.textContent = 'See where we’d lean'; nx.addEventListener('click', openResult);
     }
     nav2.appendChild(nx);
     panel.appendChild(nav2);
+  }
+
+  function animatePanel() {
+    var at = (species || '') + ':' + step;
+    if (animStep !== null && at !== animStep) {
+      panel.classList.remove('trx-in', 'trx-in-back'); void panel.offsetWidth;
+      panel.classList.add(dir < 0 ? 'trx-in-back' : 'trx-in');
+    }
+    animStep = at; dir = 1;
   }
 
   function renderSummary() {
@@ -647,7 +673,7 @@
   }
   var lastStep = null;
   function sync() {
-    renderProgress(); renderPanel(); renderSummary(); $('trx').classList.toggle('is-cat', species === 'cat'); save();
+    renderProgress(); renderPanel(); animatePanel(); renderSummary(); $('trx').classList.toggle('is-cat', species === 'cat'); save();
     var at = (species || '') + ':' + step;
     if (lastStep !== null && at !== lastStep) { try { history.pushState({ trx: at }, ''); } catch (e) {} }
     lastStep = at;
@@ -677,6 +703,11 @@
   var hadSaved = !new URLSearchParams(location.search).get('c') && restore();
   $('trx-clear').innerHTML = RESET_ICON + '<span>Start over</span>';
   $('trx-clear').addEventListener('click', startOver);
+  /* Phones: the answers panel sits above the topic as one compact row that opens on tap. */
+  $('trx-sum-head').addEventListener('click', function () {
+    var sum = document.querySelector('.trx-sum'), open = !sum.classList.contains('is-open');
+    sum.classList.toggle('is-open', open); this.setAttribute('aria-expanded', String(open));
+  });
   sync();
   try { history.replaceState({ trx: lastStep }, ''); } catch (e) {}
 
@@ -762,7 +793,7 @@
   });
   trm.addEventListener('click', function (e) { if (e.target.closest('[data-trm-close]')) { popClose(trm); unpush(); } });
   /* The CTA hands off to the call popup or the class quiz; close ours first. */
-  $('r-cta').addEventListener('click', function () { popClose(trm); popPushed = false; });
+  [$('r-cta'), $('r-cta-m')].forEach(function (b) { b.addEventListener('click', function () { popClose(trm); popPushed = false; }); });
 
   function pick() {
     if (species === 'cat') return { key: 't1-cat', d: R.t1, safety: false, why: ['Help for my cat'], tier: 't1' };
@@ -800,9 +831,11 @@
     document.querySelectorAll('[data-tri-see]').forEach(function (b) { b.textContent = (Object.keys(ticked).length || species === 'cat') ? 'See where we\u2019d lean' : 'Not sure? See where to start'; });
     $('r-eyebrow').textContent = d === R.n ? 'Where to start' : 'Where we’d lean';
     $('r-start').textContent = d[0]; $('r-meta').textContent = d[1]; $('r-usually').textContent = d[4];
-    var cta = $('r-cta'); cta.textContent = d[2];
-    if (d[3] === 'quiz') { cta.setAttribute('href', '#'); cta.setAttribute('data-quiz-trigger', 'training'); }
-    else { cta.setAttribute('href', d[3]); cta.removeAttribute('data-quiz-trigger'); }
+    [$('r-cta'), $('r-cta-m')].forEach(function (cta) {
+      cta.textContent = d[2];
+      if (d[3] === 'quiz') { cta.setAttribute('href', '#'); cta.setAttribute('data-quiz-trigger', 'training'); }
+      else { cta.setAttribute('href', d[3]); cta.removeAttribute('data-quiz-trigger'); }
+    });
     var ol = $('r-steps'); ol.innerHTML = '';
     d[5].forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
     $('r-foot').hidden = true;

@@ -1110,3 +1110,51 @@ html { scroll-behavior: smooth; }
 .r-path-n { font-weight: 700; font-size: 15px; }
 .r-path-p { grid-row: 1 / span 2; grid-column: 2; align-self: center; font: 700 14px/1 var(--data); color: var(--teal); white-space: nowrap; }
 .r-path-a { font-size: 13.5px; color: var(--n200); }
+
+/* Triage visual pass (Nov 24 night) */
+/* 2. Hand-drawn topic icons */
+.trx-panel-head.has-ico { flex-wrap: nowrap; align-items: center; justify-content: flex-start; gap: 14px; }
+.trx-tico { flex: 0 0 auto; width: 46px; height: 46px; color: var(--teal-text); transform: rotate(-3deg); }
+.trx-ht { min-width: 0; }
+.trx-ht .trx-hint { margin-top: 4px; }
+
+/* 5. Gentle motion (off for reduced-motion users) */
+@media (prefers-reduced-motion: no-preference) {
+  .trx-main.trx-in > * { animation: trxIn .28s cubic-bezier(.2,.7,.2,1) both; }
+  .trx-main.trx-in-back > * { animation: trxInBack .28s cubic-bezier(.2,.7,.2,1) both; }
+  .trx-tile.just-on .trx-box::after { animation: trxTick .22s ease-out both; }
+  .trx-tile.just-on { animation: trxPop .22s ease-out; }
+}
+@keyframes trxIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@keyframes trxInBack { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+@keyframes trxTick { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes trxPop { 0% { transform: scale(1); } 45% { transform: scale(.985); } 100% { transform: scale(1); } }
+
+/* 6. Answers panel header is a button; on phones it collapses to one row above the topic */
+.trx-sum-head { width: 100%; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-align: left; cursor: default; }
+.trx-sum-r { display: inline-flex; align-items: center; gap: 10px; }
+.trx-chev { display: none; width: 20px; height: 20px; color: #fff; transition: transform .2s; }
+@media (max-width: 760px) {
+  .trx-layout { display: flex; flex-direction: column; }
+  .trx-sum { order: -1; padding: 14px 16px; }
+  .trx-sum-head { cursor: pointer; margin-bottom: 0; }
+  .trx-sum-head:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+  .trx-chev { display: block; }
+  .trx-sum:not(.is-open) .trx-sum-body { display: none; }
+  .trx-sum.is-open .trx-sum-body { margin-top: 10px; }
+  .trx-sum.is-open .trx-chev { transform: rotate(180deg); }
+  .trx-tico { width: 38px; height: 38px; }
+}
+
+/* 7. Phones: the Book button sits right under "Because you told us"; safety stays above it */
+.r-cta-m { display: none; }
+@media (max-width: 760px) {
+  .r-cta-m { display: inline-flex; align-self: flex-start; margin: 0; }
+  .rw-left #r-start, .rw-left #r-meta { order: 0; }
+  .rw-left #r-why { order: 1; }
+  .rw-left #r-urgent { order: 2; }
+  .rw-left .r-cta-m { order: 3; }
+  .rw-left #r-usually { order: 4; }
+  .rw-left #r-paths { order: 5; }
+}
+@media (max-width: 760px) { .trx-layout > * { align-self: stretch; } }
