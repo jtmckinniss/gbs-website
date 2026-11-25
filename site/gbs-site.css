@@ -990,6 +990,7 @@ html { scroll-behavior: smooth; }
 .trx-sum .trx-see:hover { background: #fff; border-color: #fff; }
 .trx-sum-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; margin-top: 12px; }
 .trx-sum-foot .muted { color: var(--n300); }
+.trx-sum-foot .trx-jf { color: var(--butter); font-weight: 700; }
 .trx-clear { background: none; border: 0; padding: 0; font: 700 13px/1 var(--body); color: #fff; text-decoration: underline; cursor: pointer; }
 .trx-clear[hidden] { display: none; }
 
