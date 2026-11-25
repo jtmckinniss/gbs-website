@@ -1090,3 +1090,5 @@ html { scroll-behavior: smooth; }
 /* GBS tagline — Judgement Free Behavior Care. At Every Stage. */
 .hero-tag { margin: 22px 0 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
 .cnm-tag { margin: 8px 0 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal-text); }
+
+.cred-note { margin: 16px 0 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); font-style: italic; }
