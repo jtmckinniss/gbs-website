@@ -374,38 +374,38 @@
       o('leash-people', 'Barks or lunges at people on leash', 't2'),
       o('pulls', 'Pulls too hard on the leash', 't5'),
       o('car', 'Doesn’t like car rides', 't5', [
-        o('car-panic', 'Panics in the car, and it keeps us from taking them most places', 't2'),
-        o('car-uneasy', 'Uncomfortable in the car, so we only take them when necessary', 't4') ]) ] },
+        o('car-panic', 'Car panic keeps us from taking them places', 't2'),
+        o('car-uneasy', 'Uneasy in the car; we drive only when needed', 't4') ]) ] },
     { id: 'general', title: 'General behavior', items: [
       o('noise', 'Fearful of loud noises', 't3', [
-        o('noise-panic', 'Panics and/or hurts themselves during storms, fireworks or other loud events', 't2') ]),
+        o('noise-panic', 'Panics or gets hurt during storms or fireworks', 't2') ]),
       o('anxious', 'Anxious, nervous or on edge most of the time', 't2'),
-      o('repetitive', 'Frequently spins, chases lights or shadows, or chews or licks themselves, and it’s hard to get them to stop', 't2'),
-      o('sleep', 'Wakes me up multiple times or keeps me up all night', 't2'),
-      o('shutdown', 'Won’t leave the house or a room in the house, or won’t go for walks', 't2'),
+      o('repetitive', 'Spins, chases lights or shadows, or licks nonstop', 't2'),
+      o('sleep', 'Keeps me up at night', 't2'),
+      o('shutdown', 'Won\u2019t leave the house (or a room), or go on walks', 't2'),
       o('alone', 'Doesn’t like being left alone', 't3', [
-        o('cant-leave', 'I can barely leave home because of panic, damage to the home, or them hurting themselves', 't2'),
-        o('alone-avoid', 'Not sure about panic, but their behavior keeps me from leaving them whenever possible', 't2'),
+        o('cant-leave', 'I can barely leave home: panic, damage or injury', 't2'),
+        o('alone-avoid', 'Not sure it\u2019s panic, but I avoid leaving them', 't2'),
         o('under6', 'They’re under 6 months old', 't2', null, false, true) ]) ] },
     { id: 'bites', title: 'Growling, biting or guarding', items: [
       o('aggr', 'Growls, snaps or bites people', 't3', [
         o('bit-person', 'Has bitten a person', 't2', [
-          o('bite-l4', 'The bite(s) caused punctures, or several bites broke skin in one incident', 't1', null, true),
-          o('bite-reported', 'The bite(s) were reported to the health department', 't1') ], true),
+          o('bite-l4', 'Punctures, or several bites broke skin at once', 't1', null, true),
+          o('bite-reported', 'Reported to the health department', 't1') ], true),
         o('under1', 'They’re under 1 year old', 't2', null, false, true) ]),
       o('guarding', 'Guards food, toys or other possessions', 't3'),
-      o('designation', 'Has, or may soon get, a “dangerous,” “vicious” or “nuisance” designation', 't1'),
+      o('designation', 'Has or may get a \u201cdangerous\u201d or similar designation', 't1'),
       o('legal', 'We’re facing, or expect to face, legal action', 't1') ] },
     { id: 'animals', title: 'With other animals in our home', items: [
       o('tension-dogs', 'Tension or fights with other dogs in our household', 't3', [
         o('dogs-injury', 'Fights have caused injuries to people or dogs', 't2', null, true),
         o('dogs-noinjury', 'Fights have not caused injuries', 't3'),
-        o('dogs-cant', 'Can’t be around another dog in our household without fighting', 't2') ]),
+        o('dogs-cant', 'Can\u2019t be near our other dog without fighting', 't2') ]),
       o('tension-cats', 'Tension or fights with the cats in our household', 't3', [
         o('cats-injury', 'Fights have caused injuries to people', 't2', null, true),
         o('cats-noinjury', 'Fights have not caused injuries', 't3'),
-        o('cats-room', 'Can’t be in the same room as our cat without chasing or fighting', 't3', [
-          o('cat-risk', 'Has injured, or could injure, a cat that lives with us or will be joining us', 't2') ]) ]) ] },
+        o('cats-room', 'Chases or fights our cat in the same room', 't3', [
+          o('cat-risk', 'Has hurt, or could hurt, our cat or a new one', 't2') ]) ]) ] },
     { id: 'skills', title: 'Manners and skills', items: [
       o('basics', 'Needs the basics: sit, down, stay', 't5'),
       o('listen', 'Doesn’t listen to me', 't4'),
@@ -415,34 +415,34 @@
       o('potty', 'Needs potty training', null, [
         o('potty-puppy', 'As a puppy (under 4 months)', 't5'),
         o('potty-adult', 'As an adult', 't4') ]),
-      o('therapy', 'Looking for the foundations to work toward becoming a therapy dog', 't5'),
-      o('cgc', 'Looking for the foundations to work toward Canine Good Citizen certification', 't5'),
+      o('therapy', 'Building toward becoming a therapy dog', 't5'),
+      o('cgc', 'Building toward Canine Good Citizen certification', 't5'),
       o('leash-walk', 'I want my dog to walk better on leash', 't5'),
-      o('no-group', 'Needs basic skills but doesn’t do well in group classes', 't5'),
+      o('no-group', 'Needs basics, but struggles in group classes', 't5'),
       o('stuck', 'We’ve tried training and it hasn’t really helped', 't2') ] },
     { id: 'vetvisits', title: 'Vet visits', items: [
       o('vet', 'Doesn’t like going to the vet', 't5', [
-        o('vet-blocked', 'Their behavior at the vet keeps us from getting veterinary care', 't2'),
-        o('vet-avoid', 'We can get veterinary care when absolutely needed, but try to avoid the vet because of their behavior there', 't3') ]),
+        o('vet-blocked', 'Vet visits are so hard we can\u2019t get care', 't2'),
+        o('vet-avoid', 'We get vet care only when we absolutely must', 't3') ]),
       o('vet-referred', 'My vet referred us to a veterinary behaviorist', 't1'),
-      o('insurance', 'I plan to submit the costs of behavior services to my pet insurance', 't1') ] },
+      o('insurance', 'I plan to claim behavior care on pet insurance', 't1') ] },
     { id: 'health', title: 'Health and medication', items: [
-      o('medical', 'Has a medical condition that is or could be affecting their behavior', 't2'),
+      o('medical', 'Has a medical condition that may affect behavior', 't2'),
       o('sudden-change', 'Has had a sudden, unexplained change in behavior', 't2'),
-      o('med-intent', 'I’d like to explore or adjust my dog’s behavior medication', 't1'),
+      o('med-intent', 'I\u2019d like to explore or adjust behavior medication', 't1'),
       o('med-history', 'Has tried behavior medication without the change we hoped for', 't2'),
       o('pica', 'Often swallows non-food items, like socks, plastic or underwear', 't2'),
       o('water', 'Drinks excessive amounts of water every day', 't2'),
       o('gi-stress', 'Gets diarrhea or vomits when stressed', 't2'),
       o('lick-injury', 'Licks themselves to the point of injury or baldness', 't2') ] },
     { id: 'family', title: 'Family concerns', items: [
-      o('baby', 'We’re expecting a baby and want to prepare our dog for the change', 't4', [
-        o('baby-worry', 'I’m very worried about how our dog will react around our baby', 't2') ]),
-      o('adults', 'Doesn’t do well with one or more adults in our household', 't3', [
+      o('baby', 'We\u2019re expecting a baby and want our dog ready', 't4', [
+        o('baby-worry', 'I\u2019m very worried about our dog around our baby', 't2') ]),
+      o('adults', 'Struggles with an adult in our home', 't3', [
         o('adults-growl', 'Has growled or snapped at an adult in our household', 't3'),
         o('adults-bit', 'Has bitten an adult in our household', 't2') ]),
-      o('children', 'Doesn’t do well with one or more children in our household', 't3', [
-        o('children-bit', 'Has growled, snapped or bitten a child who lives with us or often visits', 't2') ]) ] }
+      o('children', 'Struggles with a child in our home', 't3', [
+        o('children-bit', 'Has growled, snapped or bitten a child at our home', 't2') ]) ] }
   ];
 
   var $ = function (id) { return document.getElementById(id); };
@@ -454,13 +454,13 @@
      options; picking an option clears it. Potty puppy/adult are either/or. */
   var ALT = {
     'car': 'No, we can still usually take them most places',
-    'noise': 'No, they don\u2019t panic or hurt themselves during loud events',
+    'noise': 'No panic or injuries during loud events',
     'alone': 'No, they\u2019re uneasy, but we can still leave home',
     'bit-person': 'No punctures or health department report',
-    'vet': 'Neither of these; we can still get the veterinary care they need',
-    'baby': 'We\u2019re not too worried, but we want to be proactive about their relationship',
+    'vet': 'Neither; we can still get the care they need',
+    'baby': 'Not too worried; we just want to be proactive',
     'adults': 'Neither of these',
-    'children': 'Hasn\u2019t growled, snapped or bitten a child who lives with us or often visits'
+    'children': 'Hasn\u2019t growled, snapped or bitten a child'
   };
   function clearKids(x) { delete alts[x.id]; x.kids.forEach(function (y) { delete ticked[y.id]; clearKids(y); }); }
   function chosen(x, out) { x.kids.forEach(function (y) { if (ticked[y.id]) { out.push(y.label); chosen(y, out); } }); if (alts[x.id] && ALT[x.id]) out.push(ALT[x.id]); return out; }
