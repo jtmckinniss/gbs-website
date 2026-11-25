@@ -201,7 +201,7 @@
     var t = e.target.closest && e.target.closest('[data-quiz-trigger="training"]');
     if (t) {
       var u = t.getAttribute('data-book-url');
-      askAge = !u;                      // general "Book a class" buttons add an age question (4th) to pick the booking page
+      askAge = true;                    // every class questionnaire asks age 4th; the answer picks the booking page
       bookUrl = u || CLASS_BOOKING_URL;
       open(e);
     }
