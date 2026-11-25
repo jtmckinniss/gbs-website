@@ -128,3 +128,7 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Live in: homepage hero eyebrow, footer (all pages), Modification hero (under buttons), Care Navigation Call popup (under headline), homepage <title>, every page's meta description.
 - Always title case "Judgement Free" (triage panel line fixed to "Judgement Free.").
 - PENDING SOT update: log this override in GBS Brand Messaging §08.
+
+## Zip deliveries (JM, 2026-11-24)
+- Every time Justin asks for the site zip, include the GoDaddy cPanel upload + go-live instructions in the same reply.
+- Zip = contents of site/ (files at root, include .htaccess), exclude unused images.
