@@ -758,8 +758,9 @@ a.chip:hover, a.chip:focus-visible { background: rgba(0,0,0,.05); }
 .web-item { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px; border: 1px solid var(--kale-rule); }
 .web-item .btn { align-self: flex-start; margin-top: auto; }
 .soon-dark { color: var(--butter); }
-.cd-bullets { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 14px; }
-.cd-bullets li::marker { color: var(--butter-text); }
+.cd-bullets { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
+.cd-bullets li { position: relative; padding-left: 20px; }
+.cd-bullets li::before { content: ""; position: absolute; left: 2px; top: 0.66em; width: 9px; height: 2px; background: var(--teal-deep); border-radius: 1px; transform: rotate(-8deg); }
 /* Class details popup: wide two-column layout on desktop so it fits without scrolling */
 @media (min-width: 900px) {
   .cd-panel { max-width: 1040px; width: min(1040px, calc(100vw - 48px)); padding: 36px 44px 30px; }
