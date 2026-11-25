@@ -19,7 +19,7 @@
   --teal-deep: #0E8079;
   --teal-text: #0A6660;
   --butter: #E8C46B;
-  --butter-text: #8A6A12;
+  --butter-text: #7A5D0F;
   --n100: #E4EDEC;
   --n200: #C7D8D6;
   --n300: #9DB8B5;
@@ -1192,3 +1192,7 @@ html { scroll-behavior: smooth; }
 .r-path-n { grid-column: 1; grid-row: 1; }
 .r-path-p { grid-column: 1; grid-row: 2; align-self: start; }
 .r-path-a.hand { grid-column: 2; grid-row: 1 / span 2; justify-self: end; text-align: right; font-family: var(--hand); font-weight: 250; font-size: 19px; line-height: 1.15; color: var(--teal); transform: rotate(-2deg); }
+
+/* Accessibility: skip link, visible only on keyboard focus */
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 1000; padding: 12px 18px; background: var(--butter); color: var(--ink); font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 12px; outline: 3px solid var(--ink); outline-offset: 2px; }
