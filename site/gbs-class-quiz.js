@@ -8,7 +8,9 @@
    ========================================================== */
 (function () {
   var CLASS_BOOKING_URL = 'https://gigisbehavior.as.me/schedule/f381a863/?categories[]=Training%20and%20Behavior%20Classes';   // Adult classes (Skills & Manners, Tricks, 1-on-1). Puppy buttons pass data-book-url (Justin, Nov 24)
+  var PUPPY_BOOKING_URL = 'https://gigisbehavior.as.me/pps'; // Puppy Preschool
   var bookUrl = CLASS_BOOKING_URL;
+  var askAge = false, isPuppy = false;
   var CARE_NAV_URL = 'https://app.vello.idexx.com/book/hcNFo5meTuC2VaM_ydL3mw'; // Vello Care Navigation Call (popup intercepts first)
 
   var QUESTIONS = [
@@ -67,6 +69,49 @@
     return p;
   }
 
+  // First step for general "Book a class" buttons: puppy or adult decides the class page
+  function renderAge() {
+    card.innerHTML = '';
+    card.appendChild(closeBtn());
+    card.appendChild(el('div', 'cq-tag', 'Before you book'));
+    var h = el('h2', 'cq-q', 'How old is your dog?');
+    h.id = 'cq-title';
+    card.appendChild(h);
+    var row = el('div', 'cq-answers');
+    [['puppy', 'Puppy, 8 to 20 weeks'], ['adult', 'Older than 20 weeks']].forEach(function (o) {
+      var b = el('button', 'cq-answer', o[1]);
+      b.type = 'button';
+      b.addEventListener('click', function () {
+        isPuppy = o[0] === 'puppy';
+        if (isPuppy) { bookUrl = PUPPY_BOOKING_URL; renderPuppy(); }
+        else { bookUrl = CLASS_BOOKING_URL; step = 0; answers = []; renderQuestion(); }
+      });
+      row.appendChild(b);
+    });
+    card.appendChild(row);
+    card.appendChild(el('p', 'cq-note', 'Puppies 8 to 20 weeks old start in Puppy Preschool. Older dogs start in Skills &amp; Manners or Tricks.'));
+    h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true });
+  }
+
+  function renderPuppy() {
+    card.innerHTML = '';
+    card.appendChild(closeBtn());
+    card.className = 'cq-card cq-ready';
+    card.appendChild(el('div', 'cq-tag', 'Puppy Preschool'));
+    var h = el('h2', 'cq-result-h', 'Great news. We can’t wait to meet you and your puppy.');
+    h.id = 'cq-title';
+    card.appendChild(h);
+    card.appendChild(el('p', 'cq-result-body', 'Puppy Preschool is built for puppies 8 to 20 weeks old. Pick the class and time that work for your family.'));
+    var a = el('a', 'cq-cta', 'Choose your class');
+    a.href = PUPPY_BOOKING_URL; a.target = '_blank'; a.rel = 'noopener';
+    card.appendChild(a);
+    var back = el('button', 'cq-back', '&larr; Back');
+    back.type = 'button';
+    back.addEventListener('click', function () { card.className = 'cq-card'; renderAge(); });
+    card.appendChild(back);
+    a.focus();
+  }
+
   function renderQuestion() {
     card.innerHTML = '';
     card.appendChild(closeBtn());
@@ -86,6 +131,12 @@
     card.appendChild(row);
     if (step === 0) {
       card.appendChild(el('p', 'cq-note', 'Three quick questions help us make sure group class is the right fit for your dog.'));
+      if (askAge) {
+        var back0 = el('button', 'cq-back', '&larr; Back');
+        back0.type = 'button';
+        back0.addEventListener('click', function () { renderAge(); });
+        card.appendChild(back0);
+      }
     } else {
       var back = el('button', 'cq-back', '&larr; Back');
       back.type = 'button';
@@ -140,7 +191,7 @@
     }
     var again = el('button', 'cq-back', 'Start over');
     again.type = 'button';
-    again.addEventListener('click', function () { card.className = 'cq-card'; step = 0; answers = []; renderQuestion(); });
+    again.addEventListener('click', function () { card.className = 'cq-card'; step = 0; answers = []; if (askAge) renderAge(); else renderQuestion(); });
     card.appendChild(again);
     card.querySelector('.cq-cta').focus();
   }
@@ -153,7 +204,7 @@
     card.className = 'cq-card';
     overlay.removeAttribute('hidden');
     document.documentElement.classList.add('cq-lock');
-    renderQuestion();
+    if (askAge) renderAge(); else renderQuestion();
   }
 
   function close() {
@@ -164,6 +215,11 @@
 
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('[data-quiz-trigger="training"]');
-    if (t) { bookUrl = t.getAttribute('data-book-url') || CLASS_BOOKING_URL; open(e); }
+    if (t) {
+      var u = t.getAttribute('data-book-url');
+      askAge = !u;                      // general "Book a class" buttons ask puppy vs adult first
+      bookUrl = u || CLASS_BOOKING_URL;
+      open(e);
+    }
   });
 })();
