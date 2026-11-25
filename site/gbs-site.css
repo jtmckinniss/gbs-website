@@ -1158,3 +1158,13 @@ html { scroll-behavior: smooth; }
   .rw-left #r-paths { order: 5; }
 }
 @media (max-width: 760px) { .trx-layout > * { align-self: stretch; } }
+/* "about two minutes" points at the section headline (Nov 24) */
+.trx-titlerow { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
+.trx-titlerow .h2 { margin-bottom: 0; }
+.trx-note-h { display: inline-flex !important; align-items: center; gap: 8px; }
+.trx-note-h svg { width: 44px; height: 30px; transform: translateY(-4px); }
+.trx-titlerow + .lede { margin-top: 12px; }
+@media (max-width: 760px) {
+  .trx-titlerow { flex-direction: column; align-items: flex-start; }
+  .trx-note-h svg { transform: rotate(70deg); }
+}
