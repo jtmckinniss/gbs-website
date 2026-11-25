@@ -1168,3 +1168,21 @@ html { scroll-behavior: smooth; }
   .trx-titlerow { flex-direction: column; align-items: flex-start; }
   .trx-note-h svg { transform: rotate(70deg); }
 }
+
+/* Tool as one app panel: framed shell, dark title bar, hard offset shadow (Nov 24) */
+.trx { margin-top: 28px; background: var(--cream-soft); border: 1.5px solid var(--ink); box-shadow: 10px 10px 0 var(--kale); }
+.trx .trx-top { background: var(--kale); margin: 0; padding: 16px 24px; gap: 20px; }
+.trx-app-t { flex: 0 0 auto; font: 700 12px/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; color: #fff; }
+.trx .trx-prog { background: var(--kale-rule); border: 0; height: 8px; }
+.trx .trx-prog span { background: var(--teal); }
+.trx .trx-prog-t { color: var(--teal); }
+.trx .trx-private { margin: 0; padding: 12px 24px; background: var(--cream-deep); border-bottom: 1px solid var(--line); }
+.trx .trx-layout { padding: 24px; }
+.trx .trx-main { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--ink); }
+@media (max-width: 760px) {
+  .trx { box-shadow: 6px 6px 0 var(--kale); margin-right: 6px; }
+  .trx .trx-top { padding: 14px 16px; gap: 10px 14px; }
+  .trx-app-t { flex: 1 1 auto; }
+  .trx .trx-private { padding: 10px 16px; font-size: 12.5px; line-height: 1.45; }
+  .trx .trx-layout { padding: 16px 14px; }
+}
