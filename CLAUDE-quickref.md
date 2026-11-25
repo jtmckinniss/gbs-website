@@ -132,3 +132,6 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 ## Zip deliveries (JM, 2026-11-24)
 - Every time Justin asks for the site zip, include the GoDaddy cPanel upload + go-live instructions in the same reply.
 - Zip = contents of site/ (files at root, include .htaccess), exclude unused images.
+
+## Class booking (JM, 2026-11-24, late)
+- All class CTAs (puppy and adult) go to https://gigisbehavior.as.me/schedule/f381a863. Age question removed; quiz is 3 readiness questions. Webinar Register links still use /pps.

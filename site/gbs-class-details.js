@@ -1,8 +1,8 @@
 /* Class details & prerequisites popup (Cost page). Opens from .cls-det[data-class].
    Content: team class descriptions (Nov 24), reconciled with current decisions. */
 (function () {
-  var BOOK = 'https://gigisbehavior.as.me/schedule/f381a863/?categories[]=Training%20and%20Behavior%20Classes';
-  var PUPPY_BOOK = 'https://gigisbehavior.as.me/pps';
+  var BOOK = 'https://gigisbehavior.as.me/schedule/f381a863';
+  var PUPPY_BOOK = BOOK; // all classes book through one page (Justin, Nov 24)
   var WEBINAR = 'Complete our complimentary How to Train / Dog Body Language webinar before your first class (added when you book)';
   var VAX = 'Fully vaccinated by a veterinarian against rabies, distemper, parvovirus and Bordetella';
   var FAMILY = 'An adult family member attends every class';

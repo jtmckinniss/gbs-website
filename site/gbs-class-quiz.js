@@ -7,10 +7,8 @@
    set CLASS_BOOKING_URL and CARE_NAV_URL below.
    ========================================================== */
 (function () {
-  var CLASS_BOOKING_URL = 'https://gigisbehavior.as.me/schedule/f381a863/?categories[]=Training%20and%20Behavior%20Classes';   // Adult classes (Skills & Manners, Tricks, 1-on-1). Puppy buttons pass data-book-url (Justin, Nov 24)
-  var PUPPY_BOOKING_URL = 'https://gigisbehavior.as.me/pps'; // Puppy Preschool
+  var CLASS_BOOKING_URL = 'https://gigisbehavior.as.me/schedule/f381a863';   // All classes, puppy and adult (Justin, Nov 24)
   var bookUrl = CLASS_BOOKING_URL;
-  var askAge = false;
   var CARE_NAV_URL = 'https://app.vello.idexx.com/book/hcNFo5meTuC2VaM_ydL3mw'; // Vello Care Navigation Call (popup intercepts first)
 
   var QUESTIONS = [
@@ -63,49 +61,18 @@
 
   function progress() {
     var p = el('div', 'cq-progress');
-    for (var i = 0; i < total(); i++) {
+    for (var i = 0; i < QUESTIONS.length; i++) {
       p.appendChild(el('span', i < step ? 'done' : (i === step ? 'on' : '')));
     }
     return p;
   }
-
-  // Question 4 (general "Book a class" buttons only): age decides which booking page, nothing else
-  function renderAge() {
-    card.innerHTML = '';
-    card.appendChild(closeBtn());
-    card.appendChild(el('div', 'cq-tag', 'Before you book'));
-    step = QUESTIONS.length;
-    card.appendChild(progress());
-    card.appendChild(el('div', 'cq-count', 'Question ' + (step + 1) + ' of ' + total()));
-    var h = el('h2', 'cq-q', 'How old is your dog?');
-    h.id = 'cq-title';
-    card.appendChild(h);
-    var row = el('div', 'cq-answers');
-    [['puppy', 'Puppy, 8 to 20 weeks'], ['adult', 'Older than 20 weeks']].forEach(function (o) {
-      var b = el('button', 'cq-answer', o[1]);
-      b.type = 'button';
-      b.addEventListener('click', function () {
-        bookUrl = o[0] === 'puppy' ? PUPPY_BOOKING_URL : CLASS_BOOKING_URL;
-        renderResult();
-      });
-      row.appendChild(b);
-    });
-    card.appendChild(row);
-    var back = el('button', 'cq-back', '&larr; Back');
-    back.type = 'button';
-    back.addEventListener('click', function () { step = QUESTIONS.length - 1; answers.pop(); renderQuestion(); });
-    card.appendChild(back);
-    h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true });
-  }
-
-  function total() { return QUESTIONS.length + (askAge ? 1 : 0); }
 
   function renderQuestion() {
     card.innerHTML = '';
     card.appendChild(closeBtn());
     card.appendChild(el('div', 'cq-tag', 'Before you book'));
     card.appendChild(progress());
-    card.appendChild(el('div', 'cq-count', 'Question ' + (step + 1) + ' of ' + total()));
+    card.appendChild(el('div', 'cq-count', 'Question ' + (step + 1) + ' of ' + QUESTIONS.length));
     var h = el('h2', 'cq-q', QUESTIONS[step].q);
     h.id = 'cq-title';
     card.appendChild(h);
@@ -118,7 +85,7 @@
     });
     card.appendChild(row);
     if (step === 0) {
-      card.appendChild(el('p', 'cq-note', (askAge ? 'A few quick questions help us make sure group class is the right fit for your dog.' : 'Three quick questions help us make sure group class is the right fit for your dog.')));
+      card.appendChild(el('p', 'cq-note', 'Three quick questions help us make sure group class is the right fit for your dog.'));
     } else {
       var back = el('button', 'cq-back', '&larr; Back');
       back.type = 'button';
@@ -131,9 +98,7 @@
   function answer(v) {
     answers[step] = v;
     step++;
-    if (step < QUESTIONS.length) { renderQuestion(); return; }
-    var ready = QUESTIONS.every(function (q, i) { return answers[i] === q.pass; });
-    if (ready && askAge) renderAge(); else renderResult();
+    if (step < QUESTIONS.length) renderQuestion(); else renderResult();
   }
 
   function deadLink(a) {
@@ -200,9 +165,7 @@
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('[data-quiz-trigger="training"]');
     if (t) {
-      var u = t.getAttribute('data-book-url');
-      askAge = true;                    // every class questionnaire asks age 4th; the answer picks the booking page
-      bookUrl = u || CLASS_BOOKING_URL;
+      bookUrl = CLASS_BOOKING_URL;      // all classes book through one page (Justin, Nov 24)
       open(e);
     }
   });
