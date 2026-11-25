@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Gluten:wght@100..900&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
-<link rel="stylesheet" href="gbs-site.css?v=20261124tr6">
+<link rel="stylesheet" href="gbs-site.css?v=20261124tr7">
 </head>
 <body>
 <a class="sr-only" href="#main">Skip to content</a>
@@ -856,7 +856,7 @@
     var pp = $('r-paths'); pp.innerHTML = ''; pp.hidden = !show.length;
     show.forEach(function (k) {
       var v = P[k], row = document.createElement('a'); row.className = 'r-path'; row.href = v[3];
-      row.innerHTML = '<span class="r-path-n"></span><span class="r-path-a"></span><span class="r-path-p"></span>';
+      row.innerHTML = '<span class="r-path-n"></span><span class="r-path-p"></span><span class="r-path-a hand"></span>';
       row.querySelector('.r-path-n').textContent = v[0]; row.querySelector('.r-path-a').textContent = v[1]; row.querySelector('.r-path-p').textContent = v[2];
       pp.appendChild(row);
     });
