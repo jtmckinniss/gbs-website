@@ -82,6 +82,7 @@
         <span class="trx-prog-t" id="trx-progress-t">Step 1 of 8</span>
         <span class="trx-note" aria-hidden="true"><svg viewBox="0 0 60 40" fill="none" stroke="#0A6660" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M56 6 C 40 4, 22 10, 12 26"/><path d="M8 18 L 11.5 28 L 21 24"/></svg><span class="hand">about two minutes</span></span>
       </div>
+      <p class="trx-private"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Your answers stay on this page. Nothing is sent to Gigi's unless you book a call or a class.</p>
       <div class="trx-layout">
         <div class="trx-main" id="trx-panel" role="tabpanel" tabindex="-1"></div>
         <aside class="trx-sum" aria-label="Your answers">
@@ -104,7 +105,9 @@
           <div class="rw-left">
             <h3 class="h3" id="r-start" style="font-size: 40px">Let's figure it out together</h3>
             <p class="meta" id="r-meta" style="color: var(--teal); font-size: 16px; font-weight: 700">Free &middot; 15 minutes &middot; with our Client Success Manager</p>
+            <div class="r-why" id="r-why" hidden></div>
             <p id="r-usually" style="color: var(--n100)"></p>
+            <div class="r-paths" id="r-paths" hidden></div>
             <p id="r-urgent" class="tri-urgent" hidden>If someone has been hurt, get medical care first. Please contact your veterinarian about an immediate safety plan. When you book, let us know it's urgent.</p>
           </div>
           <div class="rw-right">
@@ -414,20 +417,21 @@
       o('leash-walk', 'I want my dog to walk better on leash', 't5'),
       o('no-group', 'Needs basic skills but doesn’t do well in group classes', 't5'),
       o('stuck', 'We’ve tried training and it hasn’t really helped', 't2') ] },
-    { id: 'health', title: 'Vet visits, medication and health', items: [
+    { id: 'vetvisits', title: 'Vet visits', items: [
       o('vet', 'Doesn’t like going to the vet', 't5', [
         o('vet-blocked', 'Their behavior at the vet keeps us from getting veterinary care', 't2'),
         o('vet-avoid', 'We can get veterinary care when absolutely needed, but try to avoid the vet because of their behavior there', 't3') ]),
+      o('vet-referred', 'My vet referred us to a veterinary behaviorist', 't1'),
+      o('insurance', 'I plan to submit the costs of behavior services to my pet insurance', 't1') ] },
+    { id: 'health', title: 'Health and medication', items: [
       o('medical', 'Has a medical condition that is or could be affecting their behavior', 't2'),
       o('sudden-change', 'Has had a sudden, unexplained change in behavior', 't2'),
-      o('vet-referred', 'My vet referred us to a veterinary behaviorist', 't1'),
       o('med-intent', 'I’d like to explore or adjust my dog’s behavior medication', 't1'),
       o('med-history', 'Has tried behavior medication without the change we hoped for', 't2'),
       o('pica', 'Often swallows non-food items, like socks, plastic or underwear', 't2'),
       o('water', 'Drinks excessive amounts of water every day', 't2'),
       o('gi-stress', 'Gets diarrhea or vomits when stressed', 't2'),
-      o('lick-injury', 'Licks themselves to the point of injury or baldness', 't2'),
-      o('insurance', 'I plan to submit the costs of behavior services to my pet insurance', 't1') ] },
+      o('lick-injury', 'Licks themselves to the point of injury or baldness', 't2') ] },
     { id: 'family', title: 'Family concerns', items: [
       o('baby', 'We’re expecting a baby and want to prepare our dog for the change', 't4', [
         o('baby-worry', 'I’m very worried about how our dog will react around our baby', 't2') ]),
@@ -443,6 +447,18 @@
   function index(list) { list.forEach(function (x) { (byId[x.id] = byId[x.id] || []).push(x); index(x.kids); }); }
   G.forEach(function (g) { index(g.items); });
   var alts = {};
+  /* Every follow-up level has an alternative answer (Justin, Nov 20). Picking it clears that level's
+     options; picking an option clears it. Potty puppy/adult are either/or. */
+  var ALT = {
+    'car': 'No, we can still usually take them most places',
+    'noise': 'No, they don\u2019t panic or hurt themselves during loud events',
+    'alone': 'No, they\u2019re uneasy, but we can still leave home',
+    'bit-person': 'No punctures or health department report',
+    'vet': 'Neither of these; we can still get the veterinary care they need',
+    'baby': 'We\u2019re not too worried, but we want to be proactive about their relationship',
+    'adults': 'Neither of these',
+    'children': 'Hasn\u2019t growled, snapped or bitten a child who lives with us or often visits'
+  };
   function clearKids(x) { delete alts[x.id]; x.kids.forEach(function (y) { delete ticked[y.id]; clearKids(y); }); }
   function chosen(x, out) { x.kids.forEach(function (y) { if (ticked[y.id]) { out.push(y.label); chosen(y, out); } }); if (alts[x.id] && ALT[x.id]) out.push(ALT[x.id]); return out; }
 
@@ -460,7 +476,7 @@
   }
   document.addEventListener('keydown', function (e) {
     if (!openPop || document.querySelector('.cnm:not([hidden]), .cq-overlay:not([hidden])')) return;
-    if (e.key === 'Escape') { openPop === tfm ? doneFollow() : popClose(openPop); return; }
+    if (e.key === 'Escape') { openPop === tfm ? doneFollow() : popClose(openPop); unpush(); return; }
     if (e.key === 'Tab') {
       var f = openPop.querySelectorAll('a[href], button, input');
       f = Array.prototype.filter.call(f, function (n) { return n.offsetParent !== null; });
@@ -480,7 +496,7 @@
     var bar = $('trx-progress'), lab = $('trx-progress-t');
     var done = species === 'cat' ? TOTAL : step + 1;
     bar.style.width = Math.round(done / TOTAL * 100) + '%';
-    bar.parentNode.setAttribute('aria-valuenow', String(done));
+    bar.parentNode.setAttribute('aria-valuenow', String(done)); bar.parentNode.setAttribute('aria-valuemax', String(TOTAL));
     lab.textContent = species === 'cat' ? 'Done' : 'Step ' + (step + 1) + ' of ' + TOTAL;
   }
 
@@ -545,6 +561,10 @@
       return;
     }
     var g = G[step - 1];
+    if (pick().safety) {
+      var sf = document.createElement('div'); sf.className = 'trx-safety'; sf.setAttribute('role', 'alert');
+      sf.textContent = $('r-urgent').textContent; panel.appendChild(sf);
+    }
     head.innerHTML = '<h3 class="h3 trx-h"></h3><p class="trx-hint">Tap any that fit, or skip if none do.</p>';
     head.querySelector('.trx-h').textContent = g.title;
     panel.appendChild(head);
@@ -608,37 +628,62 @@
     document.querySelector('.trx-sum .trx-see').hidden = !(species === 'cat' || step === G.length);
   }
 
-  function sync() { renderProgress(); renderPanel(); renderSummary(); $('trx').classList.toggle('is-cat', species === 'cat'); }
+  /* 5. Keep progress if the page reloads (this browser only, 7 days) and let the back button step back. */
+  var KEY = 'gbsTriage.v1';
+  function save() {
+    try {
+      if (!species) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, JSON.stringify({ s: species, p: step, t: ticked, a: alts, at: Date.now() }));
+    } catch (e) {}
+  }
+  function restore() {
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!d || Date.now() - d.at > 7 * 864e5) return false;
+      species = d.s; step = Math.min(d.p || 0, G.length); ticked = d.t || {}; alts = d.a || {};
+      Object.keys(ticked).forEach(function (id) { if (!byId[id]) delete ticked[id]; });
+      return true;
+    } catch (e) { return false; }
+  }
+  var lastStep = null;
+  function sync() {
+    renderProgress(); renderPanel(); renderSummary(); $('trx').classList.toggle('is-cat', species === 'cat'); save();
+    var at = (species || '') + ':' + step;
+    if (lastStep !== null && at !== lastStep) { try { history.pushState({ trx: at }, ''); } catch (e) {} }
+    lastStep = at;
+  }
+  /* A popup adds one history entry so the back button can close it; closing it another way removes that entry. */
+  var popPushed = false;
+  function unpush() { if (popPushed) { popPushed = false; try { history.back(); } catch (e) {} } }
+  window.addEventListener('popstate', function (e) {
+    popPushed = false;
+    if (!tfm.hidden) { doneFollow(); return; }
+    if (!trm.hidden) { popClose(trm); return; }
+    var at = e.state && e.state.trx; if (typeof at !== 'string') return;
+    var parts = at.split(':'); species = parts[0] || null; step = +parts[1] || 0;
+    if (!species) { ticked = {}; alts = {}; }
+    lastStep = at; renderProgress(); renderPanel(); renderSummary(); $('trx').classList.toggle('is-cat', species === 'cat'); save(); update();
+  });
   function focusPanel() {
     var top = $('trx').getBoundingClientRect().top;
     if (top < 0) $('trx').scrollIntoView({ block: 'start', behavior: 'smooth' });
     panel.focus({ preventScroll: true });
   }
   function goTo(id) { species = 'dog'; for (var i = 0; i < G.length; i++) if (G[i].id === id) step = i + 1; sync(); }
-  function openResult() { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; }
+  function openResult() { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; try { history.pushState({ trx: lastStep, pop: 1 }, ''); popPushed = true; } catch (e) {} }
 
   var RESET_ICON = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>';
   function startOver() { species = null; step = 0; ticked = {}; alts = {}; sync(); update(); focusPanel(); }
+  var hadSaved = !new URLSearchParams(location.search).get('c') && restore();
   $('trx-clear').innerHTML = RESET_ICON + '<span>Start over</span>';
   $('trx-clear').addEventListener('click', startOver);
   sync();
+  try { history.replaceState({ trx: lastStep }, ''); } catch (e) {}
 
   /* ---- Follow-up popup ---- */
   var tfm = $('tfm'), tfmList = $('tfm-list');
   /* Popups live at page level so the sticky nav can't sit above them. */
   document.body.appendChild(tfm); document.body.appendChild($('trm'));
-  /* Every follow-up level has an alternative answer (Justin, Nov 20). Picking it clears that level's
-     options; picking an option clears it. Potty puppy/adult are either/or. */
-  var ALT = {
-    'car': 'No, we can still usually take them most places',
-    'noise': 'No, they don\u2019t panic or hurt themselves during loud events',
-    'alone': 'No, they\u2019re uneasy, but we can still leave home',
-    'bit-person': 'None of these',
-    'vet': 'Neither of these; we can still get the veterinary care they need',
-    'baby': 'We\u2019re not too worried, but we want to be proactive about their relationship',
-    'adults': 'Neither of these',
-    'children': 'Hasn\u2019t growled, snapped or bitten a child who lives with us or often visits'
-  };
   var current = null;
   /* Follow-ups are select-one at every level (Justin, Nov 20): radios named per level. */
   function box(key, label, on, depth, onChange, group, type) {
@@ -701,32 +746,41 @@
     current = x; $('tfm-h').textContent = x.label;
     renderFollow(null);
     popOpen(tfm, '#tfm-list input');
+    try { history.pushState({ trx: lastStep, pop: 1 }, ''); popPushed = true; } catch (e) {}
   }
   function doneFollow() {
     /* Closed without the required answer: untick the option too, so nothing is left half-answered. */
     if (current && ticked[current.id] && !complete(current)) { delete ticked[current.id]; clearKids(current); sync(); update(); }
     popClose(tfm);
   }
-  tfm.addEventListener('click', function (e) { if (e.target.closest('[data-tfm-done]')) doneFollow(); });
+  tfm.addEventListener('click', function (e) { if (e.target.closest('[data-tfm-done]')) { doneFollow(); unpush(); } });
 
   /* ---- Result popup ---- */
   var trm = $('trm');
   document.querySelectorAll('[data-tri-see]').forEach(function (b) {
-    b.addEventListener('click', function () { shown = ''; update(true); popOpen(trm, '.trm-x'); trm.querySelector('.result-wide').scrollTop = 0; });
+    b.addEventListener('click', openResult);
   });
-  trm.addEventListener('click', function (e) { if (e.target.closest('[data-trm-close]')) popClose(trm); });
+  trm.addEventListener('click', function (e) { if (e.target.closest('[data-trm-close]')) { popClose(trm); unpush(); } });
   /* The CTA hands off to the call popup or the class quiz; close ours first. */
-  $('r-cta').addEventListener('click', function () { popClose(trm); });
+  $('r-cta').addEventListener('click', function () { popClose(trm); popPushed = false; });
 
   function pick() {
-    if (species === 'cat') return { key: 't1-cat', d: R.t1, safety: false };
+    if (species === 'cat') return { key: 't1-cat', d: R.t1, safety: false, why: ['Help for my cat'], tier: 't1' };
     var best = null, safety = false;
     Object.keys(ticked).forEach(function (id) {
       var x = byId[id][0];
       if (x.safety) safety = true;
       if (x.tier && (!best || RANK.indexOf(x.tier) < RANK.indexOf(best))) best = x.tier;
     });
-    return { key: (best || 'n') + (safety ? '-s' : ''), d: R[best || 'n'], safety: safety };
+    /* The answers that set the lean (highest tier), most specific first: shown as "Because you told us". */
+    var why = [];
+    Object.keys(ticked).forEach(function (id) {
+      var x = byId[id][0];
+      if (!best || x.tier !== best) return;
+      var deeper = x.kids.some(function (k) { return ticked[k.id] && k.tier === best; });
+      if (!deeper) why.push(x.label);
+    });
+    return { key: (best || 'n') + (safety ? '-s' : ''), d: R[best || 'n'], safety: safety, why: why, tier: best || 'n' };
   }
 
   var shown = '';
@@ -753,6 +807,26 @@
     d[5].forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); });
     $('r-foot').hidden = true;
     $('r-urgent').hidden = !r.safety;
+    /* 1. Because you told us (max 3, then "+N more") */
+    var w = $('r-why'); w.innerHTML = ''; w.hidden = !r.why || !r.why.length;
+    if (!w.hidden) {
+      var lab = document.createElement('span'); lab.className = 'r-why-l'; lab.textContent = 'Because you told us'; w.appendChild(lab);
+      r.why.slice(0, 3).forEach(function (t) { var c = document.createElement('span'); c.className = 'r-chip'; c.textContent = t; w.appendChild(c); });
+      if (r.why.length > 3) { var m = document.createElement('span'); m.className = 'r-more'; m.textContent = '+' + (r.why.length - 3) + ' more'; w.appendChild(m); }
+    }
+    /* 2 + 7. What each pathway is, in plain words, with its starting price */
+    var P = {
+      med: ['Behavioral Medicine', 'Like your animal\u2019s psychiatrist', 'Starting Point $690', 'medicine.html'],
+      mod: ['Behavioral Modification', 'Like your dog\u2019s life coach or therapist', 'From $250', 'modification.html']
+    };
+    var show = { t1: ['med'], t2: ['med'], t3: ['med', 'mod'], t4: ['mod'] }[r.tier] || [];
+    var pp = $('r-paths'); pp.innerHTML = ''; pp.hidden = !show.length;
+    show.forEach(function (k) {
+      var v = P[k], row = document.createElement('a'); row.className = 'r-path'; row.href = v[3];
+      row.innerHTML = '<span class="r-path-n"></span><span class="r-path-a"></span><span class="r-path-p"></span>';
+      row.querySelector('.r-path-n').textContent = v[0]; row.querySelector('.r-path-a').textContent = v[1]; row.querySelector('.r-path-p').textContent = v[2];
+      pp.appendChild(row);
+    });
   }
 
   /* Nav links (?c=KEY) from the old six concerns now jump to the matching topic. */
