@@ -20,6 +20,7 @@
         '<button type="button" class="cnm-x" data-cnm-close aria-label="Close">&times;</button>' +
         '<p class="eyebrow">Free Care Navigation Call</p>' +
         '<h2 class="h2-sm" id="cnm-h">Here\'s what to expect.</h2>' +
+        '<p class="cnm-tag">Judgement Free Behavior Care. At Every Stage.</p>' +
         '<p class="cnm-lede">Booking your call also sets up your Gigi\'s Behavior client account, so your care team has what they need from the start.</p>' +
         '<ol class="cnm-steps">' +
           step(1, 'Create your account', 'Your name and contact information.') +

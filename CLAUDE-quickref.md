@@ -122,3 +122,9 @@ meet-the-team.html · referring-vets.html · client-portal.html · gbs-shared.cs
 - Tricks becomes a two-tier class: Tricks Foundations / Tricks Advanced.
 - No team member names anywhere on the site for launch (Justin, Nov 24). Roles only: Veterinary Behaviorist, Behavioral Medicine Tech, Certified Dog Behavior Consultant, Credentialed Trainers, Client Success Manager, on-site veterinarian.
 - Old-site redirects (Justin, Nov 24): in site/.htaccess (GoDaddy cPanel) and netlify.toml. /000061752018 -> client-portal (assumed old Client Portal page), /for-vets -> referring-vets, /service-prices-&-packages -> pricing, /specialties-&-services -> home #stages, /for-behavior-pros and /our-experts -> home.
+
+## Tagline decision (2026-11-24, JM)
+- "Judgement Free Behavior Care. At Every Stage." is the GBS tagline. JM overrides the SOT §08 "use anchor phrases sparingly" rule for this line: use it broadly, because it ties to the parent brand's Judgement Free Adoption™.
+- Live in: homepage hero eyebrow, footer (all pages), Modification hero (under buttons), Care Navigation Call popup (under headline), homepage <title>, every page's meta description.
+- Always title case "Judgement Free" (triage panel line fixed to "Judgement Free.").
+- PENDING SOT update: log this override in GBS Brand Messaging §08.

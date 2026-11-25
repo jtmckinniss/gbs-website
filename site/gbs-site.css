@@ -1086,3 +1086,7 @@ html { scroll-behavior: smooth; }
 @media (max-width: 640px) { .cp-jump-row { grid-template-columns: 1fr; } }
 #urgent, #quick-links, #scheduling { scroll-margin-top: 90px; }
 .urg-emergency .urg-list-dark li::before { background: #F26157; }
+
+/* GBS tagline — Judgement Free Behavior Care. At Every Stage. */
+.hero-tag { margin: 22px 0 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
+.cnm-tag { margin: 8px 0 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal-text); }
